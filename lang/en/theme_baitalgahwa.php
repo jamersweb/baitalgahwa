@@ -78,6 +78,15 @@ $string['footeryoutube'] = 'YouTube URL';
 $string['footerquick'] = 'Quick links';
 $string['footercontact'] = 'Contact';
 $string['footercopy'] = 'All rights reserved.';
+$string['footercopyright'] = '© 2026 Bait Al Gahwa Training Platform. All rights reserved. | Developed by Acusync Technology';
+$string['footerprograms'] = 'Programs';
+$string['footerprogram_1'] = 'Leadership Training';
+$string['footerprogram_2'] = 'Digital Transformation';
+$string['footerprogram_3'] = 'Professional Development';
+$string['footerprogram_4'] = 'Customer Service';
+$string['aboutus'] = 'About Us';
+$string['trainingprogram'] = 'Training Program';
+$string['contactus'] = 'Contact Us';
 
 $string['customcss'] = 'Custom SCSS / CSS (advanced)';
 $string['customcssdesc'] = 'Appended to the end of the compiled theme stylesheet. Use for small adjustments; prefer theme files when possible.';

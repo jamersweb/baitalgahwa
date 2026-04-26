@@ -25,6 +25,17 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
+ * Theme pix URL helper for bundled fallback assets.
+ *
+ * @param string $imagename Image key without extension.
+ * @return string
+ */
+function theme_baitalgahwa_get_theme_image_url(string $imagename): string {
+    $theme = \theme_config::load('baitalgahwa');
+    return $theme->image_url($imagename, 'theme')->out(false);
+}
+
+/**
  * Serves files from theme file areas.
  *
  * @param stdClass $course
@@ -199,6 +210,10 @@ function theme_baitalgahwa_get_footer_context(): array {
         'linkedin' => $t->footerlinkedin ?? '',
         'youtube' => $t->footeryoutube ?? '',
         'twitter' => $t->footertwitter ?? '',
+        'footerfacebookicon' => theme_baitalgahwa_get_theme_image_url('social_facebook'),
+        'footerinstagramicon' => theme_baitalgahwa_get_theme_image_url('social_instagram'),
+        'footerlinkedinicon' => theme_baitalgahwa_get_theme_image_url('social_linkedin'),
+        'footertwittericon' => theme_baitalgahwa_get_theme_image_url('social_twitter'),
     ];
 }
 
@@ -211,6 +226,7 @@ function theme_baitalgahwa_get_hero_context(): array {
     $t = get_config('theme_baitalgahwa');
     $theme = \theme_config::load('baitalgahwa');
     $herourl = $theme->setting_file_url('heroimage', 'heroimage');
+    $fallbackhero = theme_baitalgahwa_get_theme_image_url('auth-signup-hero');
     return [
         'herotitle' => !empty($t->herotitle) ? $t->herotitle : 'Bait Al Gahwa',
         'herosubtitle' => !empty($t->herosubtitle) ? $t->herosubtitle : get_string('herosubtitledefault', 'theme_baitalgahwa'),
@@ -218,7 +234,7 @@ function theme_baitalgahwa_get_hero_context(): array {
         'heroprimaryurl' => $t->heroprimaryurl ?? '/course',
         'herosecondary' => $t->herosecondarytext ?? '',
         'herosecondaryurl' => $t->herosecondaryurl ?? '/login/index.php',
-        'heroimageurl' => $herourl ? (string) $herourl : '',
+        'heroimageurl' => $herourl ? (string) $herourl : $fallbackhero,
     ];
 }
 
@@ -250,6 +266,18 @@ function theme_baitalgahwa_get_auth_page_hero_context(): array {
 }
 
 /**
+ * Resolves auth page fallback image by page type when no uploaded image exists.
+ *
+ * @param bool $issignup
+ * @return string
+ */
+function theme_baitalgahwa_get_auth_page_fallback_image(bool $issignup = false): string {
+    return $issignup
+        ? theme_baitalgahwa_get_theme_image_url('auth-signup-hero')
+        : theme_baitalgahwa_get_theme_image_url('auth-signin-hero');
+}
+
+/**
  * Resolves a course image URL for cards if an overview file exists.
  *
  * @param stdClass $course
@@ -275,7 +303,7 @@ function theme_baitalgahwa_get_course_image_url($course): string {
     }
     $file = reset($files);
     if (!$file) {
-        return '';
+        return theme_baitalgahwa_get_theme_image_url('course-activity-layout');
     }
     return \moodle_url::make_pluginfile_url(
         $file->get_contextid(),
@@ -1001,6 +1029,6 @@ function theme_baitalgahwa_get_branding_context(): array {
     $theme = \theme_config::load('baitalgahwa');
     $logourl = $theme->setting_file_url('logo', 'logo');
     return [
-        'themelogourl' => $logourl ? (string) $logourl : '',
+        'themelogourl' => $logourl ? (string) $logourl : theme_baitalgahwa_get_theme_image_url('logo'),
     ];
 }

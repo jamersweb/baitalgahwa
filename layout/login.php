@@ -45,7 +45,9 @@ $authhero = theme_baitalgahwa_get_auth_page_hero_context();
 $context = array_merge($context, $herodefault, theme_baitalgahwa_get_footer_context(), theme_baitalgahwa_get_branding_context());
 $context['herotitle'] = $authhero['herotitle'];
 $context['herosubtitle'] = $authhero['herosubtitle'];
-$context['heroimageurl'] = $authhero['heroimageurl'] !== '' ? $authhero['heroimageurl'] : $herodefault['heroimageurl'];
+$context['heroimageurl'] = $authhero['heroimageurl'] !== ''
+    ? $authhero['heroimageurl']
+    : theme_baitalgahwa_get_auth_page_fallback_image($is_signup);
 $context['config'] = [
     'wwwroot' => $CFG->wwwroot,
     'homeurl' => (new \moodle_url('/'))->out(false),
