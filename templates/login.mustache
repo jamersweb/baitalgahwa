@@ -117,6 +117,35 @@ body.pagelayout-login.theme {
     font-size: 0.95rem;
     font-weight: 500;
 }
+.pagelayout-login .baitalgahwa-signup-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+.pagelayout-login .baitalgahwa-signup-sectionlabel {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2f241c;
+}
+.pagelayout-login .baitalgahwa-signup-merged {
+    margin-bottom: 1.5rem;
+}
+.pagelayout-login .baitalgahwa-signup-merged .fitemtitle,
+.pagelayout-login .baitalgahwa-signup-merged > label {
+    display: none !important;
+}
+.pagelayout-login .baitalgahwa-signup-hiddenconfirm {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
 .pagelayout-login .baitalgahwa-login-submit.btn-primary,
 .pagelayout-login #loginbtn {
     width: 100%;
@@ -147,6 +176,10 @@ body.pagelayout-login.theme {
     }
     .pagelayout-login .baitalgahwa-login__card {
         max-width: 100%;
+    }
+    .pagelayout-login .baitalgahwa-signup-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 }
 </style>
@@ -212,4 +245,74 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
     Bait.init();
     M.util.js_complete('theme_boost/loader');
 });
+(function() {
+    var isSignup = {{#is_signup_page}}true{{/is_signup_page}}{{^is_signup_page}}false{{/is_signup_page}};
+    if (!isSignup) {
+        return;
+    }
+
+    var findRow = function(input) {
+        if (!input) {
+            return null;
+        }
+        return input.closest('.fitem') || input.closest('.form-group') || input.closest('[data-fieldtype]') || input.parentElement;
+    };
+
+    var applySignupEnhancements = function() {
+        var email = document.getElementById('id_email');
+        var email2 = document.getElementById('id_email2');
+        var firstname = document.getElementById('id_firstname');
+        var lastname = document.getElementById('id_lastname');
+
+        if (email && email2) {
+            if (!email.dataset.baitSyncBound) {
+                var syncEmail = function() {
+                    email2.value = email.value;
+                };
+                email.addEventListener('input', syncEmail);
+                email.addEventListener('change', syncEmail);
+                email.dataset.baitSyncBound = '1';
+                syncEmail();
+            }
+            if (!email.placeholder) {
+                email.placeholder = 'Enter your email address';
+            }
+            var email2row = findRow(email2);
+            if (email2row) {
+                email2row.classList.add('baitalgahwa-signup-hiddenconfirm');
+            }
+        }
+
+        if (firstname && lastname) {
+            if (!firstname.placeholder) {
+                firstname.placeholder = 'First name';
+            }
+            if (!lastname.placeholder) {
+                lastname.placeholder = 'Last name';
+            }
+            var firstrow = findRow(firstname);
+            var lastrow = findRow(lastname);
+            if (firstrow && lastrow && (!firstrow.parentElement || !firstrow.parentElement.classList.contains('baitalgahwa-signup-grid'))) {
+                var wrap = document.createElement('div');
+                wrap.className = 'baitalgahwa-signup-merged';
+                var label = document.createElement('p');
+                label.className = 'baitalgahwa-signup-sectionlabel';
+                label.textContent = 'Full name';
+                var grid = document.createElement('div');
+                grid.className = 'baitalgahwa-signup-grid';
+                firstrow.parentNode.insertBefore(wrap, firstrow);
+                wrap.appendChild(label);
+                wrap.appendChild(grid);
+                grid.appendChild(firstrow);
+                grid.appendChild(lastrow);
+            }
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applySignupEnhancements);
+    } else {
+        applySignupEnhancements();
+    }
+})();
 {{/js}}
