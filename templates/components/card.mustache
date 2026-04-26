@@ -1,0 +1,10 @@
+{{!
+    @template theme_baitalgahwa/components/card
+    Generic content card. Expects: title, body (escaped HTML string from trusted source only)
+}}
+<div class="card baitalgahwa-ui-card border-0 shadow-sm">
+    <div class="card-body">
+        {{#title}}<h3 class="h5 card-title">{{ title }}</h3>{{/title}}
+        {{#body}}<div class="card-text">{{{ body }}}</div>{{/body}}
+    </div>
+</div>

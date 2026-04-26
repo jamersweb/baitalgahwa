@@ -1,0 +1,20 @@
+// Footer
+.baitalgahwa-footer {
+  background: mix($body-bg, $primary, 92%);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 2rem;
+}
+
+.baitalgahwa-footer__link {
+  color: $link-color;
+  text-decoration: none;
+}
+
+.baitalgahwa-footer__link:hover,
+.baitalgahwa-footer__link:focus {
+  text-decoration: underline;
+}
+
+.baitalgahwa-footer__moodle {
+  background: $body-bg;
+}

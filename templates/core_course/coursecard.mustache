@@ -1,0 +1,79 @@
+{{!
+    Bait Al Gahwa — My courses card layout (image overlay, CTA, instructor line).
+    Based on core_course/coursecard (Moodle 4.5).
+    @template core_course/coursecard
+}}
+<div class="card course-card baitalgahwa-mycourse-card mx-1 h-100" role="listitem"
+    data-region="course-content"
+    data-course-id="{{{id}}}">
+    <div class="baitalgahwa-mycourse-card__media position-relative">
+        <a href="{{viewurl}}" class="baitalgahwa-mycourse-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="card-img-top baitalgahwa-mycourse-card__img" style='background-image: url("{{{courseimage}}}");'>
+                <span class="sr-only">{{fullname}}</span>
+            </div>
+        </a>
+        {{#visible}}
+        <span class="baitalgahwa-mycourse-card__badge badge rounded-pill">{{#str}} mycourse_available, theme_baitalgahwa {{/str}}</span>
+        {{/visible}}
+        <div class="baitalgahwa-mycourse-card__dates" role="text">
+            <span class="baitalgahwa-mycourse-card__date">{{#str}} mycourse_dates_hint, theme_baitalgahwa {{/str}}</span>
+        </div>
+    </div>
+    <div class="card-body pe-1 course-info-container" id="course-info-container-{{id}}-{{uniqid}}">
+        <div class="d-flex align-items-start">
+            <div class="w-100 text-truncate">
+                {{#showshortname}}
+                    <div class="text-muted muted d-flex mb-1 flex-wrap">
+                        <span class="sr-only">
+                            {{#str}}aria:courseshortname, core_course{{/str}}
+                        </span>
+                        <div>
+                            {{{shortname}}}
+                        </div>
+                    </div>
+                {{/showshortname}}
+                <a href="{{viewurl}}" class="aalink coursename me-2 mb-1 baitalgahwa-mycourse-card__courselink">
+                    {{> core_course/favouriteicon }}
+                    <span class="sr-only">
+                        {{#str}}aria:coursename, core_course{{/str}}
+                    </span>
+                    {{$coursename}}{{/coursename}}
+                </a>
+                <div class="text-muted muted d-flex flex-wrap baitalgahwa-mycourse-card__categoryrow">
+                    {{$coursecategory}}{{/coursecategory}}
+                </div>
+                {{^visible}}
+                    <div class="d-flex flex-wrap">
+                        <span class="badge bg-info text-white">{{#str}} hiddenfromstudents {{/str}}</span>
+                    </div>
+                {{/visible}}
+            </div>
+        </div>
+        <p class="baitalgahwa-mycourse-card__excerpt small text-muted mt-2 mb-0">
+            {{#str}} mycourse_excerpt, theme_baitalgahwa {{/str}}
+        </p>
+        <div class="baitalgahwa-instructor-chip d-flex align-items-stretch mt-2" role="group" aria-label="{{#str}} mycourse_instructor_chip_aria, theme_baitalgahwa {{/str}}">
+            <div class="baitalgahwa-instructor-chip__avatar flex-shrink-0" aria-hidden="true">
+                {{#instructorimageurl}}
+                <img class="baitalgahwa-instructor-chip__avatar-img" src="{{instructorimageurl}}" alt="" />
+                {{/instructorimageurl}}
+                {{^instructorimageurl}}
+                <span class="baitalgahwa-instructor-chip__avatar-placeholder"><i class="icon fa fa-user" aria-hidden="true"></i></span>
+                {{/instructorimageurl}}
+            </div>
+            <div class="baitalgahwa-instructor-chip__text d-flex flex-column justify-content-center min-w-0">
+                <span class="baitalgahwa-instructor-chip__name text-truncate">{{#instructorfullname}}{{{instructorfullname}}}{{/instructorfullname}}{{^instructorfullname}}{{#str}} mycourse_instructor_chip_name, theme_baitalgahwa {{/str}}{{/instructorfullname}}</span>
+                <span class="baitalgahwa-instructor-chip__role text-truncate">{{#instructorrole}}{{{instructorrole}}}{{/instructorrole}}{{^instructorrole}}{{#str}} mycourse_instructor_chip_role, theme_baitalgahwa {{/str}}{{/instructorrole}}</span>
+                {{! Third line: course end (default) or last access; see theme setting instructorchipline. }}
+                <span class="baitalgahwa-instructor-chip__date" data-bag-enddate="{{enddate}}" data-bag-timeaccess="{{#timeaccess}}{{timeaccess}}{{/timeaccess}}">{{#str}} mycourse_instructor_date_open, theme_baitalgahwa {{/str}}</span>
+            </div>
+        </div>
+    </div>
+    <a href="{{viewurl}}" class="btn btn-primary w-100 rounded-0 border-0 baitalgahwa-mycourse-card__cta position-relative">
+        {{#str}} gotocourse, theme_baitalgahwa {{/str}}
+    </a>
+    <div class="d-flex align-items-start baitalgahwa-mycourse-card__footerrow">
+        {{$progress}}{{/progress}}
+        {{$menu}}{{/menu}}
+    </div>
+</div>

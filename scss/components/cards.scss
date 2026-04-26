@@ -1,0 +1,20 @@
+// Cards / stats
+.baitalgahwa-stat,
+.baitalgahwa-ui-card {
+  border-radius: $bag-radius;
+}
+
+.baitalgahwa-stat__value {
+  color: $primary;
+  font-weight: 700;
+}
+
+.baitalgahwa-stat {
+  background: $card-bg;
+}
+
+.baitalgahwa-section-title {
+  color: $body-color;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}

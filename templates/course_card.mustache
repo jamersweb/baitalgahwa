@@ -1,0 +1,27 @@
+{{!
+    @template theme_baitalgahwa/course_card
+    Context: id, fullname, summary, url, categoryname, imageurl
+}}
+<article class="baitalgahwa-course card h-100 border-0 shadow-sm">
+    <div class="baitalgahwa-course__media position-relative">
+        {{#imageurl}}
+        <img class="baitalgahwa-course__img card-img-top" src="{{{ imageurl }}}" alt="" loading="lazy" width="400" height="220">
+        {{/imageurl}}
+        {{^imageurl}}
+        <div class="baitalgahwa-course__placeholder" aria-hidden="true"></div>
+        {{/imageurl}}
+        {{#isnew}}
+        <span class="baitalgahwa-course__new badge rounded-pill">{{#str}}course_new, theme_baitalgahwa{{/str}}</span>
+        {{/isnew}}
+        {{#categoryname}}
+        <span class="baitalgahwa-course__badge badge rounded-pill">{{ categoryname }}</span>
+        {{/categoryname}}
+    </div>
+    <div class="card-body d-flex flex-column">
+        <h3 class="h6 card-title"><a class="stretched-link text-reset" href="{{{ url }}}">{{ fullname }}</a></h3>
+        {{#summary}}
+        <p class="card-text text-muted small flex-grow-1">{{ summary }}</p>
+        {{/summary}}
+        <a class="btn btn-sm btn-primary align-self-start mt-2" href="{{{ url }}">{{#str}}gotocourse, theme_baitalgahwa{{/str}}</a>
+    </div>
+</article>

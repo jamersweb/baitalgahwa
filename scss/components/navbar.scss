@@ -1,0 +1,35 @@
+// Sticky top navigation — polished container; no DOM changes to core nav.
+.baitalgahwa-header {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 1030;
+}
+
+.baitalgahwa-navbar {
+  min-height: $bag-header-height;
+  background: linear-gradient(90deg, mix($body-bg, $primary, 90%) 0%, $body-bg 60%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: $bag-shadow;
+
+  .navbar-toggler {
+    color: $primary;
+  }
+
+  .baitalgahwa-sitename {
+    font-weight: 700;
+    color: $primary;
+  }
+}
+
+// Boost supplies spacing for the fixed bar; we only restyle the bar.
+.pagelayout-login .baitalgahwa-header {
+  position: static;
+}
+
+.baitalgahwa-custom-logo,
+.baitalgahwa-navbar .logo {
+  max-height: 2.25rem;
+  width: auto;
+  object-fit: contain;
+}

@@ -1,0 +1,8 @@
+Bait Al Gahwa (theme_baitalgahwa) — internal notes
+================================================
+
+Build / AMD
+- From the full Moodle project root, run: `grunt amd` (or the site’s Gruntfile target) so `theme/baitalgahwa/amd/build/theme.min.js` stays in sync with `amd/src/theme.js`. After SCSS or string changes, Purge all caches; if SCSS fails on large themes, check PHP `max_execution_time` and the Moodle environment report.
+
+Reference assets
+- Design PNG mockups in `assets/` (if present) map to: layouts under `layout/`, templates under `templates/`, and SCSS under `scss/` (e.g. my courses: `mycourses.scss` + `block_myoverview` overrides, course home: `course-view.scss` + `course_dashboard_hero.mustache`).

@@ -1,0 +1,154 @@
+{{!
+    Bait Al Gahwa: horizontal tabs for course grouping (replaces default dropdown).
+    Same data-attributes as core for block_myoverview AMD (view_nav.js).
+
+    @template block_myoverview/nav-grouping-selector
+}}
+{{#displaygroupingselector}}
+<div class="baitalgahwa-mycourse-grouping w-100 mb-2 me-1" role="navigation" aria-label="{{#str}} aria:groupingdropdown, block_myoverview {{/str}}">
+    <ul
+        class="nav nav-tabs flex-nowrap border-0 baitalgahwa-mycourse-grouping__tabs"
+        data-show-active-item
+        data-skip-active-class="true"
+        data-active-item-text
+        role="tablist"
+    >
+        {{#displaygroupingallincludinghidden}}
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#allincludinghidden}}active{{/allincludinghidden}}"
+                href="#"
+                data-filter="grouping"
+                data-value="allincludinghidden"
+                data-pref="allincludinghidden"
+                aria-label="{{#str}} aria:allcoursesincludinghidden, block_myoverview {{/str}}"
+                aria-controls="courses-view-{{uniqid}}"
+                role="tab"
+                {{#allincludinghidden}}aria-selected="true"{{/allincludinghidden}}
+                {{^allincludinghidden}}aria-selected="false"{{/allincludinghidden}}
+            >{{#str}} allincludinghidden, block_myoverview {{/str}}</a>
+        </li>
+        {{/displaygroupingallincludinghidden}}
+        {{#displaygroupingall}}
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#all}}active{{/all}}"
+                href="#"
+                data-filter="grouping"
+                data-value="all"
+                data-pref="all"
+                aria-label="{{#str}} aria:allcourses, block_myoverview {{/str}}"
+                aria-controls="courses-view-{{uniqid}}"
+                role="tab"
+                {{#all}}aria-selected="true"{{/all}}
+                {{^all}}aria-selected="false"{{/all}}
+            >{{#str}} all, block_myoverview {{/str}}</a>
+        </li>
+        {{/displaygroupingall}}
+        {{#displaygroupinginprogress}}
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#inprogress}}active{{/inprogress}}"
+                href="#"
+                data-filter="grouping"
+                data-value="inprogress"
+                data-pref="inprogress"
+                aria-label="{{#str}} aria:inprogress, block_myoverview {{/str}}"
+                aria-controls="courses-view-{{uniqid}}"
+                role="tab"
+                {{#inprogress}}aria-selected="true"{{/inprogress}}
+                {{^inprogress}}aria-selected="false"{{/inprogress}}
+            >{{#str}} inprogress, block_myoverview {{/str}}</a>
+        </li>
+        {{/displaygroupinginprogress}}
+        {{#displaygroupingfuture}}
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#future}}active{{/future}}"
+                href="#"
+                data-filter="grouping"
+                data-value="future"
+                data-pref="future"
+                aria-label="{{#str}} aria:future, block_myoverview {{/str}}"
+                aria-controls="courses-view-{{uniqid}}"
+                role="tab"
+                {{#future}}aria-selected="true"{{/future}}
+                {{^future}}aria-selected="false"{{/future}}
+            >{{#str}} future, block_myoverview {{/str}}</a>
+        </li>
+        {{/displaygroupingfuture}}
+        {{#displaygroupingpast}}
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#past}}active{{/past}}"
+                href="#"
+                data-filter="grouping"
+                data-value="past"
+                data-pref="past"
+                aria-label="{{#str}} aria:past, block_myoverview {{/str}}"
+                aria-controls="courses-view-{{uniqid}}"
+                role="tab"
+                {{#past}}aria-selected="true"{{/past}}
+                {{^past}}aria-selected="false"{{/past}}
+            >{{#str}} past, block_myoverview {{/str}}</a>
+        </li>
+        {{/displaygroupingpast}}
+        {{#displaygroupingcustomfield}}
+            {{#customfieldvalues}}
+            <li class="nav-item" role="presentation">
+                <a
+                    class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#active}}active{{/active}}"
+                    href="#"
+                    data-filter="grouping"
+                    data-value="customfield"
+                    data-pref="customfield"
+                    data-customfieldvalue="{{value}}"
+                    aria-label="{{#str}}aria:customfield, block_myoverview, {{name}}{{/str}}"
+                    aria-controls="courses-view-{{uniqid}}"
+                    role="tab"
+                    {{#active}}aria-selected="true"{{/active}}
+                    {{^active}}aria-selected="false"{{/active}}
+                >{{name}}</a>
+            </li>
+            {{/customfieldvalues}}
+        {{/displaygroupingcustomfield}}
+        {{#displaygroupingfavourites}}
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#favourites}}active{{/favourites}}"
+                href="#"
+                data-filter="grouping"
+                data-value="favourites"
+                data-pref="favourites"
+                aria-label="{{#str}} aria:favourites, block_myoverview {{/str}}"
+                aria-controls="courses-view-{{uniqid}}"
+                role="tab"
+                {{#favourites}}aria-selected="true"{{/favourites}}
+                {{^favourites}}aria-selected="false"{{/favourites}}
+            >{{#str}} favourites, block_myoverview {{/str}}</a>
+        </li>
+        {{/displaygroupingfavourites}}
+        {{#displaygroupinghidden}}
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link border-0 rounded-0 py-2 px-3 text-nowrap {{#hidden}}active{{/hidden}}"
+                href="#"
+                data-filter="grouping"
+                data-value="hidden"
+                data-pref="hidden"
+                aria-label="{{#str}} aria:hiddencourses, block_myoverview {{/str}}"
+                aria-controls="courses-view-{{uniqid}}"
+                role="tab"
+                {{#hidden}}aria-selected="true"{{/hidden}}
+                {{^hidden}}aria-selected="false"{{/hidden}}
+            >{{#str}} hiddencourses, block_myoverview {{/str}}</a>
+        </li>
+        {{/displaygroupinghidden}}
+    </ul>
+</div>
+{{/displaygroupingselector}}
+{{^displaygroupingselector}}
+<div class="mb-1 me-auto">
+    <span class="filler">&nbsp;</span>
+</div>
+{{/displaygroupingselector}}

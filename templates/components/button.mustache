@@ -1,0 +1,7 @@
+{{!
+    @template theme_baitalgahwa/components/button
+    Generic button partial for reuse. Expects: url, text, style (primary|outline)
+}}
+{{#url}}
+<a class="btn {{#isoutline}}btn-outline-primary{{/isoutline}}{{^isoutline}}btn-primary{{/isoutline}} baitalgahwa-btn" href="{{{ url }}}">{{ text }}</a>
+{{/url}}

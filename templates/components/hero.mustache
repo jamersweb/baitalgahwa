@@ -1,0 +1,22 @@
+{{!
+    @template theme_baitalgahwa/components/hero
+}}
+<div class="baitalgahwa-hero {{#heroimageurl}}baitalgahwa-hero--image{{/heroimageurl}}" {{#heroimageurl}}style="--bait-hero-bg: url('{{{ heroimageurl }}}');"{{/heroimageurl}}>
+    <div class="baitalgahwa-hero__inner container py-4 py-md-5">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <p class="baitalgahwa-eyebrow text-uppercase mb-2">{{#str}}pluginname, theme_baitalgahwa{{/str}}</p>
+                <h1 class="baitalgahwa-hero__title mb-3">{{ herotitle }}</h1>
+                <p class="baitalgahwa-hero__lead mb-4">{{ herosubtitle }}</p>
+                <div class="baitalgahwa-hero__ctas d-flex flex-wrap gap-2">
+                    {{#heroprimary}}
+                    <a class="btn btn-primary btn-lg baitalgahwa-btn" href="{{{ heroprimaryurl }}}">{{ heroprimary }}</a>
+                    {{/heroprimary}}
+                    {{#herosecondary}}
+                    <a class="btn btn-outline-light btn-lg baitalgahwa-btn baitalgahwa-btn--ghost" href="{{{ herosecondaryurl }}}">{{ herosecondary }}</a>
+                    {{/herosecondary}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

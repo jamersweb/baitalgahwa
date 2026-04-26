@@ -1,0 +1,264 @@
+// Bait Al Gahwa /my/ dashboard: stats, training scroll, table, charts, members, newsletter
+$bait-dashboard-brown: #6f4e37;
+$bait-dashboard-gold: #d4af37;
+
+.baitalgahwa-path-dashboard {
+  .main-inner {
+    background: mix($body-bg, $white, 88%);
+  }
+}
+
+.baitalgahwa-dashboard {
+  color: $body-color;
+}
+
+.baitalgahwa-dashboard__section-title,
+.baitalgahwa-dashboard__page-title {
+  color: $bait-dashboard-brown;
+  font-weight: 700;
+}
+
+// Horizontal course strip (mobile / tablet)
+.baitalgahwa-dashboard__scroll {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.baitalgahwa-dashboard__scroll-item {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 992px) {
+  .baitalgahwa-dashboard__scroll {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+// Stat cards — left colour rail + icon
+.baitalgahwa-stat-card {
+  position: relative;
+  background: $card-bg;
+  border-radius: $figma-radius-lg;
+  box-shadow: $box-shadow-sm;
+  overflow: hidden;
+  min-height: 6.5rem;
+}
+
+.baitalgahwa-stat-card__accent {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0.3rem;
+  background: $primary;
+  border-radius: $figma-radius-lg 0 0 $figma-radius-lg;
+}
+
+[dir="rtl"] .baitalgahwa-stat-card__accent,
+body.dir-rtl .baitalgahwa-stat-card__accent {
+  left: auto;
+  right: 0;
+  border-radius: 0 $figma-radius-lg $figma-radius-lg 0;
+}
+
+.baitalgahwa-stat-card__accent--a { background: $bait-dashboard-brown; }
+.baitalgahwa-stat-card__accent--b { background: mix($bait-dashboard-gold, $bait-dashboard-brown, 35%); }
+.baitalgahwa-stat-card__accent--c { background: $bait-dashboard-gold; }
+.baitalgahwa-stat-card__accent--d { background: mix($bait-dashboard-brown, $black, 25%); }
+
+.baitalgahwa-stat-card__body {
+  padding: $figma-space-3 $figma-space-3 $figma-space-3 1.1rem;
+}
+
+[dir="rtl"] .baitalgahwa-stat-card__body,
+body.dir-rtl .baitalgahwa-stat-card__body {
+  padding-left: $figma-space-3;
+  padding-right: 1.1rem;
+}
+
+.baitalgahwa-stat-card__icon {
+  color: $bait-dashboard-gold;
+  opacity: 0.9;
+}
+
+.baitalgahwa-stat-card__value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: $bait-dashboard-brown;
+}
+
+.baitalgahwa-stat-card__label {
+  font-size: $figma-type-body-sm;
+  color: mix($body-color, $white, 55%);
+  margin-top: 0.15rem;
+}
+
+// Progress table
+.baitalgahwa-table-card {
+  border-radius: $figma-radius-lg;
+}
+
+.baitalgahwa-progress-table__thumb {
+  object-fit: cover;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.baitalgahwa-progress-table__status--done {
+  background: mix($success, $white, 18%) !important;
+  color: mix($success, $black, 40%) !important;
+}
+.baitalgahwa-progress-table__status--inprogress {
+  background: mix($primary, $white, 22%) !important;
+  color: $bait-dashboard-brown !important;
+}
+.baitalgahwa-progress-table__status--todo {
+  background: mix($body-color, $white, 6%) !important;
+  color: mix($body-color, $white, 45%) !important;
+}
+
+.baitalgahwa-progress-bar {
+  min-width: 4rem;
+  height: 0.4rem;
+  background: rgba($bait-dashboard-brown, 0.12);
+  border-radius: 1rem;
+}
+
+.baitalgahwa-progress-bar .progress-bar {
+  background: $bait-dashboard-brown;
+  border-radius: 1rem;
+}
+
+// Keep bar fill LTR for predictable % width in RTL
+[dir="rtl"] .baitalgahwa-progress-bar,
+body.dir-rtl .baitalgahwa-progress-bar {
+  direction: ltr;
+}
+
+// Donut
+.baitalgahwa-donut {
+  width: 9.5rem;
+  height: 9.5rem;
+  border-radius: 50%;
+  position: relative;
+}
+
+.baitalgahwa-donut__hole {
+  position: absolute;
+  top: 18%;
+  left: 18%;
+  right: 18%;
+  bottom: 18%;
+  border-radius: 50%;
+  background: $card-bg;
+  box-shadow: inset 0 0 0 1px rgba($bait-dashboard-brown, 0.08);
+}
+
+.baitalgahwa-donut__total {
+  color: $bait-dashboard-brown;
+}
+
+.baitalgahwa-legend-swatch {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+// Mini calendar
+.baitalgahwa-minical th {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: mix($body-color, $white, 45%);
+  border: 0;
+}
+
+.baitalgahwa-minical td {
+  border: 0;
+}
+
+.baitalgahwa-minical__day {
+  min-width: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 50%;
+}
+
+.baitalgahwa-minical__today {
+  background: $bait-dashboard-brown;
+  color: $white;
+  font-weight: 700;
+}
+
+// Quiz bar chart
+.baitalgahwa-quiz-bars__track {
+  height: 5.5rem;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  border-bottom: 1px solid rgba($bait-dashboard-brown, 0.15);
+}
+
+.baitalgahwa-quiz-bars__bar {
+  width: 100%;
+  min-height: 2px;
+  background: linear-gradient(180deg, mix($bait-dashboard-gold, $bait-dashboard-brown, 20%), $bait-dashboard-brown);
+  border-radius: 3px 3px 0 0;
+}
+
+// Members
+.baitalgahwa-member {
+  background: mix($bait-dashboard-gold, $white, 8%);
+  transition: background 0.12s ease;
+  &:hover,
+  &:focus-visible {
+    background: mix($bait-dashboard-gold, $white, 18%);
+  }
+}
+
+.baitalgahwa-member__avatar {
+  .userpicture,
+  img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+// Newsletter
+.baitalgahwa-newsletter {
+  border-radius: $figma-radius-lg;
+  background: $card-bg;
+}
+
+.baitalgahwa-newsletter__logo {
+  object-fit: contain;
+  max-height: 2rem;
+}
+
+// Course card “New”
+.baitalgahwa-course__new {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1;
+  background: $bait-dashboard-gold;
+  color: $bait-dashboard-brown;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+[dir="rtl"] .baitalgahwa-course__new,
+body.dir-rtl .baitalgahwa-course__new {
+  left: auto;
+  right: 0.5rem;
+}
+
+// Moodle “My” block region below
+.baitalgahwa-dashboard-legacy {
+  background: $card-bg;
+  border-color: rgba($bait-dashboard-brown, 0.08) !important;
+}

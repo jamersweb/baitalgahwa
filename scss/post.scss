@@ -1,0 +1,40 @@
+// Main Bait Al Gahwa layer (loaded after Boost/Moodle stack).
+@import "components/buttons";
+@import "components/cards";
+@import "components/navbar";
+@import "components/footer";
+@import "components/login";
+@import "components/dashboard";
+@import "components/courses";
+@import "components/mycourses";
+@import "components/course-view";
+@import "components/responsive";
+
+body {
+  background: $body-bg;
+  color: $body-color;
+}
+
+.baitalgahwa-eyebrow {
+  letter-spacing: $figma-type-eyebrow-tracking;
+  color: $figma-color-accent;
+  font-size: $figma-type-caption;
+  font-weight: 600;
+}
+
+// Front page: offset for fixed header (matches Boost's navbar pattern).
+$bag-nav-offset: 3.5rem;
+.path-site.path-login,
+body.baitalgahwa-path-frontpage {
+  padding-top: 0;
+}
+
+// Ensure primary nav draws above content.
+#topofscroll {
+  scroll-margin-top: $bag-header-height;
+}
+
+// Course content retains Moodle editing structure.
+.editing .region-main {
+  min-height: 2rem;
+}

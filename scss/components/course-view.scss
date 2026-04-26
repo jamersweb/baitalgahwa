@@ -1,0 +1,307 @@
+// Single course / course home (mockup: hero, stats, secondary nav, activity grid)
+// Triggered on body.baitalgahwa-course-dashboard
+
+$bag-course-radius: 0.9rem;
+$bag-brown: $primary;
+
+body.baitalgahwa-course-dashboard {
+  // Keep keyboard focus order; only hide duplicate H1 in header (title lives in hero).
+  #page-header .page-header-headings {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  // Secondary course navigation: brown active tab
+  .secondary-navigation {
+    .nav-link.active,
+    .active > .nav-link,
+    a[aria-current="true"] {
+      color: $bag-brown;
+      font-weight: 600;
+      box-shadow: inset 0 -3px 0 0 $bag-brown;
+    }
+  }
+}
+
+.baitalgahwa-course-hero {
+  &__title {
+    color: $body-color;
+    font-family: $headings-font-family;
+  }
+
+  &__cta {
+    background: $primary;
+    border-color: $primary;
+  }
+
+  &__media {
+    min-height: 12rem;
+    border-radius: $bag-course-radius;
+  }
+
+  &__img {
+    min-height: 12rem;
+    background-size: cover;
+    background-position: center;
+    &--placeholder {
+      background: linear-gradient(125deg, mix($body-bg, $primary, 35%), $primary 90%);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 40%;
+    background: linear-gradient(180deg, transparent, rgba($black, 0.75));
+    pointer-events: none;
+  }
+
+  &__caption {
+    z-index: 1;
+  }
+}
+
+.baitalgahwa-course-stats {
+  &__row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  &__card {
+    background: $body-bg;
+    box-shadow: 0 0.25rem 1rem rgba($black, 0.07);
+    border: 1px solid rgba($black, 0.04);
+  }
+
+  &__icon {
+    color: $primary;
+    opacity: 0.9;
+    line-height: 1;
+    margin-inline-end: 0.5rem;
+  }
+
+  &__num {
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  &__hint {
+    max-width: 40rem;
+  }
+}
+
+// Activity list → 4-col card-like grid (topics / flexible formats); not on edit settings
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main {
+  .course-content .section .activity {
+    border-radius: $bag-course-radius;
+    border: 1px solid rgba($black, 0.08);
+    box-shadow: 0 0.35rem 0.9rem rgba($black, 0.06);
+    margin-bottom: 0;
+    background: $body-bg;
+  }
+
+  .course-content .section .activity .activityinstance {
+    padding: 0.5rem 0.75rem 0.75rem;
+  }
+
+  .course-content .section .activity::before {
+    display: none;
+  }
+
+  .course-content .section .activity-list,
+  .course-content .section .content .section,
+  .course-content ul.section {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .course-content ul.section,
+  .course-content .section .activity-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    @include media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @include media-breakpoint-up(xl) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+
+// Course → Participants (enrolled users table, filters, pagination)
+body.baitalgahwa-course-participants {
+  .secondary-navigation {
+    border-top: 1px solid rgba($black, 0.08);
+    border-bottom: 1px solid rgba($black, 0.08);
+    padding-top: 0.25rem;
+  }
+
+  #region-main {
+    background: $body-bg;
+    border-radius: $bag-course-radius;
+    padding: 1rem 0.5rem 1.5rem;
+    @include media-breakpoint-up(md) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    box-shadow: 0 0.15rem 0.9rem rgba($black, 0.05);
+  }
+
+  #region-main .tertiary-navigation,
+  #region-main .nav-tabs,
+  #region-main .d-flex.wrap {
+    border-radius: 0.5rem;
+  }
+
+  // Participants list only (avoid styling unrelated tables under the same body classes)
+  #region-main .userlist table.generaltable,
+  #region-main .userlist .table,
+  #region-main [data-region="participantslist"] table,
+  #region-main [data-region="participantslist"] .table {
+    background: $body-bg;
+    border-radius: 0.5rem;
+  }
+
+  #region-main .userlist table.generaltable thead th,
+  #region-main .userlist .table thead th,
+  #region-main [data-region="participantslist"] table thead th,
+  #region-main [data-region="participantslist"] .table thead th {
+    color: $body-color;
+    font-weight: 600;
+    border-bottom: 1px solid rgba($black, 0.1);
+  }
+
+  #region-main .userlist table.generaltable tbody tr:hover,
+  #region-main [data-region="participantslist"] table tbody tr:hover {
+    background: rgba(mix($body-bg, $primary, 85%), 0.4);
+  }
+
+  #region-main .btn,
+  #region-main a.btn,
+  #region-main input.btn {
+    border-radius: 0.5rem;
+  }
+
+  #region-main .form-control,
+  #region-main input[type="text"],
+  #region-main select {
+    border-radius: 1.5rem;
+    border-color: rgba($black, 0.12);
+  }
+
+  #region-main .pagination {
+    .page-item .page-link {
+      border-radius: 0.35rem;
+      color: $primary;
+    }
+    .page-item.active .page-link {
+      background: $primary;
+      border-color: $primary;
+    }
+  }
+}
+
+// Course → Edit settings (accordion form, pill inputs, save button) — body.baitalgahwa-course-settings
+body.baitalgahwa-course-settings {
+  .secondary-navigation {
+    border-top: 1px solid rgba($black, 0.08);
+    border-bottom: 1px solid rgba($black, 0.08);
+    padding-top: 0.25rem;
+  }
+
+  #region-main {
+    form.mform,
+    .mform {
+      // Collapsible / accordion fieldsets
+      fieldset,
+      .fitem fieldset,
+      .collapsible,
+      [data-groupname] {
+        border-radius: $bag-course-radius;
+        border: 1px solid rgba($black, 0.08);
+        margin-bottom: 0.75rem;
+        background: $body-bg;
+      }
+
+      fieldset .fcontainer,
+      .fitem {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
+
+      // Toggler (General, Description, …)
+      a.ftoggler,
+      h3 a,
+      .collapsible .ftoggler,
+      [data-toggle="collapse"] {
+        color: $bag-brown;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 50%;
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+      }
+
+      // Pill / rounded text fields and selects
+      input.form-control,
+      .form-control,
+      select.form-control,
+      select,
+      .custom-select,
+      textarea.form-control,
+      .form-autocomplete .form-control,
+      [data-fieldtype] select,
+      [data-fieldtype] input {
+        border-radius: 2.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-color: rgba($black, 0.12);
+      }
+
+      textarea.form-control,
+      .editor_textarea,
+      [data-fieldtype="editor"] {
+        border-radius: 0.75rem;
+        min-height: 6rem;
+      }
+
+      // Category / tag chips (autocomplete)
+      .form-autocomplete-selection [data-value],
+      .form-autocomplete-suggestions li {
+        border-radius: 2rem;
+      }
+
+      .form-autocomplete.selection [data-value] {
+        background: mix($body-bg, $primary, 70%);
+        color: $body-color;
+        border: 0;
+        padding: 0.2rem 0.75rem;
+      }
+
+      // Primary actions (e.g. Save and display)
+      .btn-primary,
+      input.btn-primary,
+      button.btn-primary,
+      [type="submit"].btn.btn-primary {
+        background: $primary;
+        border-color: $primary;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,30 @@
+// Breakpoints: mobile to 575, tablet 576–991, desktop 992+
+@media (max-width: 575.98px) {
+  .baitalgahwa-hero__title {
+    font-size: $figma-type-h3; // 24px mobile — set to match Figma mobile hero frame
+  }
+
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .baitalgahwa-course__img,
+  .baitalgahwa-course__placeholder {
+    height: 8rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .baitalgahwa-hero {
+    .baitalgahwa-hero__inner {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+}
+
+// Reduce horizontal scroll
+#region-main,
+#page-content {
+  max-width: 100%;
+  overflow-x: auto;
+}

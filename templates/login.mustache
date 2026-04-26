@@ -1,0 +1,70 @@
+{{!
+    @template theme_baitalgahwa/login
+    LTR: form panel left, hero image right (~50/50). Mobile: narrow hero on top, then form.
+}}
+{{> theme_boost/head }}
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+<div class="baitalgahwa-login-page" id="page">
+    {{{ output.standard_top_of_body_html }}}
+    <div class="baitalgahwa-login">
+        <div class="baitalgahwa-login__visual--mobile d-lg-none w-100" {{#heroimageurl}}style="background-image: url('{{{ heroimageurl }}}');"{{/heroimageurl}}>
+            <div class="baitalgahwa-login__visual-scrim" aria-hidden="true"></div>
+        </div>
+        <div class="baitalgahwa-login__panel">
+            <div class="baitalgahwa-login__card border-0 shadow-sm">
+                <div class="card-body p-4 p-xl-5">
+                    <div class="baitalgahwa-auth-header text-center mb-4">
+                        {{#themelogourl}}
+                        <img class="baitalgahwa-login__logo mb-3" src="{{{ themelogourl }}}" alt="{{ sitename }}" width="200" height="56" loading="eager" decoding="async">
+                        {{/themelogourl}}
+                        {{^themelogourl}}
+                        <h1 class="h3 mb-1 baitalgahwa-auth-typed">{{ sitename }}</h1>
+                        {{/themelogourl}}
+
+                        {{#is_signup_page}}
+                        <h2 class="baitalgahwa-auth-title mb-2">{{#str}} authpanel_signup_title, theme_baitalgahwa {{/str}}</h2>
+                        <p class="baitalgahwa-auth-sub text-muted small mb-0 px-sm-1">{{#str}} authpanel_signup_sub, theme_baitalgahwa {{/str}}</p>
+                        <p class="text-muted small mt-2 mb-0">
+                            {{#str}} authpanel_already, theme_baitalgahwa {{/str}}
+                            <a class="baitalgahwa-auth-link" href="{{{ loginindexurl }}}">{{#str}} login {{/str}}</a>
+                        </p>
+                        {{/is_signup_page}}
+                        {{^is_signup_page}}
+                        <h2 class="baitalgahwa-auth-title mb-2">{{#str}} authpanel_welcome, theme_baitalgahwa {{/str}}</h2>
+                        <p class="baitalgahwa-auth-sub text-muted small mb-0 px-sm-1">{{#str}} authpanel_login_sub, theme_baitalgahwa {{/str}}</p>
+                        {{/is_signup_page}}
+                    </div>
+                    <div class="baitalgahwa-login__form">
+                        {{{ output.main_content }}}
+                    </div>
+                </div>
+            </div>
+            <div class="baitalgahwa-login__footer-links text-center small mt-3">
+                <a href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
+            </div>
+        </div>
+        <div class="baitalgahwa-login__visual d-none d-lg-flex" {{#heroimageurl}}style="background-image: url('{{{ heroimageurl }}}');"{{/heroimageurl}}>
+            <div class="baitalgahwa-login__visual-scrim" aria-hidden="true"></div>
+            <div class="baitalgahwa-login__visual-inner p-5 text-white position-relative">
+                <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">{{ herotitle }}</h2>
+                <p class="baitalgahwa-login__visual-text lead mb-0">{{ herosubtitle }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="baitalgahwa-login-end">
+    {{{ output.standard_footer_html }}}
+    {{{ output.standard_end_of_body_html }}}
+</div>
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait) {
+    Bait.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

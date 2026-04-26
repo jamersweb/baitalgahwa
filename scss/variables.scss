@@ -1,0 +1,13 @@
+// Bait Al Gahwa: loads Figma contract tokens, then runtime CSS variables.
+// Pixel-perfect: change _figma-tokens.scss in lockstep with Figma Variables.
+@import "figma-tokens";
+
+:root {
+  --bait-cream: #{$figma-color-cream};
+  --bait-espresso: #{$figma-color-espresso};
+  --bait-gold: #{$figma-color-accent};
+  --bait-radius: #{$figma-radius-md};
+  --bait-shadow: #{$figma-shadow-card};
+  --bait-hero-scrim-1: #{$figma-color-hero-scrim-top};
+  --bait-hero-scrim-2: #{$figma-color-hero-scrim-bottom};
+}

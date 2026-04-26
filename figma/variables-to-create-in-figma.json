@@ -1,0 +1,28 @@
+{
+  "$comment": "Create Figma local variables (or library) to match. Values must equal _figma-tokens.scss for pixel parity.",
+  "Color": {
+    "Brand/Primary": { "type": "color", "value": "#3D2314" },
+    "Brand/Secondary": { "type": "color", "value": "#6B4423" },
+    "Brand/Accent": { "type": "color", "value": "#C9A227" },
+    "Neutral/Cream": { "type": "color", "value": "#F5E6D3" },
+    "Neutral/Espresso": { "type": "color", "value": "#1A120B" },
+    "Neutral/Sand": { "type": "color", "value": "#D4A574" }
+  },
+  "Space": {
+    "0 (4)": 4,
+    "1 (8)": 8,
+    "2 (12)": 12,
+    "3 (16)": 16,
+    "4 (24)": 24,
+    "5 (32)": 32,
+    "6 (40)": 40,
+    "7 (48)": 48,
+    "8 (64)": 64
+  },
+  "Radius": { "SM": 8, "MD": 12, "LG": 20, "Pill": 999 },
+  "Layout": {
+    "Desktop frame width (px)": 1440,
+    "Header height (px)": 56,
+    "Course card image height (px)": 160
+  }
+}

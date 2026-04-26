@@ -1,0 +1,176 @@
+{{!
+    Bait Al Gahwa: form first, then “Create account / Sign up”, then “Or” + identity providers (circular, design reference).
+    @template core/loginform
+}}
+<div class="loginform baitalgahwa-core-loginform">
+    {{#logourl}}
+    <div id="loginlogo" class="login-logo text-center mb-3">
+        <img id="logoimage" src="{{logourl}}" class="img-fluid baitalgahwa-core-loginform__logo" alt="{{sitename}}"/>
+        <h1 class="login-heading sr-only">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
+    </div>
+    {{/logourl}}
+    {{^logourl}}
+    <h1 class="login-heading mb-0 text-center h4 baitalgahwa-core-loginform__logintitle">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
+    {{/logourl}}
+    {{#maintenance}}
+    <div class="alert alert-danger login-maintenance">
+        {{{maintenance}}}
+    </div>
+    {{/maintenance}}
+    {{#error}}
+    <div class="alert alert-danger" id="loginerrormessage" role="alert">{{error}}</div>
+    {{/error}}
+    {{#info}}
+    <div class="alert alert-info" id="logininfomessage" role="status">{{info}}</div>
+    {{/info}}
+    {{#showloginform}}
+    <form class="login-form" action="{{loginurl}}" method="post" id="login">
+        <input id="anchor" type="hidden" name="anchor" value="">
+        <script>document.getElementById('anchor').value = location.hash;</script>
+        <input type="hidden" name="logintoken" value="{{logintoken}}">
+        <div class="login-form-username mb-3">
+            <label for="username" class="baitalgahwa-field-label d-block text-muted small mb-1">
+                {{^canloginbyemail}}
+                    {{#str}} username {{/str}}
+                {{/canloginbyemail}}
+                {{#canloginbyemail}}
+                    {{#str}} usernameemail {{/str}}
+                {{/canloginbyemail}}
+            </label>
+            <input type="text" name="username" id="username" {{!
+                !}}class="form-control baitalgahwa-input" {{!
+                !}}value="{{username}}" {{!
+                !}}placeholder="{{^canloginbyemail}}{{#cleanstr}}username{{/cleanstr}}{{/canloginbyemail}}{{!
+                !}}{{#canloginbyemail}}{{#cleanstr}}usernameemail{{/cleanstr}}{{/canloginbyemail}}" {{!
+                !}}autocomplete="username">
+        </div>
+        <div class="login-form-password mb-3">
+            <label for="password" class="baitalgahwa-field-label d-block text-muted small mb-1">{{#str}} password {{/str}}</label>
+            <input type="password" name="password" id="password" value="" {{!
+                !}}class="form-control baitalgahwa-input" {{!
+                !}}placeholder="{{#cleanstr}}password{{/cleanstr}}" {{!
+                !}}autocomplete="current-password">
+        </div>
+        {{#recaptcha}}
+        <div class="login-form-recaptcha mb-3">
+            {{{recaptcha}}}
+        </div>
+        {{/recaptcha}}
+        <div class="login-form-submit mb-3">
+            <button class="btn btn-primary btn-block baitalgahwa-login-submit py-2" type="submit" id="loginbtn">{{#str}} login {{/str}}</button>
+        </div>
+        <div class="login-form-forgotpassword mb-3 text-center small">
+            <a class="baitalgahwa-link-forgot" href="{{forgotpasswordurl}}">{{#str}}forgotaccount{{/str}}</a>
+        </div>
+    </form>
+    {{/showloginform}}
+    {{#cansignup}}
+    <p class="baitalgahwa-login-subcta text-center text-muted small mb-0">
+        {{#str}} authpanel_createaccount_line, theme_baitalgahwa {{/str}}
+        <a class="baitalgahwa-auth-link" href="{{signupurl}}">{{#str}} authpanel_signup_link, theme_baitalgahwa {{/str}}</a>
+    </p>
+    {{/cansignup}}
+    {{#hasidentityproviders}}
+    <div class="baitalgahwa-login-divider" role="separator" aria-hidden="true">
+        <span class="baitalgahwa-login-divider__line"></span>
+        <span class="baitalgahwa-login-divider__text">{{#str}} divideror, theme_baitalgahwa {{/str}}</span>
+        <span class="baitalgahwa-login-divider__line"></span>
+    </div>
+    <div class="baitalgahwa-idps baitalgahwa-idps--circular d-flex flex-wrap align-items-center justify-content-center" role="group" aria-label="{{#str}} potentialidps, auth {{/str}}">
+        {{#identityproviders}}
+        <a class="baitalgahwa-idp-round" href="{{url}}" title="{{name}}">
+            <span class="sr-only">{{name}}</span>
+            {{#iconurl}}
+            <img src="{{iconurl}}" alt="" class="baitalgahwa-idp-round__img" width="22" height="22" loading="lazy" aria-hidden="true"/>
+            {{/iconurl}}
+            {{^iconurl}}
+            <span class="baitalgahwa-idp-round__fallback" aria-hidden="true">{{name}}</span>
+            {{/iconurl}}
+        </a>
+        {{/identityproviders}}
+    </div>
+    {{/hasidentityproviders}}
+    {{#hasinstructions}}
+    <div class="login-divider my-3"></div>
+    <div class="login-instructions {{#cansignup}}mb-3{{/cansignup}}">
+        <h2 class="h6 text-muted">{{#str}} firsttime {{/str}}</h2>
+        <div class="login-instructions__body small">{{{instructions}}}</div>
+    </div>
+    {{/hasinstructions}}
+    {{#canloginasguest}}
+    <div class="login-divider my-3"></div>
+    <h2 class="h6 text-muted">{{#str}} someallowguest {{/str}}</h2>
+    <form action="{{loginurl}}" method="post" id="guestlogin">
+        <input type="hidden" name="logintoken" value="{{logintoken}}">
+        <input type="hidden" name="username" value="guest" />
+        <input type="hidden" name="password" value="guest" />
+        <button class="btn btn-secondary btn-block" type="submit" id="loginguestbtn">{{#str}} loginguest {{/str}}</button>
+    </form>
+    {{/canloginasguest}}
+    <div class="login-divider my-3"></div>
+    <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 baitalgahwa-login-meta">
+        {{#languagemenu}}
+        <div class="login-languagemenu">
+            {{>core/action_menu}}
+        </div>
+        <div class="divider border-start align-self-stretch mx-1 d-none d-sm-block" aria-hidden="true"></div>
+        {{/languagemenu}}
+        <button type="button" class="btn btn-sm btn-link text-muted" {{!
+        }} data-modal="alert"{{!
+        }} data-modal-title-str='["cookiesenabled", "core"]' {{!
+        }} data-modal-content-str='["cookiesenabled_help_html", "core"]'{{!
+        }}>{{#str}} cookiesnotice {{/str}}</button>
+    </div>
+</div>
+{{#js}}
+{{^error}}
+{{#autofocusform}}
+require(['core_form/events'], function(FormEvent) {
+    function autoFocus() {
+        const userNameField = document.getElementById('username');
+        const passwordField = document.getElementById('password');
+        if (userNameField && userNameField.value.length === 0) {
+            userNameField.focus();
+        } else if (passwordField) {
+            passwordField.focus();
+        }
+    }
+    autoFocus();
+    window.addEventListener(FormEvent.eventTypes.fieldStructureChanged, autoFocus);
+});
+{{/autofocusform}}
+{{/error}}
+require(['core/pending'], function(Pending) {
+    const errorMessageDiv = document.getElementById('loginerrormessage');
+    const infoMessageDiv = document.getElementById('logininfomessage');
+    const errorMessage = errorMessageDiv ? errorMessageDiv.textContent.trim() : '';
+    const infoMessage = infoMessageDiv ? infoMessageDiv.textContent.trim() : '';
+    if (errorMessage || infoMessage) {
+        const pendingJS = new Pending('login-move-focus');
+        const usernameField = document.getElementById('username');
+        setTimeout(function() {
+            if (errorMessage && usernameField) {
+                usernameField.focus();
+            }
+            if (errorMessage && errorMessageDiv) {
+                errorMessageDiv.innerHTML += "&nbsp;";
+            }
+            if (infoMessage && infoMessageDiv) {
+                infoMessageDiv.innerHTML += "&nbsp;";
+            }
+            pendingJS.resolve();
+        }, 500);
+    }
+});
+{{#togglepassword}}
+require(['core/togglesensitive'], function(ToggleSensitive) {
+    ToggleSensitive.init("password", {{smallscreensonly}});
+});
+{{/togglepassword}}
+require(['core_form/submit'], function(Submit) {
+    Submit.init("loginbtn");
+    {{#canloginasguest}}
+    Submit.init("loginguestbtn");
+    {{/canloginasguest}}
+});
+{{/js}}

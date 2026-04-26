@@ -1,0 +1,358 @@
+// Login / sign-up: ~50/50 split (form start, photo end), Inter (loaded in login.mustache)
+
+$baitalgahwa-auth-text: mix($body-color, $black, 78%);
+$baitalgahwa-auth-muted: mix($body-color, $white, 48%);
+$baitalgahwa-auth-radius: 0.5rem; // 8px — design reference
+$baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferred in admin
+
+// LTR: Inter; Arabic falls back via stack (Noto if loaded in login.mustache)
+.baitalgahwa-login-page {
+  font-family: Inter, "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+.baitalgahwa-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  background: $white;
+
+  &__panel {
+    flex: 1 1 50%;
+    min-width: 0;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $figma-space-6 $figma-space-4 $figma-space-7;
+  }
+
+  &__card {
+    width: 100%;
+    max-width: 26.5rem; // ~424px content width, centered in half
+    border-radius: $figma-radius-lg;
+    background: $white;
+  }
+
+  &__logo {
+    max-width: 12.5rem;
+    height: auto;
+  }
+
+  &__visual {
+    position: relative;
+    flex: 1 1 50%;
+    min-width: 0;
+    min-height: $figma-space-8;
+    background-color: $primary;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__visual--mobile {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 11rem;
+    background-color: $primary;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__visual-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba($black, 0.5) 0%,
+      rgba($primary, 0.35) 45%,
+      rgba($black, 0.25) 100%
+    );
+  }
+
+  &__visual-inner {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: start;
+    max-width: 26rem;
+  }
+
+  &__visual-title {
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.06em;
+    text-shadow: 0 1px 2px rgba($black, 0.25);
+  }
+
+  &__visual-text {
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    font-weight: 400;
+    line-height: 1.55;
+    opacity: 0.95;
+  }
+
+  &__form {
+    .form-group {
+      margin-bottom: $figma-space-3;
+    }
+
+    .forgetpass a {
+      font-size: $figma-type-body-sm;
+    }
+  }
+}
+
+// Auth panel typography (sign-in reference)
+.baitalgahwa-auth-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $baitalgahwa-auth-text;
+  letter-spacing: -0.01em;
+}
+
+.baitalgahwa-auth-sub {
+  line-height: 1.5;
+  font-size: 0.9375rem;
+}
+
+// Theme wraps core login: hide duplicate site logo / h1 in the form (header above).
+.baitalgahwa-login__form {
+  .login-logo,
+  .baitalgahwa-core-loginform__logintitle {
+    display: none;
+  }
+}
+
+.baitalgahwa-auth-link {
+  color: $baitalgahwa-cta-brown;
+  font-weight: 600;
+
+  &:hover,
+  &:focus-visible {
+    color: mix($black, $baitalgahwa-cta-brown, 12%);
+  }
+}
+
+// Primary CTA — design brown; still respects theme primary if you prefer (comment out next block to use $primary only)
+.baitalgahwa-login-submit.btn-primary {
+  background-color: $baitalgahwa-cta-brown;
+  border-color: $baitalgahwa-cta-brown;
+  font-weight: 600;
+  border-radius: $baitalgahwa-auth-radius;
+  min-height: 2.75rem;
+
+  &:hover,
+  &:focus-visible {
+    background-color: mix($black, $baitalgahwa-cta-brown, 10%);
+    border-color: mix($black, $baitalgahwa-cta-brown, 10%);
+  }
+}
+
+.baitalgahwa-login-subcta {
+  margin-top: $figma-space-3;
+}
+
+// “Or” + circular identity providers (Google, etc.)
+.baitalgahwa-login-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: $figma-space-4 0;
+  color: $baitalgahwa-auth-muted;
+
+  &__line {
+    flex: 1 1 auto;
+    height: 1px;
+    background: rgba($body-color, 0.12);
+  }
+
+  &__text {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+}
+
+.baitalgahwa-idps--circular {
+  gap: 0.75rem;
+  margin-bottom: $figma-space-2;
+}
+
+.baitalgahwa-idp-round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border-radius: 50%;
+  background: $white;
+  border: 1px solid rgba($body-color, 0.12);
+  box-shadow: 0 1px 2px rgba($black, 0.06);
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.12s ease;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 2px 8px rgba($black, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &__img {
+    display: block;
+    object-fit: contain;
+  }
+
+  &__fallback {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: $baitalgahwa-auth-muted;
+    text-align: center;
+    line-height: 1.1;
+    padding: 0 0.15rem;
+    max-width: 2.5rem;
+    overflow: hidden;
+  }
+}
+
+// Fields
+.baitalgahwa-input {
+  border-radius: $baitalgahwa-auth-radius;
+  border-color: rgba($body-color, 0.18);
+  min-height: 2.65rem;
+  font-size: 0.9375rem;
+}
+
+.baitalgahwa-field-label {
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: $baitalgahwa-auth-muted;
+}
+
+.baitalgahwa-link-forgot {
+  color: $baitalgahwa-auth-muted;
+
+  &:hover,
+  &:focus-visible {
+    color: $baitalgahwa-cta-brown;
+  }
+}
+
+// Language + cookies row
+.baitalgahwa-login-meta {
+  .btn-link {
+    text-decoration: none;
+  }
+}
+
+.baitalgahwa-login__form .login {
+  .alert {
+    width: 100%;
+  }
+}
+
+.pagelayout-login {
+  #page:has(.baitalgahwa-login) {
+    margin: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .baitalgahwa-login {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .baitalgahwa-login__panel {
+    max-width: 100%;
+    flex: 1 1 auto;
+    padding-top: $figma-space-5;
+  }
+}
+
+// -------------------------------------------------------------------------
+// RTL (Arabic / dual language): mirror split, hero alignment, legible Arabic
+// Moodle sets body.dir-rtl and dir="rtl" when the current language is RTL
+// -------------------------------------------------------------------------
+body.dir-rtl .baitalgahwa-login-page,
+html[dir="rtl"] .baitalgahwa-login-page,
+.dir-rtl .baitalgahwa-login-page {
+  // Explicit stack: Inter does not cover Arabic glyphs
+  font-family: "Noto Sans Arabic", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  direction: rtl;
+  text-align: start;
+}
+
+// Desktop: flex row is mirrored by HTML direction — first column (form) to the
+// right, second (hero) to the left. Explicit row-reverse is not needed; keep
+// column stack on small screens
+@media (min-width: 992px) {
+  body.dir-rtl .baitalgahwa-login,
+  html[dir="rtl"] .baitalgahwa-login,
+  .dir-rtl .baitalgahwa-login {
+    flex-direction: row;
+  }
+}
+
+// Mobile: hero strip first, then form (same as LTR)
+body.dir-rtl .baitalgahwa-login__visual--mobile,
+html[dir="rtl"] .baitalgahwa-login__visual--mobile {
+  // Background focal point: favour the leading edge in RTL
+  background-position: right center;
+}
+
+// Desktop hero: bias focal point toward the form (between columns)
+body.dir-rtl .baitalgahwa-login__visual,
+html[dir="rtl"] .baitalgahwa-login__visual {
+  background-position: right center;
+}
+
+// Mirror the diagonal scrim so the gradient matches the mirrored layout
+body.dir-rtl .baitalgahwa-login__visual-scrim,
+html[dir="rtl"] .baitalgahwa-login__visual-scrim {
+  transform: scaleX(-1);
+}
+
+// Arabic typography: open tracking on Latin-style uppercase looks wrong on Arabic
+body.dir-rtl .baitalgahwa-login__visual-title,
+html[dir="rtl"] .baitalgahwa-login__visual-title {
+  letter-spacing: 0.02em;
+  text-transform: none; // allow natural Arabic; keep English in content if mixed
+}
+
+body.dir-rtl .baitalgahwa-login__visual-title:lang(en),
+html[dir="rtl"] .baitalgahwa-login__visual-title:lang(en) {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+body.dir-rtl .baitalgahwa-auth-title,
+html[dir="rtl"] .baitalgahwa-auth-title {
+  letter-spacing: 0;
+}
+
+// “Or” divider: avoid Latin-only tracking in Arabic
+body.dir-rtl .baitalgahwa-login-divider__text,
+html[dir="rtl"] .baitalgahwa-login-divider__text {
+  letter-spacing: 0.04em;
+}
+
+// Circled IDPs: flex follows RTL so icon order is natural for reading
+body.dir-rtl .baitalgahwa-idps--circular,
+html[dir="rtl"] .baitalgahwa-idps--circular {
+  flex-direction: row;
+}
+
+// Optional mixed UI: LTR form fields in an RTL page (Moodle can do this in places)
+[dir="ltr"] .baitalgahwa-input {
+  text-align: left;
+}

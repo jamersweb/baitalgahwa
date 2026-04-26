@@ -1,0 +1,67 @@
+{{!
+    @template theme_baitalgahwa/course_dashboard_hero
+    Course home: hero banner + statistics row (Bait Al Gahwa).
+}}
+<div class="baitalgahwa-course-hero container-fluid mb-3{{#course_strip_settings_layout}} baitalgahwa-course-hero--settings{{/course_strip_settings_layout}}{{#course_strip_participants}} baitalgahwa-course-hero--participants{{/course_strip_participants}}">
+    <div class="baitalgahwa-course-hero__toolbar d-flex flex-wrap align-items-start justify-content-between mb-2">
+        <h1 class="h2 mb-0 baitalgahwa-course-hero__title">{{course_fullname}}</h1>
+        <a href="{{course_ctaurl}}" class="btn btn-primary baitalgahwa-course-hero__cta">{{{ course_ctalabel }}}</a>
+    </div>
+    <div class="baitalgahwa-course-hero__media position-relative rounded overflow-hidden">
+        {{#course_image}}
+        <div class="baitalgahwa-course-hero__img" style="background-image: url('{{{ course_image }}}');" role="img" aria-label="{{course_fullname}}"></div>
+        {{/course_image}}
+        {{^course_image}}
+        <div class="baitalgahwa-course-hero__img baitalgahwa-course-hero__img--placeholder" role="img" aria-label="{{course_fullname}}"></div>
+        {{/course_image}}
+        <div class="baitalgahwa-course-hero__overlay"></div>
+        <div class="baitalgahwa-course-hero__caption position-absolute bottom-0 left-0 right-0 p-3 w-100">
+            <p class="h4 text-white mb-1 mb-md-2 baitalgahwa-course-hero__caption-title">{{course_fullname}}</p>
+            <p class="small text-white mb-0 opacity-90"><i class="icon fa fa-user fa-fw" aria-hidden="true"></i>{{course_instructor}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="baitalgahwa-course-stats container-fluid mb-3" role="region" aria-label="{{#str}} course_stats_region, theme_baitalgahwa {{/str}}">
+    <div class="baitalgahwa-course-stats__row row g-2 g-md-3">
+        <div class="col-6 col-md-3">
+            <div class="baitalgahwa-course-stats__card h-100 d-flex align-items-center p-3 rounded">
+                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-file-text-o fa-2x"></i></span>
+                <div>
+                    <div class="baitalgahwa-course-stats__num font-weight-bold">{{{ stat_enrolled_f }}}</div>
+                    <div class="baitalgahwa-course-stats__label small text-muted mb-0">{{#str}} course_stat_enrolled, theme_baitalgahwa {{/str}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="baitalgahwa-course-stats__card h-100 d-flex align-items-center p-3 rounded">
+                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-calendar fa-2x"></i></span>
+                <div>
+                    <div class="baitalgahwa-course-stats__num font-weight-bold">{{{ stat_completed_f }}}</div>
+                    <div class="baitalgahwa-course-stats__label small text-muted mb-0">{{#str}} course_stat_completed, theme_baitalgahwa {{/str}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="baitalgahwa-course-stats__card h-100 d-flex align-items-center p-3 rounded">
+                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-check-square-o fa-2x"></i></span>
+                <div>
+                    <div class="baitalgahwa-course-stats__num font-weight-bold">{{{ stat_inprogress_f }}}</div>
+                    <div class="baitalgahwa-course-stats__label small text-muted mb-0">{{#str}} course_stat_inprogress, theme_baitalgahwa {{/str}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="baitalgahwa-course-stats__card h-100 d-flex align-items-center p-3 rounded">
+                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-list fa-2x"></i></span>
+                <div>
+                    <div class="baitalgahwa-course-stats__num font-weight-bold">{{{ stat_nottostart_f }}}</div>
+                    <div class="baitalgahwa-course-stats__label small text-muted mb-0">{{#str}} course_stat_yettostart, theme_baitalgahwa {{/str}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{^has_completion}}
+    <p class="small text-muted mb-0 mt-2 baitalgahwa-course-stats__hint">{{#str}} course_stats_completion_off, theme_baitalgahwa {{/str}}</p>
+    {{/has_completion}}
+</div>

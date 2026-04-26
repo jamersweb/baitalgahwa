@@ -1,0 +1,28 @@
+// Buttons — warm primary, accessible focus.
+.baitalgahwa-btn {
+  border-radius: $figma-radius-md;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.baitalgahwa-btn--ghost {
+  color: $white !important; // on dark hero: border contrast.
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+}
+
+.baitalgahwa-btn--ghost:hover,
+.baitalgahwa-btn--ghost:focus {
+  background: rgba(255, 255, 255, 0.1);
+  color: $white !important;
+}
+
+.btn-primary,
+.btn-primary:focus {
+  box-shadow: $figma-shadow-button;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}

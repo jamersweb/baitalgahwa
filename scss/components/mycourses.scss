@@ -1,0 +1,212 @@
+// My courses / block_myoverview: catalogue layout, tabs, and course cards.
+// body uses Boost pagelayout-mycourses on /my/courses.php
+
+body.pagelayout-mycourses {
+  // One visible title: custom toolbar h1; keep default header block for region but hide duplicate title.
+  #page-header .page-header-headings {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .baitalgahwa-mycourses-toolbar {
+    background: $body-bg;
+    border-bottom: 1px solid rgba($black, 0.06);
+  }
+
+  .baitalgahwa-mycourses-toolbar__title {
+    font-family: $headings-font-family;
+    color: $body-color;
+  }
+
+  .baitalgahwa-mycourses-toolbar__create {
+    background: $primary;
+    border-color: $primary;
+    &:hover,
+    &:focus {
+      background: mix($black, $primary, 8%);
+      border-color: mix($black, $primary, 8%);
+    }
+  }
+
+  .baitalgahwa-mycourses-toolbar__manage {
+    border-width: 2px;
+  }
+
+  // Filter / search row (block myoverview)
+  .block-myoverview [data-region="filter"] {
+    border-bottom: 1px solid rgba($black, 0.06);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem !important;
+  }
+
+  // Card grid (Bootstrap 4 card-deck from paged content)
+  .block-myoverview .card-deck {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-left: 0;
+    margin-right: 0;
+    @include media-breakpoint-up(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @include media-breakpoint-up(xl) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .block-myoverview .baitalgahwa-mycourse-card {
+    box-shadow: 0 0.5rem 1.25rem rgba($black, 0.08);
+    border: 0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  // Grouping: horizontal tab strip (replaces default dropdown in theme override)
+  .baitalgahwa-mycourse-grouping {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .baitalgahwa-mycourse-grouping__tabs {
+    border-bottom: 1px solid rgba($black, 0.08) !important;
+    flex-wrap: nowrap;
+    min-height: 2.75rem;
+  }
+
+  .baitalgahwa-mycourse-grouping__tabs .nav-link {
+    color: mix($body-color, $text-muted, 50%);
+    background: transparent;
+    margin-bottom: -1px;
+
+    &:hover,
+    &:focus {
+      color: $primary;
+    }
+
+    &.active {
+      color: $primary;
+      background: transparent;
+      font-weight: 600;
+      box-shadow: inset 0 -3px 0 0 $primary;
+    }
+  }
+}
+
+// Course card
+.baitalgahwa-mycourse-card {
+  .baitalgahwa-mycourse-card__img {
+    min-height: 9.5rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;
+  }
+
+  .baitalgahwa-mycourse-card__media {
+    .baitalgahwa-mycourse-card__image-link {
+      display: block;
+    }
+  }
+
+  .baitalgahwa-mycourse-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    inset-inline-end: 0.75rem;
+    z-index: 1;
+    background: rgba(mix($white, $primary, 15%), 0.95) !important;
+    color: $gray-900 !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35em 0.75em;
+  }
+
+  .baitalgahwa-mycourse-card__dates {
+    position: absolute;
+    bottom: 0;
+    left: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    background: linear-gradient(180deg, transparent, rgba($black, 0.6));
+    color: $white;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.4rem 0.5rem;
+    border-radius: 0.25rem 0.25rem 0 0;
+  }
+
+  .baitalgahwa-mycourse-card__courselink {
+    color: $body-color;
+    font-weight: 600;
+  }
+
+  .baitalgahwa-mycourse-card__cta {
+    border-radius: 0 0 0.75rem 0.75rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .baitalgahwa-mycourse-card__footerrow {
+    padding: 0.25rem 0.5rem 0.5rem;
+  }
+}
+
+// Instructor / contact chip (Figma: dark bar, tan name, grey role & date) — on my courses cards
+// Name on #1a1110: slightly lighter than spec #8b5e3c for WCAG contrast on small text
+$bag-instructor-chip-name: #a87d5a;
+$bag-instructor-chip-meta: #999;
+$bag-instructor-chip-bg: #1a1110;
+
+.baitalgahwa-mycourse-card .baitalgahwa-instructor-chip {
+  background: $bag-instructor-chip-bg;
+  border-radius: 1.25rem;
+  padding: 0.65rem 0.9rem 0.65rem 0.65rem;
+  min-height: 3.5rem;
+}
+
+.baitalgahwa-mycourse-card .baitalgahwa-instructor-chip__avatar {
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-inline-end: 0.75rem;
+  align-self: center;
+  background: mix(#fff, $bag-instructor-chip-bg, 6%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baitalgahwa-mycourse-card .baitalgahwa-instructor-chip__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.baitalgahwa-mycourse-card .baitalgahwa-instructor-chip__avatar-placeholder {
+  color: $bag-instructor-chip-name;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.baitalgahwa-mycourse-card .baitalgahwa-instructor-chip__name {
+  color: $bag-instructor-chip-name;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.1rem;
+  // Hairline “lift” to keep edge definition on very dark background
+  text-shadow: 0 0 0.5px rgba($white, 0.12);
+}
+
+.baitalgahwa-mycourse-card .baitalgahwa-instructor-chip__role,
+.baitalgahwa-mycourse-card .baitalgahwa-instructor-chip__date {
+  color: $bag-instructor-chip-meta;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  font-weight: 400;
+}

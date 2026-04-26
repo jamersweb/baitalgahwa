@@ -1,0 +1,9 @@
+// Appended in prescss after Boost pre-SCSS. Typography baseline.
+$font-family-sans-serif: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$line-height-base: 1.55; // Match $figma-line-body; lock with Figma text styles.
+
+.baitalgahwa-js :focus {
+  outline: 2px solid var(--bait-gold, #c9a227);
+  outline-offset: 2px;
+}

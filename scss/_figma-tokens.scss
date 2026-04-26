@@ -1,0 +1,81 @@
+// =============================================================================
+// FIGMA ↔ CODE (pixel-perfect contract)
+// - Base: 1rem = 16px. Spacing = 8px grid (multiples of 0.5rem).
+// - In Figma: Variables → add matching names (right column) or use figma/variables-to-create-in-figma.json
+// - Admin colour pickers override $primary; keep defaults identical to Figma.
+// =============================================================================
+
+// --- Figma: Color / Brand ---
+$figma-color-primary: #3d2314; // Figma: Color/Brand/Primary
+$figma-color-secondary: #6b4423; // Figma: Color/Brand/Secondary
+$figma-color-accent: #c9a227; // Figma: Color/Brand/Accent
+$figma-color-cream: #f5e6d3; // Figma: Color/Neutral/Cream
+$figma-color-espresso: #1a120b; // Figma: Color/Neutral/Espresso
+$figma-color-sand: #d4a574; // Figma: Color/Neutral/Sand
+$figma-color-white: #ffffff;
+$figma-color-hero-scrim-top: rgba(26, 18, 11, 0.85);
+$figma-color-hero-scrim-bottom: rgba(61, 35, 20, 0.55);
+$figma-color-text-on-hero: #f5e6d3;
+
+// --- Figma: Space (8px grid) — use these for padding/gap, not ad-hoc px ---
+$figma-space-0: 0.25rem; // 4px  Figma: Space/0
+$figma-space-1: 0.5rem; // 8px   Figma: Space/1
+$figma-space-2: 0.75rem; // 12px Figma: Space/2
+$figma-space-3: 1rem; // 16px    Figma: Space/3
+$figma-space-4: 1.5rem; // 24px  Figma: Space/4
+$figma-space-5: 2rem; // 32px    Figma: Space/5
+$figma-space-6: 2.5rem; // 40px  Figma: Space/6
+$figma-space-7: 3rem; // 48px    Figma: Space/7
+$figma-space-8: 4rem; // 64px    Figma: Space/8
+
+// --- Figma: Radius ---
+$figma-radius-sm: 0.5rem; // 8px   Figma: Radius/SM
+$figma-radius-md: 0.75rem; // 12px Figma: Radius/MD
+$figma-radius-lg: 1.25rem; // 20px Figma: Radius/LG
+$figma-radius-pill: 62.4375rem; // full Figma: Radius/Full (pill)
+
+// --- Figma: Elevation ---
+$figma-shadow-card: 0 0.5rem 1.25rem rgba(26, 18, 11, 0.12); // Figma: Shadow/Card
+$figma-shadow-card-hover: 0 0.75rem 1.75rem rgba(26, 18, 11, 0.18);
+$figma-shadow-button: 0 0.2rem 0.6rem rgba(61, 35, 20, 0.35);
+
+// --- Figma: Layout (reference frames) ---
+$figma-layout-screen-width: 90rem; // 1440px Figma: Layout/Desktop width
+$figma-layout-content-max: 75rem; // 1200px main column max
+$figma-layout-navbar-height: 3.5rem; // 56px  Figma: Layout/Header height
+$figma-layout-course-image-height: 10rem; // 160px course thumb
+
+// --- Figma: Type / scale (rem @ 16px root) ---
+$figma-type-caption: 0.75rem; // 12px  Figma: Type/Caption
+$figma-type-body-sm: 0.875rem; // 14px Figma: Type/Body S
+$figma-type-body: 1rem; // 16px     Figma: Type/Body M
+$figma-type-h6: 1rem; // 16px semibold
+$figma-type-h5: 1.25rem; // 20px    Figma: Type/H5
+$figma-type-h3: 1.5rem; // 24px     Figma: Type/H3
+$figma-type-h2: 1.5rem; // 24px section title
+$figma-type-h1-hero: 2.5rem; // 40px @ lg — match Figma hero
+$figma-type-eyebrow-tracking: 0.12em; // Figma: Letter spacing / Eyebrow
+
+$figma-line-tight: 1.2;
+$figma-line-body: 1.55;
+
+// Sub-pixel hover lift: 2px (not on 8pt grid; common for elevation)
+$figma-elevation-lift: 0.125rem; // 2px
+
+// --- Legacy aliases (theme uses $bag-*) — keep 1:1 with historical SCSS ---
+$bag-cream: $figma-color-cream;
+$bag-espresso: $figma-color-espresso;
+$bag-gold: $figma-color-accent;
+$bag-sand: $figma-color-sand;
+$bag-radius-sm: $figma-radius-sm;
+$bag-radius: $figma-radius-md;
+$bag-radius-lg: $figma-radius-lg;
+$bag-shadow: $figma-shadow-card;
+$bag-header-height: $figma-layout-navbar-height;
+$bag-space-1: $figma-space-1;
+$bag-space-2: $figma-space-2;
+$bag-space-3: $figma-space-3;
+$bag-space-4: $figma-space-4;
+$bag-space-5: $figma-space-5;
+$bag-space-6: $figma-space-6;
+$bag-accent: $figma-color-accent;

@@ -1,0 +1,10 @@
+{{!
+    @template theme_baitalgahwa/components/course_grid
+}}
+<div class="row g-3 baitalgahwa-course-grid" role="list">
+    {{#featured_courses}}
+    <div class="col-12 col-sm-6 col-lg-3" role="listitem">
+        {{> theme_baitalgahwa/course_card }}
+    </div>
+    {{/featured_courses}}
+</div>

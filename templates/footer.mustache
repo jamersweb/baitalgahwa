@@ -1,0 +1,86 @@
+{{!
+    @template theme_baitalgahwa/footer
+    Custom Bait Al Gahwa block + required Boost / Moodle outputs (login info, end of body).
+}}
+<footer class="baitalgahwa-footer" role="contentinfo">
+    <div class="baitalgahwa-footer__top py-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    {{#themelogourl}}
+                    <img class="baitalgahwa-footer__logo mb-2" src="{{{ themelogourl }}}" alt="{{ sitename }}" width="140" height="40">
+                    {{/themelogourl}}
+                    <p class="baitalgahwa-footer__about small text-muted mb-0">{{#footerabout}}{{footerabout}}{{/footerabout}}{{^footerabout}}&nbsp;{{/footerabout}}</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="h6">{{#str}}footerquick, theme_baitalgahwa{{/str}}</h3>
+                    <ul class="list-unstyled small">
+                        <li><a class="baitalgahwa-footer__link" href="{{{config.homeurl}}}">{{#str}}home, core{{/str}}</a></li>
+                        <li><a class="baitalgahwa-footer__link" href="{{{config.wwwroot}}}/course/index.php">{{#str}}courses, core{{/str}}</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="h6">{{#str}}footercontact, theme_baitalgahwa{{/str}}</h3>
+                    <ul class="list-unstyled small text-muted">
+                        {{#footeremail}}<li><a class="baitalgahwa-footer__link" href="mailto:{{.}}">{{.}}</a></li>{{/footeremail}}
+                        {{#footerphone}}<li>{{.}}</li>{{/footerphone}}
+                        {{#footeraddress}}<li>{{.}}</li>{{/footeraddress}}
+                    </ul>
+                    <ul class="list-inline baitalgahwa-footer__social">
+                        {{#facebook}}<li class="list-inline-item"><a class="baitalgahwa-footer__link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="Facebook">Facebook</a></li>{{/facebook}}
+                        {{#instagram}}<li class="list-inline-item"><a class="baitalgahwa-footer__link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="Instagram">Instagram</a></li>{{/instagram}}
+                        {{#linkedin}}<li class="list-inline-item"><a class="baitalgahwa-footer__link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="LinkedIn">LinkedIn</a></li>{{/linkedin}}
+                        {{#youtube}}<li class="list-inline-item"><a class="baitalgahwa-footer__link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="YouTube">YouTube</a></li>{{/youtube}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="baitalgahwa-footer__moodle border-top">
+<div id="page-footer" class="footer-popover bg-white mb-0" role="region" aria-label="{{#str}}footer, admin{{/str}}">
+    <div data-region="footer-container-popover">
+        {{#output.has_communication_links}}
+        <button onclick="window.open('{{output.communication_url}}', '_blank', 'noreferrer')" class="btn btn-icon bg-primary text-white icon-no-margin btn-footer-communication" aria-label="{{#str}}communicationroomlink, course{{/str}}">
+            {{#pix}}t/messages-o, core{{/pix}}
+        </button>
+        {{/output.has_communication_links}}
+        <button class="btn btn-icon bg-secondary icon-no-margin btn-footer-popover" data-action="footer-popover" aria-label="{{#str}}showfooter, theme_boost{{/str}}">
+            {{#pix}}e/question, core{{/pix}}
+        </button>
+    </div>
+    <div class="footer-content-popover container" data-region="footer-content-popover">
+        {{#output.has_communication_links}}
+        <div class="footer-section p-3 border-bottom footer-link-communication">
+            <div class="footer-support-link">{{{ output.communication_link }}}</div>
+        </div>
+        {{/output.has_communication_links}}
+        {{# output.has_popover_links }}
+        <div class="footer-section p-3 border-bottom">
+            {{# output.page_doc_link }}<div class="footer-support-link">{{{ output.page_doc_link }}}</div>{{/ output.page_doc_link }}
+            {{# output.services_support_link }}<div class="footer-support-link">{{{ output.services_support_link }}}</div>{{/ output.services_support_link }}
+            {{# output.supportemail }}<div class="footer-support-link">{{{ output.supportemail }}}</div>{{/ output.supportemail }}
+        </div>
+        {{/ output.has_popover_links }}
+        <div class="footer-section p-3 border-bottom">
+            <div class="logininfo">{{{ output.login_info }}}</div>
+            <div class="tool_usertours-resettourcontainer"></div>
+            {{{ output.standard_footer_html }}}
+            {{{ output.standard_end_of_body_html }}}
+        </div>
+        <div class="footer-section p-3">
+            <div>{{#str}}poweredbymoodle, core{{/str}}</div>
+            {{#output.moodle_release}}<div>{{#str}}version, core{{/str}} {{{ output.moodle_release }}}</div>{{/output.moodle_release}}
+        </div>
+    </div>
+    <div class="footer-content-debugging footer-dark bg-dark text-light">
+        <div class="container-fluid footer-dark-inner">
+            {{{ output.debug_footer_html }}}
+        </div>
+    </div>
+</div>
+    </div>
+    <p class="baitalgahwa-footer__copy text-center small text-muted py-2 mb-0">© {{ sitename }} — {{#str}}footercopy, theme_baitalgahwa{{/str}}</p>
+</footer>
+{{#js}}
+require(['theme_boost/footer-popover'], function(FooterPopover) { FooterPopover.init(); });
+{{/js}}

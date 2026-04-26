@@ -1,0 +1,14 @@
+PIXEL-PERFECT: FIGMA ↔ MOODLE THEME
+===================================
+
+1) Single source in code: theme/baitalgahwa/scss/_figma-tokens.scss
+   - Change hex/spacing there first, then mirror in Figma Variables (or vice versa, but one must follow the other).
+2) Figma: View → Layout grid → 8pt grid, offset 0, red lines = 0.5rem/8px steps.
+3) Figma: Snap to pixel grid; avoid half-pixel frame sizes for UI frames.
+4) Frames: Desktop 1440px wide; content max ~1200px in Auto Layout; header row 56px.
+5) Dev handoff: Inspect panel px values ÷ 16 = rem in _figma-tokens.scss. Compare at 100% zoom, same browser and OS as reviewers.
+6) Admin theme colours: Appearance → Bait Al Gahwa — if set, they override $primary; for strict parity use the same hex as "Brand/Primary" in Figma.
+7) Export: Images @1x/2x from Figma; hero/course art match frame bounds in the design file.
+8) Re-sync after design changes: update JSON figma/variables-to-create-in-figma.json + _figma-tokens.scss, purge Moodle caches.
+
+Automated Figma read: use Figma MCP get_design_context + get_screenshot on each frame, then diff against browser screenshot at same viewport.
