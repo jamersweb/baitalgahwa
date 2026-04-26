@@ -5,6 +5,151 @@
 {{> theme_boost/head }}
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body.pagelayout-login.theme {
+    margin: 0;
+    background: #fff;
+}
+.pagelayout-login #page,
+.pagelayout-login #page-wrapper,
+.pagelayout-login #region-main-box,
+.pagelayout-login #region-main {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: none;
+    border: 0;
+    background: transparent;
+}
+.pagelayout-login .baitalgahwa-login-page {
+    min-height: 100vh;
+    font-family: Inter, "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+    background: #fff;
+}
+.pagelayout-login .baitalgahwa-login {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    overflow: hidden;
+    background: #fff;
+}
+.pagelayout-login .baitalgahwa-login__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 4rem);
+}
+.pagelayout-login .baitalgahwa-login__card {
+    width: 100%;
+    max-width: 34rem;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none !important;
+    background: #fff;
+}
+.pagelayout-login .baitalgahwa-login__visual {
+    position: relative;
+    min-height: 100vh;
+    background-color: #6b4423;
+    background-size: cover;
+    background-position: center;
+    display: flex !important;
+    align-items: stretch !important;
+}
+.pagelayout-login .baitalgahwa-login__visual--mobile {
+    min-height: 11rem;
+    background-color: #6b4423;
+    background-size: cover;
+    background-position: center;
+}
+.pagelayout-login .baitalgahwa-login__visual-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(0, 0, 0, 0.5) 0%, rgba(107, 68, 35, 0.35) 45%, rgba(0, 0, 0, 0.25) 100%);
+}
+.pagelayout-login .baitalgahwa-login__visual-inner {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 34rem;
+    padding: clamp(2rem, 5vw, 4rem);
+}
+.pagelayout-login .baitalgahwa-login__logo {
+    max-width: 12.5rem;
+    height: auto;
+}
+.pagelayout-login .baitalgahwa-login__form,
+.pagelayout-login .baitalgahwa-login__form .loginform,
+.pagelayout-login .baitalgahwa-login__form .login-form,
+.pagelayout-login .baitalgahwa-login__form form {
+    width: 100%;
+}
+.pagelayout-login .baitalgahwa-login__form .login-logo,
+.pagelayout-login .baitalgahwa-login__form .baitalgahwa-core-loginform__logintitle,
+.pagelayout-login .baitalgahwa-login__form .login-maintenance,
+.pagelayout-login .baitalgahwa-login__form .login-instructions,
+.pagelayout-login .baitalgahwa-login__form .login-divider.my-3 + .login-instructions,
+.pagelayout-login .baitalgahwa-login__form .login-divider.my-3 + h2.login-heading {
+    display: none !important;
+}
+.pagelayout-login .baitalgahwa-core-loginform .login-form-username,
+.pagelayout-login .baitalgahwa-core-loginform .login-form-password,
+.pagelayout-login .baitalgahwa-core-loginform .login-form-submit,
+.pagelayout-login .baitalgahwa-core-loginform .login-form-forgotpassword {
+    margin-bottom: 1.5rem !important;
+}
+.pagelayout-login .baitalgahwa-input {
+    min-height: 5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(17, 24, 39, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: none;
+    font-size: 1rem;
+}
+.pagelayout-login .baitalgahwa-field-label {
+    margin-bottom: 0.75rem !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+.pagelayout-login .baitalgahwa-login-submit.btn-primary,
+.pagelayout-login #loginbtn {
+    width: 100%;
+    min-height: 4.5rem;
+    border-color: #5d3e21;
+    background: #5d3e21;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.pagelayout-login .baitalgahwa-login__visual-title {
+    font-size: clamp(2.75rem, 4.6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: 0.02em;
+}
+.pagelayout-login .baitalgahwa-login__visual-text {
+    max-width: 30rem;
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
+    line-height: 1.5;
+}
+@media (max-width: 991.98px) {
+    .pagelayout-login .baitalgahwa-login {
+        grid-template-columns: 1fr;
+    }
+    .pagelayout-login .baitalgahwa-login__visual {
+        display: none !important;
+    }
+    .pagelayout-login .baitalgahwa-login__card {
+        max-width: 100%;
+    }
+}
+</style>
 <body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
 <div class="baitalgahwa-login-page" id="page">

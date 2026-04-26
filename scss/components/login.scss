@@ -6,6 +6,7 @@ $baitalgahwa-auth-radius: 0.5rem; // 8px — design reference
 $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferred in admin
 
 // LTR: Inter; Arabic falls back via stack (Noto if loaded in login.mustache)
+.pagelayout-login,
 .baitalgahwa-login-page {
   font-family: Inter, "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
   min-height: 100vh;
@@ -16,6 +17,7 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   }
 }
 
+.pagelayout-login .baitalgahwa-login,
 .baitalgahwa-login {
   min-height: 100vh;
   display: grid;
@@ -129,6 +131,7 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
 }
 
 // Auth panel typography (sign-in reference)
+.pagelayout-login .baitalgahwa-auth-title,
 .baitalgahwa-auth-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -136,23 +139,25 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   letter-spacing: -0.01em;
 }
 
+.pagelayout-login .baitalgahwa-auth-sub,
 .baitalgahwa-auth-sub {
   line-height: 1.5;
   font-size: 0.9375rem;
 }
 
 // Theme wraps core login: hide duplicate site logo / h1 in the form (header above).
+.pagelayout-login .baitalgahwa-login__form,
 .baitalgahwa-login__form {
   .login-logo,
   .baitalgahwa-core-loginform__logintitle {
-    display: none;
+    display: none !important;
   }
 
   .login-maintenance,
   .login-instructions,
   .login-divider.my-3 + .login-instructions,
   .login-divider.my-3 + h2.login-heading {
-    display: none;
+    display: none !important;
   }
 
   .alert {
@@ -171,6 +176,7 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
 }
 
 // Primary CTA — design brown; still respects theme primary if you prefer (comment out next block to use $primary only)
+.pagelayout-login .baitalgahwa-login-submit.btn-primary,
 .baitalgahwa-login-submit.btn-primary {
   background-color: $baitalgahwa-cta-brown;
   border-color: $baitalgahwa-cta-brown;
@@ -185,11 +191,13 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   }
 }
 
+.pagelayout-login .baitalgahwa-login-subcta,
 .baitalgahwa-login-subcta {
   margin-top: $figma-space-3;
 }
 
 // “Or” + circular identity providers (Google, etc.)
+.pagelayout-login .baitalgahwa-login-divider,
 .baitalgahwa-login-divider {
   display: flex;
   align-items: center;
@@ -211,11 +219,13 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   }
 }
 
+.pagelayout-login .baitalgahwa-idps--circular,
 .baitalgahwa-idps--circular {
   gap: 0.75rem;
   margin-bottom: $figma-space-2;
 }
 
+.pagelayout-login .baitalgahwa-idp-round,
 .baitalgahwa-idp-round {
   display: inline-flex;
   align-items: center;
@@ -254,6 +264,7 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
 }
 
 // Fields
+.pagelayout-login .baitalgahwa-input,
 .baitalgahwa-input {
   border-radius: $baitalgahwa-auth-radius;
   border: 1px solid rgba($body-color, 0.2);
@@ -268,6 +279,7 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   }
 }
 
+.pagelayout-login .baitalgahwa-field-label,
 .baitalgahwa-field-label {
   font-weight: 500;
   font-size: 0.95rem;
@@ -275,6 +287,7 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   margin-bottom: 0.75rem !important;
 }
 
+.pagelayout-login .baitalgahwa-link-forgot,
 .baitalgahwa-link-forgot {
   color: $baitalgahwa-auth-muted;
 
@@ -285,12 +298,14 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
 }
 
 // Language + cookies row
+.pagelayout-login .baitalgahwa-login-meta,
 .baitalgahwa-login-meta {
   .btn-link {
     text-decoration: none;
   }
 }
 
+.pagelayout-login .baitalgahwa-core-loginform,
 .baitalgahwa-core-loginform {
   width: 100%;
 
@@ -312,26 +327,49 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   }
 }
 
-.pagelayout-login {
-  #page:has(.baitalgahwa-login) {
-    margin: 0;
-  }
+.pagelayout-login #page,
+.pagelayout-login #page-wrapper,
+.pagelayout-login #region-main-box,
+.pagelayout-login #region-main {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  width: 100%;
+}
+
+.pagelayout-login #region-main {
+  border: 0;
+  background: transparent;
+}
+
+.pagelayout-login .card {
+  border: 0;
+}
+
+.pagelayout-login .login-container,
+.pagelayout-login .login-wrapper {
+  max-width: none;
+  padding: 0;
 }
 
 @media (max-width: 991.98px) {
+  .pagelayout-login .baitalgahwa-login,
   .baitalgahwa-login {
     grid-template-columns: 1fr;
   }
 
+  .pagelayout-login .baitalgahwa-login__panel,
   .baitalgahwa-login__panel {
     grid-column: 1;
     padding-top: $figma-space-5;
   }
 
+  .pagelayout-login .baitalgahwa-login__visual,
   .baitalgahwa-login__visual {
     display: none !important;
   }
 
+  .pagelayout-login .baitalgahwa-login__card,
   .baitalgahwa-login__card {
     max-width: 100%;
   }
