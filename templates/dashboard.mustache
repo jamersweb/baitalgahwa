@@ -70,53 +70,65 @@
                 </div>
             </div>
             <div class="baitalgahwa-dashboard container-fluid py-3 py-lg-4">
-                <div class="row g-3 g-lg-4 mb-4" role="list">
-                    <div class="col-6 col-lg-3" role="listitem">
-                        <div class="baitalgahwa-stat-card h-100">
-                            <div class="baitalgahwa-stat-card__accent baitalgahwa-stat-card__accent--a" aria-hidden="true"></div>
-                            <div class="baitalgahwa-stat-card__body">
-                                <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-book fa-lg" aria-hidden="true"></i></span>
-                                <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.enrolled_fmt }}</div>
-                                <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_enrolled, theme_baitalgahwa{{/str}}</div>
+                <div class="baitalgahwa-dashboard-shell">
+                    <section class="baitalgahwa-dashboard-heading">
+                        <h1 class="baitalgahwa-dashboard-heading__title mb-0">{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}</h1>
+                    </section>
+                    <section class="baitalgahwa-dashboard-panel baitalgahwa-dashboard-panel--stats mb-4" aria-label="{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}">
+                        <div class="row g-3 g-lg-4" role="list">
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <div class="baitalgahwa-stat-card h-100">
+                                    <div class="baitalgahwa-stat-card__body">
+                                        <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-book fa-lg" aria-hidden="true"></i></span>
+                                        <div>
+                                            <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.enrolled_fmt }}</div>
+                                            <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_enrolled, theme_baitalgahwa{{/str}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <div class="baitalgahwa-stat-card h-100">
+                                    <div class="baitalgahwa-stat-card__body">
+                                        <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-hourglass-half fa-lg" aria-hidden="true"></i></span>
+                                        <div>
+                                            <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.inprogress_fmt }}</div>
+                                            <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_inprogress, theme_baitalgahwa{{/str}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <div class="baitalgahwa-stat-card h-100">
+                                    <div class="baitalgahwa-stat-card__body">
+                                        <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i></span>
+                                        <div>
+                                            <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.completed_fmt }}</div>
+                                            <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_completed, theme_baitalgahwa{{/str}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <div class="baitalgahwa-stat-card h-100">
+                                    <div class="baitalgahwa-stat-card__body">
+                                        <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-clipboard fa-lg" aria-hidden="true"></i></span>
+                                        <div>
+                                            <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.certificates_fmt }}</div>
+                                            <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_certs, theme_baitalgahwa{{/str}}</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-lg-3" role="listitem">
-                        <div class="baitalgahwa-stat-card h-100">
-                            <div class="baitalgahwa-stat-card__accent baitalgahwa-stat-card__accent--b" aria-hidden="true"></div>
-                            <div class="baitalgahwa-stat-card__body">
-                                <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-hourglass-half fa-lg" aria-hidden="true"></i></span>
-                                <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.inprogress_fmt }}</div>
-                                <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_inprogress, theme_baitalgahwa{{/str}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-3" role="listitem">
-                        <div class="baitalgahwa-stat-card h-100">
-                            <div class="baitalgahwa-stat-card__accent baitalgahwa-stat-card__accent--c" aria-hidden="true"></div>
-                            <div class="baitalgahwa-stat-card__body">
-                                <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-check fa-lg" aria-hidden="true"></i></span>
-                                <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.completed_fmt }}</div>
-                                <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_completed, theme_baitalgahwa{{/str}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-3" role="listitem">
-                        <div class="baitalgahwa-stat-card h-100">
-                            <div class="baitalgahwa-stat-card__accent baitalgahwa-stat-card__accent--d" aria-hidden="true"></div>
-                            <div class="baitalgahwa-stat-card__body">
-                                <span class="baitalgahwa-stat-card__icon" aria-hidden="true"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></span>
-                                <div class="baitalgahwa-stat-card__value">{{ dashboard_stats.certificates_fmt }}</div>
-                                <div class="baitalgahwa-stat-card__label">{{#str}}dashboard_stat_certs, theme_baitalgahwa{{/str}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </section>
                 {{#has_mycourses}}
-                <section class="mb-4 mb-lg-5" aria-labelledby="bait-training-heading">
-                    <h2 id="bait-training-heading" class="h3 mb-2 baitalgahwa-dashboard__section-title">{{#str}}dashboard_training_title, theme_baitalgahwa{{/str}}</h2>
-                    <p class="text-muted small mb-3 col-lg-8 px-0">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
-                    <div class="baitalgahwa-dashboard__scroll row flex-nowrap flex-lg-wrap g-3 pb-2">
+                <section class="baitalgahwa-dashboard-panel mb-4 mb-lg-5" aria-labelledby="bait-training-heading">
+                    <div class="baitalgahwa-dashboard-panel__header text-center">
+                        <h2 id="bait-training-heading" class="h3 mb-2 baitalgahwa-dashboard__section-title">{{#str}}dashboard_training_title, theme_baitalgahwa{{/str}}</h2>
+                        <p class="text-muted small mb-0 mx-auto">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
+                    </div>
+                    <div class="baitalgahwa-dashboard__scroll row flex-nowrap flex-lg-wrap g-3 pt-4 pb-2">
                         {{#mycourses}}
                         <div class="baitalgahwa-dashboard__scroll-item col-10 col-sm-6 col-md-4 col-lg-3">
                             {{> theme_baitalgahwa/course_card }}
@@ -126,40 +138,43 @@
                 </section>
                 {{/has_mycourses}}
                 {{#has_dashboard_progress}}
-                <section class="mb-4 mb-lg-5" aria-labelledby="bait-progress-heading">
+                <section class="baitalgahwa-dashboard-panel mb-4 mb-lg-5" aria-labelledby="bait-progress-heading">
                     <h2 id="bait-progress-heading" class="h3 mb-3 baitalgahwa-dashboard__section-title">{{#str}}dashboard_progress_title, theme_baitalgahwa{{/str}}</h2>
+                    <div class="baitalgahwa-panel-toolbar mb-3">
+                        <div class="baitalgahwa-panel-toolbar__left">
+                            <span class="baitalgahwa-panel-chip"><i class="fa fa-search"></i> Search</span>
+                            <span class="baitalgahwa-panel-chip"><i class="fa fa-filter"></i> Filter</span>
+                        </div>
+                        <div class="baitalgahwa-panel-toolbar__right">
+                            <span class="baitalgahwa-panel-chip">Sort by: Latest</span>
+                            <span class="baitalgahwa-panel-chip">Column</span>
+                        </div>
+                    </div>
                     <div class="baitalgahwa-table-card card border-0 shadow-sm">
                         <div class="table-responsive">
                             <table class="table table-hover align-middle mb-0 baitalgahwa-progress-table">
                                 <thead class="text-muted small">
                                     <tr>
-                                        <th scope="col" class="ps-3">{{#str}}dashboard_col_course, theme_baitalgahwa{{/str}}</th>
-                                        <th scope="col">{{#str}}dashboard_col_status, theme_baitalgahwa{{/str}}</th>
+                                        <th scope="col" class="ps-3">#id</th>
+                                        <th scope="col">{{#str}}dashboard_col_course, theme_baitalgahwa{{/str}}</th>
+                                        <th scope="col">Start</th>
+                                        <th scope="col">Student</th>
                                         <th scope="col">{{#str}}dashboard_col_progress, theme_baitalgahwa{{/str}}</th>
-                                        <th scope="col" class="pe-3 text-end">{{#str}}table_action, theme_baitalgahwa{{/str}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{#dashboard_progress}}
                                     <tr>
-                                        <td class="ps-3">
+                                        <td class="ps-3">{{ id }}</td>
+                                        <td>
                                             <div class="d-flex align-items-center gap-2">
                                                 {{#imageurl}}<img src="{{{ imageurl }}}" alt="" class="baitalgahwa-progress-table__thumb rounded" width="40" height="40">{{/imageurl}}
                                                 <a href="{{{ url }}}">{{ fullname }}</a>
                                             </div>
                                         </td>
-                                        <td><span class="badge rounded-pill baitalgahwa-progress-table__status baitalgahwa-progress-table__status--{{statuskey}}">{{ status }}</span></td>
-                                        <td style="min-width: 8rem">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="small text-nowrap">{{ progress }}%</span>
-                                                <div class="progress flex-grow-1 baitalgahwa-progress-bar" role="progressbar" aria-valuenow="{{ progressint }}" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: {{ progressint }}%"></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="pe-3 text-end">
-                                            <a class="btn btn-sm btn-outline-secondary" href="{{{ url }}}">{{#str}}gotocourse, theme_baitalgahwa{{/str}}</a>
-                                        </td>
+                                        <td>14 Aug, 2022</td>
+                                        <td>04</td>
+                                        <td><span class="baitalgahwa-progress-table__plain">{{ progress }}%</span></td>
                                     </tr>
                                     {{/dashboard_progress}}
                                 </tbody>
@@ -219,8 +234,9 @@
                                     {{/dashboard_calendar.weeks}}
                                 </tbody>
                             </table>
-                            <div class="text-center mt-3">
-                                <a class="btn btn-sm btn-primary rounded-pill px-4" href="{{{ config.calurl }}}">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
+                            <div class="text-center mt-3 d-flex gap-2 justify-content-center">
+                                <a class="btn btn-sm btn-outline-secondary px-4" href="{{{ config.calurl }}}">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
+                                <a class="btn btn-sm btn-primary px-4" href="{{{ config.calurl }}}">Import Or Export Calendar</a>
                             </div>
                         </div>
                     </div>
@@ -242,13 +258,13 @@
                     </div>
                 </div>
                 <div class="row g-3 g-lg-4 mb-4">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="baitalgahwa-widget card border-0 shadow-sm h-100 p-3">
                             <h3 class="h6 mb-3">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h3>
                             {{#has_dashboard_members}}
                             <div class="row g-2">
                                 {{#dashboard_members}}
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 col-xl-3">
                                     <a class="baitalgahwa-member d-flex align-items-center gap-2 text-reset text-decoration-none p-2 rounded" href="{{{ profileurl }}}">
                                         <span class="baitalgahwa-member__avatar flex-shrink-0">{{{ avatar }}}</span>
                                         <span class="min-w-0">
@@ -263,15 +279,41 @@
                             {{^has_dashboard_members}}
                             <p class="text-muted small mb-0">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
                             {{/has_dashboard_members}}
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="baitalgahwa-widget card border-0 shadow-sm h-100 p-3">
-                            <h3 class="h6 mb-2">{{#str}}dashboard_todo_title, theme_baitalgahwa{{/str}}</h3>
-                            <p class="text-muted small mb-0">{{#str}}dashboard_todo_body, theme_baitalgahwa{{/str}} <a href="{{{ config.coursetodo }}}">{{#str}}dashboard_todo_link, theme_baitalgahwa{{/str}}</a></p>
+                            <div class="text-center mt-3">
+                                <a class="baitalgahwa-inline-link" href="{{{ config.wwwroot }}}/user/index.php?id=1">View All Members</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <section class="baitalgahwa-dashboard-panel baitalgahwa-dashboard-panel--todo mb-4" aria-labelledby="bait-todo-heading">
+                    <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
+                        <h2 id="bait-todo-heading" class="h3 mb-0 baitalgahwa-dashboard__section-title">{{#str}}dashboard_todo_title, theme_baitalgahwa{{/str}}</h2>
+                        <span class="btn btn-primary btn-sm px-3">Add Task</span>
+                    </div>
+                    <div class="baitalgahwa-panel-toolbar mb-3">
+                        <div class="baitalgahwa-panel-toolbar__left">
+                            <span class="baitalgahwa-panel-chip"><i class="fa fa-search"></i> Search</span>
+                            <span class="baitalgahwa-panel-chip"><i class="fa fa-filter"></i> Filter</span>
+                        </div>
+                        <div class="baitalgahwa-panel-toolbar__right">
+                            <span class="baitalgahwa-panel-chip">Sort by: Latest</span>
+                            <span class="baitalgahwa-panel-chip">Column</span>
+                        </div>
+                    </div>
+                    <div class="baitalgahwa-todo-item d-flex align-items-center justify-content-between gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="baitalgahwa-todo-item__checkbox"></span>
+                            <div>
+                                <div class="fw-semibold small">English</div>
+                                <div class="text-muted small">Fri, Apr 10, 2026</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="baitalgahwa-todo-item__avatar"><i class="fa fa-user-circle"></i></span>
+                            <span class="baitalgahwa-todo-item__minus">-</span>
+                        </div>
+                    </div>
+                </section>
                 <section class="baitalgahwa-newsletter card border-0 shadow-sm p-4 p-md-5 mb-4" aria-labelledby="bait-news-heading">
                     <div class="text-center mb-3">
                         {{#themelogourl}}
@@ -280,52 +322,42 @@
                         <h2 id="bait-news-heading" class="h4">{{#str}}dashboard_news_title, theme_baitalgahwa{{/str}}</h2>
                         <p class="text-muted small col-md-8 mx-auto">{{#str}}dashboard_news_intro, theme_baitalgahwa{{/str}}</p>
                     </div>
-                    {{#footeremail}}
-                    <div class="text-center">
-                        <a class="btn btn-primary" href="mailto:{{{ footeremail }}}?subject={{{ news_mail_subject }}}">{{#str}}dashboard_news_cta, theme_baitalgahwa{{/str}}</a>
-                    </div>
-                    {{/footeremail}}
-                    {{^footeremail}}
-                    <p class="text-muted text-center small mb-0">{{#str}}dashboard_news_admin, theme_baitalgahwa{{/str}}</p>
-                    {{/footeremail}}
+                    <form class="baitalgahwa-newsletter__form mx-auto" action="{{#footeremail}}mailto:{{{ footeremail }}}?subject={{{ news_mail_subject }}}{{/footeremail}}{{^footeremail}}#{{/footeremail}}" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="small mb-2 d-block text-start">First Name*</label>
+                                <div class="baitalgahwa-newsletter__field">
+                                    <input type="text" placeholder="First Name*" aria-label="First Name">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-2 d-block text-start">Last Name</label>
+                                <div class="baitalgahwa-newsletter__field">
+                                    <input type="text" placeholder="Last Name" aria-label="Last Name">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="small mb-2 d-block text-start">Your Email</label>
+                                <div class="baitalgahwa-newsletter__field">
+                                    <input type="email" placeholder="Your Email" aria-label="Your Email">
+                                    <i class="fa fa-paper-plane"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary px-5" type="submit">{{#str}}dashboard_news_cta, theme_baitalgahwa{{/str}}</button>
+                        </div>
+                    </form>
                 </section>
+                </div>
             </div>
             {{#secondarymoremenu}}
             <div class="secondary-navigation d-print-none">
                 {{> core/moremenu}}
             </div>
             {{/secondarymoremenu}}
-            <div id="page-content" class="pb-3 d-print-block">
-                <div class="baitalgahwa-dashboard-legacy container-fluid border-top py-3">
-                    <h2 class="h5 text-muted text-uppercase small mb-3">{{#str}}mymoodle, my{{/str}}</h2>
-                </div>
-                <div id="region-main-box">
-                    {{#hasregionmainsettingsmenu}}
-                    <div id="region-main-settings-menu" class="d-print-none">
-                        <div> {{{ regionmainsettingsmenu }}} </div>
-                    </div>
-                    {{/hasregionmainsettingsmenu}}
-                    <div id="region-main" class="container-fluid">
-                        {{#hasregionmainsettingsmenu}}
-                        <div class="region_main_settings_menu_proxy"></div>
-                        {{/hasregionmainsettingsmenu}}
-                        {{{ output.course_content_header }}}
-                        {{#headercontent}}
-                        {{> core/activity_header }}
-                        {{/headercontent}}
-                        {{#overflow}}
-                        <div class="container-fluid tertiary-navigation">
-                            <div class="navitem">
-                                {{> core/url_select}}
-                            </div>
-                        </div>
-                        {{/overflow}}
-                        {{{ output.main_content }}}
-                        {{{ output.activity_navigation }}}
-                        {{{ output.course_content_footer }}}
-                    </div>
-                </div>
-            </div>
         </div>
         {{> theme_baitalgahwa/footer }}
     </div>

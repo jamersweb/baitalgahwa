@@ -299,7 +299,7 @@ function theme_baitalgahwa_get_course_image_url($course): string {
         0
     );
     if (!$files) {
-        return '';
+        return theme_baitalgahwa_get_theme_image_url('course-activity-layout');
     }
     $file = reset($files);
     if (!$file) {

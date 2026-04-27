@@ -1,24 +1,120 @@
-// Bait Al Gahwa /my/ dashboard: stats, training scroll, table, charts, members, newsletter
-$bait-dashboard-brown: #6f4e37;
-$bait-dashboard-gold: #d4af37;
+$bait-dashboard-brown: #8a5a2b;
+$bait-dashboard-brown-deep: #73471e;
+$bait-dashboard-cream: #fffaf4;
+$bait-dashboard-line: #eadfd4;
+$bait-dashboard-text-soft: #8a8178;
 
 .baitalgahwa-path-dashboard {
   .main-inner {
-    background: mix($body-bg, $white, 88%);
+    background: #fcfaf7;
+  }
+
+  #page.drawers {
+    max-width: 100%;
+  }
+
+  #page-header,
+  .baitalgahwa-dashboard-welcome,
+  .secondary-navigation {
+    display: none;
+  }
+
+  .main-inner > .container-fluid,
+  .baitalgahwa-dashboard,
+  .baitalgahwa-dashboard-shell {
+    max-width: 1420px;
+    margin: 0 auto;
   }
 }
 
 .baitalgahwa-dashboard {
   color: $body-color;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-.baitalgahwa-dashboard__section-title,
-.baitalgahwa-dashboard__page-title {
+.baitalgahwa-dashboard-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.baitalgahwa-dashboard-heading__title {
   color: $bait-dashboard-brown;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 800;
 }
 
-// Horizontal course strip (mobile / tablet)
+.baitalgahwa-dashboard-panel,
+.baitalgahwa-widget,
+.baitalgahwa-newsletter {
+  background: $card-bg;
+  border: 1px solid $bait-dashboard-line !important;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(70, 39, 13, 0.05) !important;
+}
+
+.baitalgahwa-dashboard-panel {
+  padding: 1.75rem;
+}
+
+.baitalgahwa-dashboard-panel--stats {
+  padding: 1rem 1.5rem;
+}
+
+.baitalgahwa-dashboard-panel__header {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.baitalgahwa-dashboard-panel__header p {
+  max-width: 56rem;
+}
+
+.baitalgahwa-dashboard__section-title {
+  color: #211d1a;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.baitalgahwa-stat-card {
+  position: relative;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: auto;
+}
+
+.baitalgahwa-stat-card__body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.baitalgahwa-stat-card__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $bait-dashboard-brown;
+  font-size: 1.2rem;
+}
+
+.baitalgahwa-stat-card__value {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 800;
+  color: $bait-dashboard-brown;
+}
+
+.baitalgahwa-stat-card__label {
+  margin-top: 0.15rem;
+  color: #6d655e;
+  font-size: 0.95rem;
+}
+
 .baitalgahwa-dashboard__scroll {
   overflow-x: auto;
   flex-wrap: nowrap;
@@ -30,6 +126,355 @@ $bait-dashboard-gold: #d4af37;
   scroll-snap-align: start;
 }
 
+.baitalgahwa-course {
+  border: 1px solid #dfd3c7 !important;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(70, 39, 13, 0.08);
+  overflow: hidden;
+  transform: none !important;
+}
+
+.baitalgahwa-course:hover,
+.baitalgahwa-course:focus-within {
+  box-shadow: 0 10px 26px rgba(70, 39, 13, 0.12);
+}
+
+.baitalgahwa-course__img,
+.baitalgahwa-course__placeholder {
+  height: 10rem;
+}
+
+.baitalgahwa-course__img {
+  object-fit: cover;
+}
+
+.baitalgahwa-course__placeholder {
+  background:
+    linear-gradient(180deg, rgba(27, 15, 8, 0.08), rgba(27, 15, 8, 0.18)),
+    url([[pix:theme|course-activity-layout]]) center/cover no-repeat;
+}
+
+.baitalgahwa-course__new,
+.baitalgahwa-course__badge {
+  top: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.baitalgahwa-course__new {
+  left: 0.75rem;
+  background: #fff;
+  color: #433126;
+  padding: 0.35rem 0.75rem;
+}
+
+.baitalgahwa-course__badge {
+  inset-inline-end: 0.75rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: $bait-dashboard-brown;
+}
+
+.baitalgahwa-course .card-body {
+  padding: 0.9rem 0.95rem 1rem;
+}
+
+.baitalgahwa-course .card-title {
+  color: #1f1d1b;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+}
+
+.baitalgahwa-course .card-text {
+  color: $bait-dashboard-text-soft !important;
+  line-height: 1.45;
+  min-height: 2.8rem;
+}
+
+.baitalgahwa-course .btn {
+  background: $bait-dashboard-brown;
+  border-color: $bait-dashboard-brown;
+  border-radius: 0.6rem;
+  padding-inline: 0.85rem;
+}
+
+.baitalgahwa-panel-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.baitalgahwa-panel-toolbar__left,
+.baitalgahwa-panel-toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.baitalgahwa-panel-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid #e7ddd3;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #8a8178;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.7rem;
+  white-space: nowrap;
+}
+
+.baitalgahwa-table-card {
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid #efe5dc !important;
+}
+
+.baitalgahwa-progress-table th,
+.baitalgahwa-progress-table td {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-color: #f1ebe5;
+  vertical-align: middle;
+}
+
+.baitalgahwa-progress-table thead th {
+  color: #8b837d;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #fff;
+}
+
+.baitalgahwa-progress-table__thumb {
+  width: 2.35rem;
+  height: 2.35rem;
+  object-fit: cover;
+  border: 1px solid #eee2d7;
+}
+
+.baitalgahwa-progress-table__plain {
+  color: #655f5a;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.baitalgahwa-widget {
+  padding: 1.25rem !important;
+}
+
+.baitalgahwa-widget h3 {
+  color: #211d1a;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem !important;
+}
+
+.baitalgahwa-widget .h6 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.baitalgahwa-donut {
+  width: 11rem;
+  height: 11rem;
+  border-radius: 50%;
+  position: relative;
+}
+
+.baitalgahwa-donut__hole {
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(138, 90, 43, 0.08);
+}
+
+.baitalgahwa-donut__total {
+  color: $bait-dashboard-brown;
+  font-weight: 800;
+}
+
+.baitalgahwa-legend-swatch {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.baitalgahwa-minical {
+  margin-top: 0.35rem;
+}
+
+.baitalgahwa-minical th {
+  color: #635b54;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 0;
+  padding: 0.35rem;
+}
+
+.baitalgahwa-minical td {
+  border: 0;
+  padding: 0.35rem;
+}
+
+.baitalgahwa-minical__day {
+  min-width: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+}
+
+.baitalgahwa-minical__today {
+  background: $bait-dashboard-brown;
+  color: #fff;
+  font-weight: 700;
+}
+
+.baitalgahwa-quiz-bars {
+  min-height: 15rem;
+}
+
+.baitalgahwa-quiz-bars__track {
+  height: 12rem;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  border-bottom: 1px solid rgba(138, 90, 43, 0.14);
+}
+
+.baitalgahwa-quiz-bars__bar {
+  width: 100%;
+  min-height: 2px;
+  background: linear-gradient(180deg, #d99858, $bait-dashboard-brown);
+  border-radius: 4px 4px 0 0;
+}
+
+.baitalgahwa-member {
+  background: #fbf3eb;
+  border: 1px solid #f0e1d2;
+  transition: background 0.12s ease;
+}
+
+.baitalgahwa-member:hover,
+.baitalgahwa-member:focus-visible {
+  background: #f7ecdf;
+}
+
+.baitalgahwa-member__avatar .userpicture,
+.baitalgahwa-member__avatar img {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 999px;
+}
+
+.baitalgahwa-inline-link {
+  color: $bait-dashboard-brown;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.baitalgahwa-inline-link:hover,
+.baitalgahwa-inline-link:focus-visible {
+  color: $bait-dashboard-brown-deep;
+}
+
+.baitalgahwa-dashboard-panel--todo {
+  padding: 1.5rem;
+}
+
+.baitalgahwa-todo-item {
+  border: 1px solid #f0e1d7;
+  background: linear-gradient(90deg, #fff5ef, #fffaf8);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+}
+
+.baitalgahwa-todo-item__checkbox {
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ddd0c4;
+  background: #fff;
+  display: inline-block;
+}
+
+.baitalgahwa-todo-item__avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: $bait-dashboard-brown;
+  border: 1px solid #ebddcf;
+}
+
+.baitalgahwa-todo-item__minus {
+  color: #9b9288;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.baitalgahwa-newsletter {
+  padding: 2.75rem !important;
+}
+
+.baitalgahwa-newsletter__logo {
+  object-fit: contain;
+  max-height: 3rem;
+}
+
+.baitalgahwa-newsletter__form {
+  max-width: 44rem;
+}
+
+.baitalgahwa-newsletter__field {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid #eadfd4;
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.25rem 1rem;
+}
+
+.baitalgahwa-newsletter__field input {
+  flex: 1 1 auto;
+  border: 0;
+  outline: 0;
+  min-height: 2.75rem;
+  background: transparent;
+  font-size: 0.95rem;
+}
+
+.baitalgahwa-newsletter__field i {
+  color: #6f6760;
+}
+
+.baitalgahwa-newsletter .btn-primary,
+.baitalgahwa-dashboard-panel .btn-primary,
+.baitalgahwa-widget .btn-primary {
+  background: $bait-dashboard-brown;
+  border-color: $bait-dashboard-brown;
+  border-radius: 0.45rem;
+}
+
+.baitalgahwa-newsletter .btn-outline-secondary,
+.baitalgahwa-widget .btn-outline-secondary {
+  color: $bait-dashboard-brown;
+  border-color: $bait-dashboard-brown;
+  border-radius: 0.45rem;
+}
+
+.baitalgahwa-dashboard-legacy {
+  display: none;
+}
+
 @media (min-width: 992px) {
   .baitalgahwa-dashboard__scroll {
     flex-wrap: wrap;
@@ -37,228 +482,43 @@ $bait-dashboard-gold: #d4af37;
   }
 }
 
-// Stat cards — left colour rail + icon
-.baitalgahwa-stat-card {
-  position: relative;
-  background: $card-bg;
-  border-radius: $figma-radius-lg;
-  box-shadow: $box-shadow-sm;
-  overflow: hidden;
-  min-height: 6.5rem;
-}
+@media (max-width: 991.98px) {
+  .baitalgahwa-dashboard {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
-.baitalgahwa-stat-card__accent {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 0.3rem;
-  background: $primary;
-  border-radius: $figma-radius-lg 0 0 $figma-radius-lg;
-}
-
-[dir="rtl"] .baitalgahwa-stat-card__accent,
-body.dir-rtl .baitalgahwa-stat-card__accent {
-  left: auto;
-  right: 0;
-  border-radius: 0 $figma-radius-lg $figma-radius-lg 0;
-}
-
-.baitalgahwa-stat-card__accent--a { background: $bait-dashboard-brown; }
-.baitalgahwa-stat-card__accent--b { background: mix($bait-dashboard-gold, $bait-dashboard-brown, 35%); }
-.baitalgahwa-stat-card__accent--c { background: $bait-dashboard-gold; }
-.baitalgahwa-stat-card__accent--d { background: mix($bait-dashboard-brown, $black, 25%); }
-
-.baitalgahwa-stat-card__body {
-  padding: $figma-space-3 $figma-space-3 $figma-space-3 1.1rem;
-}
-
-[dir="rtl"] .baitalgahwa-stat-card__body,
-body.dir-rtl .baitalgahwa-stat-card__body {
-  padding-left: $figma-space-3;
-  padding-right: 1.1rem;
-}
-
-.baitalgahwa-stat-card__icon {
-  color: $bait-dashboard-gold;
-  opacity: 0.9;
-}
-
-.baitalgahwa-stat-card__value {
-  font-size: 1.75rem;
-  font-weight: 800;
-  line-height: 1.1;
-  color: $bait-dashboard-brown;
-}
-
-.baitalgahwa-stat-card__label {
-  font-size: $figma-type-body-sm;
-  color: mix($body-color, $white, 55%);
-  margin-top: 0.15rem;
-}
-
-// Progress table
-.baitalgahwa-table-card {
-  border-radius: $figma-radius-lg;
-}
-
-.baitalgahwa-progress-table__thumb {
-  object-fit: cover;
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.baitalgahwa-progress-table__status--done {
-  background: mix($success, $white, 18%) !important;
-  color: mix($success, $black, 40%) !important;
-}
-.baitalgahwa-progress-table__status--inprogress {
-  background: mix($primary, $white, 22%) !important;
-  color: $bait-dashboard-brown !important;
-}
-.baitalgahwa-progress-table__status--todo {
-  background: mix($body-color, $white, 6%) !important;
-  color: mix($body-color, $white, 45%) !important;
-}
-
-.baitalgahwa-progress-bar {
-  min-width: 4rem;
-  height: 0.4rem;
-  background: rgba($bait-dashboard-brown, 0.12);
-  border-radius: 1rem;
-}
-
-.baitalgahwa-progress-bar .progress-bar {
-  background: $bait-dashboard-brown;
-  border-radius: 1rem;
-}
-
-// Keep bar fill LTR for predictable % width in RTL
-[dir="rtl"] .baitalgahwa-progress-bar,
-body.dir-rtl .baitalgahwa-progress-bar {
-  direction: ltr;
-}
-
-// Donut
-.baitalgahwa-donut {
-  width: 9.5rem;
-  height: 9.5rem;
-  border-radius: 50%;
-  position: relative;
-}
-
-.baitalgahwa-donut__hole {
-  position: absolute;
-  top: 18%;
-  left: 18%;
-  right: 18%;
-  bottom: 18%;
-  border-radius: 50%;
-  background: $card-bg;
-  box-shadow: inset 0 0 0 1px rgba($bait-dashboard-brown, 0.08);
-}
-
-.baitalgahwa-donut__total {
-  color: $bait-dashboard-brown;
-}
-
-.baitalgahwa-legend-swatch {
-  display: inline-block;
-  width: 0.65rem;
-  height: 0.65rem;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-// Mini calendar
-.baitalgahwa-minical th {
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: mix($body-color, $white, 45%);
-  border: 0;
-}
-
-.baitalgahwa-minical td {
-  border: 0;
-}
-
-.baitalgahwa-minical__day {
-  min-width: 1.5rem;
-  line-height: 1.5rem;
-  border-radius: 50%;
-}
-
-.baitalgahwa-minical__today {
-  background: $bait-dashboard-brown;
-  color: $white;
-  font-weight: 700;
-}
-
-// Quiz bar chart
-.baitalgahwa-quiz-bars__track {
-  height: 5.5rem;
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-  border-bottom: 1px solid rgba($bait-dashboard-brown, 0.15);
-}
-
-.baitalgahwa-quiz-bars__bar {
-  width: 100%;
-  min-height: 2px;
-  background: linear-gradient(180deg, mix($bait-dashboard-gold, $bait-dashboard-brown, 20%), $bait-dashboard-brown);
-  border-radius: 3px 3px 0 0;
-}
-
-// Members
-.baitalgahwa-member {
-  background: mix($bait-dashboard-gold, $white, 8%);
-  transition: background 0.12s ease;
-  &:hover,
-  &:focus-visible {
-    background: mix($bait-dashboard-gold, $white, 18%);
+  .baitalgahwa-widget h3,
+  .baitalgahwa-widget .h6,
+  .baitalgahwa-dashboard__section-title {
+    font-size: 1.55rem;
   }
 }
 
-.baitalgahwa-member__avatar {
-  .userpicture,
-  img {
-    width: 2.5rem;
-    height: 2.5rem;
+@media (max-width: 767.98px) {
+  .baitalgahwa-dashboard-panel,
+  .baitalgahwa-widget,
+  .baitalgahwa-newsletter {
+    border-radius: 1rem;
   }
-}
 
-// Newsletter
-.baitalgahwa-newsletter {
-  border-radius: $figma-radius-lg;
-  background: $card-bg;
-}
+  .baitalgahwa-stat-card__body {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
 
-.baitalgahwa-newsletter__logo {
-  object-fit: contain;
-  max-height: 2rem;
-}
+  .baitalgahwa-panel-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-// Course card “New”
-.baitalgahwa-course__new {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  z-index: 1;
-  background: $bait-dashboard-gold;
-  color: $bait-dashboard-brown;
-  font-size: 0.65rem;
-  font-weight: 700;
-}
+  .baitalgahwa-panel-toolbar__left,
+  .baitalgahwa-panel-toolbar__right {
+    justify-content: flex-start;
+  }
 
-[dir="rtl"] .baitalgahwa-course__new,
-body.dir-rtl .baitalgahwa-course__new {
-  left: auto;
-  right: 0.5rem;
-}
-
-// Moodle “My” block region below
-.baitalgahwa-dashboard-legacy {
-  background: $card-bg;
-  border-color: rgba($bait-dashboard-brown, 0.08) !important;
+  .baitalgahwa-newsletter {
+    padding: 1.5rem !important;
+  }
 }
