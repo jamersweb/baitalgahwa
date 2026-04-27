@@ -42,5 +42,9 @@ $context['has_dashboard_members'] = !empty($context['dashboard_members']);
 $context['config']['calurl'] = (new \moodle_url('/calendar/view.php'))->out(false);
 $context['config']['coursetodo'] = (new \moodle_url('/my/courses.php'))->out(false);
 $context['news_mail_subject'] = rawurlencode(get_string('dashboard_news_title', 'theme_baitalgahwa'));
+ob_start();
+echo $OUTPUT->main_content();
+$context['maincontent'] = ob_get_clean();
+$context['hasmaincontent'] = trim($context['maincontent']) !== '';
 
 echo $OUTPUT->render_from_template('theme_baitalgahwa/dashboard', $context);

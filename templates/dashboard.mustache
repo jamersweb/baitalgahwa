@@ -351,6 +351,11 @@
                         </div>
                     </form>
                 </section>
+                {{#hasmaincontent}}
+                <div id="page-content" class="baitalgahwa-dashboard-hidden-content" hidden aria-hidden="true">
+                    {{{ maincontent }}}
+                </div>
+                {{/hasmaincontent}}
                 </div>
             </div>
             {{#secondarymoremenu}}
