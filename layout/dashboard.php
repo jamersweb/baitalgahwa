@@ -40,8 +40,30 @@ $context['dashboard_calendar'] = theme_baitalgahwa_get_dashboard_calendar();
 $context['dashboard_members'] = theme_baitalgahwa_get_dashboard_recent_users(8, $userid);
 $context['has_dashboard_members'] = !empty($context['dashboard_members']);
 $context['config']['calurl'] = (new \moodle_url('/calendar/view.php'))->out(false);
+$context['config']['membersurl'] = (new \moodle_url('/my/courses.php'))->out(false);
 $context['config']['coursetodo'] = (new \moodle_url('/my/courses.php'))->out(false);
 $context['news_mail_subject'] = rawurlencode(get_string('dashboard_news_title', 'theme_baitalgahwa'));
+$context['featuredcourse'] = [];
+$context['has_featuredcourse'] = false;
+$context['activity_courses'] = [];
+$context['has_activity_courses'] = false;
+$context['dashboard_intro_text'] = get_string('dashboard_intro_fallback', 'theme_baitalgahwa');
+
+if (!empty($context['mycourses'])) {
+    $context['featuredcourse'] = $context['mycourses'][0];
+    $context['has_featuredcourse'] = true;
+    $context['activity_courses'] = array_slice($context['mycourses'], 0, 4);
+    $context['has_activity_courses'] = !empty($context['activity_courses']);
+    $context['config']['membersurl'] = (new \moodle_url('/user/index.php', ['id' => $context['featuredcourse']['id']]))->out(false);
+    if (!empty($context['featuredcourse']['summary'])) {
+        $context['dashboard_intro_text'] = $context['featuredcourse']['summary'];
+    }
+} else if (!empty($context['dashboard_progress'])) {
+    $context['featuredcourse'] = $context['dashboard_progress'][0];
+    $context['has_featuredcourse'] = true;
+    $context['config']['membersurl'] = (new \moodle_url('/user/index.php', ['id' => $context['featuredcourse']['id']]))->out(false);
+}
+
 ob_start();
 echo $OUTPUT->main_content();
 $context['maincontent'] = ob_get_clean();
