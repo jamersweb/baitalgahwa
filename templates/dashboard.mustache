@@ -3,6 +3,427 @@
     Logged-in home (mydashboard): stats, training grid, progress, charts, members, newsletter + core “My” content.
 }}
 {{> theme_boost/head }}
+<style>
+body.pagelayout-mydashboard .main-inner,
+body#page-my-index .main-inner {
+    background: #fcfaf7;
+}
+body.pagelayout-mydashboard #page-header,
+body#page-my-index #page-header,
+body.pagelayout-mydashboard .secondary-navigation,
+body#page-my-index .secondary-navigation {
+    display: none;
+}
+.baitalgahwa-dashboard {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.75rem 3.5rem;
+    color: #241b15;
+}
+.baitalgahwa-dashboard-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.baitalgahwa-dashboard-heading__eyebrow {
+    color: #7c7268;
+    font-size: .9rem;
+}
+.baitalgahwa-dashboard-heading__title {
+    color: #201813;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+.baitalgahwa-dashboard-hero {
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+}
+.baitalgahwa-dashboard-hero__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.baitalgahwa-dashboard-hero__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: .38rem .85rem;
+    border-radius: 999px;
+    background: rgba(138, 90, 43, .12);
+    color: #8a5a2b;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+.baitalgahwa-dashboard-hero__cta,
+.baitalgahwa-dashboard .btn-primary {
+    background: #8a5a2b;
+    border-color: #8a5a2b;
+    border-radius: .55rem;
+    padding-inline: 1.3rem;
+    font-weight: 600;
+}
+.baitalgahwa-dashboard-hero__media {
+    position: relative;
+    min-height: 21rem;
+    overflow: hidden;
+    border-radius: 1.35rem;
+    background: #23160f;
+    box-shadow: 0 1rem 2.5rem rgba(52, 30, 12, .16);
+}
+.baitalgahwa-dashboard-hero__image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+}
+.baitalgahwa-dashboard-hero__image--placeholder,
+.baitalgahwa-activity-card__image--placeholder {
+    background:
+        radial-gradient(circle at 70% 30%, rgba(201, 162, 39, .24), transparent 20rem),
+        linear-gradient(125deg, #2a180f 0%, #5c3720 45%, #18100c 100%);
+}
+.baitalgahwa-dashboard-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 12, 8, .08) 20%, rgba(20, 12, 8, .72) 100%);
+}
+.baitalgahwa-dashboard-hero__content {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 1.7rem 1.8rem;
+    color: #fff;
+}
+.baitalgahwa-dashboard-hero__title {
+    margin-bottom: .6rem;
+    color: #fff;
+    font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+.baitalgahwa-dashboard-hero__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    color: rgba(255,255,255,.9);
+    font-size: .95rem;
+}
+.baitalgahwa-dashboard-hero__avatar {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.24);
+}
+.baitalgahwa-dashboard-stats {
+    background: #fff;
+    border: 1px solid #ebe3da;
+    border-radius: 1.25rem;
+    box-shadow: 0 .75rem 2rem rgba(48, 27, 12, .06);
+    overflow: hidden;
+}
+.baitalgahwa-dashboard-stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 100%;
+    padding: 1.35rem 1.45rem;
+}
+.baitalgahwa-dashboard-stat__icon {
+    color: #8a5a2b;
+    font-size: 1.55rem;
+    line-height: 1;
+}
+.baitalgahwa-dashboard-stat__value {
+    color: #8a5a2b;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 800;
+}
+.baitalgahwa-dashboard-stat__label {
+    margin-top: .3rem;
+    color: #7c7268;
+    font-size: .9rem;
+}
+.baitalgahwa-dashboard-subnav {
+    display: flex;
+    gap: 1.6rem;
+    overflow-x: auto;
+    padding: .2rem 0 .55rem;
+    scrollbar-width: none;
+}
+.baitalgahwa-dashboard-subnav::-webkit-scrollbar {
+    display: none;
+}
+.baitalgahwa-dashboard-subnav__link {
+    position: relative;
+    padding-bottom: .55rem;
+    color: #5c5146;
+    text-decoration: none;
+    font-size: .92rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.baitalgahwa-dashboard-subnav__link.is-active {
+    color: #201813;
+}
+.baitalgahwa-dashboard-subnav__link.is-active::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: #8a5a2b;
+}
+.baitalgahwa-dashboard-panel {
+    background: #fff;
+    border: 1px solid #ebe3da;
+    border-radius: 1.25rem;
+    box-shadow: 0 .75rem 2rem rgba(48, 27, 12, .05);
+    padding: 1.5rem 1.6rem;
+}
+.baitalgahwa-dashboard-panel__title,
+.baitalgahwa-dashboard-section__title {
+    margin-bottom: .85rem;
+    color: #201813;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.baitalgahwa-dashboard-panel__body,
+.baitalgahwa-dashboard-section__intro {
+    color: #7c7268;
+    font-size: .96rem;
+    line-height: 1.75;
+}
+.baitalgahwa-dashboard-panel__announcement {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.baitalgahwa-dashboard-panel__announcement-icon {
+    width: 2.7rem;
+    height: 2.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: rgba(138, 90, 43, .1);
+    color: #8a5a2b;
+}
+.baitalgahwa-dashboard-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.baitalgahwa-dashboard-section__title {
+    margin-bottom: .25rem;
+}
+.baitalgahwa-activity-card {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #ebe3da;
+    border-radius: 1.1rem;
+    box-shadow: 0 .85rem 2rem rgba(48, 27, 12, .06);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.baitalgahwa-activity-card:hover,
+.baitalgahwa-activity-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 2.4rem rgba(48, 27, 12, .12);
+}
+.baitalgahwa-activity-card__media {
+    position: relative;
+    overflow: hidden;
+}
+.baitalgahwa-activity-card__image {
+    height: 12rem;
+    background-size: cover;
+    background-position: center;
+}
+.baitalgahwa-activity-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(18,11,8,.05), rgba(18,11,8,.18));
+}
+.baitalgahwa-activity-card__badge {
+    position: absolute;
+    top: .85rem;
+    left: .85rem;
+    z-index: 1;
+    padding: .28rem .7rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.94);
+    color: #8a5a2b;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+.baitalgahwa-activity-card__body {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 1rem 1rem 1.1rem;
+}
+.baitalgahwa-activity-card__title {
+    margin: 0;
+    color: #201813;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+.baitalgahwa-activity-card__copy {
+    margin: 0;
+    color: #7c7268;
+    font-size: .88rem;
+    line-height: 1.6;
+    min-height: 4.3rem;
+}
+.baitalgahwa-activity-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-top: auto;
+    color: #6a5c4b;
+    font-size: .84rem;
+    font-weight: 600;
+}
+.baitalgahwa-activity-card__arrow {
+    color: #8a5a2b;
+}
+.baitalgahwa-minical {
+    margin-top: .4rem;
+}
+.baitalgahwa-minical th {
+    color: #61574f;
+    font-size: .82rem;
+    font-weight: 700;
+    border: 0;
+    padding: .45rem .2rem;
+}
+.baitalgahwa-minical td {
+    border: 0;
+    padding: .3rem .2rem;
+}
+.baitalgahwa-minical__day {
+    min-width: 2rem;
+    line-height: 2rem;
+    border-radius: 999px;
+}
+.baitalgahwa-minical__today {
+    background: #8a5a2b;
+    color: #fff;
+    font-weight: 700;
+}
+.baitalgahwa-member {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    height: 100%;
+    border: 1px solid #efe5db;
+    border-radius: 1rem;
+    background: #f6f1eb;
+    padding: .85rem 1rem;
+    transition: background .16s ease, border-color .16s ease;
+}
+.baitalgahwa-member__avatar .userpicture,
+.baitalgahwa-member__avatar img {
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 999px;
+}
+.baitalgahwa-member__copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+}
+.baitalgahwa-member__name {
+    color: #201813;
+    font-weight: 700;
+}
+.baitalgahwa-member__role {
+    color: #7c7268;
+    font-size: .88rem;
+}
+.baitalgahwa-inline-link {
+    color: #8a5a2b;
+    font-size: .9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+.baitalgahwa-dashboard-hidden-content {
+    display: none;
+}
+@media (min-width: 992px) {
+    .baitalgahwa-dashboard-stats .col-lg-3 + .col-lg-3 .baitalgahwa-dashboard-stat {
+        border-left: 1px solid #f0e9e2;
+    }
+}
+@media (max-width: 991.98px) {
+    .baitalgahwa-dashboard {
+        padding-inline: 1rem;
+    }
+    .baitalgahwa-dashboard-hero__media {
+        min-height: 17rem;
+    }
+    .baitalgahwa-dashboard-stats .col-6:nth-child(n + 3) .baitalgahwa-dashboard-stat {
+        border-top: 1px solid #f0e9e2;
+    }
+    .baitalgahwa-dashboard-stats .col-6:nth-child(even) .baitalgahwa-dashboard-stat {
+        border-left: 1px solid #f0e9e2;
+    }
+}
+@media (max-width: 767.98px) {
+    .baitalgahwa-dashboard {
+        padding-top: 1.35rem;
+        padding-bottom: 2.5rem;
+    }
+    .baitalgahwa-dashboard-heading__title {
+        font-size: 1.7rem;
+    }
+    .baitalgahwa-dashboard-hero__media {
+        min-height: 14rem;
+        border-radius: 1rem;
+    }
+    .baitalgahwa-dashboard-hero__content {
+        padding: 1.1rem;
+    }
+    .baitalgahwa-dashboard-stats,
+    .baitalgahwa-dashboard-panel,
+    .baitalgahwa-activity-card {
+        border-radius: 1rem;
+    }
+    .baitalgahwa-dashboard-stat {
+        padding: 1rem;
+    }
+    .baitalgahwa-dashboard-stat__value {
+        font-size: 1.5rem;
+    }
+    .baitalgahwa-dashboard-section__header,
+    .baitalgahwa-dashboard-hero__toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
 <body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
 <div id="page-wrapper" class="d-print-block">
@@ -73,7 +494,7 @@
 
                     <section class="baitalgahwa-dashboard-hero">
                         <div class="baitalgahwa-dashboard-hero__toolbar">
-                            <span class="baitalgahwa-dashboard-hero__tag">{{#str}}dashboard_featured_tag, theme_baitalgahwa{{/str}}</span>
+                            <span class="baitalgahwa-dashboard-hero__tag">{{ dashboard_featured_tag }}</span>
                             {{#has_featuredcourse}}
                             <a href="{{{ featuredcourse.url }}}" class="btn btn-primary baitalgahwa-dashboard-hero__cta">{{#str}}gotocourse, theme_baitalgahwa{{/str}}</a>
                             {{/has_featuredcourse}}
@@ -145,15 +566,15 @@
                     </section>
 
                     <nav class="baitalgahwa-dashboard-subnav" aria-label="{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}">
-                        <a class="baitalgahwa-dashboard-subnav__link is-active" href="#bag-dashboard-overview">{{#str}}dashboard_overview_tab, theme_baitalgahwa{{/str}}</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-introduction">{{#str}}dashboard_intro_heading, theme_baitalgahwa{{/str}}</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-activities">{{#str}}dashboard_activity_heading, theme_baitalgahwa{{/str}}</a>
+                        <a class="baitalgahwa-dashboard-subnav__link is-active" href="#bag-dashboard-overview">{{ dashboard_overview_tab }}</a>
+                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-introduction">{{ dashboard_intro_heading }}</a>
+                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-activities">{{ dashboard_activity_heading }}</a>
                         <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-calendar">{{#str}}calendar, calendar{{/str}}</a>
                         <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-members">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</a>
                     </nav>
 
                     <section class="baitalgahwa-dashboard-panel" id="bag-dashboard-introduction">
-                        <h2 class="baitalgahwa-dashboard-panel__title">{{#str}}dashboard_intro_heading, theme_baitalgahwa{{/str}}</h2>
+                        <h2 class="baitalgahwa-dashboard-panel__title">{{ dashboard_intro_heading }}</h2>
                         <p class="baitalgahwa-dashboard-panel__body mb-0">{{ dashboard_intro_text }}</p>
                     </section>
 
@@ -161,8 +582,8 @@
                         <div class="baitalgahwa-dashboard-panel__announcement">
                             <span class="baitalgahwa-dashboard-panel__announcement-icon" aria-hidden="true"><i class="fa fa-bullhorn"></i></span>
                             <div>
-                                <h2 class="baitalgahwa-dashboard-panel__title mb-1">{{#str}}dashboard_announcement_title, theme_baitalgahwa{{/str}}</h2>
-                                <p class="baitalgahwa-dashboard-panel__body mb-0">{{#str}}dashboard_announcement_body, theme_baitalgahwa{{/str}}</p>
+                                <h2 class="baitalgahwa-dashboard-panel__title mb-1">{{ dashboard_announcement_title }}</h2>
+                                <p class="baitalgahwa-dashboard-panel__body mb-0">{{ dashboard_announcement_body }}</p>
                             </div>
                         </div>
                     </section>
@@ -170,8 +591,8 @@
                     <section class="baitalgahwa-dashboard-section" id="bag-dashboard-activities" aria-labelledby="bag-dashboard-activities-title">
                         <div class="baitalgahwa-dashboard-section__header">
                             <div>
-                                <h2 id="bag-dashboard-activities-title" class="baitalgahwa-dashboard-section__title">{{#str}}dashboard_activity_heading, theme_baitalgahwa{{/str}}</h2>
-                                <p class="baitalgahwa-dashboard-section__intro mb-0">{{#str}}dashboard_activity_intro, theme_baitalgahwa{{/str}}</p>
+                                <h2 id="bag-dashboard-activities-title" class="baitalgahwa-dashboard-section__title">{{ dashboard_activity_heading }}</h2>
+                                <p class="baitalgahwa-dashboard-section__intro mb-0">{{ dashboard_activity_intro }}</p>
                             </div>
                         </div>
                         {{#has_activity_courses}}
@@ -251,7 +672,7 @@
                                         <h2 class="baitalgahwa-dashboard-section__title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
                                         <p class="baitalgahwa-dashboard-section__intro mb-0">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
                                     </div>
-                                    <a class="baitalgahwa-inline-link" href="{{{ config.membersurl }}}">{{#str}}dashboard_members_link, theme_baitalgahwa{{/str}}</a>
+                                    <a class="baitalgahwa-inline-link" href="{{{ config.membersurl }}}">{{ dashboard_members_link }}</a>
                                 </div>
                                 {{#has_dashboard_members}}
                                 <div class="row g-3">
