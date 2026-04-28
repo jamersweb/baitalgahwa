@@ -69,31 +69,35 @@
     font-weight: 500;
     padding-inline: .75rem;
 }
-.baitalgahwa-navbar .simplesearchform {
-    margin: 0;
-}
-.baitalgahwa-navbar .simplesearchform .input-group {
+.baitalgahwa-navbar__search {
+    display: inline-flex;
     align-items: center;
-}
-.baitalgahwa-navbar .simplesearchform .form-control {
-    min-width: min(13rem, 18vw);
-    height: 2.15rem;
-    border-radius: .48rem;
-    border-color: #ebe2d8;
-    background: #fff;
-    font-size: .88rem;
-    box-shadow: none;
-    padding-inline: .8rem;
-}
-.baitalgahwa-navbar .simplesearchform .btn {
-    width: 2.15rem;
+    min-width: min(14rem, 19vw);
     height: 2.15rem;
     border: 1px solid #ebe2d8;
-    border-left: 0;
-    border-radius: 0 .48rem .48rem 0;
+    border-radius: .48rem;
+    background: #fff;
+    overflow: hidden;
+}
+.baitalgahwa-navbar__search-input {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0 .8rem;
+    font-size: .88rem;
+    outline: 0;
+}
+.baitalgahwa-navbar__search-btn {
+    width: 2.15rem;
+    height: 2.15rem;
+    border: 0;
+    border-left: 1px solid #ebe2d8;
     background: #fff;
     color: #84705e;
-    box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 .baitalgahwa-navbar #usernavigation {
     gap: .65rem;
@@ -107,6 +111,7 @@
 .baitalgahwa-navbar #usernavigation .usermenu .dropdown-toggle {
     color: #4a3b30;
 }
+.baitalgahwa-navbar__icon,
 .baitalgahwa-navbar #usernavigation .popover-region-toggle,
 .baitalgahwa-navbar #usernavigation .nav-link.icon-no-margin,
 .baitalgahwa-navbar #usernavigation .btn.icon-no-margin {
@@ -120,12 +125,22 @@
     border-radius: 999px;
     background: transparent !important;
     box-shadow: none !important;
+    text-decoration: none;
+}
+.baitalgahwa-navbar__utilities {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
 }
 .baitalgahwa-navbar #usernavigation .popover-region-toggle .icon,
 .baitalgahwa-navbar #usernavigation .nav-link .icon,
 .baitalgahwa-navbar #usernavigation .btn .icon,
+.baitalgahwa-navbar__icon .fa,
 .baitalgahwa-navbar #usernavigation .fa {
     font-size: .95rem;
+}
+.baitalgahwa-navbar__core-output {
+    display: none;
 }
 .baitalgahwa-navbar #usernavigation .popover-region {
     display: inline-flex;
@@ -183,6 +198,9 @@
         width: 100%;
         gap: .75rem;
     }
+    .baitalgahwa-navbar__search {
+        min-width: 10rem;
+    }
 }
 </style>
 <header class="baitalgahwa-header">
@@ -222,15 +240,27 @@
         </ul>
         {{/output.page_heading_menu}}
         <div id="usernavigation" class="navbar-nav ms-auto h-100">
-            {{# output.search_box }}
-            {{{ output.search_box }}}
-            <div class="divider border-start h-75 align-self-center mx-1 d-none d-md-block"></div>
-            {{/output.search_box}}
+            <form class="baitalgahwa-navbar__search d-none d-md-inline-flex" action="/course/search.php" method="get" role="search" aria-label="Search">
+                <input class="baitalgahwa-navbar__search-input" type="search" name="search" placeholder="search">
+                <button class="baitalgahwa-navbar__search-btn" type="submit" aria-label="Search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </form>
             {{#langmenu}}
             {{> theme_boost/language_menu }}
             <div class="divider border-start h-75 align-self-center mx-1 d-none d-md-block"></div>
             {{/langmenu}}
-            {{{ output.navbar_plugin_output }}}
+            <div class="baitalgahwa-navbar__utilities d-none d-md-inline-flex" aria-label="Quick actions">
+                <a class="baitalgahwa-navbar__icon" href="/message/output/popup/notifications.php" aria-label="Notifications">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                </a>
+                <a class="baitalgahwa-navbar__icon" href="/message/index.php" aria-label="Messages">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="baitalgahwa-navbar__core-output">
+                {{{ output.navbar_plugin_output }}}
+            </div>
             <div class="d-flex align-items-stretch usermenu-container" data-region="usermenu">
                 {{#usermenu}}
                 {{> core/user_menu }}
