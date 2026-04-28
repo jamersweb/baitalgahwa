@@ -36,6 +36,44 @@ function theme_baitalgahwa_get_theme_image_url(string $imagename): string {
 }
 
 /**
+ * Returns a translated string, or a readable fallback while caches are stale.
+ *
+ * @param string $identifier
+ * @param string $fallback
+ * @param string $component
+ * @return string
+ */
+function theme_baitalgahwa_string_or_default(string $identifier, string $fallback, string $component = 'theme_baitalgahwa'): string {
+    $value = get_string($identifier, $component);
+    if (preg_match('/^\[\[[^\]]+\]\]$/', (string) $value)) {
+        return $fallback;
+    }
+    return $value;
+}
+
+/**
+ * Dashboard UI labels with safe fallbacks.
+ *
+ * @return array<string, string>
+ */
+function theme_baitalgahwa_get_dashboard_ui_strings(): array {
+    return [
+        'filtercategory' => theme_baitalgahwa_string_or_default('dashboard_filter_category', 'Select Category'),
+        'filterallcategories' => theme_baitalgahwa_string_or_default('dashboard_filter_all_categories', 'All Categories'),
+        'filterallcourses' => theme_baitalgahwa_string_or_default('dashboard_filter_all_courses', 'All Courses'),
+        'filterallevents' => theme_baitalgahwa_string_or_default('dashboard_filter_all_events', 'All Events'),
+        'filtersessions' => theme_baitalgahwa_string_or_default('dashboard_filter_sessions', 'Sessions'),
+        'filterdeadlines' => theme_baitalgahwa_string_or_default('dashboard_filter_deadlines', 'Deadlines'),
+        'newevent' => theme_baitalgahwa_string_or_default('dashboard_new_event', 'New Event'),
+        'importexport' => theme_baitalgahwa_string_or_default('dashboard_import_export', 'Import Or Export Calendar'),
+        'fullcalendar' => theme_baitalgahwa_string_or_default('dashboard_fullcal', 'Full Calendar'),
+        'filterallquizzes' => theme_baitalgahwa_string_or_default('dashboard_filter_all_quizzes', 'All Quizzes'),
+        'quizattempted' => theme_baitalgahwa_string_or_default('dashboard_quiz_attempted', 'Total Users Attempted Quiz'),
+        'quiznotattempted' => theme_baitalgahwa_string_or_default('dashboard_quiz_not_attempted', 'Total Users Not Attempted Quiz'),
+    ];
+}
+
+/**
  * Serves files from theme file areas.
  *
  * @param stdClass $course
@@ -406,6 +444,7 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     global $USER;
     $context = [];
     $user = ((int) $USER->id === $userid) ? $USER : \core_user::get_user($userid);
+    $context['dashboard_ui'] = theme_baitalgahwa_get_dashboard_ui_strings();
     $context['dashboardwelcome'] = get_string('dashboardwelcome', 'theme_baitalgahwa', fullname($user));
     $context['dashboard_featured_tag'] = get_string('dashboard_featured_tag', 'theme_baitalgahwa');
     $context['dashboard_overview_tab'] = get_string('dashboard_overview_tab', 'theme_baitalgahwa');
@@ -420,8 +459,6 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     $context['dashboard_progress'] = theme_baitalgahwa_get_dashboard_progress_rows($userid, 10);
     $context['has_dashboard_progress'] = !empty($context['dashboard_progress']);
     $context['dashboard_donut'] = theme_baitalgahwa_get_dashboard_donut($userid);
-    $context['dashboard_quiz_bars'] = theme_baitalgahwa_get_dashboard_quiz_bars($userid);
-    $context['dashboard_calendar'] = theme_baitalgahwa_get_dashboard_calendar();
     $context['dashboard_members'] = theme_baitalgahwa_get_dashboard_recent_users(8, $userid);
     $context['has_dashboard_members'] = !empty($context['dashboard_members']);
     $context['news_mail_subject'] = rawurlencode(get_string('dashboard_news_title', 'theme_baitalgahwa'));
@@ -431,70 +468,28 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     $context['has_dashboard_programmes'] = !empty($context['dashboard_programmes']);
     $context['dashboard_category_options'] = [[
         'value' => 'all',
-        'label' => get_string('dashboard_filter_all_categories', 'theme_baitalgahwa'),
+        'label' => $context['dashboard_ui']['filterallcategories'],
         'selected' => true,
+        'count' => $context['dashboard_donut']['total'],
+        'color' => '#8a5a2b',
     ]];
     foreach ($context['dashboard_donut']['segments'] as $segment) {
         $context['dashboard_category_options'][] = [
             'value' => clean_param(\core_text::strtolower($segment['label']), PARAM_ALPHANUMEXT),
             'label' => $segment['label'],
+            'count' => $segment['count'],
+            'color' => $segment['color'],
         ];
     }
-    $context['dashboard_calendar_course_options'] = [[
-        'value' => 'all',
-        'label' => get_string('dashboard_filter_all_courses', 'theme_baitalgahwa'),
-        'selected' => true,
-    ]];
-    $context['dashboard_quiz_course_options'] = [[
-        'value' => 'all',
-        'label' => get_string('dashboard_filter_all_courses', 'theme_baitalgahwa'),
-        'selected' => true,
-    ]];
-    foreach ($context['mycourses'] as $courseoption) {
-        $slug = clean_param(\core_text::strtolower($courseoption['fullname']), PARAM_ALPHANUMEXT);
-        $context['dashboard_calendar_course_options'][] = [
-            'value' => $slug,
-            'label' => $courseoption['fullname'],
-        ];
-        $context['dashboard_quiz_course_options'][] = [
-            'value' => $slug,
-            'label' => $courseoption['fullname'],
-        ];
-    }
-    $context['dashboard_calendar_type_options'] = [
-        [
-            'value' => 'all-events',
-            'label' => get_string('dashboard_filter_all_events', 'theme_baitalgahwa'),
-            'selected' => true,
-        ],
-        [
-            'value' => 'sessions',
-            'label' => get_string('dashboard_filter_sessions', 'theme_baitalgahwa'),
-        ],
-        [
-            'value' => 'deadlines',
-            'label' => get_string('dashboard_filter_deadlines', 'theme_baitalgahwa'),
-        ],
-    ];
-    $context['dashboard_quiz_type_options'] = [
-        [
-            'value' => 'all-quizzes',
-            'label' => get_string('dashboard_filter_all_quizzes', 'theme_baitalgahwa'),
-            'selected' => true,
-        ],
-        [
-            'value' => 'concept-check',
-            'label' => get_string('dashboard_filter_concept_check', 'theme_baitalgahwa'),
-        ],
-        [
-            'value' => 'practice-quiz',
-            'label' => get_string('dashboard_filter_practice_quiz', 'theme_baitalgahwa'),
-        ],
-        [
-            'value' => 'final-assessment',
-            'label' => get_string('dashboard_filter_final_assessment', 'theme_baitalgahwa'),
-        ],
-    ];
+    $context['dashboard_calendar'] = theme_baitalgahwa_get_dashboard_calendar($userid, 0, $context['mycourses'], $context['dashboard_ui']);
+    $context['dashboard_calendar_course_options'] = $context['dashboard_calendar']['courseoptions'];
+    $context['dashboard_calendar_type_options'] = $context['dashboard_calendar']['typeoptions'];
+    $context['dashboard_calendar_events_json'] = json_encode($context['dashboard_calendar']['eventdata']);
+    $quizwidget = theme_baitalgahwa_get_dashboard_quiz_widget($userid, $context['dashboard_ui']);
+    $context['dashboard_quiz_bars'] = $quizwidget['bars'];
+    $context['dashboard_quiz_course_options'] = $quizwidget['courseoptions'];
+    $context['dashboard_quiz_type_options'] = $quizwidget['quizoptions'];
+    $context['dashboard_quiz_chart_json'] = json_encode($quizwidget['series']);
     $context['featuredcourse'] = [];
     $context['has_featuredcourse'] = false;
     $context['activity_courses'] = [];
@@ -756,55 +751,164 @@ function theme_baitalgahwa_get_dashboard_donut(int $userid): array {
 }
 
 /**
- * Last six months quiz attempt counts for a small bar chart.
+ * Last six month labels for dashboard charts.
  *
- * @param int $userid
- * @return array<int, array{h: int, t: string}>
+ * @param string|float|int|null $timezone
+ * @return array<int, array{from: int, to: int, label: string}>
  */
-function theme_baitalgahwa_get_dashboard_quiz_bars(int $userid): array {
-    global $DB, $USER;
-    if ($userid < 1 || !$DB->get_manager()->table_exists('quiz_attempts')) {
-        $empty = [];
-        for ($i = 5; $i >= 0; $i--) {
-            $ts = strtotime('-' . $i . ' months');
-            $empty[] = ['h' => 0, 't' => userdate($ts, '%b', $USER->timezone), 'pct' => 0];
-        }
-        return $empty;
-    }
-    $out = [];
+function theme_baitalgahwa_get_dashboard_month_slots($timezone): array {
+    $slots = [];
     for ($i = 5; $i >= 0; $i--) {
-        $t = strtotime('-' . $i . ' months');
-        $from = (int) usergetmidnight($t, $USER->timezone);
-        $to = (int) usergetmidnight(strtotime('+1 month', $from), $USER->timezone);
+        $ts = strtotime('-' . $i . ' months');
+        $from = (int) usergetmidnight($ts, $timezone);
+        $to = (int) usergetmidnight(strtotime('+1 month', $from), $timezone);
         if ($i === 0) {
             $to = time() + 3600;
         }
-        $c = (int) $DB->count_records_select(
-            'quiz_attempts',
-            'userid = ? AND preview = 0 AND timefinish > 0 AND timefinish >= ? AND timefinish < ?',
-            [$userid, $from, $to]
-        );
-        $out[] = [
-            'h' => $c,
-            't' => userdate($from, '%b', $USER->timezone),
+        $slots[] = [
+            'from' => $from,
+            'to' => $to,
+            'label' => userdate($from, '%b', $timezone),
         ];
     }
-    $max = max(1, max(array_map(static function ($a) {
-        return $a['h'];
-    }, $out)));
-    foreach (array_keys($out) as $k) {
-        $out[$k]['pct'] = (int) round(100 * $out[$k]['h'] / $max);
-    }
-    return $out;
+    return $slots;
 }
 
 /**
- * Calendar grid (current month) for dashboard widget.
+ * Normalises chart counts into the dashboard bar structure.
  *
- * @return array{weeks: array, title: string}
+ * @param array<int, int> $counts
+ * @param array<int, string> $labels
+ * @return array<int, array{h: int, t: string, pct: int}>
  */
-function theme_baitalgahwa_get_dashboard_calendar(int $time = 0): array {
-    global $USER;
+function theme_baitalgahwa_get_dashboard_bar_series(array $counts, array $labels): array {
+    $counts = array_values($counts);
+    $labels = array_values($labels);
+    $max = max(1, max($counts ?: [0]));
+    $bars = [];
+    foreach ($labels as $idx => $label) {
+        $value = (int) ($counts[$idx] ?? 0);
+        $bars[] = [
+            'h' => $value,
+            't' => $label,
+            'pct' => (int) round(100 * $value / $max),
+        ];
+    }
+    return $bars;
+}
+
+/**
+ * Quiz widget options and data series.
+ *
+ * @param int $userid
+ * @param array<string, string> $ui
+ * @return array{bars: array, courseoptions: array, quizoptions: array, series: array}
+ */
+function theme_baitalgahwa_get_dashboard_quiz_widget(int $userid, array $ui): array {
+    global $DB, $CFG, $USER;
+    $slots = theme_baitalgahwa_get_dashboard_month_slots($USER->timezone);
+    $labels = array_column($slots, 'label');
+    $emptybars = theme_baitalgahwa_get_dashboard_bar_series(array_fill(0, count($labels), 0), $labels);
+    $base = [
+        'bars' => $emptybars,
+        'courseoptions' => [[
+            'value' => 'all',
+            'label' => $ui['filterallcourses'],
+            'selected' => true,
+        ]],
+        'quizoptions' => [[
+            'value' => 'all',
+            'label' => $ui['filterallquizzes'],
+            'selected' => true,
+        ]],
+        'series' => [],
+    ];
+    if ($userid < 1 || !$DB->get_manager()->table_exists('quiz_attempts') || !$DB->get_manager()->table_exists('quiz')) {
+        return $base;
+    }
+    require_once($CFG->libdir . '/enrollib.php');
+    $courses = enrol_get_my_courses('id, fullname', 'fullname ASC', 0, 0);
+    $courseids = [];
+    $coursenames = [];
+    foreach ($courses as $course) {
+        if ((int) $course->id === (int) SITEID) {
+            continue;
+        }
+        $courseids[] = (int) $course->id;
+        $coursenames[(int) $course->id] = format_string($course->fullname, true, ['context' => \context_course::instance($course->id)]);
+    }
+    if (!$courseids) {
+        return $base;
+    }
+    list($insql, $params) = $DB->get_in_or_equal($courseids, SQL_PARAMS_QM);
+    $quizzes = $DB->get_records_sql(
+        "SELECT id, course, name
+           FROM {quiz}
+          WHERE course {$insql}
+       ORDER BY course ASC, name ASC",
+        $params
+    );
+    if (!$quizzes) {
+        return $base;
+    }
+    $series = [];
+    $base['courseoptions'] = [[
+        'value' => 'all',
+        'label' => $ui['filterallcourses'],
+        'selected' => true,
+    ]];
+    foreach ($coursenames as $courseid => $coursename) {
+        $base['courseoptions'][] = [
+            'value' => (string) $courseid,
+            'label' => $coursename,
+        ];
+    }
+    foreach ($quizzes as $quiz) {
+        $base['quizoptions'][] = [
+            'value' => (string) $quiz->id,
+            'label' => format_string($quiz->name, true, ['context' => \context_course::instance($quiz->course)]),
+        ];
+    }
+    foreach ($quizzes as $quiz) {
+        $counts = array_fill(0, count($slots), 0);
+        foreach ($slots as $index => $slot) {
+            $counts[$index] = (int) $DB->count_records_select(
+                'quiz_attempts',
+                'userid = ? AND quiz = ? AND preview = 0 AND timefinish > 0 AND timefinish >= ? AND timefinish < ?',
+                [$userid, $quiz->id, $slot['from'], $slot['to']]
+            );
+        }
+        $series[] = [
+            'courseid' => (string) $quiz->course,
+            'quizid' => (string) $quiz->id,
+            'counts' => $counts,
+        ];
+    }
+    $allcounts = array_fill(0, count($slots), 0);
+    foreach ($series as $row) {
+        foreach ($row['counts'] as $index => $count) {
+            $allcounts[$index] += (int) $count;
+        }
+    }
+    $base['bars'] = theme_baitalgahwa_get_dashboard_bar_series($allcounts, $labels);
+    $base['series'] = [
+        'labels' => $labels,
+        'rows' => $series,
+    ];
+    return $base;
+}
+
+/**
+ * Dashboard calendar widget with optional event metadata.
+ *
+ * @param int $userid
+ * @param int $time
+ * @param array<int, array<string, mixed>> $mycourses
+ * @param array<string, string> $ui
+ * @return array<string, mixed>
+ */
+function theme_baitalgahwa_get_dashboard_calendar(int $userid = 0, int $time = 0, array $mycourses = [], array $ui = []): array {
+    global $DB, $USER;
     if ($time < 1) {
         $time = time();
     }
@@ -812,6 +916,7 @@ function theme_baitalgahwa_get_dashboard_calendar(int $time = 0): array {
     $m = (int) $a['mon'];
     $y = (int) $a['year'];
     $first = make_timestamp($y, $m, 1, 0, 0, 0);
+    $nextmonth = make_timestamp($m === 12 ? $y + 1 : $y, $m === 12 ? 1 : $m + 1, 1, 0, 0, 0);
     $dow = (int) userdate($first, '%w', $USER->timezone);
     $daysin = (int) cal_days_in_month(CAL_GREGORIAN, $m, $y);
     $todaya = usergetdate(time());
@@ -835,7 +940,69 @@ function theme_baitalgahwa_get_dashboard_calendar(int $time = 0): array {
             break;
         }
     }
-    return ['weeks' => $weeks, 'title' => userdate($time, '%B %Y', $USER->timezone)];
+    $courseoptions = [[
+        'value' => 'all',
+        'label' => $ui['filterallcourses'] ?? 'All Courses',
+        'selected' => true,
+    ]];
+    $courseids = [];
+    foreach ($mycourses as $course) {
+        if (empty($course['id']) || empty($course['fullname'])) {
+            continue;
+        }
+        $courseids[] = (int) $course['id'];
+        $courseoptions[] = [
+            'value' => (string) $course['id'],
+            'label' => $course['fullname'],
+        ];
+    }
+    $typeoptions = [[
+        'value' => 'all',
+        'label' => $ui['filterallevents'] ?? 'All Events',
+        'selected' => true,
+    ]];
+    $eventdata = [];
+    if ($userid > 0 && $courseids && $DB->get_manager()->table_exists('event')) {
+        list($insql, $params) = $DB->get_in_or_equal($courseids, SQL_PARAMS_QM);
+        $params[] = $first;
+        $params[] = $nextmonth;
+        $events = $DB->get_records_sql(
+            "SELECT id, courseid, timestart, eventtype
+               FROM {event}
+              WHERE courseid {$insql}
+                AND timestart >= ?
+                AND timestart < ?
+           ORDER BY timestart ASC",
+            $params
+        );
+        $types = [];
+        foreach ($events as $event) {
+            $day = (int) userdate($event->timestart, '%e', $USER->timezone);
+            $type = trim((string) $event->eventtype);
+            if ($type === '') {
+                $type = 'general';
+            }
+            $types[$type] = ucwords(str_replace('_', ' ', $type));
+            $eventdata[] = [
+                'courseid' => (string) $event->courseid,
+                'day' => $day,
+                'type' => $type,
+            ];
+        }
+        foreach ($types as $value => $label) {
+            $typeoptions[] = [
+                'value' => $value,
+                'label' => $label,
+            ];
+        }
+    }
+    return [
+        'weeks' => $weeks,
+        'title' => userdate($time, '%B %Y', $USER->timezone),
+        'courseoptions' => $courseoptions,
+        'typeoptions' => $typeoptions,
+        'eventdata' => $eventdata,
+    ];
 }
 
 /**
