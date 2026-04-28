@@ -297,6 +297,9 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-widget {
     padding: 1.25rem 1.3rem;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 .baitalgahwa-dashboard-widget__title {
     margin: 0;
@@ -309,10 +312,74 @@ body#page-my-index #topofscroll.main-inner {
     color: #7c7268;
     font-size: .78rem;
 }
+.baitalgahwa-dashboard-widget__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .9rem;
+    flex-wrap: wrap;
+}
+.baitalgahwa-dashboard-widget__titlegroup {
+    min-width: 0;
+}
+.baitalgahwa-dashboard-widget__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    align-items: center;
+}
+.baitalgahwa-dashboard-widget__selectwrap {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    min-width: 8.5rem;
+}
+.baitalgahwa-dashboard-widget__footer {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: .9rem;
+    flex-wrap: wrap;
+}
+.baitalgahwa-dashboard-widget__label {
+    color: #4f453d;
+    font-size: .76rem;
+    font-weight: 700;
+}
+.baitalgahwa-dashboard-widget select {
+    min-width: 8.75rem;
+    border: 1px solid #dfd1c3;
+    border-radius: .7rem;
+    background: #fff;
+    padding: .7rem 2rem .7rem .85rem;
+    color: #2a1d14;
+    font-size: .8rem;
+    box-shadow: none;
+}
+.baitalgahwa-dashboard-widget__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.65rem;
+    padding: .72rem 1.05rem;
+    border-radius: .7rem;
+    border: 1px solid #8a5a2b;
+    background: #8a5a2b;
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.baitalgahwa-dashboard-widget__button--ghost {
+    background: #fff;
+    color: #8a5a2b;
+}
 .baitalgahwa-dashboard-donut {
-    width: 9.5rem;
-    height: 9.5rem;
-    margin: 1rem auto .9rem;
+    width: 10.5rem;
+    height: 10.5rem;
+    margin: .25rem auto .2rem;
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -322,7 +389,7 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-donut::before {
     content: "";
     position: absolute;
-    inset: 1rem;
+    inset: 1.1rem;
     background: #fff;
     border-radius: 50%;
 }
@@ -341,6 +408,7 @@ body#page-my-index #topofscroll.main-inner {
     margin-top: .3rem;
     color: #7c7268;
     font-size: .7rem;
+    line-height: 1.35;
 }
 .baitalgahwa-dashboard-legend {
     display: flex;
@@ -362,7 +430,7 @@ body#page-my-index #topofscroll.main-inner {
     display: inline-block;
 }
 .baitalgahwa-dashboard-calendar {
-    margin-top: .8rem;
+    margin-top: .15rem;
 }
 .baitalgahwa-dashboard-calendar th {
     padding: .45rem .2rem;
@@ -392,8 +460,13 @@ body#page-my-index #topofscroll.main-inner {
     align-items: end;
     justify-content: space-between;
     gap: .6rem;
-    height: 11rem;
-    padding-top: 1rem;
+    height: 11.2rem;
+    padding: 1rem .65rem .35rem;
+    border: 1px solid #eee2d8;
+    border-radius: 1rem;
+    background:
+        linear-gradient(to top, rgba(111, 78, 55, .08) 1px, transparent 1px) 0 0 / 100% 25%,
+        #fff;
 }
 .baitalgahwa-dashboard-bars__item {
     flex: 1 1 0;
@@ -404,7 +477,7 @@ body#page-my-index #topofscroll.main-inner {
 }
 .baitalgahwa-dashboard-bars__track {
     width: 100%;
-    height: 8.8rem;
+    height: 8.9rem;
     display: flex;
     align-items: end;
     justify-content: center;
@@ -415,6 +488,7 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-bars__fill {
     width: 1.6rem;
     max-width: 100%;
+    min-height: .45rem;
     border-radius: .45rem .45rem 0 0;
     background: linear-gradient(180deg, #d7a169 0%, #8a5a2b 100%);
 }
@@ -422,6 +496,28 @@ body#page-my-index #topofscroll.main-inner {
     color: #6d6154;
     font-size: .72rem;
     font-weight: 700;
+}
+.baitalgahwa-dashboard-bars__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem 1rem;
+    color: #6d6154;
+    font-size: .72rem;
+}
+.baitalgahwa-dashboard-bars__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+}
+.baitalgahwa-dashboard-bars__legend-dot {
+    width: .7rem;
+    height: .7rem;
+    border-radius: 999px;
+    background: #d7a169;
+}
+.baitalgahwa-dashboard-bars__legend-dot--muted {
+    background: #f0e5da;
+    border: 1px solid #dfd1c3;
 }
 .baitalgahwa-dashboard-members-grid {
     display: grid;
@@ -607,6 +703,11 @@ body#page-my-index #topofscroll.main-inner {
     .baitalgahwa-dashboard-panel--programmes .baitalgahwa-dashboard-section-head {
         align-items: center;
     }
+    .baitalgahwa-dashboard-widget__top,
+    .baitalgahwa-dashboard-widget__footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 @media (max-width: 767.98px) {
     .baitalgahwa-dashboard {
@@ -624,6 +725,12 @@ body#page-my-index #topofscroll.main-inner {
     .baitalgahwa-dashboard-members-grid,
     .baitalgahwa-dashboard-newsletter__grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+    .baitalgahwa-dashboard-widget__controls,
+    .baitalgahwa-dashboard-widget__selectwrap,
+    .baitalgahwa-dashboard-widget select,
+    .baitalgahwa-dashboard-widget__button {
+        width: 100%;
     }
     .baitalgahwa-dashboard-progress__table {
         display: block;
@@ -848,29 +955,53 @@ body#page-my-index #topofscroll.main-inner {
                     <div class="row g-4">
                         <div class="col-lg-4">
                             <section class="baitalgahwa-dashboard-widget">
-                                <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}dashboard_donut_title, theme_baitalgahwa{{/str}}</h2>
-                                <p class="baitalgahwa-dashboard-widget__sub">{{#str}}dashboard_donut_sub, theme_baitalgahwa{{/str}}</p>
+                                <div class="baitalgahwa-dashboard-widget__titlegroup">
+                                    <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}dashboard_donut_title, theme_baitalgahwa{{/str}}</h2>
+                                    <p class="baitalgahwa-dashboard-widget__sub">{{#str}}dashboard_donut_sub, theme_baitalgahwa{{/str}}</p>
+                                </div>
                                 <div class="baitalgahwa-dashboard-donut" style="--bag-donut: {{ dashboard_donut.conic }};">
                                     <div class="baitalgahwa-dashboard-donut__center">
                                         <div class="baitalgahwa-dashboard-donut__count">{{ dashboard_donut.centerlabel }}</div>
                                         <div class="baitalgahwa-dashboard-donut__label">{{#str}}dashboard_stat_enrolled, theme_baitalgahwa{{/str}}</div>
                                     </div>
                                 </div>
-                                <div class="baitalgahwa-dashboard-legend">
-                                    {{#dashboard_donut.segments}}
-                                    <span class="baitalgahwa-dashboard-legend__item"><span class="baitalgahwa-dashboard-legend__dot" style="background: {{ color }};"></span>{{ label }}</span>
-                                    {{/dashboard_donut.segments}}
+                                <div class="baitalgahwa-dashboard-widget__footer">
+                                    <div class="baitalgahwa-dashboard-widget__selectwrap">
+                                        <label class="baitalgahwa-dashboard-widget__label" for="bag-dashboard-category">{{#str}}dashboard_filter_category, theme_baitalgahwa{{/str}}</label>
+                                        <select id="bag-dashboard-category" name="dashboard-category">
+                                            {{#dashboard_category_options}}
+                                            <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                            {{/dashboard_category_options}}
+                                        </select>
+                                    </div>
+                                    <div class="baitalgahwa-dashboard-legend">
+                                        {{#dashboard_donut.segments}}
+                                        <span class="baitalgahwa-dashboard-legend__item"><span class="baitalgahwa-dashboard-legend__dot" style="background: {{ color }};"></span>{{ label }}</span>
+                                        {{/dashboard_donut.segments}}
+                                    </div>
                                 </div>
                             </section>
                         </div>
                         <div class="col-lg-4">
                             <section class="baitalgahwa-dashboard-widget">
-                                <div class="baitalgahwa-dashboard-section-head">
-                                    <div>
+                                <div class="baitalgahwa-dashboard-widget__top">
+                                    <div class="baitalgahwa-dashboard-widget__titlegroup">
                                         <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}calendar, calendar{{/str}}</h2>
                                         <p class="baitalgahwa-dashboard-widget__sub">{{ dashboard_calendar.title }}</p>
                                     </div>
-                                    <a class="text-decoration-none fw-bold small" href="{{{ config.calurl }}}" style="color:#8a5a2b;">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
+                                    <div class="baitalgahwa-dashboard-widget__controls">
+                                        <select aria-label="{{#str}}dashboard_filter_all_courses, theme_baitalgahwa{{/str}}">
+                                            {{#dashboard_calendar_course_options}}
+                                            <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                            {{/dashboard_calendar_course_options}}
+                                        </select>
+                                        <select aria-label="{{#str}}dashboard_filter_all_events, theme_baitalgahwa{{/str}}">
+                                            {{#dashboard_calendar_type_options}}
+                                            <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                            {{/dashboard_calendar_type_options}}
+                                        </select>
+                                        <a class="baitalgahwa-dashboard-widget__button" href="{{{ config.calurl }}}">{{#str}}dashboard_new_event, theme_baitalgahwa{{/str}}</a>
+                                    </div>
                                 </div>
                                 <table class="table table-sm text-center baitalgahwa-dashboard-calendar mb-0" role="grid" aria-label="{{#str}}calendar, calendar{{/str}}">
                                     <thead>
@@ -894,11 +1025,31 @@ body#page-my-index #topofscroll.main-inner {
                                         {{/dashboard_calendar.weeks}}
                                     </tbody>
                                 </table>
+                                <div class="baitalgahwa-dashboard-widget__controls">
+                                    <a class="baitalgahwa-dashboard-widget__button baitalgahwa-dashboard-widget__button--ghost" href="{{{ config.calurl }}}">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
+                                    <a class="baitalgahwa-dashboard-widget__button" href="{{{ config.calurl }}}">{{#str}}dashboard_import_export, theme_baitalgahwa{{/str}}</a>
+                                </div>
                             </section>
                         </div>
                         <div class="col-lg-4">
                             <section class="baitalgahwa-dashboard-widget">
-                                <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}dashboard_quiz_title, theme_baitalgahwa{{/str}}</h2>
+                                <div class="baitalgahwa-dashboard-widget__top">
+                                    <div class="baitalgahwa-dashboard-widget__titlegroup">
+                                        <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}dashboard_quiz_title, theme_baitalgahwa{{/str}}</h2>
+                                    </div>
+                                    <div class="baitalgahwa-dashboard-widget__controls">
+                                        <select aria-label="{{#str}}dashboard_filter_all_courses, theme_baitalgahwa{{/str}}">
+                                            {{#dashboard_quiz_course_options}}
+                                            <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                            {{/dashboard_quiz_course_options}}
+                                        </select>
+                                        <select aria-label="{{#str}}dashboard_filter_all_quizzes, theme_baitalgahwa{{/str}}">
+                                            {{#dashboard_quiz_type_options}}
+                                            <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                            {{/dashboard_quiz_type_options}}
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="baitalgahwa-dashboard-bars">
                                     {{#dashboard_quiz_bars}}
                                     <div class="baitalgahwa-dashboard-bars__item">
@@ -908,6 +1059,16 @@ body#page-my-index #topofscroll.main-inner {
                                         <span class="baitalgahwa-dashboard-bars__label">{{ t }}</span>
                                     </div>
                                     {{/dashboard_quiz_bars}}
+                                </div>
+                                <div class="baitalgahwa-dashboard-bars__legend">
+                                    <span class="baitalgahwa-dashboard-bars__legend-item">
+                                        <span class="baitalgahwa-dashboard-bars__legend-dot"></span>
+                                        <span>{{#str}}dashboard_quiz_attempted, theme_baitalgahwa{{/str}}</span>
+                                    </span>
+                                    <span class="baitalgahwa-dashboard-bars__legend-item">
+                                        <span class="baitalgahwa-dashboard-bars__legend-dot baitalgahwa-dashboard-bars__legend-dot--muted"></span>
+                                        <span>{{#str}}dashboard_quiz_not_attempted, theme_baitalgahwa{{/str}}</span>
+                                    </span>
                                 </div>
                             </section>
                         </div>

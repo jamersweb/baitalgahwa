@@ -429,6 +429,72 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     $context['has_mycourses'] = !empty($context['mycourses']);
     $context['dashboard_programmes'] = array_slice($context['mycourses'], 0, 4);
     $context['has_dashboard_programmes'] = !empty($context['dashboard_programmes']);
+    $context['dashboard_category_options'] = [[
+        'value' => 'all',
+        'label' => get_string('dashboard_filter_all_categories', 'theme_baitalgahwa'),
+        'selected' => true,
+    ]];
+    foreach ($context['dashboard_donut']['segments'] as $segment) {
+        $context['dashboard_category_options'][] = [
+            'value' => clean_param(\core_text::strtolower($segment['label']), PARAM_ALPHANUMEXT),
+            'label' => $segment['label'],
+        ];
+    }
+    $context['dashboard_calendar_course_options'] = [[
+        'value' => 'all',
+        'label' => get_string('dashboard_filter_all_courses', 'theme_baitalgahwa'),
+        'selected' => true,
+    ]];
+    $context['dashboard_quiz_course_options'] = [[
+        'value' => 'all',
+        'label' => get_string('dashboard_filter_all_courses', 'theme_baitalgahwa'),
+        'selected' => true,
+    ]];
+    foreach ($context['mycourses'] as $courseoption) {
+        $slug = clean_param(\core_text::strtolower($courseoption['fullname']), PARAM_ALPHANUMEXT);
+        $context['dashboard_calendar_course_options'][] = [
+            'value' => $slug,
+            'label' => $courseoption['fullname'],
+        ];
+        $context['dashboard_quiz_course_options'][] = [
+            'value' => $slug,
+            'label' => $courseoption['fullname'],
+        ];
+    }
+    $context['dashboard_calendar_type_options'] = [
+        [
+            'value' => 'all-events',
+            'label' => get_string('dashboard_filter_all_events', 'theme_baitalgahwa'),
+            'selected' => true,
+        ],
+        [
+            'value' => 'sessions',
+            'label' => get_string('dashboard_filter_sessions', 'theme_baitalgahwa'),
+        ],
+        [
+            'value' => 'deadlines',
+            'label' => get_string('dashboard_filter_deadlines', 'theme_baitalgahwa'),
+        ],
+    ];
+    $context['dashboard_quiz_type_options'] = [
+        [
+            'value' => 'all-quizzes',
+            'label' => get_string('dashboard_filter_all_quizzes', 'theme_baitalgahwa'),
+            'selected' => true,
+        ],
+        [
+            'value' => 'concept-check',
+            'label' => get_string('dashboard_filter_concept_check', 'theme_baitalgahwa'),
+        ],
+        [
+            'value' => 'practice-quiz',
+            'label' => get_string('dashboard_filter_practice_quiz', 'theme_baitalgahwa'),
+        ],
+        [
+            'value' => 'final-assessment',
+            'label' => get_string('dashboard_filter_final_assessment', 'theme_baitalgahwa'),
+        ],
+    ];
     $context['featuredcourse'] = [];
     $context['has_featuredcourse'] = false;
     $context['activity_courses'] = [];
