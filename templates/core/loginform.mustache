@@ -90,6 +90,19 @@
         {{/identityproviders}}
     </div>
     {{/hasidentityproviders}}
+{{^hasidentityproviders}}
+    <div class="baitalgahwa-login-divider" role="separator" aria-hidden="true">
+        <span class="baitalgahwa-login-divider__line"></span>
+        <span class="baitalgahwa-login-divider__text">{{#str}} divideror, theme_baitalgahwa {{/str}}</span>
+        <span class="baitalgahwa-login-divider__line"></span>
+    </div>
+    <div class="baitalgahwa-idps baitalgahwa-idps--circular baitalgahwa-idps--static d-flex flex-wrap align-items-center justify-content-center" role="group" aria-label="{{#str}} authpanel_socialnav, theme_baitalgahwa {{/str}}">
+        <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static baitalgahwa-social-btn baitalgahwa-social-btn--google" role="img" aria-label="Google"></span>
+        <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static baitalgahwa-social-btn baitalgahwa-social-btn--apple" role="img" aria-label="Apple"></span>
+        <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static baitalgahwa-social-btn baitalgahwa-social-btn--facebook" role="img" aria-label="Facebook"></span>
+        <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static baitalgahwa-social-btn baitalgahwa-social-btn--twitter" role="img" aria-label="Twitter"></span>
+    </div>
+{{/hasidentityproviders}}
     {{#hasinstructions}}
     <div class="login-divider my-3"></div>
     <div class="login-instructions {{#cansignup}}mb-3{{/cansignup}}">

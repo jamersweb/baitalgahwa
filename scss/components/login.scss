@@ -17,6 +17,11 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   }
 }
 
+.pagelayout-login .baitalgahwa-login-end,
+.baitalgahwa-login-end {
+  display: none;
+}
+
 .pagelayout-login .baitalgahwa-login,
 .baitalgahwa-login {
   min-height: 100vh;
@@ -32,19 +37,19 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(2rem, 4vw, 4rem);
+    padding: clamp(2rem, 4vw, 4.5rem) clamp(1.5rem, 5vw, 5rem);
   }
 
   &__card {
     width: 100%;
-    max-width: 34rem;
+    max-width: 28rem;
     border-radius: 0;
     background: $white;
     box-shadow: none !important;
   }
 
   &__logo {
-    max-width: 12.5rem;
+    max-width: 8.5rem;
     height: auto;
   }
 
@@ -54,7 +59,7 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
     min-height: 100vh;
     background-color: $primary;
     background-size: cover;
-    background-position: center;
+    background-position: center right;
     align-items: stretch !important;
   }
 
@@ -72,10 +77,10 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      105deg,
-      rgba($black, 0.5) 0%,
-      rgba($primary, 0.35) 45%,
-      rgba($black, 0.25) 100%
+      96deg,
+      rgba(#331d0d, 0.3) 0%,
+      rgba($baitalgahwa-cta-brown, 0.18) 44%,
+      rgba(#b08b65, 0.12) 100%
     );
   }
 
@@ -88,20 +93,22 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
     justify-content: center;
     align-items: flex-start;
     text-align: start;
-    max-width: 34rem;
-    padding-inline: clamp(2rem, 5vw, 4rem);
+    max-width: 31rem;
+    padding-inline: clamp(2rem, 5vw, 4.5rem);
   }
 
   &__visual-title {
-    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    max-width: 24rem;
+    font-size: clamp(3.1rem, 4.8vw, 4.5rem);
     font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: 0.06em;
+    line-height: 1.04;
+    letter-spacing: 0.02em;
     text-shadow: 0 1px 2px rgba($black, 0.25);
   }
 
   &__visual-text {
-    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    max-width: 24rem;
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
     font-weight: 400;
     line-height: 1.55;
     opacity: 0.95;
@@ -133,16 +140,20 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
 // Auth panel typography (sign-in reference)
 .pagelayout-login .baitalgahwa-auth-title,
 .baitalgahwa-auth-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: $baitalgahwa-auth-text;
-  letter-spacing: -0.01em;
+  color: #1f1f1f;
+  font-size: clamp(2rem, 1.7vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 .pagelayout-login .baitalgahwa-auth-sub,
 .baitalgahwa-auth-sub {
+  max-width: 23rem;
+  margin-inline: auto;
+  color: #757575 !important;
   line-height: 1.5;
-  font-size: 0.9375rem;
+  font-size: 0.92rem;
 }
 
 // Theme wraps core login: hide duplicate site logo / h1 in the form (header above).
@@ -181,8 +192,8 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   background-color: $baitalgahwa-cta-brown;
   border-color: $baitalgahwa-cta-brown;
   font-weight: 600;
-  border-radius: $baitalgahwa-auth-radius;
-  min-height: 2.75rem;
+  border-radius: 0.45rem;
+  min-height: 3rem;
 
   &:hover,
   &:focus-visible {
@@ -225,13 +236,18 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   margin-bottom: $figma-space-2;
 }
 
+.pagelayout-login .baitalgahwa-idps--static,
+.baitalgahwa-idps--static {
+  gap: 0.75rem;
+}
+
 .pagelayout-login .baitalgahwa-idp-round,
 .baitalgahwa-idp-round {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   padding: 0;
   border-radius: 50%;
   background: $white;
@@ -263,14 +279,53 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
   }
 }
 
+.pagelayout-login .baitalgahwa-idp-round--static,
+.baitalgahwa-idp-round--static {
+  pointer-events: none;
+}
+
+.pagelayout-login .baitalgahwa-social-btn,
+.baitalgahwa-social-btn {
+  &::before {
+    content: "";
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.pagelayout-login .baitalgahwa-social-btn--google::before,
+.baitalgahwa-social-btn--google::before {
+  background-image: url([[pix:theme_baitalgahwa|social_google]]);
+}
+
+.pagelayout-login .baitalgahwa-social-btn--apple::before,
+.baitalgahwa-social-btn--apple::before {
+  background-image: url([[pix:theme_baitalgahwa|social_apple]]);
+}
+
+.pagelayout-login .baitalgahwa-social-btn--facebook::before,
+.baitalgahwa-social-btn--facebook::before {
+  background-image: url([[pix:theme_baitalgahwa|social_facebook_brand]]);
+}
+
+.pagelayout-login .baitalgahwa-social-btn--twitter::before,
+.baitalgahwa-social-btn--twitter::before {
+  background-image: url([[pix:theme_baitalgahwa|social_twitter_bird]]);
+}
+
 // Fields
 .pagelayout-login .baitalgahwa-input,
 .baitalgahwa-input {
   border-radius: $baitalgahwa-auth-radius;
   border: 1px solid rgba($body-color, 0.2);
-  min-height: 5rem;
-  padding: 1rem 1.25rem;
-  font-size: 1rem;
+  min-height: 2.9rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
   box-shadow: none;
 
   &:focus {
@@ -282,9 +337,9 @@ $baitalgahwa-cta-brown: #5d3e21; // Design spec; falls back if $primary preferre
 .pagelayout-login .baitalgahwa-field-label,
 .baitalgahwa-field-label {
   font-weight: 500;
-  font-size: 0.95rem;
-  color: mix($body-color, $white, 20%);
-  margin-bottom: 0.75rem !important;
+  font-size: 0.88rem;
+  color: #6b7280 !important;
+  margin-bottom: 0.55rem !important;
 }
 
 .pagelayout-login .baitalgahwa-link-forgot,

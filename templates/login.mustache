@@ -26,6 +26,9 @@ body.pagelayout-login.theme {
     font-family: Inter, "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
     background: #fff;
 }
+.pagelayout-login .baitalgahwa-login-end {
+    display: none;
+}
 .pagelayout-login .baitalgahwa-login {
     min-height: 100vh;
     display: grid;
@@ -39,11 +42,11 @@ body.pagelayout-login.theme {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(2rem, 4vw, 4rem);
+    padding: clamp(2rem, 4vw, 4.5rem) clamp(1.5rem, 5vw, 5rem);
 }
 .pagelayout-login .baitalgahwa-login__card {
     width: 100%;
-    max-width: 34rem;
+    max-width: 28rem;
     border: 0;
     border-radius: 0;
     box-shadow: none !important;
@@ -54,7 +57,7 @@ body.pagelayout-login.theme {
     min-height: 100vh;
     background-color: #6b4423;
     background-size: cover;
-    background-position: center;
+    background-position: center right;
     display: flex !important;
     align-items: stretch !important;
 }
@@ -67,7 +70,7 @@ body.pagelayout-login.theme {
 .pagelayout-login .baitalgahwa-login__visual-scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(105deg, rgba(0, 0, 0, 0.5) 0%, rgba(107, 68, 35, 0.35) 45%, rgba(0, 0, 0, 0.25) 100%);
+    background: linear-gradient(96deg, rgba(51, 29, 13, 0.3) 0%, rgba(93, 62, 33, 0.18) 44%, rgba(176, 139, 101, 0.12) 100%);
 }
 .pagelayout-login .baitalgahwa-login__visual-inner {
     position: relative;
@@ -77,12 +80,30 @@ body.pagelayout-login.theme {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    max-width: 34rem;
-    padding: clamp(2rem, 5vw, 4rem);
+    max-width: 31rem;
+    padding: clamp(2rem, 5vw, 4.5rem);
 }
 .pagelayout-login .baitalgahwa-login__logo {
-    max-width: 12.5rem;
+    max-width: 8.5rem;
     height: auto;
+}
+.pagelayout-login .baitalgahwa-auth-title {
+    color: #1f1f1f;
+    font-size: clamp(2rem, 1.7vw, 2.3rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+.pagelayout-login .baitalgahwa-auth-sub {
+    max-width: 23rem;
+    margin-inline: auto;
+    color: #757575 !important;
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+.pagelayout-login .baitalgahwa-auth-link {
+    color: #7a4a25;
+    font-weight: 600;
 }
 .pagelayout-login .baitalgahwa-login__form,
 .pagelayout-login .baitalgahwa-login__form .loginform,
@@ -105,17 +126,51 @@ body.pagelayout-login.theme {
     margin-bottom: 1.5rem !important;
 }
 .pagelayout-login .baitalgahwa-input {
-    min-height: 5rem;
-    padding: 1rem 1.25rem;
+    min-height: 2.9rem;
+    padding: 0.8rem 1rem;
     border: 1px solid rgba(17, 24, 39, 0.2);
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     box-shadow: none;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.35;
 }
 .pagelayout-login .baitalgahwa-field-label {
-    margin-bottom: 0.75rem !important;
-    font-size: 0.95rem;
+    margin-bottom: 0.55rem !important;
+    font-size: 0.88rem;
     font-weight: 500;
+    color: #6b7280 !important;
+}
+.pagelayout-login .baitalgahwa-login-subcta {
+    margin-top: 1rem;
+}
+.pagelayout-login .baitalgahwa-login-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    color: #9ca3af;
+}
+.pagelayout-login .baitalgahwa-login-divider__line {
+    flex: 1 1 auto;
+    height: 1px;
+    background: rgba(17, 24, 39, 0.12);
+}
+.pagelayout-login .baitalgahwa-login-divider__text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.pagelayout-login .baitalgahwa-idp-round {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(17, 24, 39, 0.12);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 .pagelayout-login .baitalgahwa-signup-grid {
     display: grid;
@@ -149,23 +204,51 @@ body.pagelayout-login.theme {
 .pagelayout-login .baitalgahwa-login-submit.btn-primary,
 .pagelayout-login #loginbtn {
     width: 100%;
-    min-height: 4.5rem;
+    min-height: 3rem;
     border-color: #5d3e21;
     background: #5d3e21;
-    border-radius: 0.5rem;
-    font-size: 1rem;
+    border-radius: 0.45rem;
+    font-size: 0.98rem;
     font-weight: 600;
 }
 .pagelayout-login .baitalgahwa-login__visual-title {
-    font-size: clamp(2.75rem, 4.6vw, 4.5rem);
+    max-width: 24rem;
+    font-size: clamp(3.1rem, 4.8vw, 4.5rem);
     font-weight: 700;
-    line-height: 1.08;
+    line-height: 1.04;
     letter-spacing: 0.02em;
 }
 .pagelayout-login .baitalgahwa-login__visual-text {
-    max-width: 30rem;
-    font-size: clamp(1rem, 1.3vw, 1.25rem);
-    line-height: 1.5;
+    max-width: 24rem;
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    line-height: 1.55;
+}
+.pagelayout-login .baitalgahwa-idps--static {
+    gap: 0.75rem;
+}
+.pagelayout-login .baitalgahwa-idp-round--static {
+    pointer-events: none;
+}
+.pagelayout-login .baitalgahwa-social-btn::before {
+    content: "";
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.pagelayout-login .baitalgahwa-social-btn--google::before {
+    background-image: url([[pix:theme_baitalgahwa|social_google]]);
+}
+.pagelayout-login .baitalgahwa-social-btn--apple::before {
+    background-image: url([[pix:theme_baitalgahwa|social_apple]]);
+}
+.pagelayout-login .baitalgahwa-social-btn--facebook::before {
+    background-image: url([[pix:theme_baitalgahwa|social_facebook_brand]]);
+}
+.pagelayout-login .baitalgahwa-social-btn--twitter::before {
+    background-image: url([[pix:theme_baitalgahwa|social_twitter_bird]]);
 }
 @media (max-width: 991.98px) {
     .pagelayout-login .baitalgahwa-login {
@@ -193,7 +276,7 @@ body.pagelayout-login.theme {
         </div>
         <div class="baitalgahwa-login__panel">
             <div class="baitalgahwa-login__card border-0 shadow-sm">
-                <div class="card-body p-4 p-xl-5">
+                <div class="card-body p-4 px-xl-5 py-xl-4">
                     <div class="baitalgahwa-auth-header text-center mb-4">
                         {{#themelogourl}}
                         <img class="baitalgahwa-login__logo mb-3" src="{{{ themelogourl }}}" alt="{{ sitename }}" width="200" height="56" loading="eager" decoding="async">
@@ -219,9 +302,6 @@ body.pagelayout-login.theme {
                         {{{ output.main_content }}}
                     </div>
                 </div>
-            </div>
-            <div class="baitalgahwa-login__footer-links text-center small mt-3">
-                <a href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
             </div>
         </div>
         <div class="baitalgahwa-login__visual d-none d-lg-flex" {{#heroimageurl}}style="background-image: url('{{{ heroimageurl }}}');"{{/heroimageurl}}>
