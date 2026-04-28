@@ -3,6 +3,10 @@
     Branded footer + Moodle footer popover.
 }}
 <style>
+body.pagelayout-mydashboard,
+body#page-my-index {
+    overflow-x: hidden;
+}
 .baitalgahwa-footer {
     position: relative;
     margin-top: 4rem;
@@ -18,6 +22,7 @@
         radial-gradient(circle at 100% 100%, rgba(255,255,255,.06), transparent 24rem),
         linear-gradient(180deg, #875628 0%, #74461f 100%);
     color: rgba(255,255,255,.92);
+    display: block;
 }
 .baitalgahwa-footer::after {
     content: "";
@@ -39,38 +44,51 @@
 .baitalgahwa-footer__copy {
     width: 100%;
 }
+.baitalgahwa-footer__brand {
+    position: relative;
+    padding-top: .35rem;
+}
+.baitalgahwa-footer__watermark {
+    position: absolute;
+    inset: auto auto 1rem -1rem;
+    width: 10rem;
+    opacity: .13;
+    filter: grayscale(1) brightness(2.2);
+    pointer-events: none;
+}
 .baitalgahwa-footer__top .container {
     width: min(100%, 1320px);
     max-width: none;
-    padding-inline: 2rem;
+    padding-inline: 2.25rem;
 }
 .baitalgahwa-footer__logo {
-    max-width: 11.5rem;
+    max-width: 10rem;
     height: auto;
     object-fit: contain;
-    filter: brightness(1.08) saturate(.92);
+    filter: brightness(1.18) saturate(.78);
 }
 .baitalgahwa-footer__about {
-    max-width: 19rem;
-    color: rgba(255,255,255,.9);
-    font-size: .95rem;
-    line-height: 1.65;
+    max-width: 18rem;
+    margin-top: 2.4rem;
+    color: rgba(255,255,255,.84);
+    font-size: .88rem;
+    line-height: 1.75;
 }
 .baitalgahwa-footer__heading {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     color: #d0ad59;
-    font-size: 1.12rem;
+    font-size: .98rem;
     font-weight: 700;
 }
 .baitalgahwa-footer__list li + li {
-    margin-top: .72rem;
+    margin-top: .62rem;
 }
 .baitalgahwa-footer__link,
 .baitalgahwa-footer__text {
     color: rgba(255,255,255,.92);
     text-decoration: none;
-    font-size: .92rem;
-    line-height: 1.55;
+    font-size: .84rem;
+    line-height: 1.7;
 }
 .baitalgahwa-footer__link:hover,
 .baitalgahwa-footer__link:focus-visible {
@@ -81,14 +99,17 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.45rem;
-    height: 2.45rem;
+    width: 2.1rem;
+    height: 2.1rem;
     border-radius: 50%;
     background: rgba(255,255,255,.96);
     color: #875628;
     text-decoration: none;
     box-shadow: 0 .35rem .9rem rgba(0,0,0,.14);
     transition: transform .16s ease, box-shadow .16s ease;
+}
+.baitalgahwa-footer__social-link i {
+    font-size: .9rem;
 }
 .baitalgahwa-footer__social-link:hover,
 .baitalgahwa-footer__social-link:focus-visible {
@@ -100,13 +121,13 @@
     object-fit: contain;
 }
 .baitalgahwa-footer__social {
-    gap: .75rem !important;
+    gap: .55rem !important;
 }
-.baitalgahwa-footer__moodle #page-footer {
-    background: transparent;
-    color: rgba(255,255,255,.82);
-}
-.baitalgahwa-footer__moodle .footer-content-popover {
+.baitalgahwa-footer__moodle,
+.baitalgahwa-footer__moodle #page-footer,
+.baitalgahwa-footer__moodle [data-region="footer-container-popover"],
+.baitalgahwa-footer__moodle .footer-content-popover,
+.baitalgahwa-footer__moodle .footer-content-debugging {
     display: none;
 }
 .baitalgahwa-footer__copy {
@@ -114,12 +135,21 @@
     z-index: 1;
     color: rgba(255,255,255,.72);
     border-top: 1px solid rgba(255,255,255,.12);
-    font-size: .76rem;
+    font-size: .72rem;
+    letter-spacing: .01em;
 }
 @media (max-width: 767.98px) {
     .baitalgahwa-footer__top .container {
         width: 100%;
         padding-inline: 1rem;
+    }
+    .baitalgahwa-footer__about {
+        margin-top: 1.5rem;
+        max-width: none;
+    }
+    .baitalgahwa-footer__watermark {
+        width: 8rem;
+        bottom: 2.2rem;
     }
 }
 </style>
@@ -130,14 +160,21 @@
                 <div class="col-lg-4" id="bag-footer-about">
                     <div class="baitalgahwa-footer__brand">
                         {{#themelogourl}}
+                        <img class="baitalgahwa-footer__watermark" src="{{{ themelogourl }}}" alt="" aria-hidden="true">
+                        {{/themelogourl}}
+                        {{#themelogourl}}
                         <img class="baitalgahwa-footer__logo mb-3" src="{{{ themelogourl }}}" alt="{{ sitename }}" width="180" height="56">
                         {{/themelogourl}}
                         <p class="baitalgahwa-footer__about mb-4">{{#footerabout}}{{footerabout}}{{/footerabout}}{{^footerabout}}Empowering professionals through quality training and development programmes inspired by Emirati heritage.{{/footerabout}}</p>
                         <div class="baitalgahwa-footer__social d-flex flex-wrap gap-3">
                             {{#facebook}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="Facebook"><img src="{{{ footerfacebookicon }}}" alt="" width="18" height="18"></a>{{/facebook}}
+                            {{^facebook}}<span class="baitalgahwa-footer__social-link" aria-label="Facebook"><img src="{{{ footerfacebookicon }}}" alt="" width="18" height="18"></span>{{/facebook}}
                             {{#instagram}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="Instagram"><img src="{{{ footerinstagramicon }}}" alt="" width="18" height="18"></a>{{/instagram}}
+                            {{^instagram}}<span class="baitalgahwa-footer__social-link" aria-label="Instagram"><img src="{{{ footerinstagramicon }}}" alt="" width="18" height="18"></span>{{/instagram}}
                             {{#linkedin}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="LinkedIn"><img src="{{{ footerlinkedinicon }}}" alt="" width="18" height="18"></a>{{/linkedin}}
+                            {{^linkedin}}<span class="baitalgahwa-footer__social-link" aria-label="LinkedIn"><img src="{{{ footerlinkedinicon }}}" alt="" width="18" height="18"></span>{{/linkedin}}
                             {{#twitter}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="X"><img src="{{{ footertwittericon }}}" alt="" width="18" height="18"></a>{{/twitter}}
+                            {{^twitter}}<span class="baitalgahwa-footer__social-link" aria-label="X"><img src="{{{ footertwittericon }}}" alt="" width="18" height="18"></span>{{/twitter}}
                             {{#footeremail}}<a class="baitalgahwa-footer__social-link" href="mailto:{{.}}" aria-label="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>{{/footeremail}}
                             {{#footerphone}}<a class="baitalgahwa-footer__social-link" href="tel:{{.}}" aria-label="Phone"><i class="fa fa-phone" aria-hidden="true"></i></a>{{/footerphone}}
                         </div>
@@ -201,7 +238,6 @@
                     <div class="logininfo">{{{ output.login_info }}}</div>
                     <div class="tool_usertours-resettourcontainer"></div>
                     {{{ output.standard_footer_html }}}
-                    {{{ output.standard_end_of_body_html }}}
                 </div>
                 <div class="footer-section p-3">
                     <div>{{#str}}poweredbymoodle, core{{/str}}</div>
@@ -215,8 +251,8 @@
             </div>
         </div>
     </div>
+    <div hidden>
+        {{{ output.standard_end_of_body_html }}}
+    </div>
     <p class="baitalgahwa-footer__copy text-center small py-3 mb-0">{{#str}}footercopyright, theme_baitalgahwa{{/str}}</p>
 </footer>
-{{#js}}
-require(['theme_boost/footer-popover'], function(FooterPopover) { FooterPopover.init(); });
-{{/js}}
