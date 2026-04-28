@@ -1,10 +1,48 @@
 // Single course / course home (mockup: hero, stats, secondary nav, activity grid)
 // Triggered on body.baitalgahwa-course-dashboard
 
-$bag-course-radius: 0.9rem;
+$bag-course-radius: 1rem;
+$bag-course-shell-max: 1120px;
 $bag-brown: $primary;
 
 body.baitalgahwa-course-dashboard {
+  #page.drawers,
+  #topofscroll.main-inner {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .drawer-toggles,
+  .baitalgahwa-course-hero,
+  .baitalgahwa-course-stats,
+  .secondary-navigation,
+  #page-content {
+    width: min(calc(100% - 1.5rem), #{$bag-course-shell-max});
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .drawer-toggles {
+    padding-top: 0.6rem;
+  }
+
+  #page-content {
+    padding-top: 0.25rem;
+    padding-bottom: 0;
+  }
+
+  #region-main-box,
+  #region-main {
+    width: 100%;
+  }
+
+  #region-main {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
   // Keep keyboard focus order; only hide duplicate H1 in header (title lives in hero).
   #page-header .page-header-headings {
     border: 0;
@@ -17,36 +55,85 @@ body.baitalgahwa-course-dashboard {
     width: 1px;
   }
 
-  // Secondary course navigation: brown active tab
+  #page-header,
+  .tertiary-navigation {
+    display: none;
+  }
+
+  // Secondary course navigation: tighter and closer to the design reference.
   .secondary-navigation {
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid rgba($black, 0.1);
+
+    .nav-tabs,
+    .moremenu.navigation {
+      gap: 1.4rem;
+      margin-bottom: 0;
+      border-bottom: 0;
+      padding-left: 0.15rem;
+      padding-right: 0.15rem;
+    }
+
+    .nav-link,
+    .moremenu .nav-link {
+      position: relative;
+      padding: 0 0 0.9rem;
+      border: 0;
+      color: mix($body-color, $text-muted, 72%);
+      font-size: 0.92rem;
+      font-weight: 600;
+      background: transparent;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus,
     .nav-link.active,
     .active > .nav-link,
     a[aria-current="true"] {
       color: $bag-brown;
-      font-weight: 600;
-      box-shadow: inset 0 -3px 0 0 $bag-brown;
+      font-weight: 700;
+      box-shadow: inset 0 -2px 0 0 $bag-brown;
     }
   }
 }
 
 .baitalgahwa-course-hero {
+  margin-bottom: 1rem !important;
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
   &__title {
     color: $body-color;
     font-family: $headings-font-family;
+    font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   &__cta {
     background: $primary;
     border-color: $primary;
+    border-radius: 0.55rem;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
   }
 
   &__media {
-    min-height: 12rem;
+    min-height: 17.75rem;
     border-radius: $bag-course-radius;
+    box-shadow: 0 1rem 2.4rem rgba($black, 0.12);
   }
 
   &__img {
-    min-height: 12rem;
+    min-height: 17.75rem;
     background-size: cover;
     background-position: center;
     &--placeholder {
@@ -59,61 +146,188 @@ body.baitalgahwa-course-dashboard {
     left: 0;
     right: 0;
     bottom: 0;
-    top: 40%;
-    background: linear-gradient(180deg, transparent, rgba($black, 0.75));
+    top: 0;
+    background: linear-gradient(180deg, rgba($black, 0.08) 15%, rgba($black, 0.76) 100%);
     pointer-events: none;
   }
 
   &__caption {
     z-index: 1;
+    padding: 1.5rem 1.7rem;
+  }
+
+  &__caption-title {
+    font-size: clamp(1.5rem, 2.25vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  &__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba($white, 0.92);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  &__meta-icon {
+    width: 1.95rem;
+    height: 1.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba($white, 0.14);
+    border: 1px solid rgba($white, 0.2);
   }
 }
 
 .baitalgahwa-course-stats {
+  background: $body-bg;
+  border: 1px solid rgba($black, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 1.8rem rgba($black, 0.06);
+  overflow: hidden;
+
   &__row {
     margin-left: 0;
     margin-right: 0;
   }
 
   &__card {
-    background: $body-bg;
-    box-shadow: 0 0.25rem 1rem rgba($black, 0.07);
-    border: 1px solid rgba($black, 0.04);
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    min-height: 100%;
+    gap: 0.9rem;
   }
 
   &__icon {
     color: $primary;
     opacity: 0.9;
     line-height: 1;
-    margin-inline-end: 0.5rem;
+    margin-inline-end: 0;
+    font-size: 1.4rem;
   }
 
   &__num {
-    font-size: 1.5rem;
+    color: $bag-brown;
+    font-size: 1.9rem;
     line-height: 1.1;
+    font-weight: 800;
   }
 
   &__hint {
     max-width: 40rem;
+    padding: 0 1rem 1rem;
+  }
+
+  &__label {
+    color: $text-muted !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .col-md-3 + .col-md-3 .baitalgahwa-course-stats__card,
+  .col-6 + .col-6 .baitalgahwa-course-stats__card {
+    border-left: 1px solid rgba($black, 0.07);
   }
 }
 
 // Activity list → 4-col card-like grid (topics / flexible formats); not on edit settings
 body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main {
+  .course-content {
+    > ul.topics,
+    > ul.section {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    > ul.topics > li.section,
+    > ul.section > li.section {
+      margin: 0 0 1.5rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    > ul.topics > li.section#section-0,
+    > ul.topics > li.section:first-child,
+    > ul.section > li.section#section-0,
+    > ul.section > li.section:first-child {
+      background: $body-bg;
+      border: 1px solid rgba($black, 0.08);
+      border-radius: 1rem;
+      box-shadow: 0 0.75rem 1.8rem rgba($black, 0.05);
+      padding: 1.45rem 1.6rem;
+    }
+
+    > ul.topics > li.section#section-0 .content,
+    > ul.topics > li.section:first-child .content,
+    > ul.section > li.section#section-0 .content,
+    > ul.section > li.section:first-child .content {
+      margin: 0;
+    }
+
+    > ul.topics > li.section#section-0 .summary,
+    > ul.topics > li.section:first-child .summary,
+    > ul.section > li.section#section-0 .summary,
+    > ul.section > li.section:first-child .summary {
+      color: $text-muted;
+      font-size: 0.94rem;
+      line-height: 1.9;
+    }
+
+    .course-section-header,
+    .sectionname {
+      margin-bottom: 1rem;
+      color: $body-color;
+    }
+
+    .course-section-header .sectionname,
+    .sectionname > a,
+    .sectionname {
+      font-size: 1.18rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
+
   .course-content .section .activity {
+    position: relative;
     border-radius: $bag-course-radius;
     border: 1px solid rgba($black, 0.08);
-    box-shadow: 0 0.35rem 0.9rem rgba($black, 0.06);
+    box-shadow: 0 0.55rem 1.2rem rgba($black, 0.06);
     margin-bottom: 0;
     background: $body-bg;
+    overflow: hidden;
+    padding-top: 6.25rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
   .course-content .section .activity .activityinstance {
-    padding: 0.5rem 0.75rem 0.75rem;
+    position: relative;
+    z-index: 1;
+    padding: 0.85rem 0.95rem 1rem;
+    background: $body-bg;
   }
 
   .course-content .section .activity::before {
-    display: none;
+    display: block;
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 6.25rem;
+    background:
+      linear-gradient(180deg, rgba($black, 0.04), rgba($black, 0.2)),
+      var(--bag-course-cover, radial-gradient(circle at 68% 28%, rgba(255,255,255,0.18), transparent 18rem), linear-gradient(135deg, #2b1a12 0%, #5d371f 48%, #17100c 100%));
+    background-size: cover;
+    background-position: center;
   }
 
   .course-content .section .activity-list,
@@ -134,6 +348,41 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
     @include media-breakpoint-up(xl) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+  }
+
+  .course-content .section .activity:hover,
+  .course-content .section .activity:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 0.95rem 1.8rem rgba($black, 0.1);
+  }
+
+  .course-content .section .activity .instancename {
+    display: block;
+    color: $body-color;
+    font-size: 0.96rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  .course-content .section .activity .description,
+  .course-content .section .activity .contentafterlink {
+    color: $text-muted;
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .course-content .section .activity .activityiconcontainer,
+  .course-content .section .activity .activityicon {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1;
+  }
+
+  .course-content .section .activity .activityiconcontainer {
+    border-radius: 999px;
+    background: rgba($white, 0.92);
+    box-shadow: 0 0.4rem 1rem rgba($black, 0.12);
   }
 }
 
@@ -301,6 +550,83 @@ body.baitalgahwa-course-settings {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
       }
+    }
+  }
+}
+
+@media (max-width: 991.98px) {
+  body.baitalgahwa-course-dashboard {
+    .drawer-toggles,
+    .baitalgahwa-course-hero,
+    .baitalgahwa-course-stats,
+    .secondary-navigation,
+    #page-content {
+      width: min(calc(100% - 1rem), #{$bag-course-shell-max});
+    }
+
+    .secondary-navigation .nav-tabs,
+    .secondary-navigation .moremenu.navigation {
+      gap: 1rem;
+    }
+  }
+
+  .baitalgahwa-course-hero {
+    &__media,
+    &__img {
+      min-height: 15rem;
+    }
+  }
+
+  .baitalgahwa-course-stats {
+    .col-md-3 + .col-md-3 .baitalgahwa-course-stats__card {
+      border-left: 0;
+    }
+
+    .col-6:nth-child(2n) .baitalgahwa-course-stats__card {
+      border-left: 1px solid rgba($black, 0.07);
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .baitalgahwa-course-hero {
+    &__toolbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    &__media,
+    &__img {
+      min-height: 12.8rem;
+    }
+
+    &__caption {
+      padding: 1.1rem;
+    }
+  }
+
+  .baitalgahwa-course-stats {
+    .baitalgahwa-course-stats__card {
+      padding: 1rem !important;
+    }
+  }
+
+  body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main {
+    .course-content {
+      > ul.topics > li.section#section-0,
+      > ul.topics > li.section:first-child,
+      > ul.section > li.section#section-0,
+      > ul.section > li.section:first-child {
+        padding: 1.1rem;
+      }
+    }
+
+    .course-content .section .activity {
+      padding-top: 5.25rem;
+    }
+
+    .course-content .section .activity::before {
+      height: 5.25rem;
     }
   }
 }
