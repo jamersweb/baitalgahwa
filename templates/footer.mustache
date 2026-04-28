@@ -6,6 +6,11 @@
 .baitalgahwa-footer {
     position: relative;
     margin-top: 4rem;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     overflow: hidden;
     background:
         radial-gradient(circle at 85% 18%, rgba(255,255,255,.08), transparent 18rem),
@@ -31,6 +36,7 @@
 .baitalgahwa-footer__top .container {
     width: min(100%, 1320px);
     max-width: none;
+    padding-inline: 2rem;
 }
 .baitalgahwa-footer__logo {
     max-width: 11.5rem;
@@ -41,23 +47,24 @@
 .baitalgahwa-footer__about {
     max-width: 19rem;
     color: rgba(255,255,255,.9);
-    font-size: 1rem;
-    line-height: 1.55;
+    font-size: .95rem;
+    line-height: 1.65;
 }
 .baitalgahwa-footer__heading {
     margin-bottom: 1.2rem;
     color: #d0ad59;
-    font-size: 1.08rem;
+    font-size: 1.12rem;
     font-weight: 700;
 }
 .baitalgahwa-footer__list li + li {
-    margin-top: .8rem;
+    margin-top: .72rem;
 }
 .baitalgahwa-footer__link,
 .baitalgahwa-footer__text {
     color: rgba(255,255,255,.92);
     text-decoration: none;
-    font-size: .96rem;
+    font-size: .92rem;
+    line-height: 1.55;
 }
 .baitalgahwa-footer__link:hover,
 .baitalgahwa-footer__link:focus-visible {
@@ -86,6 +93,9 @@
     display: block;
     object-fit: contain;
 }
+.baitalgahwa-footer__social {
+    gap: .75rem !important;
+}
 .baitalgahwa-footer__moodle #page-footer {
     background: transparent;
     color: rgba(255,255,255,.82);
@@ -98,10 +108,12 @@
     z-index: 1;
     color: rgba(255,255,255,.72);
     border-top: 1px solid rgba(255,255,255,.12);
+    font-size: .76rem;
 }
 @media (max-width: 767.98px) {
     .baitalgahwa-footer__top .container {
         width: 100%;
+        padding-inline: 1rem;
     }
 }
 </style>
@@ -116,7 +128,10 @@
                         {{/themelogourl}}
                         <p class="baitalgahwa-footer__about mb-4">{{#footerabout}}{{footerabout}}{{/footerabout}}{{^footerabout}}Empowering professionals through quality training and development programmes inspired by Emirati heritage.{{/footerabout}}</p>
                         <div class="baitalgahwa-footer__social d-flex flex-wrap gap-3">
+                            {{#facebook}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="Facebook"><img src="{{{ footerfacebookicon }}}" alt="" width="18" height="18"></a>{{/facebook}}
                             {{#instagram}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="Instagram"><img src="{{{ footerinstagramicon }}}" alt="" width="18" height="18"></a>{{/instagram}}
+                            {{#linkedin}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="LinkedIn"><img src="{{{ footerlinkedinicon }}}" alt="" width="18" height="18"></a>{{/linkedin}}
+                            {{#twitter}}<a class="baitalgahwa-footer__social-link" href="{{{.}}}" rel="noopener" target="_blank" aria-label="X"><img src="{{{ footertwittericon }}}" alt="" width="18" height="18"></a>{{/twitter}}
                             {{#footeremail}}<a class="baitalgahwa-footer__social-link" href="mailto:{{.}}" aria-label="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>{{/footeremail}}
                             {{#footerphone}}<a class="baitalgahwa-footer__social-link" href="tel:{{.}}" aria-label="Phone"><i class="fa fa-phone" aria-hidden="true"></i></a>{{/footerphone}}
                         </div>
