@@ -73,10 +73,14 @@ body.pagelayout-login.theme {
     align-items: stretch !important;
 }
 .pagelayout-login .baitalgahwa-login__visual--mobile {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
     min-height: 11rem;
     background-color: #6b4423;
     background-size: cover;
-    background-position: center;
+    background-position: center 32%;
 }
 .pagelayout-login .baitalgahwa-login__visual-scrim {
     position: absolute;
@@ -185,9 +189,14 @@ body.pagelayout-login.theme {
     height: 1.5rem;
     padding: 0;
     border: 0;
+    appearance: none;
+    -webkit-appearance: none;
     background: transparent;
     color: #8d8d8d;
+    font-size: 0;
+    line-height: 0;
     cursor: pointer;
+    z-index: 2;
 }
 .pagelayout-login .baitalgahwa-password-toggle__icon {
     width: 1rem;
@@ -331,9 +340,17 @@ body.pagelayout-login.theme {
     transform: translateY(-1.1rem);
 }
 @media (max-width: 991.98px) {
+    .pagelayout-login .baitalgahwa-login__visual--mobile {
+        min-height: 13rem;
+    }
     .pagelayout-login .baitalgahwa-login {
         grid-template-columns: 1fr;
         height: auto;
+    }
+    .pagelayout-login .baitalgahwa-login__panel {
+        justify-content: flex-start;
+        padding: 1.5rem 1.5rem 2rem;
+        background: #fff;
     }
     .pagelayout-login .baitalgahwa-login__visual {
         display: none !important;
@@ -341,6 +358,36 @@ body.pagelayout-login.theme {
     .pagelayout-login .baitalgahwa-login__card {
         max-width: 100%;
         transform: none;
+    }
+    .pagelayout-login .baitalgahwa-auth-header {
+        margin-bottom: 1.5rem !important;
+    }
+    .pagelayout-login .baitalgahwa-login__logo {
+        max-width: 8rem;
+    }
+    .pagelayout-login .baitalgahwa-login__logo-sub {
+        width: 8rem;
+        font-size: 0.4rem;
+    }
+    .pagelayout-login .baitalgahwa-auth-title {
+        font-size: 1.25rem;
+    }
+    .pagelayout-login .baitalgahwa-auth-sub {
+        font-size: 0.78rem;
+    }
+    .pagelayout-login .baitalgahwa-input,
+    .pagelayout-login .baitalgahwa-login-submit.btn-primary,
+    .pagelayout-login #loginbtn {
+        min-height: 3rem;
+    }
+    .pagelayout-login .baitalgahwa-password-toggle {
+        right: 0.85rem;
+        width: 1.85rem;
+        height: 1.85rem;
+    }
+    .pagelayout-login .baitalgahwa-password-toggle__icon {
+        width: 1.1rem;
+        height: 1.1rem;
     }
     .pagelayout-login .baitalgahwa-signup-grid {
         grid-template-columns: 1fr;
@@ -358,6 +405,47 @@ body.pagelayout-login.theme {
     .pagelayout-login #region-main {
         height: auto;
         overflow: visible;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .pagelayout-login .baitalgahwa-login__visual--mobile {
+        min-height: 15rem;
+        background-position: center 28%;
+    }
+    .pagelayout-login .baitalgahwa-login__panel {
+        padding: 2rem 2rem 2.5rem;
+    }
+    .pagelayout-login .baitalgahwa-login__card {
+        max-width: 28rem;
+    }
+}
+@media (max-width: 575.98px) {
+    .pagelayout-login .baitalgahwa-login__visual--mobile {
+        min-height: 10.75rem;
+        background-position: center top;
+    }
+    .pagelayout-login .baitalgahwa-login__panel {
+        padding: 1.25rem 1rem 1.75rem;
+    }
+    .pagelayout-login .baitalgahwa-login__logo {
+        max-width: 7.4rem;
+    }
+    .pagelayout-login .baitalgahwa-login__logo-sub {
+        width: 7.4rem;
+        letter-spacing: 0.18em;
+    }
+    .pagelayout-login .baitalgahwa-auth-title {
+        font-size: 1.12rem;
+    }
+    .pagelayout-login .baitalgahwa-auth-sub {
+        font-size: 0.72rem;
+    }
+    .pagelayout-login .baitalgahwa-field-label {
+        font-size: 0.82rem;
+    }
+    .pagelayout-login .baitalgahwa-login-subcta,
+    .pagelayout-login .baitalgahwa-login-divider__text {
+        font-size: 0.76rem;
     }
 }
 </style>
