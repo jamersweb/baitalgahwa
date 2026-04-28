@@ -24,7 +24,7 @@ body.baitalgahwa-course-dashboard .baitalgahwa-course-hero,
 body.baitalgahwa-course-dashboard .baitalgahwa-course-stats,
 body.baitalgahwa-course-dashboard .secondary-navigation,
 body.baitalgahwa-course-dashboard #page-content {
-    width: min(calc(100% - 1.5rem), 1180px);
+    width: 98%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -159,6 +159,17 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
     gap: 1.2rem;
 }
 
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main .course-content > ul.topics::after {
+    content: "Activities";
+    order: 2;
+    grid-column: 1 / -1;
+    margin-top: .4rem;
+    color: #241b15;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
 @media (min-width: 768px) {
     body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main .course-content > ul.topics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -172,6 +183,7 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
 }
 
 body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main .course-content > ul.topics > li.section:first-child {
+    order: 1;
     grid-column: 1 / -1;
     border: 1px solid rgba(0, 0, 0, .08);
     border-radius: 1rem;
@@ -181,6 +193,7 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
 }
 
 body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main .course-content > ul.topics > li.section:not(:first-child) {
+    order: 3;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, .08);

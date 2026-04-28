@@ -2,7 +2,7 @@
 // Triggered on body.baitalgahwa-course-dashboard
 
 $bag-course-radius: 1rem;
-$bag-course-shell-max: 1180px;
+$bag-course-shell-max: none;
 $bag-brown: $primary;
 
 body.baitalgahwa-course-dashboard {
@@ -17,7 +17,8 @@ body.baitalgahwa-course-dashboard {
   .baitalgahwa-course-stats,
   .secondary-navigation,
   #page-content {
-    width: min(calc(100% - 1.5rem), #{$bag-course-shell-max});
+    width: 98%;
+    max-width: #{$bag-course-shell-max};
     margin-left: auto;
     margin-right: auto;
   }
@@ -250,6 +251,18 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
       gap: 1.2rem;
     }
 
+    > ul.topics::after,
+    > ul.section::after {
+      content: "Activities";
+      order: 2;
+      grid-column: 1 / -1;
+      margin-top: 0.4rem;
+      color: $body-color;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
     > ul.topics {
       @include media-breakpoint-up(md) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -273,6 +286,7 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
     > ul.topics > li.section:first-child,
     > ul.section > li.section#section-0,
     > ul.section > li.section:first-child {
+      order: 1;
       grid-column: 1 / -1;
       background: $body-bg;
       border: 1px solid rgba($black, 0.08);
@@ -313,6 +327,7 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
 
     > ul.topics > li.section:not(:first-child),
     > ul.section > li.section:not(:first-child) {
+      order: 3;
       position: relative;
       overflow: hidden;
       border: 1px solid rgba($black, 0.08);
