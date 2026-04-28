@@ -1,0 +1,707 @@
+{{!
+    @template theme_baitalgahwa/mycourses
+    Preserved course-focused landing page shown on /my/courses.php.
+}}
+{{> theme_boost/head }}
+<style>
+body.pagelayout-mycourses .main-inner {
+    background: #fcfaf7;
+}
+body.pagelayout-mycourses #page-header,
+body.pagelayout-mycourses .secondary-navigation {
+    display: none;
+}
+body.pagelayout-mycourses #page.drawers,
+body.pagelayout-mycourses #topofscroll.main-inner {
+    max-width: 100%;
+    width: 100%;
+}
+.baitalgahwa-mycourses-page {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 2rem 1.25rem 3.5rem;
+    color: #241b15;
+}
+.baitalgahwa-mycourses-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: min(100%, 1320px);
+    margin: 0 auto;
+}
+.baitalgahwa-mycourses-heading__eyebrow {
+    color: #7c7268;
+    font-size: .9rem;
+}
+.baitalgahwa-mycourses-heading__title {
+    color: #201813;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+.baitalgahwa-mycourses-hero {
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+}
+.baitalgahwa-mycourses-hero__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.baitalgahwa-mycourses-hero__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: .38rem .85rem;
+    border-radius: 999px;
+    background: rgba(138, 90, 43, .12);
+    color: #8a5a2b;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+.baitalgahwa-mycourses-hero__cta,
+.baitalgahwa-mycourses-page .btn-primary {
+    background: #8a5a2b;
+    border-color: #8a5a2b;
+    border-radius: .55rem;
+    padding-inline: 1.3rem;
+    font-weight: 600;
+}
+.baitalgahwa-mycourses-hero__media {
+    position: relative;
+    min-height: 21rem;
+    overflow: hidden;
+    border-radius: 1.35rem;
+    background: #23160f;
+    box-shadow: 0 1rem 2.5rem rgba(52, 30, 12, .16);
+}
+.baitalgahwa-mycourses-hero__image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+}
+.baitalgahwa-mycourses-hero__image--placeholder,
+.baitalgahwa-mycourses-card__image--placeholder {
+    background:
+        radial-gradient(circle at 70% 30%, rgba(201, 162, 39, .24), transparent 20rem),
+        linear-gradient(125deg, #2a180f 0%, #5c3720 45%, #18100c 100%);
+}
+.baitalgahwa-mycourses-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 12, 8, .08) 20%, rgba(20, 12, 8, .72) 100%);
+}
+.baitalgahwa-mycourses-hero__content {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 1.7rem 1.8rem;
+    color: #fff;
+}
+.baitalgahwa-mycourses-hero__title {
+    margin-bottom: .6rem;
+    color: #fff;
+    font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+.baitalgahwa-mycourses-hero__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    color: rgba(255,255,255,.9);
+    font-size: .95rem;
+}
+.baitalgahwa-mycourses-hero__avatar {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.24);
+}
+.baitalgahwa-mycourses-stats,
+.baitalgahwa-mycourses-panel,
+.baitalgahwa-mycourses-card {
+    background: #fff;
+    border: 1px solid #ebe3da;
+    border-radius: 1.25rem;
+    box-shadow: 0 .75rem 2rem rgba(48, 27, 12, .06);
+}
+.baitalgahwa-mycourses-stats {
+    overflow: hidden;
+}
+.baitalgahwa-mycourses-stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 100%;
+    padding: 1.35rem 1.45rem;
+}
+.baitalgahwa-mycourses-stat__icon {
+    color: #8a5a2b;
+    font-size: 1.55rem;
+    line-height: 1;
+}
+.baitalgahwa-mycourses-stat__value {
+    color: #8a5a2b;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 800;
+}
+.baitalgahwa-mycourses-stat__label {
+    margin-top: .3rem;
+    color: #7c7268;
+    font-size: .9rem;
+}
+.baitalgahwa-mycourses-subnav {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    overflow-x: auto;
+    padding: .1rem 0 0;
+    border-bottom: 1px solid #e7ddd3;
+    scrollbar-width: none;
+}
+.baitalgahwa-mycourses-subnav::-webkit-scrollbar {
+    display: none;
+}
+.baitalgahwa-mycourses-subnav__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 0 .9rem;
+    color: #5c5146;
+    text-decoration: none;
+    font-size: .92rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.baitalgahwa-mycourses-subnav__link.is-active {
+    color: #201813;
+}
+.baitalgahwa-mycourses-subnav__link.is-active::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: #8a5a2b;
+}
+.baitalgahwa-mycourses-subnav__add {
+    margin-left: auto;
+    margin-bottom: .75rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    border: 1px solid #d8c8b7;
+    border-radius: 999px;
+    color: #8a5a2b;
+    background: #fff;
+    text-decoration: none;
+    font-size: .8rem;
+}
+.baitalgahwa-mycourses-panel {
+    padding: 1.5rem 1.6rem;
+}
+.baitalgahwa-mycourses-panel__title,
+.baitalgahwa-mycourses-section__title {
+    margin-bottom: .85rem;
+    color: #201813;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.baitalgahwa-mycourses-panel__body,
+.baitalgahwa-mycourses-section__intro {
+    color: #7c7268;
+    font-size: .96rem;
+    line-height: 1.75;
+}
+.baitalgahwa-mycourses-panel__announcement {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.baitalgahwa-mycourses-panel__announcement-icon {
+    width: 2.7rem;
+    height: 2.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: rgba(138, 90, 43, .1);
+    color: #8a5a2b;
+}
+.baitalgahwa-mycourses-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.baitalgahwa-mycourses-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.baitalgahwa-mycourses-card:hover,
+.baitalgahwa-mycourses-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 2.4rem rgba(48, 27, 12, .12);
+}
+.baitalgahwa-mycourses-card__media {
+    position: relative;
+    overflow: hidden;
+}
+.baitalgahwa-mycourses-card__image {
+    height: 12rem;
+    background-size: cover;
+    background-position: center;
+}
+.baitalgahwa-mycourses-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(18,11,8,.05), rgba(18,11,8,.18));
+}
+.baitalgahwa-mycourses-card__badge {
+    position: absolute;
+    top: .85rem;
+    left: .85rem;
+    z-index: 1;
+    padding: .28rem .7rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.94);
+    color: #8a5a2b;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+.baitalgahwa-mycourses-card__body {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 1rem 1rem 1.1rem;
+}
+.baitalgahwa-mycourses-card__title {
+    margin: 0;
+    color: #201813;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+.baitalgahwa-mycourses-card__copy {
+    margin: 0;
+    color: #7c7268;
+    font-size: .88rem;
+    line-height: 1.6;
+    min-height: 4.3rem;
+}
+.baitalgahwa-mycourses-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-top: auto;
+    color: #6a5c4b;
+    font-size: .84rem;
+    font-weight: 600;
+}
+.baitalgahwa-mycourses-card__arrow {
+    color: #8a5a2b;
+}
+.baitalgahwa-mycourses-minical th {
+    color: #61574f;
+    font-size: .82rem;
+    font-weight: 700;
+    border: 0;
+    padding: .45rem .2rem;
+}
+.baitalgahwa-mycourses-minical td {
+    border: 0;
+    padding: .3rem .2rem;
+}
+.baitalgahwa-mycourses-minical__day {
+    min-width: 2rem;
+    line-height: 2rem;
+    border-radius: 999px;
+}
+.baitalgahwa-mycourses-minical__today {
+    background: #8a5a2b;
+    color: #fff;
+    font-weight: 700;
+}
+.baitalgahwa-mycourses-member {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    height: 100%;
+    border: 1px solid #efe5db;
+    border-radius: 1rem;
+    background: #f6f1eb;
+    padding: .85rem 1rem;
+}
+.baitalgahwa-mycourses-member__avatar .userpicture,
+.baitalgahwa-mycourses-member__avatar img {
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 999px;
+}
+.baitalgahwa-mycourses-member__copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+}
+.baitalgahwa-mycourses-member__name {
+    color: #201813;
+    font-weight: 700;
+}
+.baitalgahwa-mycourses-member__role {
+    color: #7c7268;
+    font-size: .88rem;
+}
+.baitalgahwa-mycourses-inline-link {
+    color: #8a5a2b;
+    font-size: .9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+.baitalgahwa-mycourses-hidden-content {
+    display: none;
+}
+@media (min-width: 992px) {
+    .baitalgahwa-mycourses-stats .col-lg-3 + .col-lg-3 .baitalgahwa-mycourses-stat {
+        border-left: 1px solid #f0e9e2;
+    }
+}
+@media (max-width: 991.98px) {
+    .baitalgahwa-mycourses-page {
+        padding-inline: .9rem;
+    }
+    .baitalgahwa-mycourses-hero__media {
+        min-height: 17rem;
+    }
+}
+@media (max-width: 767.98px) {
+    .baitalgahwa-mycourses-page {
+        padding-top: 1.1rem;
+        padding-bottom: 2.5rem;
+        padding-inline: .7rem;
+    }
+    .baitalgahwa-mycourses-hero__media {
+        min-height: 14rem;
+        border-radius: 1rem;
+    }
+    .baitalgahwa-mycourses-hero__content,
+    .baitalgahwa-mycourses-panel {
+        padding: 1.1rem;
+    }
+}
+</style>
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+<div id="page-wrapper" class="d-print-block">
+    {{{ output.standard_top_of_body_html }}}
+    {{> theme_baitalgahwa/navbar }}
+    {{#courseindex}}
+        {{< theme_boost/drawer }}
+            {{$id}}theme_boost-drawers-courseindex{{/id}}
+            {{$drawerheadercontent}}{{> theme_boost/courseindexdrawercontrols}}{{/drawerheadercontent}}
+            {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
+            {{$drawercontent}}{{{courseindex}}}{{/drawercontent}}
+            {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
+            {{$drawerstate}}show-drawer-left{{/drawerstate}}
+            {{$tooltipplacement}}right{{/tooltipplacement}}
+            {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
+        {{/ theme_boost/drawer}}
+    {{/courseindex}}
+    {{#hasblocks}}
+        {{< theme_boost/drawer }}
+            {{$id}}theme_boost-drawers-blocks{{/id}}
+            {{$drawerclasses}}drawer drawer-right{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
+            {{$drawercontent}}
+                <div class="d-print-none">
+                    {{{ addblockbutton }}}
+                    {{{ sidepreblocks }}}
+                </div>
+            {{/drawercontent}}
+            {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
+            {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
+            {{$drawerstate}}show-drawer-right{{/drawerstate}}
+            {{$tooltipplacement}}left{{/tooltipplacement}}
+            {{$drawercloseonresize}}1{{/drawercloseonresize}}
+            {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
+        {{/ theme_boost/drawer}}
+    {{/hasblocks}}
+    <div id="page" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
+        <div id="topofscroll" class="main-inner">
+            <div class="drawer-toggles d-flex">
+                {{#courseindex}}
+                <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
+                    <button class="btn icon-no-margin" data-toggler="drawers" data-action="toggle" data-target="theme_boost-drawers-courseindex" data-toggle="tooltip" data-placement="right" title="{{#str}}opendrawerindex, core{{/str}}">
+                        <span class="sr-only">{{#str}}opendrawerindex, core{{/str}}</span>
+                        {{#pix}} t/index_drawer, moodle {{/pix}}
+                    </button>
+                </div>
+                {{/courseindex}}
+                {{#hasblocks}}
+                <div class="drawer-toggler drawer-right-toggle ms-auto d-print-none">
+                    <button class="btn icon-no-margin" data-toggler="drawers" data-action="toggle" data-target="theme_boost-drawers-blocks" data-toggle="tooltip" data-placement="right" title="{{#str}}opendrawerblocks, core{{/str}}">
+                        <span class="sr-only">{{#str}}opendrawerblocks, core{{/str}}</span>
+                        <span class="dir-rtl-hide">{{#pix}}t/blocks_drawer, core{{/pix}}</span>
+                        <span class="dir-ltr-hide">{{#pix}}t/blocks_drawer_rtl, core{{/pix}}</span>
+                    </button>
+                </div>
+                {{/hasblocks}}
+            </div>
+            {{{ output.full_header }}}
+            <main class="baitalgahwa-mycourses-page" id="bag-mycourses-overview">
+                <div class="baitalgahwa-mycourses-shell">
+                    <section class="baitalgahwa-mycourses-heading">
+                        <p class="baitalgahwa-mycourses-heading__eyebrow mb-2">{{ dashboardwelcome }}</p>
+                        <h1 class="baitalgahwa-mycourses-heading__title mb-0">{{#mycourses_title}}{{mycourses_title}}{{/mycourses_title}}{{^mycourses_title}}{{#str}}mycourses, moodle{{/str}}{{/mycourses_title}}</h1>
+                    </section>
+
+                    <section class="baitalgahwa-mycourses-hero">
+                        <div class="baitalgahwa-mycourses-hero__toolbar">
+                            <span class="baitalgahwa-mycourses-hero__tag">{{ dashboard_featured_tag }}</span>
+                            {{#has_featuredcourse}}
+                            <a href="{{{ featuredcourse.url }}}" class="btn btn-primary baitalgahwa-mycourses-hero__cta">{{#str}}gotocourse, theme_baitalgahwa{{/str}}</a>
+                            {{/has_featuredcourse}}
+                        </div>
+                        <div class="baitalgahwa-mycourses-hero__media">
+                            {{#has_featuredcourse}}
+                                {{#featuredcourse.imageurl}}
+                                <div class="baitalgahwa-mycourses-hero__image" style="background-image:url('{{{ featuredcourse.imageurl }}}');"></div>
+                                {{/featuredcourse.imageurl}}
+                                {{^featuredcourse.imageurl}}
+                                <div class="baitalgahwa-mycourses-hero__image baitalgahwa-mycourses-hero__image--placeholder"></div>
+                                {{/featuredcourse.imageurl}}
+                            {{/has_featuredcourse}}
+                            {{^has_featuredcourse}}
+                            <div class="baitalgahwa-mycourses-hero__image baitalgahwa-mycourses-hero__image--placeholder"></div>
+                            {{/has_featuredcourse}}
+                            <div class="baitalgahwa-mycourses-hero__overlay"></div>
+                            <div class="baitalgahwa-mycourses-hero__content">
+                                <h2 class="baitalgahwa-mycourses-hero__title">{{#has_featuredcourse}}{{ featuredcourse.fullname }}{{/has_featuredcourse}}{{^has_featuredcourse}}{{#str}}mycourses, moodle{{/str}}{{/has_featuredcourse}}</h2>
+                                <p class="baitalgahwa-mycourses-hero__meta mb-0">
+                                    <span class="baitalgahwa-mycourses-hero__avatar"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    {{#has_featuredcourse}}{{#featuredcourse.categoryname}}{{ featuredcourse.categoryname }}{{/featuredcourse.categoryname}}{{^featuredcourse.categoryname}}Bait Al Gahwa{{/featuredcourse.categoryname}}{{/has_featuredcourse}}
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="baitalgahwa-mycourses-stats" aria-label="{{#str}}mycourses, moodle{{/str}}">
+                        <div class="row g-0" role="list">
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <article class="baitalgahwa-mycourses-stat">
+                                    <span class="baitalgahwa-mycourses-stat__icon" aria-hidden="true"><i class="fa fa-file-text-o"></i></span>
+                                    <div>
+                                        <div class="baitalgahwa-mycourses-stat__value">{{ dashboard_stats.enrolled_fmt }}</div>
+                                        <div class="baitalgahwa-mycourses-stat__label">{{#str}}dashboard_stat_enrolled, theme_baitalgahwa{{/str}}</div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <article class="baitalgahwa-mycourses-stat">
+                                    <span class="baitalgahwa-mycourses-stat__icon" aria-hidden="true"><i class="fa fa-calendar-o"></i></span>
+                                    <div>
+                                        <div class="baitalgahwa-mycourses-stat__value">{{ dashboard_stats.completed_fmt }}</div>
+                                        <div class="baitalgahwa-mycourses-stat__label">{{#str}}dashboard_stat_completed, theme_baitalgahwa{{/str}}</div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <article class="baitalgahwa-mycourses-stat">
+                                    <span class="baitalgahwa-mycourses-stat__icon" aria-hidden="true"><i class="fa fa-check-square-o"></i></span>
+                                    <div>
+                                        <div class="baitalgahwa-mycourses-stat__value">{{ dashboard_stats.inprogress_fmt }}</div>
+                                        <div class="baitalgahwa-mycourses-stat__label">{{#str}}dashboard_stat_inprogress, theme_baitalgahwa{{/str}}</div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-6 col-lg-3" role="listitem">
+                                <article class="baitalgahwa-mycourses-stat">
+                                    <span class="baitalgahwa-mycourses-stat__icon" aria-hidden="true"><i class="fa fa-clipboard"></i></span>
+                                    <div>
+                                        <div class="baitalgahwa-mycourses-stat__value">{{ dashboard_stats.certificates_fmt }}</div>
+                                        <div class="baitalgahwa-mycourses-stat__label">{{#str}}dashboard_stat_certs, theme_baitalgahwa{{/str}}</div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <nav class="baitalgahwa-mycourses-subnav" aria-label="{{#str}}mycourses, moodle{{/str}}">
+                        <a class="baitalgahwa-mycourses-subnav__link is-active" href="#bag-mycourses-overview">Courses</a>
+                        <a class="baitalgahwa-mycourses-subnav__link" href="#bag-mycourses-introduction">Settings</a>
+                        <a class="baitalgahwa-mycourses-subnav__link" href="#bag-mycourses-members">Participants</a>
+                        <a class="baitalgahwa-mycourses-subnav__link" href="#bag-mycourses-calendar">Grades</a>
+                        <a class="baitalgahwa-mycourses-subnav__link" href="#bag-mycourses-activities">Activities</a>
+                        <a class="baitalgahwa-mycourses-subnav__add" href="#bag-mycourses-activities" aria-label="More"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </nav>
+
+                    <section class="baitalgahwa-mycourses-panel" id="bag-mycourses-introduction">
+                        <h2 class="baitalgahwa-mycourses-panel__title">{{ dashboard_intro_heading }}</h2>
+                        <p class="baitalgahwa-mycourses-panel__body mb-0">{{ dashboard_intro_text }}</p>
+                    </section>
+
+                    <section class="baitalgahwa-mycourses-panel">
+                        <div class="baitalgahwa-mycourses-panel__announcement">
+                            <span class="baitalgahwa-mycourses-panel__announcement-icon" aria-hidden="true"><i class="fa fa-bullhorn"></i></span>
+                            <div>
+                                <h2 class="baitalgahwa-mycourses-panel__title mb-1">{{ dashboard_announcement_title }}</h2>
+                                <p class="baitalgahwa-mycourses-panel__body mb-0">{{ dashboard_announcement_body }}</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="baitalgahwa-mycourses-section" id="bag-mycourses-activities" aria-labelledby="bag-mycourses-activities-title">
+                        <div class="baitalgahwa-mycourses-section__header">
+                            <div>
+                                <h2 id="bag-mycourses-activities-title" class="baitalgahwa-mycourses-section__title">{{ dashboard_activity_heading }}</h2>
+                                <p class="baitalgahwa-mycourses-section__intro mb-0">{{ dashboard_activity_intro }}</p>
+                            </div>
+                        </div>
+                        {{#has_activity_courses}}
+                        <div class="row g-4">
+                            {{#activity_courses}}
+                            <div class="col-md-6 col-xl-3">
+                                <article class="baitalgahwa-mycourses-card h-100">
+                                    <div class="baitalgahwa-mycourses-card__media">
+                                        {{#imageurl}}
+                                        <div class="baitalgahwa-mycourses-card__image" style="background-image:url('{{{ imageurl }}}');"></div>
+                                        {{/imageurl}}
+                                        {{^imageurl}}
+                                        <div class="baitalgahwa-mycourses-card__image baitalgahwa-mycourses-card__image--placeholder"></div>
+                                        {{/imageurl}}
+                                        {{#isnew}}<span class="baitalgahwa-mycourses-card__badge">{{#str}}course_new, theme_baitalgahwa{{/str}}</span>{{/isnew}}
+                                    </div>
+                                    <div class="baitalgahwa-mycourses-card__body">
+                                        <h3 class="baitalgahwa-mycourses-card__title"><a class="stretched-link text-reset text-decoration-none" href="{{{ url }}}">{{ fullname }}</a></h3>
+                                        {{#summary}}<p class="baitalgahwa-mycourses-card__copy">{{ summary }}</p>{{/summary}}
+                                        <div class="baitalgahwa-mycourses-card__meta">
+                                            <span>{{#categoryname}}{{ categoryname }}{{/categoryname}}{{^categoryname}}Bait Al Gahwa{{/categoryname}}</span>
+                                            <span class="baitalgahwa-mycourses-card__arrow" aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            {{/activity_courses}}
+                        </div>
+                        {{/has_activity_courses}}
+                        {{^has_activity_courses}}
+                        <div class="baitalgahwa-mycourses-panel">
+                            <p class="baitalgahwa-mycourses-panel__body mb-0">{{#str}}nocourses, theme_baitalgahwa{{/str}}</p>
+                        </div>
+                        {{/has_activity_courses}}
+                    </section>
+
+                    <div class="row g-4">
+                        <div class="col-lg-5" id="bag-mycourses-calendar">
+                            <section class="baitalgahwa-mycourses-panel h-100">
+                                <div class="baitalgahwa-mycourses-section__header">
+                                    <div>
+                                        <h2 class="baitalgahwa-mycourses-section__title">{{#str}}calendar, calendar{{/str}}</h2>
+                                        <p class="baitalgahwa-mycourses-section__intro mb-0">{{ dashboard_calendar.title }}</p>
+                                    </div>
+                                    <a class="baitalgahwa-mycourses-inline-link" href="{{{ config.calurl }}}">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
+                                </div>
+                                <table class="table table-sm text-center small baitalgahwa-mycourses-minical mb-0" role="grid" aria-label="{{#str}}calendar, calendar{{/str}}">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="p-1"><abbr title="{{#str}} sunday, calendar {{/str}}">{{#str}} dashboard_cal_s, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th scope="col" class="p-1"><abbr title="{{#str}} monday, calendar {{/str}}">{{#str}} dashboard_cal_m, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th scope="col" class="p-1"><abbr title="{{#str}} tuesday, calendar {{/str}}">{{#str}} dashboard_cal_tu, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th scope="col" class="p-1"><abbr title="{{#str}} wednesday, calendar {{/str}}">{{#str}} dashboard_cal_w, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th scope="col" class="p-1"><abbr title="{{#str}} thursday, calendar {{/str}}">{{#str}} dashboard_cal_th, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th scope="col" class="p-1"><abbr title="{{#str}} friday, calendar {{/str}}">{{#str}} dashboard_cal_f, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th scope="col" class="p-1"><abbr title="{{#str}} saturday, calendar {{/str}}">{{#str}} dashboard_cal_sa, theme_baitalgahwa {{/str}}</abbr></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#dashboard_calendar.weeks}}
+                                        <tr>
+                                            {{# . }}
+                                            <td class="p-1">
+                                                {{#inmonth}}<span class="baitalgahwa-mycourses-minical__day d-inline-block {{#istoday}}baitalgahwa-mycourses-minical__today{{/istoday}}">{{ day }}</span>{{/inmonth}}
+                                            </td>
+                                            {{/ . }}
+                                        </tr>
+                                        {{/dashboard_calendar.weeks}}
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                        <div class="col-lg-7" id="bag-mycourses-members">
+                            <section class="baitalgahwa-mycourses-panel h-100">
+                                <div class="baitalgahwa-mycourses-section__header">
+                                    <div>
+                                        <h2 class="baitalgahwa-mycourses-section__title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
+                                        <p class="baitalgahwa-mycourses-section__intro mb-0">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
+                                    </div>
+                                    <a class="baitalgahwa-mycourses-inline-link" href="{{{ config.membersurl }}}">{{ dashboard_members_link }}</a>
+                                </div>
+                                {{#has_dashboard_members}}
+                                <div class="row g-3">
+                                    {{#dashboard_members}}
+                                    <div class="col-md-6">
+                                        <a class="baitalgahwa-mycourses-member text-reset text-decoration-none" href="{{{ profileurl }}}">
+                                            <span class="baitalgahwa-mycourses-member__avatar">{{{ avatar }}}</span>
+                                            <span class="baitalgahwa-mycourses-member__copy">
+                                                <span class="baitalgahwa-mycourses-member__name">{{ fullname }}</span>
+                                                <span class="baitalgahwa-mycourses-member__role">{{ role }}</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    {{/dashboard_members}}
+                                </div>
+                                {{/has_dashboard_members}}
+                                {{^has_dashboard_members}}
+                                <p class="baitalgahwa-mycourses-panel__body mb-0">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
+                                {{/has_dashboard_members}}
+                            </section>
+                        </div>
+                    </div>
+
+                    {{#hasmaincontent}}
+                    <div id="page-content" class="baitalgahwa-mycourses-hidden-content" hidden aria-hidden="true">
+                        {{{ maincontent }}}
+                    </div>
+                    {{/hasmaincontent}}
+                </div>
+            </main>
+        </div>
+        {{> theme_baitalgahwa/footer }}
+    </div>
+    {{{ output.standard_after_main_region_html }}}
+</div>
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'], function(Loader, Drawer, Bait) {
+    Drawer.init();
+    Bait.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

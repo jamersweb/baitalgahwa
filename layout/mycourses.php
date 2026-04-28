@@ -24,6 +24,22 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+global $USER, $OUTPUT;
+
+$userid = (int) $USER->id;
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
+$context = array_merge($context, theme_baitalgahwa_get_learning_page_context($userid));
 $context = array_merge($context, theme_baitalgahwa_get_mycourses_toolbar_context());
-echo $OUTPUT->render_from_template('theme_baitalgahwa/drawers', $context);
+$context['config']['calurl'] = (new \moodle_url('/calendar/view.php'))->out(false);
+$context['config']['membersurl'] = (new \moodle_url('/my/courses.php'))->out(false);
+$context['config']['coursetodo'] = (new \moodle_url('/my/courses.php'))->out(false);
+if (!empty($context['featuredcourse'])) {
+    $context['config']['membersurl'] = (new \moodle_url('/user/index.php', ['id' => $context['featuredcourse']['id']]))->out(false);
+}
+
+ob_start();
+echo $OUTPUT->main_content();
+$context['maincontent'] = ob_get_clean();
+$context['hasmaincontent'] = trim($context['maincontent']) !== '';
+
+echo $OUTPUT->render_from_template('theme_baitalgahwa/mycourses', $context);

@@ -1,6 +1,6 @@
 {{!
     @template theme_baitalgahwa/dashboard
-    Logged-in home (mydashboard): stats, training grid, progress, charts, members, newsletter + core “My” content.
+    Logged-in dashboard landing shown on /my/.
 }}
 {{> theme_boost/head }}
 <style>
@@ -25,385 +25,509 @@ body#page-my-index #topofscroll.main-inner {
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: 2rem 1.25rem 3.5rem;
+    padding: 1.5rem 1.25rem 3.5rem;
     color: #241b15;
 }
 .baitalgahwa-dashboard-shell {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.4rem;
     width: min(100%, 1320px);
     margin: 0 auto;
 }
-.baitalgahwa-dashboard-heading__eyebrow {
-    color: #7c7268;
-    font-size: .9rem;
-}
-.baitalgahwa-dashboard-heading__title {
+.baitalgahwa-dashboard-title {
+    margin: 0;
     color: #201813;
-    font-size: clamp(2rem, 3vw, 2.5rem);
-    font-weight: 800;
-    letter-spacing: -.03em;
-}
-.baitalgahwa-dashboard-hero {
-    display: flex;
-    flex-direction: column;
-    gap: .85rem;
-}
-.baitalgahwa-dashboard-hero__toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-.baitalgahwa-dashboard-hero__tag {
-    display: inline-flex;
-    align-items: center;
-    padding: .38rem .85rem;
-    border-radius: 999px;
-    background: rgba(138, 90, 43, .12);
-    color: #8a5a2b;
-    font-size: .78rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    letter-spacing: .04em;
-    text-transform: uppercase;
 }
-.baitalgahwa-dashboard-hero__cta,
-.baitalgahwa-dashboard .btn-primary {
-    background: #8a5a2b;
-    border-color: #8a5a2b;
-    border-radius: .55rem;
-    padding-inline: 1.3rem;
-    font-weight: 600;
-}
-.baitalgahwa-dashboard-hero__media {
-    position: relative;
-    min-height: 21rem;
-    overflow: hidden;
-    border-radius: 1.35rem;
-    background: #23160f;
-    box-shadow: 0 1rem 2.5rem rgba(52, 30, 12, .16);
-}
-.baitalgahwa-dashboard-hero__image {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transform: scale(1.02);
-}
-.baitalgahwa-dashboard-hero__image--placeholder,
-.baitalgahwa-activity-card__image--placeholder {
-    background:
-        radial-gradient(circle at 70% 30%, rgba(201, 162, 39, .24), transparent 20rem),
-        linear-gradient(125deg, #2a180f 0%, #5c3720 45%, #18100c 100%);
-}
-.baitalgahwa-dashboard-hero__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(20, 12, 8, .08) 20%, rgba(20, 12, 8, .72) 100%);
-}
-.baitalgahwa-dashboard-hero__content {
-    position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    z-index: 1;
-    padding: 1.7rem 1.8rem;
-    color: #fff;
-}
-.baitalgahwa-dashboard-hero__title {
-    margin-bottom: .6rem;
-    color: #fff;
-    font-size: clamp(1.65rem, 2.4vw, 2.2rem);
-    font-weight: 800;
-    letter-spacing: -.02em;
-}
-.baitalgahwa-dashboard-hero__meta {
-    display: inline-flex;
-    align-items: center;
-    gap: .6rem;
-    color: rgba(255,255,255,.9);
-    font-size: .95rem;
-}
-.baitalgahwa-dashboard-hero__avatar {
-    width: 2rem;
-    height: 2rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(255,255,255,.16);
-    border: 1px solid rgba(255,255,255,.24);
-}
-.baitalgahwa-dashboard-stats {
+.baitalgahwa-dashboard-panel,
+.baitalgahwa-dashboard-stats,
+.baitalgahwa-dashboard-programme,
+.baitalgahwa-dashboard-widget,
+.baitalgahwa-dashboard-members,
+.baitalgahwa-dashboard-todo,
+.baitalgahwa-dashboard-newsletter {
     background: #fff;
     border: 1px solid #ebe3da;
-    border-radius: 1.25rem;
-    box-shadow: 0 .75rem 2rem rgba(48, 27, 12, .06);
+    border-radius: 1.2rem;
+    box-shadow: 0 .85rem 2rem rgba(48, 27, 12, .05);
+}
+.baitalgahwa-dashboard-stats {
     overflow: hidden;
 }
 .baitalgahwa-dashboard-stat {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .95rem;
+    padding: 1rem 1.15rem;
     min-height: 100%;
-    padding: 1.35rem 1.45rem;
 }
 .baitalgahwa-dashboard-stat__icon {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .6rem;
     color: #8a5a2b;
-    font-size: 1.55rem;
-    line-height: 1;
+    background: rgba(138, 90, 43, .09);
 }
 .baitalgahwa-dashboard-stat__value {
     color: #8a5a2b;
-    font-size: 2rem;
+    font-size: 1.65rem;
     line-height: 1;
     font-weight: 800;
 }
 .baitalgahwa-dashboard-stat__label {
-    margin-top: .3rem;
+    margin-top: .25rem;
     color: #7c7268;
-    font-size: .9rem;
+    font-size: .82rem;
 }
-.baitalgahwa-dashboard-subnav {
+.baitalgahwa-dashboard-section-head {
     display: flex;
-    align-items: center;
-    gap: 1.6rem;
-    overflow-x: auto;
-    padding: .1rem 0 0;
-    border-bottom: 1px solid #e7ddd3;
-    scrollbar-width: none;
-}
-.baitalgahwa-dashboard-subnav::-webkit-scrollbar {
-    display: none;
-}
-.baitalgahwa-dashboard-subnav__link {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.5rem;
-    padding: 0 0 .9rem;
-    color: #5c5146;
-    text-decoration: none;
-    font-size: .92rem;
-    font-weight: 600;
-    white-space: nowrap;
-}
-.baitalgahwa-dashboard-subnav__link.is-active {
-    color: #201813;
-}
-.baitalgahwa-dashboard-subnav__link.is-active::after {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    height: 2px;
-    border-radius: 999px;
-    background: #8a5a2b;
-}
-.baitalgahwa-dashboard-subnav__add {
-    margin-left: auto;
-    margin-bottom: .75rem;
-    width: 1.7rem;
-    height: 1.7rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    border: 1px solid #d8c8b7;
-    border-radius: 999px;
-    color: #8a5a2b;
-    background: #fff;
-    text-decoration: none;
-    font-size: .8rem;
-}
-.baitalgahwa-dashboard-subnav__add:hover,
-.baitalgahwa-dashboard-subnav__add:focus-visible {
-    color: #73471e;
-    border-color: #b99365;
-}
-.baitalgahwa-dashboard-panel {
-    background: #fff;
-    border: 1px solid #ebe3da;
-    border-radius: 1.25rem;
-    box-shadow: 0 .75rem 2rem rgba(48, 27, 12, .05);
-    padding: 1.5rem 1.6rem;
-}
-.baitalgahwa-dashboard-panel__title,
-.baitalgahwa-dashboard-section__title {
-    margin-bottom: .85rem;
-    color: #201813;
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-.baitalgahwa-dashboard-panel__body,
-.baitalgahwa-dashboard-section__intro {
-    color: #7c7268;
-    font-size: .96rem;
-    line-height: 1.75;
-}
-.baitalgahwa-dashboard-panel__announcement {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-.baitalgahwa-dashboard-panel__announcement-icon {
-    width: 2.7rem;
-    height: 2.7rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    border-radius: 999px;
-    background: rgba(138, 90, 43, .1);
-    color: #8a5a2b;
-}
-.baitalgahwa-dashboard-section__header {
-    display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: .2rem;
 }
-.baitalgahwa-dashboard-section__title {
-    margin-bottom: .25rem;
+.baitalgahwa-dashboard-section-title {
+    margin: 0;
+    color: #201813;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -.02em;
 }
-.baitalgahwa-activity-card {
-    position: relative;
+.baitalgahwa-dashboard-section-copy {
+    margin: .35rem 0 0;
+    color: #7c7268;
+    font-size: .88rem;
+    line-height: 1.65;
+}
+.baitalgahwa-dashboard-programmes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.baitalgahwa-dashboard-programme {
     overflow: hidden;
-    background: #fff;
-    border: 1px solid #ebe3da;
-    border-radius: 1.1rem;
-    box-shadow: 0 .85rem 2rem rgba(48, 27, 12, .06);
     transition: transform .18s ease, box-shadow .18s ease;
 }
-.baitalgahwa-activity-card:hover,
-.baitalgahwa-activity-card:focus-within {
-    transform: translateY(-4px);
-    box-shadow: 0 1rem 2.4rem rgba(48, 27, 12, .12);
+.baitalgahwa-dashboard-programme:hover,
+.baitalgahwa-dashboard-programme:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(48, 27, 12, .1);
 }
-.baitalgahwa-activity-card__media {
+.baitalgahwa-dashboard-programme__media {
     position: relative;
-    overflow: hidden;
 }
-.baitalgahwa-activity-card__image {
-    height: 12rem;
+.baitalgahwa-dashboard-programme__image {
+    height: 8.8rem;
     background-size: cover;
     background-position: center;
 }
-.baitalgahwa-activity-card__media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(18,11,8,.05), rgba(18,11,8,.18));
+.baitalgahwa-dashboard-programme__image--placeholder {
+    background:
+        radial-gradient(circle at 70% 30%, rgba(201, 162, 39, .24), transparent 20rem),
+        linear-gradient(125deg, #2a180f 0%, #5c3720 45%, #18100c 100%);
 }
-.baitalgahwa-activity-card__badge {
+.baitalgahwa-dashboard-programme__badge {
     position: absolute;
-    top: .85rem;
-    left: .85rem;
+    top: .75rem;
+    left: .75rem;
     z-index: 1;
-    padding: .28rem .7rem;
+    padding: .26rem .65rem;
     border-radius: 999px;
-    background: rgba(255,255,255,.94);
+    background: rgba(255,255,255,.95);
     color: #8a5a2b;
-    font-size: .7rem;
+    font-size: .68rem;
     font-weight: 700;
-    letter-spacing: .04em;
     text-transform: uppercase;
+    letter-spacing: .04em;
 }
-.baitalgahwa-activity-card__body {
+.baitalgahwa-dashboard-programme__body {
     display: flex;
-    min-height: 100%;
     flex-direction: column;
-    gap: .75rem;
-    padding: 1rem 1rem 1.1rem;
+    gap: .55rem;
+    padding: .9rem .95rem 1rem;
 }
-.baitalgahwa-activity-card__title {
+.baitalgahwa-dashboard-programme__title {
+    margin: 0;
+    color: #201813;
+    font-size: .94rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+.baitalgahwa-dashboard-programme__copy {
+    margin: 0;
+    color: #7c7268;
+    font-size: .8rem;
+    line-height: 1.6;
+    min-height: 3.8rem;
+}
+.baitalgahwa-dashboard-programme__meta {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    color: #8a5a2b;
+    font-size: .74rem;
+    font-weight: 600;
+}
+.baitalgahwa-dashboard-progress,
+.baitalgahwa-dashboard-members,
+.baitalgahwa-dashboard-todo,
+.baitalgahwa-dashboard-newsletter {
+    padding: 1.35rem 1.45rem;
+}
+.baitalgahwa-dashboard-progress__table {
+    margin: 0;
+    width: 100%;
+}
+.baitalgahwa-dashboard-progress__table th {
+    padding: .7rem .75rem;
+    color: #6e6154;
+    font-size: .8rem;
+    font-weight: 700;
+    border-bottom: 1px solid #ede4da;
+    white-space: nowrap;
+}
+.baitalgahwa-dashboard-progress__table td {
+    padding: .85rem .75rem;
+    font-size: .84rem;
+    border-bottom: 1px solid #f3ece5;
+    vertical-align: middle;
+}
+.baitalgahwa-dashboard-progress__course {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    min-width: 15rem;
+}
+.baitalgahwa-dashboard-progress__thumb {
+    width: 2.85rem;
+    height: 2.2rem;
+    flex: 0 0 auto;
+    border-radius: .55rem;
+    background-size: cover;
+    background-position: center;
+    background-color: #f4ece4;
+}
+.baitalgahwa-dashboard-progress__thumb--placeholder {
+    background:
+        radial-gradient(circle at 70% 30%, rgba(201, 162, 39, .2), transparent 8rem),
+        linear-gradient(125deg, #2a180f 0%, #5c3720 45%, #18100c 100%);
+}
+.baitalgahwa-dashboard-status {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: .28rem .7rem;
+    font-size: .72rem;
+    font-weight: 700;
+    background: #f5efe8;
+    color: #7b6043;
+}
+.baitalgahwa-dashboard-progress__bar {
+    position: relative;
+    width: 100%;
+    height: .5rem;
+    border-radius: 999px;
+    background: #efe5db;
+    overflow: hidden;
+}
+.baitalgahwa-dashboard-progress__bar span {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #8a5a2b, #b98651);
+}
+.baitalgahwa-dashboard-widget {
+    padding: 1.25rem 1.3rem;
+    height: 100%;
+}
+.baitalgahwa-dashboard-widget__title {
     margin: 0;
     color: #201813;
     font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.45;
+    font-weight: 800;
 }
-.baitalgahwa-activity-card__copy {
-    margin: 0;
+.baitalgahwa-dashboard-widget__sub {
+    margin: .3rem 0 0;
     color: #7c7268;
-    font-size: .88rem;
-    line-height: 1.6;
-    min-height: 4.3rem;
+    font-size: .78rem;
 }
-.baitalgahwa-activity-card__meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: .75rem;
-    margin-top: auto;
-    color: #6a5c4b;
-    font-size: .84rem;
-    font-weight: 600;
+.baitalgahwa-dashboard-donut {
+    width: 9.5rem;
+    height: 9.5rem;
+    margin: 1rem auto .9rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--bag-donut, conic-gradient(#e8e0d8 0% 100%));
+    position: relative;
 }
-.baitalgahwa-activity-card__arrow {
+.baitalgahwa-dashboard-donut::before {
+    content: "";
+    position: absolute;
+    inset: 1rem;
+    background: #fff;
+    border-radius: 50%;
+}
+.baitalgahwa-dashboard-donut__center {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+.baitalgahwa-dashboard-donut__count {
     color: #8a5a2b;
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1;
 }
-.baitalgahwa-minical {
-    margin-top: .4rem;
+.baitalgahwa-dashboard-donut__label {
+    margin-top: .3rem;
+    color: #7c7268;
+    font-size: .7rem;
 }
-.baitalgahwa-minical th {
-    color: #61574f;
-    font-size: .82rem;
-    font-weight: 700;
-    border: 0;
-    padding: .45rem .2rem;
+.baitalgahwa-dashboard-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem 1rem;
+    justify-content: center;
+    font-size: .74rem;
+    color: #5f5448;
 }
-.baitalgahwa-minical td {
-    border: 0;
-    padding: .3rem .2rem;
+.baitalgahwa-dashboard-legend__item {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
 }
-.baitalgahwa-minical__day {
-    min-width: 2rem;
-    line-height: 2rem;
+.baitalgahwa-dashboard-legend__dot {
+    width: .55rem;
+    height: .55rem;
     border-radius: 999px;
+    display: inline-block;
 }
-.baitalgahwa-minical__today {
+.baitalgahwa-dashboard-calendar {
+    margin-top: .8rem;
+}
+.baitalgahwa-dashboard-calendar th {
+    padding: .45rem .2rem;
+    border: 0;
+    color: #61574f;
+    font-size: .72rem;
+    font-weight: 700;
+}
+.baitalgahwa-dashboard-calendar td {
+    padding: .26rem .2rem;
+    border: 0;
+}
+.baitalgahwa-dashboard-calendar__day {
+    min-width: 1.95rem;
+    line-height: 1.95rem;
+    display: inline-block;
+    border-radius: 999px;
+    color: #4f453d;
+}
+.baitalgahwa-dashboard-calendar__today {
     background: #8a5a2b;
     color: #fff;
     font-weight: 700;
 }
-.baitalgahwa-member {
+.baitalgahwa-dashboard-bars {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: .6rem;
+    height: 11rem;
+    padding-top: 1rem;
+}
+.baitalgahwa-dashboard-bars__item {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .45rem;
+}
+.baitalgahwa-dashboard-bars__track {
+    width: 100%;
+    height: 8.8rem;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    border-radius: .7rem .7rem .3rem .3rem;
+    background: #f5eee6;
+    overflow: hidden;
+}
+.baitalgahwa-dashboard-bars__fill {
+    width: 1.6rem;
+    max-width: 100%;
+    border-radius: .45rem .45rem 0 0;
+    background: linear-gradient(180deg, #d7a169 0%, #8a5a2b 100%);
+}
+.baitalgahwa-dashboard-bars__label {
+    color: #6d6154;
+    font-size: .72rem;
+    font-weight: 700;
+}
+.baitalgahwa-dashboard-members-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .85rem;
+    margin-top: 1rem;
+}
+.baitalgahwa-dashboard-member {
     display: flex;
     align-items: center;
-    gap: .9rem;
-    height: 100%;
+    gap: .75rem;
     border: 1px solid #efe5db;
-    border-radius: 1rem;
-    background: #f6f1eb;
-    padding: .85rem 1rem;
-    transition: background .16s ease, border-color .16s ease;
+    border-radius: .9rem;
+    background: #faf6f1;
+    padding: .75rem .85rem;
 }
-.baitalgahwa-member__avatar .userpicture,
-.baitalgahwa-member__avatar img {
-    width: 2.7rem;
-    height: 2.7rem;
+.baitalgahwa-dashboard-member__avatar .userpicture,
+.baitalgahwa-dashboard-member__avatar img {
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 999px;
 }
-.baitalgahwa-member__copy {
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-}
-.baitalgahwa-member__name {
+.baitalgahwa-dashboard-member__name {
+    display: block;
     color: #201813;
+    font-size: .82rem;
     font-weight: 700;
 }
-.baitalgahwa-member__role {
+.baitalgahwa-dashboard-member__role {
+    display: block;
     color: #7c7268;
-    font-size: .88rem;
+    font-size: .72rem;
 }
-.baitalgahwa-inline-link {
+.baitalgahwa-dashboard-todo__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.baitalgahwa-dashboard-todo__link {
     color: #8a5a2b;
-    font-size: .9rem;
+    font-size: .78rem;
     font-weight: 700;
     text-decoration: none;
+}
+.baitalgahwa-dashboard-todo__list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+}
+.baitalgahwa-dashboard-todo__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid #f0e6dc;
+    border-radius: .95rem;
+    background: #fffaf5;
+    padding: .8rem .95rem;
+}
+.baitalgahwa-dashboard-todo__meta {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    min-width: 0;
+}
+.baitalgahwa-dashboard-todo__check {
+    width: 1.3rem;
+    height: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d7c7b6;
+    border-radius: 999px;
+    color: #8a5a2b;
+    background: #fff;
+    flex: 0 0 auto;
+}
+.baitalgahwa-dashboard-todo__name {
+    display: block;
+    color: #201813;
+    font-size: .84rem;
+    font-weight: 700;
+}
+.baitalgahwa-dashboard-todo__sub {
+    display: block;
+    color: #7c7268;
+    font-size: .72rem;
+}
+.baitalgahwa-dashboard-todo__progress {
+    min-width: 3rem;
+    color: #8a5a2b;
+    font-size: .76rem;
+    font-weight: 800;
+    text-align: right;
+}
+.baitalgahwa-dashboard-newsletter {
+    width: min(100%, 58rem);
+    margin: 0 auto;
+    text-align: center;
+}
+.baitalgahwa-dashboard-newsletter__copy {
+    max-width: 32rem;
+    margin: .4rem auto 1.4rem;
+    color: #7c7268;
+    font-size: .86rem;
+    line-height: 1.7;
+}
+.baitalgahwa-dashboard-newsletter__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    text-align: left;
+}
+.baitalgahwa-dashboard-newsletter__field {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+.baitalgahwa-dashboard-newsletter__field--full {
+    grid-column: 1 / -1;
+}
+.baitalgahwa-dashboard-newsletter label {
+    color: #4f453d;
+    font-size: .76rem;
+    font-weight: 700;
+}
+.baitalgahwa-dashboard-newsletter input,
+.baitalgahwa-dashboard-newsletter select,
+.baitalgahwa-dashboard-newsletter textarea {
+    width: 100%;
+    border: 1px solid #dfd1c3;
+    border-radius: .7rem;
+    background: #fff;
+    padding: .8rem .9rem;
+    color: #2a1d14;
+    font-size: .84rem;
+    box-shadow: none;
+}
+.baitalgahwa-dashboard-newsletter textarea {
+    min-height: 6.5rem;
+    resize: vertical;
+}
+.baitalgahwa-dashboard-newsletter__submit {
+    min-width: 12rem;
+    margin-top: 1.3rem;
+    border: 0;
+    border-radius: .7rem;
+    background: #8a5a2b;
+    color: #fff;
+    font-size: .84rem;
+    font-weight: 700;
+    padding: .8rem 1.4rem;
+}
+.baitalgahwa-dashboard-newsletter__note {
+    margin-top: 1rem;
+    color: #7c7268;
+    font-size: .76rem;
 }
 .baitalgahwa-dashboard-hidden-content {
     display: none;
@@ -413,54 +537,43 @@ body#page-my-index #topofscroll.main-inner {
         border-left: 1px solid #f0e9e2;
     }
 }
+@media (max-width: 1199.98px) {
+    .baitalgahwa-dashboard-members-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
 @media (max-width: 991.98px) {
     .baitalgahwa-dashboard {
         padding-inline: .9rem;
     }
-    .baitalgahwa-dashboard-hero__media {
-        min-height: 17rem;
-    }
-    .baitalgahwa-dashboard-stats .col-6:nth-child(n + 3) .baitalgahwa-dashboard-stat {
-        border-top: 1px solid #f0e9e2;
-    }
-    .baitalgahwa-dashboard-stats .col-6:nth-child(even) .baitalgahwa-dashboard-stat {
-        border-left: 1px solid #f0e9e2;
+    .baitalgahwa-dashboard-section-head,
+    .baitalgahwa-dashboard-todo__head {
+        align-items: start;
+        flex-direction: column;
     }
 }
 @media (max-width: 767.98px) {
     .baitalgahwa-dashboard {
-        padding-top: 1.1rem;
-        padding-bottom: 2.5rem;
         padding-inline: .7rem;
+        padding-bottom: 2.4rem;
     }
-    .baitalgahwa-dashboard-heading__title {
-        font-size: 1.7rem;
-    }
-    .baitalgahwa-dashboard-hero__media {
-        min-height: 14rem;
-        border-radius: 1rem;
-    }
-    .baitalgahwa-dashboard-hero__content {
-        padding: 1.1rem;
-    }
-    .baitalgahwa-dashboard-stats,
-    .baitalgahwa-dashboard-panel,
-    .baitalgahwa-activity-card {
-        border-radius: 1rem;
-    }
-    .baitalgahwa-dashboard-stat {
+    .baitalgahwa-dashboard-progress,
+    .baitalgahwa-dashboard-members,
+    .baitalgahwa-dashboard-todo,
+    .baitalgahwa-dashboard-newsletter,
+    .baitalgahwa-dashboard-widget {
         padding: 1rem;
     }
-    .baitalgahwa-dashboard-stat__value {
-        font-size: 1.5rem;
+    .baitalgahwa-dashboard-members-grid,
+    .baitalgahwa-dashboard-newsletter__grid {
+        grid-template-columns: minmax(0, 1fr);
     }
-    .baitalgahwa-dashboard-section__header,
-    .baitalgahwa-dashboard-hero__toolbar {
-        align-items: flex-start;
-        flex-direction: column;
+    .baitalgahwa-dashboard-progress__table {
+        display: block;
+        overflow-x: auto;
     }
-    .baitalgahwa-dashboard-subnav {
-        gap: 1rem;
+    .baitalgahwa-dashboard-stat {
+        padding: .95rem 1rem;
     }
 }
 </style>
@@ -472,13 +585,9 @@ body#page-my-index #topofscroll.main-inner {
     {{#courseindex}}
         {{< theme_boost/drawer }}
             {{$id}}theme_boost-drawers-courseindex{{/id}}
-            {{$drawerheadercontent}}
-                {{> theme_boost/courseindexdrawercontrols}}
-            {{/drawerheadercontent}}
+            {{$drawerheadercontent}}{{> theme_boost/courseindexdrawercontrols}}{{/drawerheadercontent}}
             {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
-            {{$drawercontent}}
-                {{{courseindex}}}
-            {{/drawercontent}}
+            {{$drawercontent}}{{{courseindex}}}{{/drawercontent}}
             {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
             {{$drawerstate}}show-drawer-left{{/drawerstate}}
             {{$tooltipplacement}}right{{/tooltipplacement}}
@@ -527,42 +636,7 @@ body#page-my-index #topofscroll.main-inner {
             {{{ output.full_header }}}
             <main class="baitalgahwa-dashboard" id="bag-dashboard-overview">
                 <div class="baitalgahwa-dashboard-shell">
-                    <section class="baitalgahwa-dashboard-heading">
-                        <p class="baitalgahwa-dashboard-heading__eyebrow mb-2">{{ dashboardwelcome }}</p>
-                        <h1 class="baitalgahwa-dashboard-heading__title mb-0">{{#has_featuredcourse}}{{ featuredcourse.fullname }}{{/has_featuredcourse}}{{^has_featuredcourse}}{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}{{/has_featuredcourse}}</h1>
-                    </section>
-
-                    <section class="baitalgahwa-dashboard-hero">
-                        <div class="baitalgahwa-dashboard-hero__toolbar">
-                            <span class="baitalgahwa-dashboard-hero__tag">{{ dashboard_featured_tag }}</span>
-                            {{#has_featuredcourse}}
-                            <a href="{{{ featuredcourse.url }}}" class="btn btn-primary baitalgahwa-dashboard-hero__cta">{{#str}}gotocourse, theme_baitalgahwa{{/str}}</a>
-                            {{/has_featuredcourse}}
-                        </div>
-                        <div class="baitalgahwa-dashboard-hero__media">
-                            {{#has_featuredcourse}}
-                                {{#featuredcourse.imageurl}}
-                                <div class="baitalgahwa-dashboard-hero__image" style="background-image:url('{{{ featuredcourse.imageurl }}}');"></div>
-                                {{/featuredcourse.imageurl}}
-                                {{^featuredcourse.imageurl}}
-                                <div class="baitalgahwa-dashboard-hero__image baitalgahwa-dashboard-hero__image--placeholder"></div>
-                                {{/featuredcourse.imageurl}}
-                            {{/has_featuredcourse}}
-                            {{^has_featuredcourse}}
-                            <div class="baitalgahwa-dashboard-hero__image baitalgahwa-dashboard-hero__image--placeholder"></div>
-                            {{/has_featuredcourse}}
-                            <div class="baitalgahwa-dashboard-hero__overlay"></div>
-                            <div class="baitalgahwa-dashboard-hero__content">
-                                <h2 class="baitalgahwa-dashboard-hero__title">{{#has_featuredcourse}}{{ featuredcourse.fullname }}{{/has_featuredcourse}}{{^has_featuredcourse}}{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}{{/has_featuredcourse}}</h2>
-                                {{#has_featuredcourse}}
-                                <p class="baitalgahwa-dashboard-hero__meta mb-0">
-                                    <span class="baitalgahwa-dashboard-hero__avatar"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                    {{#featuredcourse.categoryname}}{{ featuredcourse.categoryname }}{{/featuredcourse.categoryname}}{{^featuredcourse.categoryname}}Bait Al Gahwa{{/featuredcourse.categoryname}}
-                                </p>
-                                {{/has_featuredcourse}}
-                            </div>
-                        </div>
-                    </section>
+                    <h1 class="baitalgahwa-dashboard-title">{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}</h1>
 
                     <section class="baitalgahwa-dashboard-stats" aria-label="{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}">
                         <div class="row g-0" role="list">
@@ -577,7 +651,7 @@ body#page-my-index #topofscroll.main-inner {
                             </div>
                             <div class="col-6 col-lg-3" role="listitem">
                                 <article class="baitalgahwa-dashboard-stat">
-                                    <span class="baitalgahwa-dashboard-stat__icon" aria-hidden="true"><i class="fa fa-calendar-o"></i></span>
+                                    <span class="baitalgahwa-dashboard-stat__icon" aria-hidden="true"><i class="fa fa-calendar-check-o"></i></span>
                                     <div>
                                         <div class="baitalgahwa-dashboard-stat__value">{{ dashboard_stats.completed_fmt }}</div>
                                         <div class="baitalgahwa-dashboard-stat__label">{{#str}}dashboard_stat_completed, theme_baitalgahwa{{/str}}</div>
@@ -605,100 +679,135 @@ body#page-my-index #topofscroll.main-inner {
                         </div>
                     </section>
 
-                    <nav class="baitalgahwa-dashboard-subnav" aria-label="{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}">
-                        <a class="baitalgahwa-dashboard-subnav__link is-active" href="#bag-dashboard-overview">Courses</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-introduction">Settings</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-members">Participants</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-calendar">Grades</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-activities">Activities</a>
-                        <a class="baitalgahwa-dashboard-subnav__add" href="#bag-dashboard-activities" aria-label="More"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </nav>
-
-                    <section class="baitalgahwa-dashboard-panel" id="bag-dashboard-introduction">
-                        <h2 class="baitalgahwa-dashboard-panel__title">{{ dashboard_intro_heading }}</h2>
-                        <p class="baitalgahwa-dashboard-panel__body mb-0">{{ dashboard_intro_text }}</p>
-                    </section>
-
-                    <section class="baitalgahwa-dashboard-panel baitalgahwa-dashboard-panel--announcement">
-                        <div class="baitalgahwa-dashboard-panel__announcement">
-                            <span class="baitalgahwa-dashboard-panel__announcement-icon" aria-hidden="true"><i class="fa fa-bullhorn"></i></span>
+                    <section class="baitalgahwa-dashboard-panel">
+                        <div class="baitalgahwa-dashboard-section-head">
                             <div>
-                                <h2 class="baitalgahwa-dashboard-panel__title mb-1">{{ dashboard_announcement_title }}</h2>
-                                <p class="baitalgahwa-dashboard-panel__body mb-0">{{ dashboard_announcement_body }}</p>
+                                <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_training_title, theme_baitalgahwa{{/str}}</h2>
+                                <p class="baitalgahwa-dashboard-section-copy">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
                             </div>
                         </div>
-                    </section>
-
-                    <section class="baitalgahwa-dashboard-section" id="bag-dashboard-activities" aria-labelledby="bag-dashboard-activities-title">
-                        <div class="baitalgahwa-dashboard-section__header">
-                            <div>
-                                <h2 id="bag-dashboard-activities-title" class="baitalgahwa-dashboard-section__title">{{ dashboard_activity_heading }}</h2>
-                                <p class="baitalgahwa-dashboard-section__intro mb-0">{{ dashboard_activity_intro }}</p>
-                            </div>
-                        </div>
-                        {{#has_activity_courses}}
-                        <div class="row g-4">
-                            {{#activity_courses}}
+                        {{#has_dashboard_programmes}}
+                        <div class="row g-3">
+                            {{#dashboard_programmes}}
                             <div class="col-md-6 col-xl-3">
-                                <article class="baitalgahwa-activity-card h-100">
-                                    <div class="baitalgahwa-activity-card__media">
+                                <article class="baitalgahwa-dashboard-programme h-100">
+                                    <div class="baitalgahwa-dashboard-programme__media">
                                         {{#imageurl}}
-                                        <div class="baitalgahwa-activity-card__image" style="background-image:url('{{{ imageurl }}}');"></div>
+                                        <div class="baitalgahwa-dashboard-programme__image" style="background-image:url('{{{ imageurl }}}');"></div>
                                         {{/imageurl}}
                                         {{^imageurl}}
-                                        <div class="baitalgahwa-activity-card__image baitalgahwa-activity-card__image--placeholder"></div>
+                                        <div class="baitalgahwa-dashboard-programme__image baitalgahwa-dashboard-programme__image--placeholder"></div>
                                         {{/imageurl}}
-                                        {{#isnew}}<span class="baitalgahwa-activity-card__badge">{{#str}}course_new, theme_baitalgahwa{{/str}}</span>{{/isnew}}
+                                        {{#isnew}}<span class="baitalgahwa-dashboard-programme__badge">{{#str}}course_new, theme_baitalgahwa{{/str}}</span>{{/isnew}}
                                     </div>
-                                    <div class="baitalgahwa-activity-card__body">
-                                        <h3 class="baitalgahwa-activity-card__title"><a class="stretched-link text-reset text-decoration-none" href="{{{ url }}}">{{ fullname }}</a></h3>
-                                        {{#summary}}<p class="baitalgahwa-activity-card__copy">{{ summary }}</p>{{/summary}}
-                                        <div class="baitalgahwa-activity-card__meta">
+                                    <div class="baitalgahwa-dashboard-programme__body">
+                                        <h3 class="baitalgahwa-dashboard-programme__title"><a class="stretched-link text-reset text-decoration-none" href="{{{ url }}}">{{ fullname }}</a></h3>
+                                        {{#summary}}<p class="baitalgahwa-dashboard-programme__copy">{{ summary }}</p>{{/summary}}
+                                        <div class="baitalgahwa-dashboard-programme__meta">
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
                                             <span>{{#categoryname}}{{ categoryname }}{{/categoryname}}{{^categoryname}}Bait Al Gahwa{{/categoryname}}</span>
-                                            <span class="baitalgahwa-activity-card__arrow" aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
                                         </div>
                                     </div>
                                 </article>
                             </div>
-                            {{/activity_courses}}
+                            {{/dashboard_programmes}}
                         </div>
-                        {{/has_activity_courses}}
-                        {{^has_activity_courses}}
-                        <div class="baitalgahwa-dashboard-panel">
-                            <p class="baitalgahwa-dashboard-panel__body mb-0">{{#str}}nocourses, theme_baitalgahwa{{/str}}</p>
+                        {{/has_dashboard_programmes}}
+                        {{^has_dashboard_programmes}}
+                        <p class="baitalgahwa-dashboard-section-copy mb-0">{{#str}}nocourses, theme_baitalgahwa{{/str}}</p>
+                        {{/has_dashboard_programmes}}
+                    </section>
+
+                    <section class="baitalgahwa-dashboard-progress">
+                        <div class="baitalgahwa-dashboard-section-head">
+                            <div>
+                                <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_progress_title, theme_baitalgahwa{{/str}}</h2>
+                                <p class="baitalgahwa-dashboard-section-copy">{{#str}}dashboard_activity_intro, theme_baitalgahwa{{/str}}</p>
+                            </div>
                         </div>
-                        {{/has_activity_courses}}
+                        {{#has_dashboard_progress}}
+                        <div class="table-responsive">
+                            <table class="baitalgahwa-dashboard-progress__table">
+                                <thead>
+                                    <tr>
+                                        <th>{{#str}}dashboard_col_course, theme_baitalgahwa{{/str}}</th>
+                                        <th>{{#str}}dashboard_col_status, theme_baitalgahwa{{/str}}</th>
+                                        <th>{{#str}}dashboard_col_progress, theme_baitalgahwa{{/str}}</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#dashboard_progress}}
+                                    <tr>
+                                        <td>
+                                            <div class="baitalgahwa-dashboard-progress__course">
+                                                {{#imageurl}}<span class="baitalgahwa-dashboard-progress__thumb" style="background-image:url('{{{ imageurl }}}');"></span>{{/imageurl}}
+                                                {{^imageurl}}<span class="baitalgahwa-dashboard-progress__thumb baitalgahwa-dashboard-progress__thumb--placeholder"></span>{{/imageurl}}
+                                                <a class="text-reset text-decoration-none fw-semibold" href="{{{ url }}}">{{ fullname }}</a>
+                                            </div>
+                                        </td>
+                                        <td><span class="baitalgahwa-dashboard-status">{{ status }}</span></td>
+                                        <td>
+                                            <div class="baitalgahwa-dashboard-progress__bar" aria-hidden="true">
+                                                <span style="width: {{ progressint }}%;"></span>
+                                            </div>
+                                        </td>
+                                        <td class="fw-bold text-muted">{{ progressint }}%</td>
+                                    </tr>
+                                    {{/dashboard_progress}}
+                                </tbody>
+                            </table>
+                        </div>
+                        {{/has_dashboard_progress}}
+                        {{^has_dashboard_progress}}
+                        <p class="baitalgahwa-dashboard-section-copy mb-0">{{#str}}nocourses, theme_baitalgahwa{{/str}}</p>
+                        {{/has_dashboard_progress}}
                     </section>
 
                     <div class="row g-4">
-                        <div class="col-lg-5" id="bag-dashboard-calendar">
-                            <section class="baitalgahwa-dashboard-panel baitalgahwa-dashboard-panel--calendar h-100">
-                                <div class="baitalgahwa-dashboard-section__header">
-                                    <div>
-                                        <h2 class="baitalgahwa-dashboard-section__title">{{#str}}calendar, calendar{{/str}}</h2>
-                                        <p class="baitalgahwa-dashboard-section__intro mb-0">{{ dashboard_calendar.title }}</p>
+                        <div class="col-lg-4">
+                            <section class="baitalgahwa-dashboard-widget">
+                                <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}dashboard_donut_title, theme_baitalgahwa{{/str}}</h2>
+                                <p class="baitalgahwa-dashboard-widget__sub">{{#str}}dashboard_donut_sub, theme_baitalgahwa{{/str}}</p>
+                                <div class="baitalgahwa-dashboard-donut" style="--bag-donut: {{ dashboard_donut.conic }};">
+                                    <div class="baitalgahwa-dashboard-donut__center">
+                                        <div class="baitalgahwa-dashboard-donut__count">{{ dashboard_donut.centerlabel }}</div>
+                                        <div class="baitalgahwa-dashboard-donut__label">{{#str}}dashboard_stat_enrolled, theme_baitalgahwa{{/str}}</div>
                                     </div>
-                                    <a class="baitalgahwa-inline-link" href="{{{ config.calurl }}}">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
                                 </div>
-                                <table class="table table-sm text-center small baitalgahwa-minical mb-0" role="grid" aria-label="{{#str}}calendar, calendar{{/str}}">
+                                <div class="baitalgahwa-dashboard-legend">
+                                    {{#dashboard_donut.segments}}
+                                    <span class="baitalgahwa-dashboard-legend__item"><span class="baitalgahwa-dashboard-legend__dot" style="background: {{ color }};"></span>{{ label }}</span>
+                                    {{/dashboard_donut.segments}}
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-4">
+                            <section class="baitalgahwa-dashboard-widget">
+                                <div class="baitalgahwa-dashboard-section-head">
+                                    <div>
+                                        <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}calendar, calendar{{/str}}</h2>
+                                        <p class="baitalgahwa-dashboard-widget__sub">{{ dashboard_calendar.title }}</p>
+                                    </div>
+                                    <a class="text-decoration-none fw-bold small" href="{{{ config.calurl }}}" style="color:#8a5a2b;">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
+                                </div>
+                                <table class="table table-sm text-center baitalgahwa-dashboard-calendar mb-0" role="grid" aria-label="{{#str}}calendar, calendar{{/str}}">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} sunday, calendar {{/str}}">{{#str}} dashboard_cal_s, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} monday, calendar {{/str}}">{{#str}} dashboard_cal_m, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} tuesday, calendar {{/str}}">{{#str}} dashboard_cal_tu, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} wednesday, calendar {{/str}}">{{#str}} dashboard_cal_w, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} thursday, calendar {{/str}}">{{#str}} dashboard_cal_th, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} friday, calendar {{/str}}">{{#str}} dashboard_cal_f, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} saturday, calendar {{/str}}">{{#str}} dashboard_cal_sa, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th><abbr title="{{#str}} sunday, calendar {{/str}}">{{#str}} dashboard_cal_s, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th><abbr title="{{#str}} monday, calendar {{/str}}">{{#str}} dashboard_cal_m, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th><abbr title="{{#str}} tuesday, calendar {{/str}}">{{#str}} dashboard_cal_tu, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th><abbr title="{{#str}} wednesday, calendar {{/str}}">{{#str}} dashboard_cal_w, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th><abbr title="{{#str}} thursday, calendar {{/str}}">{{#str}} dashboard_cal_th, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th><abbr title="{{#str}} friday, calendar {{/str}}">{{#str}} dashboard_cal_f, theme_baitalgahwa {{/str}}</abbr></th>
+                                            <th><abbr title="{{#str}} saturday, calendar {{/str}}">{{#str}} dashboard_cal_sa, theme_baitalgahwa {{/str}}</abbr></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {{#dashboard_calendar.weeks}}
                                         <tr>
                                             {{# . }}
-                                            <td class="p-1">
-                                                {{#inmonth}}<span class="baitalgahwa-minical__day d-inline-block {{#istoday}}baitalgahwa-minical__today{{/istoday}}">{{ day }}</span>{{/inmonth}}
-                                            </td>
+                                            <td>{{#inmonth}}<span class="baitalgahwa-dashboard-calendar__day {{#istoday}}baitalgahwa-dashboard-calendar__today{{/istoday}}">{{ day }}</span>{{/inmonth}}</td>
                                             {{/ . }}
                                         </tr>
                                         {{/dashboard_calendar.weeks}}
@@ -706,36 +815,111 @@ body#page-my-index #topofscroll.main-inner {
                                 </table>
                             </section>
                         </div>
-                        <div class="col-lg-7" id="bag-dashboard-members">
-                            <section class="baitalgahwa-dashboard-panel h-100">
-                                <div class="baitalgahwa-dashboard-section__header">
-                                    <div>
-                                        <h2 class="baitalgahwa-dashboard-section__title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
-                                        <p class="baitalgahwa-dashboard-section__intro mb-0">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
+                        <div class="col-lg-4">
+                            <section class="baitalgahwa-dashboard-widget">
+                                <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}dashboard_quiz_title, theme_baitalgahwa{{/str}}</h2>
+                                <div class="baitalgahwa-dashboard-bars">
+                                    {{#dashboard_quiz_bars}}
+                                    <div class="baitalgahwa-dashboard-bars__item">
+                                        <div class="baitalgahwa-dashboard-bars__track">
+                                            <div class="baitalgahwa-dashboard-bars__fill" style="height: {{ pct }}%;"></div>
+                                        </div>
+                                        <span class="baitalgahwa-dashboard-bars__label">{{ t }}</span>
                                     </div>
-                                    <a class="baitalgahwa-inline-link" href="{{{ config.membersurl }}}">{{ dashboard_members_link }}</a>
+                                    {{/dashboard_quiz_bars}}
                                 </div>
-                                {{#has_dashboard_members}}
-                                <div class="row g-3">
-                                    {{#dashboard_members}}
-                                    <div class="col-md-6">
-                                        <a class="baitalgahwa-member text-reset text-decoration-none" href="{{{ profileurl }}}">
-                                            <span class="baitalgahwa-member__avatar">{{{ avatar }}}</span>
-                                            <span class="baitalgahwa-member__copy">
-                                                <span class="baitalgahwa-member__name">{{ fullname }}</span>
-                                                <span class="baitalgahwa-member__role">{{ role }}</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    {{/dashboard_members}}
-                                </div>
-                                {{/has_dashboard_members}}
-                                {{^has_dashboard_members}}
-                                <p class="baitalgahwa-dashboard-panel__body mb-0">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
-                                {{/has_dashboard_members}}
                             </section>
                         </div>
                     </div>
+
+                    <section class="baitalgahwa-dashboard-members">
+                        <div class="baitalgahwa-dashboard-section-head">
+                            <div>
+                                <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
+                                <p class="baitalgahwa-dashboard-section-copy">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
+                            </div>
+                        </div>
+                        {{#has_dashboard_members}}
+                        <div class="baitalgahwa-dashboard-members-grid">
+                            {{#dashboard_members}}
+                            <a class="baitalgahwa-dashboard-member text-reset text-decoration-none" href="{{{ profileurl }}}">
+                                <span class="baitalgahwa-dashboard-member__avatar">{{{ avatar }}}</span>
+                                <span>
+                                    <span class="baitalgahwa-dashboard-member__name">{{ fullname }}</span>
+                                    <span class="baitalgahwa-dashboard-member__role">{{ role }}</span>
+                                </span>
+                            </a>
+                            {{/dashboard_members}}
+                        </div>
+                        {{/has_dashboard_members}}
+                        {{^has_dashboard_members}}
+                        <p class="baitalgahwa-dashboard-section-copy mb-0">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
+                        {{/has_dashboard_members}}
+                    </section>
+
+                    <section class="baitalgahwa-dashboard-todo">
+                        <div class="baitalgahwa-dashboard-todo__head">
+                            <div>
+                                <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_todo_title, theme_baitalgahwa{{/str}}</h2>
+                                <p class="baitalgahwa-dashboard-section-copy">{{#str}}dashboard_todo_body, theme_baitalgahwa{{/str}}</p>
+                            </div>
+                            <a class="baitalgahwa-dashboard-todo__link" href="{{{ config.coursetodo }}}">{{#str}}dashboard_todo_link, theme_baitalgahwa{{/str}}</a>
+                        </div>
+                        {{#has_dashboard_todo}}
+                        <div class="baitalgahwa-dashboard-todo__list">
+                            {{#dashboard_todo_items}}
+                            <div class="baitalgahwa-dashboard-todo__item">
+                                <div class="baitalgahwa-dashboard-todo__meta">
+                                    <span class="baitalgahwa-dashboard-todo__check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                    <span>
+                                        <span class="baitalgahwa-dashboard-todo__name">{{ fullname }}</span>
+                                        <span class="baitalgahwa-dashboard-todo__sub">{{ status }}</span>
+                                    </span>
+                                </div>
+                                <span class="baitalgahwa-dashboard-todo__progress">{{ progressint }}%</span>
+                            </div>
+                            {{/dashboard_todo_items}}
+                        </div>
+                        {{/has_dashboard_todo}}
+                        {{^has_dashboard_todo}}
+                        <p class="baitalgahwa-dashboard-section-copy mb-0">{{#str}}dashboard_todo_body, theme_baitalgahwa{{/str}}</p>
+                        {{/has_dashboard_todo}}
+                    </section>
+
+                    <section class="baitalgahwa-dashboard-newsletter">
+                        <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_news_title, theme_baitalgahwa{{/str}}</h2>
+                        <p class="baitalgahwa-dashboard-newsletter__copy">{{#str}}dashboard_news_intro, theme_baitalgahwa{{/str}}</p>
+                        <form class="baitalgahwa-dashboard-newsletter__form" data-bag-newsletter-form data-mailto="{{ footeremail }}">
+                            <div class="baitalgahwa-dashboard-newsletter__grid">
+                                <div class="baitalgahwa-dashboard-newsletter__field">
+                                    <label for="bag-news-name">{{#str}}dashboard_news_name, theme_baitalgahwa{{/str}}</label>
+                                    <input id="bag-news-name" name="name" type="text" placeholder="{{#str}}dashboard_news_name_placeholder, theme_baitalgahwa{{/str}}">
+                                </div>
+                                <div class="baitalgahwa-dashboard-newsletter__field">
+                                    <label for="bag-news-email">{{#str}}dashboard_news_email, theme_baitalgahwa{{/str}}</label>
+                                    <input id="bag-news-email" name="email" type="email" placeholder="{{#str}}dashboard_news_email_placeholder, theme_baitalgahwa{{/str}}">
+                                </div>
+                                <div class="baitalgahwa-dashboard-newsletter__field">
+                                    <label for="bag-news-topic">{{#str}}dashboard_news_topic, theme_baitalgahwa{{/str}}</label>
+                                    <select id="bag-news-topic" name="topic">
+                                        {{#dashboard_news_options}}
+                                        <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                        {{/dashboard_news_options}}
+                                    </select>
+                                </div>
+                                <div class="baitalgahwa-dashboard-newsletter__field">
+                                    <label for="bag-news-course">{{#str}}dashboard_news_course, theme_baitalgahwa{{/str}}</label>
+                                    <input id="bag-news-course" name="course" type="text" placeholder="{{#str}}dashboard_news_course_placeholder, theme_baitalgahwa{{/str}}">
+                                </div>
+                                <div class="baitalgahwa-dashboard-newsletter__field baitalgahwa-dashboard-newsletter__field--full">
+                                    <label for="bag-news-message">{{#str}}dashboard_news_message, theme_baitalgahwa{{/str}}</label>
+                                    <textarea id="bag-news-message" name="message" placeholder="{{#str}}dashboard_news_message_placeholder, theme_baitalgahwa{{/str}}"></textarea>
+                                </div>
+                            </div>
+                            <button class="baitalgahwa-dashboard-newsletter__submit" type="submit" {{^footeremail}}disabled{{/footeremail}}>{{#str}}dashboard_news_cta, theme_baitalgahwa{{/str}}</button>
+                            {{^footeremail}}<p class="baitalgahwa-dashboard-newsletter__note">{{#str}}dashboard_news_admin, theme_baitalgahwa{{/str}}</p>{{/footeremail}}
+                        </form>
+                    </section>
 
                     {{#hasmaincontent}}
                     <div id="page-content" class="baitalgahwa-dashboard-hidden-content" hidden aria-hidden="true">
@@ -756,6 +940,29 @@ M.util.js_pending('theme_boost/loader');
 require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'], function(Loader, Drawer, Bait) {
     Drawer.init();
     Bait.init();
+    document.querySelectorAll('[data-bag-newsletter-form]').forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var address = form.getAttribute('data-mailto');
+            if (!address) {
+                return;
+            }
+            var name = form.querySelector('[name=\"name\"]').value.trim();
+            var email = form.querySelector('[name=\"email\"]').value.trim();
+            var topic = form.querySelector('[name=\"topic\"]').value;
+            var course = form.querySelector('[name=\"course\"]').value.trim();
+            var message = form.querySelector('[name=\"message\"]').value.trim();
+            var subject = topic ? 'LMS Newsletter: ' + topic : 'LMS Newsletter';
+            var lines = [
+                'Name: ' + (name || '-'),
+                'Email: ' + (email || '-'),
+                'Course: ' + (course || '-'),
+                '',
+                message || '-'
+            ];
+            window.location.href = 'mailto:' + address + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\\n'));
+        });
+    });
     M.util.js_complete('theme_boost/loader');
 });
 {{/js}}

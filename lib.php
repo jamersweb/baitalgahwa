@@ -392,6 +392,90 @@ function theme_baitalgahwa_format_course_for_template($c): array {
 }
 
 /**
+ * Shared learning context used by the custom dashboard and My Courses screens.
+ *
+ * @param int $userid
+ * @return array<string, mixed>
+ */
+function theme_baitalgahwa_get_learning_page_context(int $userid): array {
+    global $USER;
+    $context = [];
+    $user = ((int) $USER->id === $userid) ? $USER : \core_user::get_user($userid);
+    $context['dashboardwelcome'] = get_string('dashboardwelcome', 'theme_baitalgahwa', fullname($user));
+    $context['dashboard_featured_tag'] = get_string('dashboard_featured_tag', 'theme_baitalgahwa');
+    $context['dashboard_overview_tab'] = get_string('dashboard_overview_tab', 'theme_baitalgahwa');
+    $context['dashboard_intro_heading'] = get_string('dashboard_intro_heading', 'theme_baitalgahwa');
+    $context['dashboard_intro_fallback'] = get_string('dashboard_intro_fallback', 'theme_baitalgahwa');
+    $context['dashboard_announcement_title'] = get_string('dashboard_announcement_title', 'theme_baitalgahwa');
+    $context['dashboard_announcement_body'] = get_string('dashboard_announcement_body', 'theme_baitalgahwa');
+    $context['dashboard_activity_heading'] = get_string('dashboard_activity_heading', 'theme_baitalgahwa');
+    $context['dashboard_activity_intro'] = get_string('dashboard_activity_intro', 'theme_baitalgahwa');
+    $context['dashboard_members_link'] = get_string('dashboard_members_link', 'theme_baitalgahwa');
+    $context['dashboard_stats'] = theme_baitalgahwa_get_dashboard_stats($userid);
+    $context['dashboard_progress'] = theme_baitalgahwa_get_dashboard_progress_rows($userid, 10);
+    $context['has_dashboard_progress'] = !empty($context['dashboard_progress']);
+    $context['dashboard_donut'] = theme_baitalgahwa_get_dashboard_donut($userid);
+    $context['dashboard_quiz_bars'] = theme_baitalgahwa_get_dashboard_quiz_bars($userid);
+    $context['dashboard_calendar'] = theme_baitalgahwa_get_dashboard_calendar();
+    $context['dashboard_members'] = theme_baitalgahwa_get_dashboard_recent_users(8, $userid);
+    $context['has_dashboard_members'] = !empty($context['dashboard_members']);
+    $context['news_mail_subject'] = rawurlencode(get_string('dashboard_news_title', 'theme_baitalgahwa'));
+    $context['mycourses'] = theme_baitalgahwa_get_featured_courses(8);
+    $context['has_mycourses'] = !empty($context['mycourses']);
+    $context['dashboard_programmes'] = array_slice($context['mycourses'], 0, 4);
+    $context['has_dashboard_programmes'] = !empty($context['dashboard_programmes']);
+    $context['featuredcourse'] = [];
+    $context['has_featuredcourse'] = false;
+    $context['activity_courses'] = [];
+    $context['has_activity_courses'] = false;
+    $context['dashboard_intro_text'] = $context['dashboard_intro_fallback'];
+    $context['dashboard_todo_items'] = [];
+    $context['has_dashboard_todo'] = false;
+    $context['dashboard_news_options'] = [
+        [
+            'value' => 'questions',
+            'label' => get_string('dashboard_news_option_questions', 'theme_baitalgahwa'),
+            'selected' => true,
+        ],
+        [
+            'value' => 'feedback',
+            'label' => get_string('dashboard_news_option_feedback', 'theme_baitalgahwa'),
+        ],
+        [
+            'value' => 'support',
+            'label' => get_string('dashboard_news_option_support', 'theme_baitalgahwa'),
+        ],
+    ];
+    foreach ($context['dashboard_progress'] as $row) {
+        if ($row['statuskey'] === 'done') {
+            continue;
+        }
+        $context['dashboard_todo_items'][] = $row;
+        if (count($context['dashboard_todo_items']) >= 3) {
+            break;
+        }
+    }
+    if (empty($context['dashboard_todo_items'])) {
+        $context['dashboard_todo_items'] = array_slice($context['dashboard_progress'], 0, 3);
+    }
+    $context['has_dashboard_todo'] = !empty($context['dashboard_todo_items']);
+    $context['featuredcourse'] = $context['mycourses'][0] ?? [];
+    $context['has_featuredcourse'] = !empty($context['featuredcourse']);
+    if (!empty($context['mycourses'])) {
+        $context['activity_courses'] = array_slice($context['mycourses'], 0, 4);
+        $context['has_activity_courses'] = !empty($context['activity_courses']);
+        if (!empty($context['featuredcourse']['summary'])) {
+            $context['dashboard_intro_text'] = $context['featuredcourse']['summary'];
+        }
+    } else if (!empty($context['dashboard_progress'])) {
+        $context['featuredcourse'] = $context['dashboard_progress'][0];
+        $context['has_featuredcourse'] = true;
+    }
+    $context['dashboard_news_mailto'] = '';
+    return $context;
+}
+
+/**
  * User dashboard: aggregate stats (enrolled, in progress, completed, certificates).
  *
  * @param int $userid
