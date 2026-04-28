@@ -91,12 +91,20 @@ body.pagelayout-login.theme {
     max-width: 9rem;
     height: auto;
 }
+.pagelayout-login .baitalgahwa-login__logo-sub {
+    margin-top: -0.15rem;
+    margin-bottom: 0.95rem;
+    font-size: 0.44rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #8d7b6a;
+}
 .pagelayout-login .baitalgahwa-auth-header {
     margin-bottom: 2rem !important;
 }
 .pagelayout-login .baitalgahwa-auth-title {
     color: #1f1f1f;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: 0;
@@ -105,7 +113,7 @@ body.pagelayout-login.theme {
     max-width: 19rem;
     margin-inline: auto;
     color: #757575 !important;
-    font-size: 0.8rem;
+    font-size: 0.1rem;
     line-height: 1.6;
 }
 .pagelayout-login .baitalgahwa-auth-link {
@@ -144,6 +152,41 @@ body.pagelayout-login.theme {
 .pagelayout-login .baitalgahwa-input::placeholder {
     color: #6d6d6d;
     opacity: 1;
+}
+.pagelayout-login .baitalgahwa-password-wrap {
+    position: relative;
+}
+.pagelayout-login .baitalgahwa-input--password {
+    padding-right: 2.9rem;
+}
+.pagelayout-login .baitalgahwa-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #8d8d8d;
+    cursor: pointer;
+}
+.pagelayout-login .baitalgahwa-password-toggle__icon {
+    width: 1rem;
+    height: 1rem;
+}
+.pagelayout-login .baitalgahwa-password-toggle__icon--eyeoff {
+    display: none;
+}
+.pagelayout-login .baitalgahwa-password-toggle.is-visible .baitalgahwa-password-toggle__icon--eye {
+    display: none;
+}
+.pagelayout-login .baitalgahwa-password-toggle.is-visible .baitalgahwa-password-toggle__icon--eyeoff {
+    display: block;
 }
 .pagelayout-login .baitalgahwa-field-label {
     margin-bottom: 0.45rem !important;
@@ -297,9 +340,11 @@ body.pagelayout-login.theme {
                     <div class="baitalgahwa-auth-header text-center mb-4">
                         {{#themelogourl}}
                         <img class="baitalgahwa-login__logo mb-3" src="{{{ themelogourl }}}" alt="{{ sitename }}" width="200" height="56" loading="eager" decoding="async">
+                        <div class="baitalgahwa-login__logo-sub">Bait Al Qahwa</div>
                         {{/themelogourl}}
                         {{^themelogourl}}
                         <h1 class="h3 mb-1 baitalgahwa-auth-typed">{{ sitename }}</h1>
+                        <div class="baitalgahwa-login__logo-sub">Bait Al Qahwa</div>
                         {{/themelogourl}}
 
                         {{#is_signup_page}}
@@ -383,6 +428,26 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             '</span>' +
         '</div>';
 
+    var bindPasswordToggle = function() {
+        var toggle = document.querySelector('[data-password-toggle]');
+        if (!toggle || toggle.dataset.bound === '1') {
+            return;
+        }
+        var targetId = toggle.getAttribute('data-target');
+        var input = targetId ? document.getElementById(targetId) : null;
+        if (!input) {
+            return;
+        }
+        toggle.addEventListener('click', function() {
+            var visible = input.type === 'text';
+            input.type = visible ? 'password' : 'text';
+            toggle.classList.toggle('is-visible', !visible);
+            toggle.setAttribute('aria-pressed', visible ? 'false' : 'true');
+            toggle.setAttribute('aria-label', visible ? 'Show password' : 'Hide password');
+        });
+        toggle.dataset.bound = '1';
+    };
+
     var applyLoginEnhancements = function() {
         var username = document.getElementById('username');
         var password = document.getElementById('password');
@@ -414,6 +479,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                 passwordLabel.textContent = 'Password';
             }
         }
+        bindPasswordToggle();
 
         if (loginButton) {
             loginButton.textContent = 'Register with us';
@@ -494,6 +560,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                 grid.appendChild(lastrow);
             }
         }
+        bindPasswordToggle();
     };
 
     if (document.readyState === 'loading') {
