@@ -327,7 +327,7 @@ function theme_baitalgahwa_get_featured_courses(int $max = 8): array {
     $out = [];
     if (isloggedin() && !isguestuser()) {
         $mycourses = enrol_get_my_courses(
-            'summary, summaryformat, enddate, category, timecreated',
+            'summary, summaryformat, startdate, enddate, category, timecreated',
             'visible DESC, fullname ASC'
         );
         foreach ($mycourses as $c) {
@@ -340,7 +340,7 @@ function theme_baitalgahwa_get_featured_courses(int $max = 8): array {
     if (count($out) >= $max) {
         return $out;
     }
-    $fields = 'id, category, fullname, shortname, visible, summary, sortorder, summaryformat, timecreated';
+    $fields = 'id, category, fullname, shortname, visible, summary, sortorder, summaryformat, startdate, enddate, timecreated';
     $sql = "id > :siteid AND visible = 1";
     $records = $DB->get_records_select('course', $sql, ['siteid' => SITEID], 'sortorder ASC', $fields, 0, $max * 3);
     foreach ($records as $c) {
@@ -362,14 +362,15 @@ function theme_baitalgahwa_get_featured_courses(int $max = 8): array {
  * @return array<string, mixed>
  */
 function theme_baitalgahwa_format_course_for_template($c): array {
+    $context = \context_course::instance($c->id);
     $summary = '';
     if (!empty($c->summary)) {
-        $summary = format_text($c->summary, $c->summaryformat ?? FORMAT_HTML, ['context' => \context_course::instance($c->id)]);
+        $summary = format_text($c->summary, $c->summaryformat ?? FORMAT_HTML, ['context' => $context]);
     }
     if (mb_strlen(preg_replace('/\s+/', ' ', html_to_text($summary, 0))) > 0) {
         $short = shorten_text(html_to_text($summary, 0), 120);
     } else {
-        $short = '';
+        $short = get_string('mycourse_excerpt', 'theme_baitalgahwa');
     }
     $catname = '';
     if (!empty($c->category)) {
@@ -379,14 +380,18 @@ function theme_baitalgahwa_format_course_for_template($c): array {
         }
     }
     $timecreated = isset($c->timecreated) ? (int) $c->timecreated : 0;
+    $startdate = isset($c->startdate) ? (int) $c->startdate : 0;
+    $enddate = isset($c->enddate) ? (int) $c->enddate : 0;
     $isnew = $timecreated > 0 && (time() - $timecreated) < 30 * DAYSECS;
     return [
         'id' => (int) $c->id,
         'url' => (new \moodle_url('/course/view.php', ['id' => $c->id]))->out(false),
-        'fullname' => format_string($c->fullname, true, ['context' => \context_course::instance($c->id)]),
+        'fullname' => format_string($c->fullname, true, ['context' => $context]),
         'summary' => $short,
         'categoryname' => $catname,
         'imageurl' => theme_baitalgahwa_get_course_image_url($c),
+        'startdate_display' => $startdate > 0 ? userdate($startdate, '%d/%m/%Y') : '',
+        'enddate_display' => $enddate > 0 ? userdate($enddate, '%d/%m/%Y') : '',
         'isnew' => $isnew,
     ];
 }

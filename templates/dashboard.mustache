@@ -53,6 +53,9 @@ body#page-my-index #topofscroll.main-inner {
     border-radius: 1.2rem;
     box-shadow: 0 .85rem 2rem rgba(48, 27, 12, .05);
 }
+.baitalgahwa-dashboard-panel {
+    padding: 1.75rem;
+}
 .baitalgahwa-dashboard-stats {
     overflow: hidden;
 }
@@ -105,13 +108,28 @@ body#page-my-index #topofscroll.main-inner {
     line-height: 1.65;
 }
 .baitalgahwa-dashboard-programmes {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
 }
 .baitalgahwa-dashboard-programme {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     transition: transform .18s ease, box-shadow .18s ease;
+}
+.baitalgahwa-dashboard-panel--programmes {
+    margin-top: .25rem;
+}
+.baitalgahwa-dashboard-panel--programmes .baitalgahwa-dashboard-section-head {
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.baitalgahwa-dashboard-panel--programmes .baitalgahwa-dashboard-section-copy {
+    max-width: 46rem;
+    margin: .65rem auto 0;
+    font-size: .92rem;
 }
 .baitalgahwa-dashboard-programme:hover,
 .baitalgahwa-dashboard-programme:focus-within {
@@ -120,9 +138,11 @@ body#page-my-index #topofscroll.main-inner {
 }
 .baitalgahwa-dashboard-programme__media {
     position: relative;
+    padding: .75rem .75rem 0;
 }
 .baitalgahwa-dashboard-programme__image {
-    height: 8.8rem;
+    height: 10.5rem;
+    border-radius: 1rem;
     background-size: cover;
     background-position: center;
 }
@@ -148,30 +168,63 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-programme__body {
     display: flex;
     flex-direction: column;
-    gap: .55rem;
-    padding: .9rem .95rem 1rem;
+    gap: .7rem;
+    flex: 1 1 auto;
+    padding: 1rem 1rem 1.1rem;
+}
+.baitalgahwa-dashboard-programme__dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+.baitalgahwa-dashboard-programme__date-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    border-radius: 999px;
+    padding: .3rem .6rem;
+    background: #f6f1eb;
+    color: #6a5c4b;
+    font-size: .68rem;
+    font-weight: 700;
 }
 .baitalgahwa-dashboard-programme__title {
     margin: 0;
     color: #201813;
-    font-size: .94rem;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1.4;
 }
 .baitalgahwa-dashboard-programme__copy {
     margin: 0;
     color: #7c7268;
-    font-size: .8rem;
+    font-size: .84rem;
     line-height: 1.6;
-    min-height: 3.8rem;
+    min-height: 4rem;
 }
 .baitalgahwa-dashboard-programme__meta {
     display: flex;
     align-items: center;
-    gap: .45rem;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-top: auto;
     color: #8a5a2b;
-    font-size: .74rem;
+    font-size: .78rem;
     font-weight: 600;
+}
+.baitalgahwa-dashboard-programme__meta-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    min-width: 0;
+}
+.baitalgahwa-dashboard-programme__meta-label span:last-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.baitalgahwa-dashboard-programme__meta-arrow {
+    color: #8a5a2b;
 }
 .baitalgahwa-dashboard-progress,
 .baitalgahwa-dashboard-members,
@@ -551,6 +604,9 @@ body#page-my-index #topofscroll.main-inner {
         align-items: start;
         flex-direction: column;
     }
+    .baitalgahwa-dashboard-panel--programmes .baitalgahwa-dashboard-section-head {
+        align-items: center;
+    }
 }
 @media (max-width: 767.98px) {
     .baitalgahwa-dashboard {
@@ -561,7 +617,8 @@ body#page-my-index #topofscroll.main-inner {
     .baitalgahwa-dashboard-members,
     .baitalgahwa-dashboard-todo,
     .baitalgahwa-dashboard-newsletter,
-    .baitalgahwa-dashboard-widget {
+    .baitalgahwa-dashboard-widget,
+    .baitalgahwa-dashboard-panel {
         padding: 1rem;
     }
     .baitalgahwa-dashboard-members-grid,
@@ -679,7 +736,7 @@ body#page-my-index #topofscroll.main-inner {
                         </div>
                     </section>
 
-                    <section class="baitalgahwa-dashboard-panel">
+                    <section class="baitalgahwa-dashboard-panel baitalgahwa-dashboard-panel--programmes">
                         <div class="baitalgahwa-dashboard-section-head">
                             <div>
                                 <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_training_title, theme_baitalgahwa{{/str}}</h2>
@@ -687,29 +744,53 @@ body#page-my-index #topofscroll.main-inner {
                             </div>
                         </div>
                         {{#has_dashboard_programmes}}
-                        <div class="row g-3">
+                        <div class="baitalgahwa-dashboard-programmes" role="list">
                             {{#dashboard_programmes}}
-                            <div class="col-md-6 col-xl-3">
-                                <article class="baitalgahwa-dashboard-programme h-100">
-                                    <div class="baitalgahwa-dashboard-programme__media">
-                                        {{#imageurl}}
-                                        <div class="baitalgahwa-dashboard-programme__image" style="background-image:url('{{{ imageurl }}}');"></div>
-                                        {{/imageurl}}
-                                        {{^imageurl}}
-                                        <div class="baitalgahwa-dashboard-programme__image baitalgahwa-dashboard-programme__image--placeholder"></div>
-                                        {{/imageurl}}
-                                        {{#isnew}}<span class="baitalgahwa-dashboard-programme__badge">{{#str}}course_new, theme_baitalgahwa{{/str}}</span>{{/isnew}}
-                                    </div>
-                                    <div class="baitalgahwa-dashboard-programme__body">
-                                        <h3 class="baitalgahwa-dashboard-programme__title"><a class="stretched-link text-reset text-decoration-none" href="{{{ url }}}">{{ fullname }}</a></h3>
-                                        {{#summary}}<p class="baitalgahwa-dashboard-programme__copy">{{ summary }}</p>{{/summary}}
-                                        <div class="baitalgahwa-dashboard-programme__meta">
+                            <article class="baitalgahwa-dashboard-programme h-100" role="listitem">
+                                <div class="baitalgahwa-dashboard-programme__media">
+                                    {{#imageurl}}
+                                    <div class="baitalgahwa-dashboard-programme__image" style="background-image:url('{{{ imageurl }}}');"></div>
+                                    {{/imageurl}}
+                                    {{^imageurl}}
+                                    <div class="baitalgahwa-dashboard-programme__image baitalgahwa-dashboard-programme__image--placeholder"></div>
+                                    {{/imageurl}}
+                                    {{#isnew}}<span class="baitalgahwa-dashboard-programme__badge">{{#str}}course_new, theme_baitalgahwa{{/str}}</span>{{/isnew}}
+                                    {{^isnew}}<span class="baitalgahwa-dashboard-programme__badge">{{#str}}mycourse_available, theme_baitalgahwa{{/str}}</span>{{/isnew}}
+                                </div>
+                                <div class="baitalgahwa-dashboard-programme__body">
+                                    {{#startdate_display}}
+                                    <div class="baitalgahwa-dashboard-programme__dates">
+                                        <span class="baitalgahwa-dashboard-programme__date-pill">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            <span>{{ startdate_display }}</span>
+                                        </span>
+                                        {{#enddate_display}}
+                                        <span class="baitalgahwa-dashboard-programme__date-pill">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            <span>{{#categoryname}}{{ categoryname }}{{/categoryname}}{{^categoryname}}Bait Al Gahwa{{/categoryname}}</span>
-                                        </div>
+                                            <span>{{ enddate_display }}</span>
+                                        </span>
+                                        {{/enddate_display}}
                                     </div>
-                                </article>
-                            </div>
+                                    {{/startdate_display}}
+                                    {{^startdate_display}}
+                                    <div class="baitalgahwa-dashboard-programme__dates">
+                                        <span class="baitalgahwa-dashboard-programme__date-pill">
+                                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                            <span>{{#str}}mycourse_dates_hint, theme_baitalgahwa{{/str}}</span>
+                                        </span>
+                                    </div>
+                                    {{/startdate_display}}
+                                    <h3 class="baitalgahwa-dashboard-programme__title"><a class="stretched-link text-reset text-decoration-none" href="{{{ url }}}">{{ fullname }}</a></h3>
+                                    {{#summary}}<p class="baitalgahwa-dashboard-programme__copy">{{ summary }}</p>{{/summary}}
+                                    <div class="baitalgahwa-dashboard-programme__meta">
+                                        <span class="baitalgahwa-dashboard-programme__meta-label">
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                            <span>{{#categoryname}}{{ categoryname }}{{/categoryname}}{{^categoryname}}Bait Al Gahwa{{/categoryname}}</span>
+                                        </span>
+                                        <span class="baitalgahwa-dashboard-programme__meta-arrow" aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </article>
                             {{/dashboard_programmes}}
                         </div>
                         {{/has_dashboard_programmes}}
