@@ -9,39 +9,41 @@
     z-index: 1030;
 }
 .baitalgahwa-navbar {
-    min-height: 4.4rem;
+    min-height: 4.7rem;
     background: rgba(255,255,255,.98) !important;
     border-bottom: 1px solid rgba(64, 39, 18, .09);
-    border-radius: 0 0 1rem 1rem;
-    box-shadow: 0 .45rem 1rem rgba(0,0,0,.12);
-    padding-inline: .8rem;
+    border-radius: 0 0 1.15rem 1.15rem;
+    box-shadow: 0 .55rem 1.2rem rgba(33,20,12,.12);
+    padding-inline: 1rem;
 }
 .baitalgahwa-navbar__inner {
     width: min(100%, 1320px);
     margin: 0 auto;
-    gap: 1.25rem;
+    gap: 1.4rem;
 }
 .baitalgahwa-navbar .navbar-brand {
-    margin-right: 1.4rem !important;
+    margin-right: 1.2rem !important;
 }
 .baitalgahwa-custom-logo,
 .baitalgahwa-navbar .logo {
-    max-height: 2.75rem;
+    max-height: 2.95rem;
     width: auto;
     object-fit: contain;
 }
 .baitalgahwa-navbar__custom-links {
     align-items: center;
-    gap: 1.5rem;
-    margin-right: auto;
+    gap: 1.65rem;
+    margin-inline-end: auto;
 }
 .baitalgahwa-navbar__link {
     position: relative;
     color: #3b2e24;
     text-decoration: none;
-    font-size: .92rem;
-    font-weight: 500;
-    padding: .35rem 0;
+    font-size: .84rem;
+    font-weight: 700;
+    padding: .4rem 0;
+    letter-spacing: .01em;
+    text-transform: none;
 }
 .baitalgahwa-navbar__link--active,
 .baitalgahwa-navbar__link:hover,
@@ -72,28 +74,32 @@
 .baitalgahwa-navbar__search {
     display: inline-flex;
     align-items: center;
-    min-width: min(14rem, 19vw);
-    height: 2.15rem;
-    border: 1px solid #ebe2d8;
-    border-radius: .48rem;
-    background: #fff;
+    min-width: min(16rem, 22vw);
+    height: 2.35rem;
+    border: 1px solid #e8ddd1;
+    border-radius: .42rem;
+    background: #faf8f6;
     overflow: hidden;
 }
 .baitalgahwa-navbar__search-input {
     width: 100%;
     border: 0;
     background: transparent;
-    padding: 0 .8rem;
-    font-size: .88rem;
+    padding: 0 .85rem;
+    font-size: .82rem;
+    color: #4c4035;
     outline: 0;
 }
+.baitalgahwa-navbar__search-input::placeholder {
+    color: #a49485;
+}
 .baitalgahwa-navbar__search-btn {
-    width: 2.15rem;
-    height: 2.15rem;
+    width: 2.25rem;
+    height: 2.35rem;
     border: 0;
-    border-left: 1px solid #ebe2d8;
-    background: #fff;
-    color: #84705e;
+    border-left: 1px solid #e8ddd1;
+    background: transparent;
+    color: #9b8a7a;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -115,22 +121,22 @@
 .baitalgahwa-navbar #usernavigation .popover-region-toggle,
 .baitalgahwa-navbar #usernavigation .nav-link.icon-no-margin,
 .baitalgahwa-navbar #usernavigation .btn.icon-no-margin {
-    width: 2rem;
-    height: 2rem;
+    width: 2.05rem;
+    height: 2.05rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0 !important;
-    border: 0 !important;
+    border: 1px solid transparent !important;
     border-radius: 999px;
-    background: transparent !important;
+    background: rgba(255,255,255,.9) !important;
     box-shadow: none !important;
     text-decoration: none;
 }
 .baitalgahwa-navbar__utilities {
     display: inline-flex;
     align-items: center;
-    gap: .35rem;
+    gap: .45rem;
 }
 .baitalgahwa-navbar #usernavigation .popover-region-toggle .icon,
 .baitalgahwa-navbar #usernavigation .nav-link .icon,
@@ -160,16 +166,18 @@
 .baitalgahwa-navbar .usermenu .dropdown-toggle {
     display: inline-flex;
     align-items: center;
-    gap: .45rem;
-    padding: 0 .1rem 0 0 !important;
+    gap: .55rem;
+    padding: .15rem .1rem .15rem .15rem !important;
     border: 0 !important;
     background: transparent !important;
+    border-radius: 999px;
 }
 .baitalgahwa-navbar .usermenu .usertext,
 .baitalgahwa-navbar .usermenu .login {
     color: #4a3b30;
-    font-size: .88rem;
-    font-weight: 500;
+    font-size: .82rem;
+    font-weight: 700;
+    white-space: nowrap;
 }
 .baitalgahwa-navbar .usermenu .dropdown-toggle img,
 .baitalgahwa-navbar .usermenu .avatar,
@@ -178,13 +186,38 @@
 }
 .baitalgahwa-navbar .usermenu img.userpicture,
 .baitalgahwa-navbar .usermenu .avatar img {
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
     object-fit: cover;
+    border: 2px solid rgba(138, 90, 43, .16);
 }
 .baitalgahwa-navbar .logininfo,
 .baitalgahwa-navbar .usermenu .login {
     font-size: .9rem;
+}
+.baitalgahwa-navbar .usermenu .dropdown-toggle::after {
+    margin-inline-start: .1rem;
+    color: #8a5a2b;
+}
+.baitalgahwa-navbar__icon:hover,
+.baitalgahwa-navbar__icon:focus-visible,
+.baitalgahwa-navbar #usernavigation .popover-region-toggle:hover,
+.baitalgahwa-navbar #usernavigation .popover-region-toggle:focus-visible {
+    color: #8a5a2b;
+    border-color: #e7d7c7 !important;
+    background: #fff !important;
+}
+.baitalgahwa-navbar .editmode-switch-form {
+    margin-inline-start: .35rem;
+}
+.baitalgahwa-navbar .editmode-switch-form .custom-control {
+    margin-bottom: 0;
+}
+.baitalgahwa-navbar .editmode-switch-form label,
+.baitalgahwa-navbar .editmode-switch-form .custom-control-label {
+    color: #7b6c5d;
+    font-size: .74rem;
+    font-weight: 700;
 }
 .pagelayout-login .baitalgahwa-header {
     position: static;
@@ -225,9 +258,9 @@
         </a>
         <div class="baitalgahwa-navbar__custom-links d-none d-lg-flex" aria-label="Primary">
             <a class="baitalgahwa-navbar__link baitalgahwa-navbar__link--active" href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
-            <a class="baitalgahwa-navbar__link" href="#bag-footer-about">{{#str}}aboutus, theme_baitalgahwa{{/str}}</a>
-            <a class="baitalgahwa-navbar__link" href="#bag-footer-programs">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
-            <a class="baitalgahwa-navbar__link" href="#bag-footer-contact">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>
+            <a class="baitalgahwa-navbar__link" href="{{{ config.abouturl }}}">{{#str}}aboutus, theme_baitalgahwa{{/str}}</a>
+            <a class="baitalgahwa-navbar__link" href="{{{ config.trainingurl }}}">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
+            <a class="baitalgahwa-navbar__link" href="{{{ config.contacturl }}}">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>
         </div>
         {{#primarymoremenu}}
         <div class="primary-navigation d-none d-md-flex d-lg-none">
@@ -240,8 +273,8 @@
         </ul>
         {{/output.page_heading_menu}}
         <div id="usernavigation" class="navbar-nav ms-auto h-100">
-            <form class="baitalgahwa-navbar__search d-none d-md-inline-flex" action="/course/search.php" method="get" role="search" aria-label="Search">
-                <input class="baitalgahwa-navbar__search-input" type="search" name="search" placeholder="search">
+            <form class="baitalgahwa-navbar__search d-none d-md-inline-flex" action="{{{ config.searchurl }}}" method="get" role="search" aria-label="Search">
+                <input class="baitalgahwa-navbar__search-input" type="search" name="search" placeholder="Search">
                 <button class="baitalgahwa-navbar__search-btn" type="submit" aria-label="Search">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
@@ -251,10 +284,10 @@
             <div class="divider border-start h-75 align-self-center mx-1 d-none d-md-block"></div>
             {{/langmenu}}
             <div class="baitalgahwa-navbar__utilities d-none d-md-inline-flex" aria-label="Quick actions">
-                <a class="baitalgahwa-navbar__icon" href="/message/output/popup/notifications.php" aria-label="Notifications">
+                <a class="baitalgahwa-navbar__icon" href="{{{ config.notificationsurl }}}" aria-label="Notifications">
                     <i class="fa fa-bell-o" aria-hidden="true"></i>
                 </a>
-                <a class="baitalgahwa-navbar__icon" href="/message/index.php" aria-label="Messages">
+                <a class="baitalgahwa-navbar__icon" href="{{{ config.messagesurl }}}" aria-label="Messages">
                     <i class="fa fa-comment-o" aria-hidden="true"></i>
                 </a>
             </div>

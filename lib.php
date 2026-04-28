@@ -1066,6 +1066,14 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $context['config'] = [
         'wwwroot' => $CFG->wwwroot,
         'homeurl' => (new \moodle_url('/'))->out(false),
+        'dashboardurl' => (new \moodle_url('/my/'))->out(false),
+        'mycoursesurl' => (new \moodle_url('/my/courses.php'))->out(false),
+        'searchurl' => (new \moodle_url('/course/search.php'))->out(false),
+        'notificationsurl' => (new \moodle_url('/message/output/popup/notifications.php'))->out(false),
+        'messagesurl' => (new \moodle_url('/message/index.php'))->out(false),
+        'abouturl' => (new \moodle_url('/', ['section' => 'about']))->out(false) . '#bag-footer-about',
+        'trainingurl' => (new \moodle_url('/', ['section' => 'programs']))->out(false) . '#bag-footer-programs',
+        'contacturl' => (new \moodle_url('/', ['section' => 'contact']))->out(false) . '#bag-footer-contact',
     ];
     $context = array_merge($context, $coursedashboardctx);
     return $context;
