@@ -14,16 +14,26 @@ body.pagelayout-mydashboard .secondary-navigation,
 body#page-my-index .secondary-navigation {
     display: none;
 }
+body.pagelayout-mydashboard #page.drawers,
+body#page-my-index #page.drawers,
+body.pagelayout-mydashboard #topofscroll.main-inner,
+body#page-my-index #topofscroll.main-inner {
+    max-width: 100%;
+    width: 100%;
+}
 .baitalgahwa-dashboard {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 1.75rem 3.5rem;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 2rem 1.25rem 3.5rem;
     color: #241b15;
 }
 .baitalgahwa-dashboard-shell {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    width: min(100%, 1320px);
+    margin: 0 auto;
 }
 .baitalgahwa-dashboard-heading__eyebrow {
     color: #7c7268;
@@ -157,9 +167,11 @@ body#page-my-index .secondary-navigation {
 }
 .baitalgahwa-dashboard-subnav {
     display: flex;
+    align-items: center;
     gap: 1.6rem;
     overflow-x: auto;
-    padding: .2rem 0 .55rem;
+    padding: .1rem 0 0;
+    border-bottom: 1px solid #e7ddd3;
     scrollbar-width: none;
 }
 .baitalgahwa-dashboard-subnav::-webkit-scrollbar {
@@ -167,7 +179,10 @@ body#page-my-index .secondary-navigation {
 }
 .baitalgahwa-dashboard-subnav__link {
     position: relative;
-    padding-bottom: .55rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 0 .9rem;
     color: #5c5146;
     text-decoration: none;
     font-size: .92rem;
@@ -185,6 +200,27 @@ body#page-my-index .secondary-navigation {
     height: 2px;
     border-radius: 999px;
     background: #8a5a2b;
+}
+.baitalgahwa-dashboard-subnav__add {
+    margin-left: auto;
+    margin-bottom: .75rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    border: 1px solid #d8c8b7;
+    border-radius: 999px;
+    color: #8a5a2b;
+    background: #fff;
+    text-decoration: none;
+    font-size: .8rem;
+}
+.baitalgahwa-dashboard-subnav__add:hover,
+.baitalgahwa-dashboard-subnav__add:focus-visible {
+    color: #73471e;
+    border-color: #b99365;
 }
 .baitalgahwa-dashboard-panel {
     background: #fff;
@@ -379,7 +415,7 @@ body#page-my-index .secondary-navigation {
 }
 @media (max-width: 991.98px) {
     .baitalgahwa-dashboard {
-        padding-inline: 1rem;
+        padding-inline: .9rem;
     }
     .baitalgahwa-dashboard-hero__media {
         min-height: 17rem;
@@ -393,8 +429,9 @@ body#page-my-index .secondary-navigation {
 }
 @media (max-width: 767.98px) {
     .baitalgahwa-dashboard {
-        padding-top: 1.35rem;
+        padding-top: 1.1rem;
         padding-bottom: 2.5rem;
+        padding-inline: .7rem;
     }
     .baitalgahwa-dashboard-heading__title {
         font-size: 1.7rem;
@@ -421,6 +458,9 @@ body#page-my-index .secondary-navigation {
     .baitalgahwa-dashboard-hero__toolbar {
         align-items: flex-start;
         flex-direction: column;
+    }
+    .baitalgahwa-dashboard-subnav {
+        gap: 1rem;
     }
 }
 </style>
@@ -566,11 +606,12 @@ body#page-my-index .secondary-navigation {
                     </section>
 
                     <nav class="baitalgahwa-dashboard-subnav" aria-label="{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}">
-                        <a class="baitalgahwa-dashboard-subnav__link is-active" href="#bag-dashboard-overview">{{ dashboard_overview_tab }}</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-introduction">{{ dashboard_intro_heading }}</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-activities">{{ dashboard_activity_heading }}</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-calendar">{{#str}}calendar, calendar{{/str}}</a>
-                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-members">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</a>
+                        <a class="baitalgahwa-dashboard-subnav__link is-active" href="#bag-dashboard-overview">Courses</a>
+                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-introduction">Settings</a>
+                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-members">Participants</a>
+                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-calendar">Grades</a>
+                        <a class="baitalgahwa-dashboard-subnav__link" href="#bag-dashboard-activities">Activities</a>
+                        <a class="baitalgahwa-dashboard-subnav__add" href="#bag-dashboard-activities" aria-label="More"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </nav>
 
                     <section class="baitalgahwa-dashboard-panel" id="bag-dashboard-introduction">
