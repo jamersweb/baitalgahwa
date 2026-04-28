@@ -1360,5 +1360,6 @@ function theme_baitalgahwa_get_branding_context(): array {
     $logourl = $theme->setting_file_url('logo', 'logo');
     return [
         'themelogourl' => $logourl ? (string) $logourl : theme_baitalgahwa_get_theme_image_url('logo'),
+        'footerflowerurl' => theme_baitalgahwa_get_theme_image_url('footer-flower'),
     ];
 }
