@@ -9,41 +9,44 @@
     z-index: 1030;
 }
 .baitalgahwa-navbar {
-    min-height: 4.7rem;
-    background: rgba(255,255,255,.98) !important;
-    border-bottom: 1px solid rgba(64, 39, 18, .09);
-    border-radius: 0 0 1.15rem 1.15rem;
-    box-shadow: 0 .55rem 1.2rem rgba(33,20,12,.12);
-    padding-inline: 1rem;
+    min-height: 4.1rem;
+    background: rgba(255,255,255,.985) !important;
+    border-bottom: 1px solid #ece5de;
+    box-shadow: 0 .12rem .4rem rgba(33,20,12,.035);
+    padding-inline: 1.15rem;
 }
 .baitalgahwa-navbar__inner {
-    width: min(100%, 1320px);
+    width: min(100%, 1280px);
     margin: 0 auto;
-    gap: 1.4rem;
+    gap: 1.45rem;
+    min-height: 4.1rem;
 }
 .baitalgahwa-navbar .navbar-brand {
-    margin-right: 1.2rem !important;
+    margin-right: 1rem !important;
+    padding-block: .2rem;
 }
 .baitalgahwa-custom-logo,
 .baitalgahwa-navbar .logo {
-    max-height: 2.95rem;
+    max-height: 2.5rem;
     width: auto;
     object-fit: contain;
 }
 .baitalgahwa-navbar__custom-links {
     align-items: center;
-    gap: 1.65rem;
+    gap: 2.1rem;
     margin-inline-end: auto;
+    white-space: nowrap;
 }
 .baitalgahwa-navbar__link {
     position: relative;
-    color: #3b2e24;
+    color: #4f4338;
     text-decoration: none;
-    font-size: .84rem;
-    font-weight: 700;
-    padding: .4rem 0;
+    font-size: .9rem;
+    font-weight: 600;
+    padding: .55rem 0;
     letter-spacing: .01em;
     text-transform: none;
+    transition: color .18s ease;
 }
 .baitalgahwa-navbar__link--active,
 .baitalgahwa-navbar__link:hover,
@@ -55,9 +58,10 @@
 .baitalgahwa-navbar__link:focus-visible::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -.55rem;
+    left: 50%;
+    width: 2rem;
+    transform: translateX(-50%);
+    bottom: -.88rem;
     height: 2px;
     border-radius: 999px;
     background: #8a5a2b;
@@ -74,40 +78,55 @@
 .baitalgahwa-navbar__search {
     display: inline-flex;
     align-items: center;
-    min-width: min(16rem, 22vw);
-    height: 2.35rem;
-    border: 1px solid #e8ddd1;
-    border-radius: .42rem;
-    background: #faf8f6;
+    min-width: clamp(15rem, 19vw, 18rem);
+    height: 2.5rem;
+    border: 1px solid #ebe5df;
+    border-radius: .28rem;
+    background: #fbfaf8;
     overflow: hidden;
+    margin-inline-end: .35rem;
+    transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+.baitalgahwa-navbar__search:hover,
+.baitalgahwa-navbar__search:focus-within {
+    border-color: #d8ccc0;
+    background: #fff;
+    box-shadow: 0 0 0 .16rem rgba(138, 90, 43, .08);
 }
 .baitalgahwa-navbar__search-input {
     width: 100%;
     border: 0;
     background: transparent;
-    padding: 0 .85rem;
-    font-size: .82rem;
+    padding: 0 .95rem;
+    font-size: .88rem;
     color: #4c4035;
     outline: 0;
 }
 .baitalgahwa-navbar__search-input::placeholder {
-    color: #a49485;
+    color: #b2a497;
 }
 .baitalgahwa-navbar__search-btn {
-    width: 2.25rem;
-    height: 2.35rem;
+    width: 2.7rem;
+    height: 2.5rem;
     border: 0;
-    border-left: 1px solid #e8ddd1;
+    border-left: 1px solid #efe9e3;
     background: transparent;
-    color: #9b8a7a;
+    color: #b2a394;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    transition: color .18s ease, background-color .18s ease;
+}
+.baitalgahwa-navbar__search-btn:hover,
+.baitalgahwa-navbar__search-btn:focus-visible {
+    color: #8a5a2b;
+    background: #f7f1eb;
 }
 .baitalgahwa-navbar #usernavigation {
-    gap: .65rem;
+    gap: 1rem;
     align-items: center;
+    flex-wrap: nowrap;
 }
 .baitalgahwa-navbar #usernavigation .divider {
     display: none !important;
@@ -121,29 +140,42 @@
 .baitalgahwa-navbar #usernavigation .popover-region-toggle,
 .baitalgahwa-navbar #usernavigation .nav-link.icon-no-margin,
 .baitalgahwa-navbar #usernavigation .btn.icon-no-margin {
-    width: 2.05rem;
-    height: 2.05rem;
+    position: relative;
+    width: auto;
+    height: auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 !important;
-    border: 1px solid transparent !important;
-    border-radius: 999px;
-    background: rgba(255,255,255,.9) !important;
+    padding: 0 .08rem !important;
+    border: 0 !important;
+    border-radius: 0;
+    background: transparent !important;
     box-shadow: none !important;
     text-decoration: none;
+    color: #8f8276;
+}
+.baitalgahwa-navbar__utilities .baitalgahwa-navbar__icon:first-child::after {
+    content: "";
+    position: absolute;
+    top: -.08rem;
+    right: -.12rem;
+    width: .48rem;
+    height: .48rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #ef6a61;
 }
 .baitalgahwa-navbar__utilities {
     display: inline-flex;
     align-items: center;
-    gap: .45rem;
+    gap: 1rem;
 }
 .baitalgahwa-navbar #usernavigation .popover-region-toggle .icon,
 .baitalgahwa-navbar #usernavigation .nav-link .icon,
 .baitalgahwa-navbar #usernavigation .btn .icon,
 .baitalgahwa-navbar__icon .fa,
 .baitalgahwa-navbar #usernavigation .fa {
-    font-size: .95rem;
+    font-size: 1rem;
 }
 .baitalgahwa-navbar__core-output {
     display: none;
@@ -166,17 +198,18 @@
 .baitalgahwa-navbar .usermenu .dropdown-toggle {
     display: inline-flex;
     align-items: center;
-    gap: .55rem;
-    padding: .15rem .1rem .15rem .15rem !important;
+    gap: .7rem;
+    padding: .08rem 0 .08rem .15rem !important;
     border: 0 !important;
     background: transparent !important;
     border-radius: 999px;
+    box-shadow: none !important;
 }
 .baitalgahwa-navbar .usermenu .usertext,
 .baitalgahwa-navbar .usermenu .login {
     color: #4a3b30;
-    font-size: .82rem;
-    font-weight: 700;
+    font-size: .92rem;
+    font-weight: 600;
     white-space: nowrap;
 }
 .baitalgahwa-navbar .usermenu .dropdown-toggle img,
@@ -186,10 +219,10 @@
 }
 .baitalgahwa-navbar .usermenu img.userpicture,
 .baitalgahwa-navbar .usermenu .avatar img {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2.4rem;
+    height: 2.4rem;
     object-fit: cover;
-    border: 2px solid rgba(138, 90, 43, .16);
+    border: 2px solid rgba(138, 90, 43, .14);
 }
 .baitalgahwa-navbar .logininfo,
 .baitalgahwa-navbar .usermenu .login {
@@ -197,34 +230,40 @@
 }
 .baitalgahwa-navbar .usermenu .dropdown-toggle::after {
     margin-inline-start: .1rem;
-    color: #8a5a2b;
+    color: #9c8f84;
 }
 .baitalgahwa-navbar__icon:hover,
 .baitalgahwa-navbar__icon:focus-visible,
 .baitalgahwa-navbar #usernavigation .popover-region-toggle:hover,
 .baitalgahwa-navbar #usernavigation .popover-region-toggle:focus-visible {
     color: #8a5a2b;
-    border-color: #e7d7c7 !important;
-    background: #fff !important;
+    background: transparent !important;
 }
 .baitalgahwa-navbar .editmode-switch-form {
-    margin-inline-start: .35rem;
+    margin-inline-start: .3rem;
 }
 .baitalgahwa-navbar .editmode-switch-form .custom-control {
     margin-bottom: 0;
 }
 .baitalgahwa-navbar .editmode-switch-form label,
 .baitalgahwa-navbar .editmode-switch-form .custom-control-label {
-    color: #7b6c5d;
-    font-size: .74rem;
-    font-weight: 700;
+    color: #7b6e63;
+    font-size: .8rem;
+    font-weight: 600;
+}
+.baitalgahwa-navbar .editmode-switch-form .custom-switch .custom-control-label::before {
+    border-color: #dfd5cb;
+    background: #ebe5de;
+}
+.baitalgahwa-navbar .editmode-switch-form .custom-switch .custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #8a5a2b;
+    background: #8a5a2b;
 }
 .pagelayout-login .baitalgahwa-header {
     position: static;
 }
 @media (max-width: 991.98px) {
     .baitalgahwa-navbar {
-        border-radius: 0;
         padding-inline: .5rem;
     }
     .baitalgahwa-navbar__inner {
@@ -233,6 +272,7 @@
     }
     .baitalgahwa-navbar__search {
         min-width: 10rem;
+        margin-inline-end: 0;
     }
 }
 </style>
