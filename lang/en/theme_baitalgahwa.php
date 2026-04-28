@@ -67,6 +67,7 @@ $string['statslearners'] = 'Learners';
 $string['statscourses'] = 'Courses';
 $string['footerabout'] = 'About text';
 $string['footeraboutdefault'] = 'A learning space rooted in coffeehouse culture: hospitality, focus, and community.';
+$string['footeraboutdesign'] = 'Empowering professionals through quality training and development programs inspired by Emirati heritage.';
 $string['footeremail'] = 'Contact email';
 $string['footerphone'] = 'Phone';
 $string['footeraddress'] = 'Address';

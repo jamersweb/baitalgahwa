@@ -67,6 +67,7 @@ $string['statslearners'] = 'المتعلمون';
 $string['statscourses'] = 'المقررات';
 $string['footerabout'] = 'نبذة';
 $string['footeraboutdefault'] = 'مساحة تعلم مستلهمة من ثقافة بيوت القهوة: الضيافة، والتركيز، والمجتمع.';
+$string['footeraboutdesign'] = 'تمكين المهنيين عبر برامج تدريب وتطوير عالية الجودة مستوحاة من التراث الإماراتي.';
 $string['footeremail'] = 'البريد للتواصل';
 $string['footerphone'] = 'الهاتف';
 $string['footeraddress'] = 'العنوان';

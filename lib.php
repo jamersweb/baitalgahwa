@@ -201,7 +201,7 @@ function theme_baitalgahwa_user_preferences(): array {
 function theme_baitalgahwa_get_footer_context(): array {
     $t = get_config('theme_baitalgahwa');
     return [
-        'footerabout' => $t->footerabout ?? '',
+        'footerabout' => get_string('footeraboutdesign', 'theme_baitalgahwa'),
         'footeremail' => $t->footeremail ?? '',
         'footerphone' => $t->footerphone ?? '',
         'footeraddress' => $t->footeraddress ?? '',
