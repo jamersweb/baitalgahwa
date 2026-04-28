@@ -2,7 +2,7 @@
 // Triggered on body.baitalgahwa-course-dashboard
 
 $bag-course-radius: 1rem;
-$bag-course-shell-max: 1120px;
+$bag-course-shell-max: 1180px;
 $bag-brown: $primary;
 
 body.baitalgahwa-course-dashboard {
@@ -245,21 +245,35 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
       list-style: none;
       margin: 0;
       padding: 0;
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    > ul.topics {
+      @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      @include media-breakpoint-up(xl) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
     }
 
     > ul.topics > li.section,
     > ul.section > li.section {
-      margin: 0 0 1.5rem;
+      margin: 0;
       padding: 0;
       border: 0;
       background: transparent;
       box-shadow: none;
+      min-width: 0;
     }
 
     > ul.topics > li.section#section-0,
     > ul.topics > li.section:first-child,
     > ul.section > li.section#section-0,
     > ul.section > li.section:first-child {
+      grid-column: 1 / -1;
       background: $body-bg;
       border: 1px solid rgba($black, 0.08);
       border-radius: 1rem;
@@ -295,6 +309,71 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
       font-size: 1.18rem;
       font-weight: 700;
       text-decoration: none;
+    }
+
+    > ul.topics > li.section:not(:first-child),
+    > ul.section > li.section:not(:first-child) {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba($black, 0.08);
+      border-radius: 1rem;
+      background: $body-bg;
+      box-shadow: 0 0.55rem 1.3rem rgba($black, 0.06);
+      padding-top: 6.2rem;
+      min-height: 15.25rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    > ul.topics > li.section:not(:first-child):hover,
+    > ul.topics > li.section:not(:first-child):focus-within,
+    > ul.section > li.section:not(:first-child):hover,
+    > ul.section > li.section:not(:first-child):focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 0.95rem 1.8rem rgba($black, 0.1);
+    }
+
+    > ul.topics > li.section:not(:first-child)::before,
+    > ul.section > li.section:not(:first-child)::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 6.2rem;
+      background:
+        linear-gradient(180deg, rgba($black, 0.04), rgba($black, 0.22)),
+        var(--bag-course-cover, radial-gradient(circle at 68% 28%, rgba(255,255,255,0.18), transparent 18rem), linear-gradient(135deg, #2b1a12 0%, #5d371f 48%, #17100c 100%));
+      background-size: cover;
+      background-position: center;
+    }
+
+    > ul.topics > li.section:not(:first-child) .content,
+    > ul.section > li.section:not(:first-child) .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      margin: 0;
+      padding: 0.85rem 0.95rem 1rem;
+      background: $body-bg;
+    }
+
+    > ul.topics > li.section:not(:first-child) .sectionname,
+    > ul.section > li.section:not(:first-child) .sectionname,
+    > ul.topics > li.section:not(:first-child) .sectionname > a,
+    > ul.section > li.section:not(:first-child) .sectionname > a {
+      display: block;
+      margin: 0 0 0.45rem;
+      color: $body-color;
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    > ul.topics > li.section:not(:first-child) .summary,
+    > ul.section > li.section:not(:first-child) .summary {
+      color: $text-muted;
+      font-size: 0.84rem;
+      line-height: 1.55;
     }
   }
 
@@ -383,6 +462,26 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
     border-radius: 999px;
     background: rgba($white, 0.92);
     box-shadow: 0 0.4rem 1rem rgba($black, 0.12);
+  }
+
+  .course-content > ul.topics > li.section:first-child .activity,
+  .course-content > ul.section > li.section:first-child .activity {
+    padding-top: 0;
+    border-radius: 0.9rem;
+    box-shadow: none;
+  }
+
+  .course-content > ul.topics > li.section:first-child .activity::before,
+  .course-content > ul.section > li.section:first-child .activity::before {
+    display: none;
+  }
+
+  .course-content > ul.topics > li.section:first-child .activity .activityinstance,
+  .course-content > ul.section > li.section:first-child .activity .activityinstance {
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba($black, 0.08);
+    border-radius: 0.95rem;
+    background: $body-bg;
   }
 }
 
@@ -618,6 +717,17 @@ body.baitalgahwa-course-settings {
       > ul.section > li.section#section-0,
       > ul.section > li.section:first-child {
         padding: 1.1rem;
+      }
+
+      > ul.topics > li.section:not(:first-child),
+      > ul.section > li.section:not(:first-child) {
+        min-height: 13.5rem;
+        padding-top: 5.25rem;
+      }
+
+      > ul.topics > li.section:not(:first-child)::before,
+      > ul.section > li.section:not(:first-child)::before {
+        height: 5.25rem;
       }
     }
 
