@@ -2,11 +2,114 @@
     @template theme_baitalgahwa/footer
     Branded footer + Moodle footer popover.
 }}
+<style>
+.baitalgahwa-footer {
+    position: relative;
+    margin-top: 4rem;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 18%, rgba(255,255,255,.08), transparent 18rem),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,.06), transparent 24rem),
+        linear-gradient(180deg, #875628 0%, #74461f 100%);
+    color: rgba(255,255,255,.92);
+}
+.baitalgahwa-footer::after {
+    content: "";
+    position: absolute;
+    right: -6rem;
+    bottom: -7rem;
+    width: 26rem;
+    height: 26rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.08), transparent 62%);
+    pointer-events: none;
+}
+.baitalgahwa-footer__top {
+    position: relative;
+    z-index: 1;
+}
+.baitalgahwa-footer__top .container {
+    width: min(100%, 1320px);
+    max-width: none;
+}
+.baitalgahwa-footer__logo {
+    max-width: 11.5rem;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(1.08) saturate(.92);
+}
+.baitalgahwa-footer__about {
+    max-width: 19rem;
+    color: rgba(255,255,255,.9);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+.baitalgahwa-footer__heading {
+    margin-bottom: 1.2rem;
+    color: #d0ad59;
+    font-size: 1.08rem;
+    font-weight: 700;
+}
+.baitalgahwa-footer__list li + li {
+    margin-top: .8rem;
+}
+.baitalgahwa-footer__link,
+.baitalgahwa-footer__text {
+    color: rgba(255,255,255,.92);
+    text-decoration: none;
+    font-size: .96rem;
+}
+.baitalgahwa-footer__link:hover,
+.baitalgahwa-footer__link:focus-visible {
+    color: #fff;
+    text-decoration: none;
+}
+.baitalgahwa-footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.45rem;
+    height: 2.45rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,.96);
+    color: #875628;
+    text-decoration: none;
+    box-shadow: 0 .35rem .9rem rgba(0,0,0,.14);
+    transition: transform .16s ease, box-shadow .16s ease;
+}
+.baitalgahwa-footer__social-link:hover,
+.baitalgahwa-footer__social-link:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 .55rem 1rem rgba(0,0,0,.18);
+}
+.baitalgahwa-footer__social-link img {
+    display: block;
+    object-fit: contain;
+}
+.baitalgahwa-footer__moodle #page-footer {
+    background: transparent;
+    color: rgba(255,255,255,.82);
+}
+.baitalgahwa-footer__moodle .footer-content-popover {
+    display: none;
+}
+.baitalgahwa-footer__copy {
+    position: relative;
+    z-index: 1;
+    color: rgba(255,255,255,.72);
+    border-top: 1px solid rgba(255,255,255,.12);
+}
+@media (max-width: 767.98px) {
+    .baitalgahwa-footer__top .container {
+        width: 100%;
+    }
+}
+</style>
 <footer class="baitalgahwa-footer" role="contentinfo">
     <div class="baitalgahwa-footer__top py-5">
         <div class="container">
             <div class="row g-4 g-lg-5 align-items-start">
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="bag-footer-about">
                     <div class="baitalgahwa-footer__brand">
                         {{#themelogourl}}
                         <img class="baitalgahwa-footer__logo mb-3" src="{{{ themelogourl }}}" alt="{{ sitename }}" width="180" height="56">
@@ -23,12 +126,12 @@
                     <h3 class="baitalgahwa-footer__heading">{{#str}}footerquick, theme_baitalgahwa{{/str}}</h3>
                     <ul class="list-unstyled baitalgahwa-footer__list mb-0">
                         <li><a class="baitalgahwa-footer__link" href="{{{config.homeurl}}}">{{#str}}home, core{{/str}}</a></li>
-                        <li><span class="baitalgahwa-footer__text">{{#str}}aboutus, theme_baitalgahwa{{/str}}</span></li>
-                        <li><span class="baitalgahwa-footer__text">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</span></li>
+                        <li><a class="baitalgahwa-footer__link" href="#bag-footer-about">{{#str}}aboutus, theme_baitalgahwa{{/str}}</a></li>
+                        <li><a class="baitalgahwa-footer__link" href="#bag-footer-programs">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a></li>
                         <li>{{#footeremail}}<a class="baitalgahwa-footer__link" href="mailto:{{.}}">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>{{/footeremail}}{{^footeremail}}<span class="baitalgahwa-footer__text">{{#str}}contactus, theme_baitalgahwa{{/str}}</span>{{/footeremail}}</li>
                     </ul>
                 </div>
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-3" id="bag-footer-programs">
                     <h3 class="baitalgahwa-footer__heading">{{#str}}footerprograms, theme_baitalgahwa{{/str}}</h3>
                     <ul class="list-unstyled baitalgahwa-footer__list mb-0">
                         <li><span class="baitalgahwa-footer__text">{{#str}}footerprogram_1, theme_baitalgahwa{{/str}}</span></li>
@@ -37,7 +140,7 @@
                         <li><span class="baitalgahwa-footer__text">{{#str}}footerprogram_4, theme_baitalgahwa{{/str}}</span></li>
                     </ul>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2" id="bag-footer-contact">
                     <h3 class="baitalgahwa-footer__heading">{{#str}}footercontact, theme_baitalgahwa{{/str}}</h3>
                     <ul class="list-unstyled baitalgahwa-footer__list mb-0">
                         {{#footeremail}}<li><a class="baitalgahwa-footer__link" href="mailto:{{.}}">{{.}}</a></li>{{/footeremail}}

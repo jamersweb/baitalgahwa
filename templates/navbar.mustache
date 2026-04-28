@@ -1,9 +1,131 @@
 {{!
     @template theme_baitalgahwa/navbar
 }}
+<style>
+.baitalgahwa-header {
+    position: fixed;
+    top: 0;
+    inset-inline: 0;
+    z-index: 1030;
+}
+.baitalgahwa-navbar {
+    min-height: 4.4rem;
+    background: rgba(255,255,255,.98) !important;
+    border-bottom: 1px solid rgba(64, 39, 18, .09);
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 .45rem 1rem rgba(0,0,0,.12);
+    padding-inline: .8rem;
+}
+.baitalgahwa-navbar__inner {
+    width: min(100%, 1320px);
+    margin: 0 auto;
+    gap: 1.25rem;
+}
+.baitalgahwa-navbar .navbar-brand {
+    margin-right: 1.4rem !important;
+}
+.baitalgahwa-custom-logo,
+.baitalgahwa-navbar .logo {
+    max-height: 2.75rem;
+    width: auto;
+    object-fit: contain;
+}
+.baitalgahwa-navbar__custom-links {
+    align-items: center;
+    gap: 1.5rem;
+    margin-right: auto;
+}
+.baitalgahwa-navbar__link {
+    position: relative;
+    color: #3b2e24;
+    text-decoration: none;
+    font-size: .92rem;
+    font-weight: 500;
+    padding: .35rem 0;
+}
+.baitalgahwa-navbar__link--active,
+.baitalgahwa-navbar__link:hover,
+.baitalgahwa-navbar__link:focus-visible {
+    color: #1f1712;
+}
+.baitalgahwa-navbar__link--active::after,
+.baitalgahwa-navbar__link:hover::after,
+.baitalgahwa-navbar__link:focus-visible::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -.55rem;
+    height: 2px;
+    border-radius: 999px;
+    background: #8a5a2b;
+}
+.baitalgahwa-navbar .primary-navigation {
+    margin-right: auto;
+}
+.baitalgahwa-navbar .primary-navigation .moremenu .nav-link {
+    color: #3b2e24;
+    font-size: .92rem;
+    font-weight: 500;
+    padding-inline: .75rem;
+}
+.baitalgahwa-navbar .simplesearchform {
+    margin: 0;
+}
+.baitalgahwa-navbar .simplesearchform .form-control {
+    min-width: min(14rem, 22vw);
+    height: 2.3rem;
+    border-radius: .55rem;
+    border-color: rgba(92, 61, 27, .12);
+    background: #fffdfa;
+    font-size: .88rem;
+}
+.baitalgahwa-navbar #usernavigation {
+    gap: .65rem;
+    align-items: center;
+}
+.baitalgahwa-navbar #usernavigation .divider {
+    display: none !important;
+}
+.baitalgahwa-navbar #usernavigation .nav-link,
+.baitalgahwa-navbar #usernavigation .btn,
+.baitalgahwa-navbar #usernavigation .usermenu .dropdown-toggle {
+    color: #4a3b30;
+}
+.baitalgahwa-navbar .usermenu .dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+.baitalgahwa-navbar .usermenu .dropdown-toggle img,
+.baitalgahwa-navbar .usermenu .avatar,
+.baitalgahwa-navbar .usermenu .userbutton .avatar {
+    border-radius: 999px;
+}
+.baitalgahwa-navbar .logininfo,
+.baitalgahwa-navbar .usermenu .login {
+    font-size: .9rem;
+}
+.pagelayout-login .baitalgahwa-header {
+    position: static;
+}
+@media (max-width: 991.98px) {
+    .baitalgahwa-navbar {
+        border-radius: 0;
+        padding-inline: .5rem;
+    }
+    .baitalgahwa-navbar__inner {
+        width: 100%;
+        gap: .75rem;
+    }
+}
+</style>
 <header class="baitalgahwa-header">
 <nav class="navbar fixed-top navbar-expand baitalgahwa-navbar" aria-label="{{#str}}sitemenubar, admin{{/str}}">
-    <div class="container-fluid">
+    <div class="container-fluid baitalgahwa-navbar__inner">
         <button class="navbar-toggler aabtn d-block d-md-none px-1 my-1 border-0" data-toggler="drawers" data-action="toggle" data-target="theme_boost-drawers-primary">
             <span class="navbar-toggler-icon"></span>
             <span class="sr-only">{{#str}}sidepanel, core{{/str}}</span>
@@ -21,13 +143,19 @@
                 {{/ output.should_display_navbar_logo }}
             {{/themelogourl}}
         </a>
+        <div class="baitalgahwa-navbar__custom-links d-none d-lg-flex" aria-label="Primary">
+            <a class="baitalgahwa-navbar__link baitalgahwa-navbar__link--active" href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
+            <a class="baitalgahwa-navbar__link" href="#bag-footer-about">{{#str}}aboutus, theme_baitalgahwa{{/str}}</a>
+            <a class="baitalgahwa-navbar__link" href="#bag-footer-programs">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
+            <a class="baitalgahwa-navbar__link" href="#bag-footer-contact">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>
+        </div>
         {{#primarymoremenu}}
-        <div class="primary-navigation">
+        <div class="primary-navigation d-none d-md-flex d-lg-none">
             {{> core/moremenu}}
         </div>
         {{/primarymoremenu}}
         {{# output.page_heading_menu}}
-        <ul class="navbar-nav d-none d-md-flex my-1 px-1">
+        <ul class="navbar-nav d-none my-1 px-1">
             {{{ output.page_heading_menu }}}
         </ul>
         {{/output.page_heading_menu}}
