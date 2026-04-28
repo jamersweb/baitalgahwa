@@ -10,6 +10,8 @@
 body.pagelayout-login.theme {
     margin: 0;
     background: #fff;
+    height: 100vh;
+    overflow: hidden;
 }
 .pagelayout-login #page,
 .pagelayout-login #page-wrapper,
@@ -21,11 +23,15 @@ body.pagelayout-login.theme {
     max-width: none;
     border: 0;
     background: transparent;
+    height: 100vh;
+    overflow: hidden;
 }
 .pagelayout-login .baitalgahwa-login-page {
     min-height: 100vh;
+    height: 100vh;
     font-family: Poppins, "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif !important;
     background: #fff;
+    overflow: hidden;
 }
 .pagelayout-login .baitalgahwa-login-page * {
     font-family: inherit;
@@ -35,6 +41,7 @@ body.pagelayout-login.theme {
 }
 .pagelayout-login .baitalgahwa-login {
     min-height: 100vh;
+    height: 100vh;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: stretch;
@@ -46,7 +53,7 @@ body.pagelayout-login.theme {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 6vw, 5.5rem);
+    padding: clamp(1.5rem, 4vw, 3rem) clamp(2rem, 6vw, 5.5rem) clamp(2.5rem, 4vw, 4rem);
 }
 .pagelayout-login .baitalgahwa-login__card {
     width: 100%;
@@ -74,7 +81,7 @@ body.pagelayout-login.theme {
 .pagelayout-login .baitalgahwa-login__visual-scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(88, 52, 24, 0.48) 0%, rgba(117, 72, 35, 0.4) 42%, rgba(160, 116, 77, 0.24) 100%);
+    background: linear-gradient(90deg, rgba(66, 38, 17, 0.72) 0%, rgba(95, 57, 29, 0.58) 44%, rgba(145, 101, 63, 0.34) 100%);
 }
 .pagelayout-login .baitalgahwa-login__visual-inner {
     position: relative;
@@ -84,8 +91,9 @@ body.pagelayout-login.theme {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    max-width: 26rem;
-    padding: clamp(2.5rem, 4vw, 5rem);
+    max-width: 23rem;
+    padding: clamp(2rem, 4vw, 4rem) clamp(2rem, 4.5vw, 4.25rem);
+    transform: translateY(-2.1rem);
 }
 .pagelayout-login .baitalgahwa-login__logo {
     max-width: 9rem;
@@ -106,6 +114,7 @@ body.pagelayout-login.theme {
 }
 .pagelayout-login .baitalgahwa-auth-header {
     margin-bottom: 2rem !important;
+    transform: translateY(-1.2rem);
 }
 .pagelayout-login .baitalgahwa-auth-title {
     color: #1f1f1f;
@@ -282,18 +291,18 @@ body.pagelayout-login.theme {
     box-shadow: none !important;
 }
 .pagelayout-login .baitalgahwa-login__visual-title {
-    max-width: 22rem;
-    font-size: clamp(3.5rem, 5.2vw, 4.9rem);
+    max-width: 18rem;
+    font-size: clamp(3rem, 4.6vw, 4.2rem);
     font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: 0.015em;
+    line-height: 1.1;
+    letter-spacing: 0;
     color: #fff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
 }
 .pagelayout-login .baitalgahwa-login__visual-text {
-    max-width: 20rem;
-    font-size: 0.98rem;
-    line-height: 1.6;
+    max-width: 18rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
     color: rgba(255, 255, 255, 0.92);
 }
 .pagelayout-login .baitalgahwa-idps--static {
@@ -318,19 +327,37 @@ body.pagelayout-login.theme {
     margin-bottom: 1rem;
     font-size: 0.78rem;
 }
+.pagelayout-login .baitalgahwa-login__card {
+    transform: translateY(-1.1rem);
+}
 @media (max-width: 991.98px) {
     .pagelayout-login .baitalgahwa-login {
         grid-template-columns: 1fr;
+        height: auto;
     }
     .pagelayout-login .baitalgahwa-login__visual {
         display: none !important;
     }
     .pagelayout-login .baitalgahwa-login__card {
         max-width: 100%;
+        transform: none;
     }
     .pagelayout-login .baitalgahwa-signup-grid {
         grid-template-columns: 1fr;
         gap: 0;
+    }
+    .pagelayout-login .baitalgahwa-auth-header,
+    .pagelayout-login .baitalgahwa-login__visual-inner {
+        transform: none;
+    }
+    body.pagelayout-login.theme,
+    .pagelayout-login .baitalgahwa-login-page,
+    .pagelayout-login #page,
+    .pagelayout-login #page-wrapper,
+    .pagelayout-login #region-main-box,
+    .pagelayout-login #region-main {
+        height: auto;
+        overflow: visible;
     }
 }
 </style>
