@@ -45,6 +45,13 @@
     align-items: center;
   }
 
+  .usermenu-container {
+    display: inline-flex;
+    align-items: center;
+    min-height: 100%;
+    padding-inline-start: 0.35rem;
+  }
+
   .simplesearchform .form-control {
     min-width: clamp(15rem, 19vw, 18rem);
     min-height: 2.5rem;
@@ -64,4 +71,55 @@
   max-height: 2.5rem;
   width: auto;
   object-fit: contain;
+}
+
+.baitalgahwa-navbar .usermenu .dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 0.2rem 0 0.2rem 0.2rem !important;
+  border: 0 !important;
+  background: transparent !important;
+  border-radius: 999px;
+  box-shadow: none !important;
+}
+
+.baitalgahwa-navbar .usermenu .action-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+}
+
+.baitalgahwa-navbar .usermenu .usertext,
+.baitalgahwa-navbar .usermenu .login {
+  color: #8b5c2f;
+  font-size: 0.98rem;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.baitalgahwa-navbar .usermenu img.userpicture,
+.baitalgahwa-navbar .usermenu .avatar img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border: 0;
+  box-shadow: 0 0.18rem 0.45rem rgba($black, 0.16);
+}
+
+.baitalgahwa-navbar .logininfo,
+.baitalgahwa-navbar .usermenu .login {
+  font-size: 0.98rem;
+}
+
+.baitalgahwa-navbar .usermenu .dropdown-toggle::after {
+  margin-inline-start: 0.2rem;
+  font-size: 1rem;
+  color: #8f7869;
+  border: 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-right: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(45deg) translateY(-0.05rem);
 }

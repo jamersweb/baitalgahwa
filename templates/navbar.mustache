@@ -128,6 +128,12 @@
     align-items: center;
     flex-wrap: nowrap;
 }
+.baitalgahwa-navbar .usermenu-container {
+    display: inline-flex;
+    align-items: center;
+    min-height: 100%;
+    padding-inline-start: .35rem;
+}
 .baitalgahwa-navbar #usernavigation .divider {
     display: none !important;
 }
@@ -198,19 +204,24 @@
 .baitalgahwa-navbar .usermenu .dropdown-toggle {
     display: inline-flex;
     align-items: center;
-    gap: .7rem;
-    padding: .08rem 0 .08rem .15rem !important;
+    gap: .95rem;
+    padding: .2rem 0 .2rem .2rem !important;
     border: 0 !important;
     background: transparent !important;
     border-radius: 999px;
     box-shadow: none !important;
 }
+.baitalgahwa-navbar .usermenu .action-menu-trigger {
+    display: inline-flex;
+    align-items: center;
+}
 .baitalgahwa-navbar .usermenu .usertext,
 .baitalgahwa-navbar .usermenu .login {
-    color: #4a3b30;
-    font-size: .92rem;
-    font-weight: 600;
+    color: #8b5c2f;
+    font-size: .98rem;
+    font-weight: 500;
     white-space: nowrap;
+    letter-spacing: .01em;
 }
 .baitalgahwa-navbar .usermenu .dropdown-toggle img,
 .baitalgahwa-navbar .usermenu .avatar,
@@ -219,18 +230,26 @@
 }
 .baitalgahwa-navbar .usermenu img.userpicture,
 .baitalgahwa-navbar .usermenu .avatar img {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 3rem;
+    height: 3rem;
     object-fit: cover;
-    border: 2px solid rgba(138, 90, 43, .14);
+    border: 0;
+    box-shadow: 0 .18rem .45rem rgba(33,20,12,.16);
 }
 .baitalgahwa-navbar .logininfo,
 .baitalgahwa-navbar .usermenu .login {
-    font-size: .9rem;
+    font-size: .98rem;
 }
 .baitalgahwa-navbar .usermenu .dropdown-toggle::after {
-    margin-inline-start: .1rem;
-    color: #9c8f84;
+    margin-inline-start: .2rem;
+    font-size: 1rem;
+    color: #8f7869;
+    border: 0;
+    width: .7rem;
+    height: .7rem;
+    border-right: 3px solid currentColor;
+    border-bottom: 3px solid currentColor;
+    transform: rotate(45deg) translateY(-.05rem);
 }
 .baitalgahwa-navbar__icon:hover,
 .baitalgahwa-navbar__icon:focus-visible,
@@ -238,26 +257,6 @@
 .baitalgahwa-navbar #usernavigation .popover-region-toggle:focus-visible {
     color: #8a5a2b;
     background: transparent !important;
-}
-.baitalgahwa-navbar .editmode-switch-form {
-    margin-inline-start: .3rem;
-}
-.baitalgahwa-navbar .editmode-switch-form .custom-control {
-    margin-bottom: 0;
-}
-.baitalgahwa-navbar .editmode-switch-form label,
-.baitalgahwa-navbar .editmode-switch-form .custom-control-label {
-    color: #7b6e63;
-    font-size: .8rem;
-    font-weight: 600;
-}
-.baitalgahwa-navbar .editmode-switch-form .custom-switch .custom-control-label::before {
-    border-color: #dfd5cb;
-    background: #ebe5de;
-}
-.baitalgahwa-navbar .editmode-switch-form .custom-switch .custom-control-input:checked ~ .custom-control-label::before {
-    border-color: #8a5a2b;
-    background: #8a5a2b;
 }
 .pagelayout-login .baitalgahwa-header {
     position: static;
@@ -334,12 +333,11 @@
             <div class="baitalgahwa-navbar__core-output">
                 {{{ output.navbar_plugin_output }}}
             </div>
-            <div class="d-flex align-items-stretch usermenu-container" data-region="usermenu">
+            <div class="usermenu-container" data-region="usermenu">
                 {{#usermenu}}
                 {{> core/user_menu }}
                 {{/usermenu}}
             </div>
-            {{{ output.edit_switch }}}
         </div>
     </div>
 </nav>
