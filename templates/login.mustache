@@ -631,6 +631,12 @@ body.pagelayout-login.theme,
     width: 1.15rem;
     height: 1.15rem;
 }
+.pagelayout-login .baitalgahwa-signup-form .baitalgahwa-password-hint {
+    display: none !important;
+}
+.pagelayout-login .baitalgahwa-signup-form .baitalgahwa-password-hint.is-visible {
+    display: block !important;
+}
 .pagelayout-login .baitalgahwa-signup-form .fdescription.required,
 .pagelayout-login .baitalgahwa-signup-form [data-fieldtype="submit"] .btn-secondary,
 .pagelayout-login .baitalgahwa-signup-form input[name="cancel"],
@@ -648,6 +654,15 @@ body.pagelayout-login.theme,
         height: 100vh;
         min-height: 100vh;
         overflow: hidden;
+    }
+    .pagelayout-login .baitalgahwa-login__panel,
+    .pagelayout-login .baitalgahwa-login__visual {
+        grid-row: 1;
+        align-self: stretch;
+    }
+    .pagelayout-login .baitalgahwa-login__visual {
+        min-height: 100vh;
+        height: 100vh;
     }
     .pagelayout-login .baitalgahwa-login__card .card-body {
         padding-top: 1rem !important;
@@ -1098,6 +1113,10 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         input.dataset.baitPasswordReady = '1';
     };
 
+    var isStrongPassword = function(value) {
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(value || '');
+    };
+
     var applyLoginEnhancements = function() {
         var username = document.getElementById('username');
         var password = document.getElementById('password');
@@ -1259,7 +1278,41 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             if (passwordRow) {
                 var passwordHelp = passwordRow.querySelector('.form-control-feedback, .form-text, .hint, .text-muted');
                 if (passwordHelp) {
-                    passwordHelp.style.display = 'none';
+                    passwordHelp.classList.add('baitalgahwa-password-hint');
+
+                    var syncPasswordHint = function(forceShow) {
+                        var value = password.value || '';
+                        var shouldShow = false;
+
+                        if (value.length > 0) {
+                            shouldShow = !isStrongPassword(value);
+                        } else if (forceShow) {
+                            shouldShow = true;
+                        }
+
+                        if (password.classList.contains('is-invalid') || password.getAttribute('aria-invalid') === 'true') {
+                            shouldShow = true;
+                        }
+
+                        passwordHelp.classList.toggle('is-visible', shouldShow);
+                    };
+
+                    if (!password.dataset.baitHintBound) {
+                        password.addEventListener('input', function() {
+                            syncPasswordHint(false);
+                        });
+                        password.addEventListener('blur', function() {
+                            syncPasswordHint((password.value || '').length > 0);
+                        });
+                        if (signupForm) {
+                            signupForm.addEventListener('submit', function() {
+                                syncPasswordHint(true);
+                            });
+                        }
+                        password.dataset.baitHintBound = '1';
+                    }
+
+                    syncPasswordHint(false);
                 }
             }
         }
