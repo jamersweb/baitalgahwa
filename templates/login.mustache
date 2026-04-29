@@ -518,12 +518,12 @@ body.pagelayout-login.theme,
     overflow: visible;
 }
 .pagelayout-login .baitalgahwa-login__panel {
-    justify-content: flex-start;
+    justify-content: center;
     padding-top: clamp(2rem, 4vw, 3rem);
     padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 .pagelayout-login .baitalgahwa-login__card {
-    max-width: 31rem;
+    max-width: 23.75rem;
     transform: none;
 }
 .pagelayout-login .baitalgahwa-auth-header {
@@ -565,16 +565,13 @@ body.pagelayout-login.theme,
     font-size: 0.98rem;
     line-height: 1.6;
 }
-.pagelayout-login .baitalgahwa-login__card {
-    max-width: 24rem;
-}
 .pagelayout-login .baitalgahwa-auth-header {
     margin-bottom: 1.2rem !important;
 }
 .pagelayout-login .baitalgahwa-auth-title {
-    font-size: 1.15rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    line-height: 1.35;
+    line-height: 1.25;
 }
 .pagelayout-login .baitalgahwa-auth-sub {
     display: none !important;
@@ -633,6 +630,29 @@ body.pagelayout-login.theme,
 .pagelayout-login .baitalgahwa-signup-socialicons .baitalgahwa-social-svg {
     width: 1.15rem;
     height: 1.15rem;
+}
+.pagelayout-login .baitalgahwa-signup-form .fdescription.required,
+.pagelayout-login .baitalgahwa-signup-form [data-fieldtype="submit"] .btn-secondary,
+.pagelayout-login .baitalgahwa-signup-form input[name="cancel"],
+.pagelayout-login .baitalgahwa-signup-form button[name="cancel"] {
+    display: none !important;
+}
+@media (min-width: 992px) {
+    body.pagelayout-login.theme,
+    .pagelayout-login #page,
+    .pagelayout-login #page-wrapper,
+    .pagelayout-login #region-main-box,
+    .pagelayout-login #region-main,
+    .pagelayout-login .baitalgahwa-login-page,
+    .pagelayout-login .baitalgahwa-login {
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+    .pagelayout-login .baitalgahwa-login__card .card-body {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
 }
 {{/is_signup_page}}
 @media (max-width: 991.98px) {
@@ -913,8 +933,8 @@ body.pagelayout-login.theme,
             <div class="baitalgahwa-login__visual-scrim" aria-hidden="true"></div>
             <div class="baitalgahwa-login__visual-inner p-5 text-white position-relative">
                 {{#is_signup_page}}
-                <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">{{#str}} authpanel_signup_hero_title, theme_baitalgahwa {{/str}}</h2>
-                <p class="baitalgahwa-login__visual-text lead mb-0">{{#str}} authpanel_signup_hero_sub, theme_baitalgahwa {{/str}}</p>
+                <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">Start your learning journey today</h2>
+                <p class="baitalgahwa-login__visual-text lead mb-0">Join thousands of professionals advancing their careers with Bait Al Gahwa's premium training programs.</p>
                 {{/is_signup_page}}
                 {{^is_signup_page}}
                 <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">{{ herotitle }}</h2>
@@ -981,7 +1001,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
     var signupGoogleMarkup = '' +
         '<div class="baitalgahwa-signup-social">' +
             '<a class="baitalgahwa-signup-google" href="' + loginIndexUrl + '">' +
-                '<span>{{#str}} authpanel_google_signup, theme_baitalgahwa {{/str}}</span>' +
+                '<span>Create account with Google</span>' +
                 '<svg class="baitalgahwa-signup-google__icon" viewBox="0 0 24 24" aria-hidden="true">' +
                     '<path fill="#EA4335" d="M12 10.2v3.9h5.42c-.23 1.26-.95 2.32-2.03 3.04l3.29 2.55c1.92-1.77 3.02-4.38 3.02-7.48 0-.71-.06-1.4-.18-2.06H12z"/>' +
                     '<path fill="#34A853" d="M12 22c2.73 0 5.02-.91 6.69-2.47l-3.29-2.55c-.91.61-2.08.97-3.4.97-2.62 0-4.84-1.77-5.64-4.14H3.96v2.63A10.1 10.1 0 0 0 12 22z"/>' +
@@ -1143,10 +1163,14 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 
     var applySignupEnhancements = function() {
         var signupForm = document.querySelector('.baitalgahwa-login__form form');
+        var username = document.getElementById('id_username');
         var email = document.getElementById('id_email');
         var email2 = document.getElementById('id_email2');
         var firstname = document.getElementById('id_firstname');
         var lastname = document.getElementById('id_lastname');
+        var password = document.querySelector('#id_password, #id_password1');
+        var city = document.getElementById('id_city');
+        var country = document.getElementById('id_country');
         var signupTitle = document.querySelector('.baitalgahwa-login__form > h2, .baitalgahwa-login__form .mform > h2');
 
         if (signupForm) {
@@ -1175,6 +1199,28 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             signupTitle.style.display = 'none';
         }
 
+        forEachNode(document.querySelectorAll('.baitalgahwa-login__form h2, .baitalgahwa-login__form legend'), function(node) {
+            if (node && /new account/i.test((node.textContent || '').trim())) {
+                node.style.display = 'none';
+            }
+        });
+
+        if (username && email) {
+            var usernameRow = findRow(username);
+            var syncUsername = function() {
+                username.value = email.value.trim();
+            };
+            if (!email.dataset.baitUsernameBound) {
+                email.addEventListener('input', syncUsername);
+                email.addEventListener('change', syncUsername);
+                email.dataset.baitUsernameBound = '1';
+            }
+            syncUsername();
+            if (usernameRow) {
+                usernameRow.style.display = 'none';
+            }
+        }
+
         if (email && email2) {
             if (!email.dataset.baitSyncBound) {
                 var syncEmail = function() {
@@ -1191,6 +1237,30 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             var email2row = findRow(email2);
             if (email2row) {
                 email2row.classList.add('baitalgahwa-signup-hiddenconfirm');
+            }
+        }
+
+        if (city) {
+            var cityRow = findRow(city);
+            if (cityRow) {
+                cityRow.style.display = 'none';
+            }
+        }
+
+        if (country) {
+            var countryRow = findRow(country);
+            if (countryRow) {
+                countryRow.style.display = 'none';
+            }
+        }
+
+        if (password) {
+            var passwordRow = findRow(password);
+            if (passwordRow) {
+                var passwordHelp = passwordRow.querySelector('.form-control-feedback, .form-text, .hint, .text-muted');
+                if (passwordHelp) {
+                    passwordHelp.style.display = 'none';
+                }
             }
         }
 
@@ -1220,14 +1290,24 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         }
 
         [
-            ['id_username', 'Choose a username'],
             ['id_email', 'Enter your email address'],
-            ['id_city', 'Enter your city'],
-            ['id_password', 'Create a password']
+            ['id_firstname', 'First name'],
+            ['id_lastname', 'Last name'],
+            ['id_password', 'Create your password'],
+            ['id_password1', 'Create your password']
         ].forEach(function(config) {
             var field = document.getElementById(config[0]);
             if (field && !field.placeholder) {
                 field.placeholder = config[1];
+            }
+        });
+
+        forEachNode(signupForm ? signupForm.querySelectorAll('button[type="submit"], input[type="submit"]') : [], function(button) {
+            if (button) {
+                button.textContent = 'Create an account';
+                if (button.value !== undefined) {
+                    button.value = 'Create an account';
+                }
             }
         });
 
