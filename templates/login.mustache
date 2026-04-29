@@ -289,6 +289,167 @@ body.pagelayout-login.theme {
     white-space: nowrap !important;
     border: 0 !important;
 }
+.pagelayout-login .baitalgahwa-login__form .mform,
+.pagelayout-login .baitalgahwa-login__form .mform fieldset,
+.pagelayout-login .baitalgahwa-login__form .mform .fcontainer,
+.pagelayout-login .baitalgahwa-login__form .mform .fitem,
+.pagelayout-login .baitalgahwa-login__form .mform .felement {
+    width: 100%;
+    max-width: none;
+}
+.pagelayout-login .baitalgahwa-login__form .mform fieldset {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    border: 0;
+}
+.pagelayout-login .baitalgahwa-login__form .mform fieldset > legend,
+.pagelayout-login .baitalgahwa-login__form .mform .ftoggler {
+    display: none !important;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .fitem {
+    margin-bottom: 1rem;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .fitem.row {
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .col-form-label,
+.pagelayout-login .baitalgahwa-login__form .mform .felement,
+.pagelayout-login .baitalgahwa-login__form .mform .fitem .col-md-3,
+.pagelayout-login .baitalgahwa-login__form .mform .fitem .col-md-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .col-form-label,
+.pagelayout-login .baitalgahwa-login__form .mform .fitemtitle {
+    display: block;
+    margin-bottom: 0.45rem;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .fitemtitle label,
+.pagelayout-login .baitalgahwa-login__form .mform .col-form-label label,
+.pagelayout-login .baitalgahwa-login__form .mform .col-form-label > span {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #6a6a6a !important;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .felement > .d-flex,
+.pagelayout-login .baitalgahwa-login__form .mform .felement > span {
+    width: 100%;
+}
+.pagelayout-login .baitalgahwa-login__form .mform input[type="text"],
+.pagelayout-login .baitalgahwa-login__form .mform input[type="password"],
+.pagelayout-login .baitalgahwa-login__form .mform input[type="email"],
+.pagelayout-login .baitalgahwa-login__form .mform input[type="tel"],
+.pagelayout-login .baitalgahwa-login__form .mform input[type="search"],
+.pagelayout-login .baitalgahwa-login__form .mform input[type="url"],
+.pagelayout-login .baitalgahwa-login__form .mform select,
+.pagelayout-login .baitalgahwa-login__form .mform textarea {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.72rem 0.95rem;
+    border: 1px solid rgba(29, 29, 29, 0.35);
+    border-radius: 0.28rem;
+    background: #fff;
+    box-shadow: none;
+    font-size: 0.8rem;
+    line-height: 1.35;
+}
+.pagelayout-login .baitalgahwa-login__form .mform select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 2.5rem;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #6d6d6d 50%),
+        linear-gradient(135deg, #6d6d6d 50%, transparent 50%);
+    background-position:
+        calc(100% - 1.15rem) calc(50% - 0.15rem),
+        calc(100% - 0.8rem) calc(50% - 0.15rem);
+    background-size: 0.38rem 0.38rem, 0.38rem 0.38rem;
+    background-repeat: no-repeat;
+}
+.pagelayout-login .baitalgahwa-login__form .mform textarea {
+    min-height: 6.5rem;
+    resize: vertical;
+}
+.pagelayout-login .baitalgahwa-login__form .mform input::placeholder,
+.pagelayout-login .baitalgahwa-login__form .mform textarea::placeholder {
+    color: #6d6d6d;
+    opacity: 1;
+}
+.pagelayout-login .baitalgahwa-login__form .mform input:focus,
+.pagelayout-login .baitalgahwa-login__form .mform select:focus,
+.pagelayout-login .baitalgahwa-login__form .mform textarea:focus {
+    border-color: rgba(93, 62, 33, 0.62);
+    outline: 0;
+    box-shadow: 0 0 0 0.18rem rgba(93, 62, 33, 0.08);
+}
+.pagelayout-login .baitalgahwa-login__form .mform .form-control-feedback,
+.pagelayout-login .baitalgahwa-login__form .mform .form-text,
+.pagelayout-login .baitalgahwa-login__form .mform .felement .hint,
+.pagelayout-login .baitalgahwa-login__form .mform .felement .helptooltip,
+.pagelayout-login .baitalgahwa-login__form .mform .felement .form-autocomplete-selection,
+.pagelayout-login .baitalgahwa-login__form .mform .felement .form-description {
+    margin-top: 0.45rem;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: #6f6f6f;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .error,
+.pagelayout-login .baitalgahwa-login__form .mform .text-danger,
+.pagelayout-login .baitalgahwa-login__form .mform .invalid-feedback {
+    font-size: 0.76rem;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .fdescription.required {
+    margin-top: 0.2rem;
+    color: #9a4b35;
+}
+.pagelayout-login .baitalgahwa-login__form .mform input[type="checkbox"],
+.pagelayout-login .baitalgahwa-login__form .mform input[type="radio"] {
+    margin-right: 0.55rem;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .form-check,
+.pagelayout-login .baitalgahwa-login__form .mform .custom-control {
+    padding-left: 0;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .btn,
+.pagelayout-login .baitalgahwa-login__form .mform input[type="submit"],
+.pagelayout-login .baitalgahwa-login__form .mform button[type="submit"] {
+    width: 100%;
+    min-height: 2.75rem;
+    border-color: #5d3e21;
+    background: #5d3e21;
+    color: #fff;
+    border-radius: 0.3rem;
+    font-size: 0.84rem;
+    font-weight: 500;
+    box-shadow: none !important;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .btn:hover,
+.pagelayout-login .baitalgahwa-login__form .mform .btn:focus,
+.pagelayout-login .baitalgahwa-login__form .mform input[type="submit"]:hover,
+.pagelayout-login .baitalgahwa-login__form .mform input[type="submit"]:focus,
+.pagelayout-login .baitalgahwa-login__form .mform button[type="submit"]:hover,
+.pagelayout-login .baitalgahwa-login__form .mform button[type="submit"]:focus {
+    border-color: #4a311a;
+    background: #4a311a;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .btn.btn-secondary,
+.pagelayout-login .baitalgahwa-login__form .mform .btn.btn-link {
+    background: transparent;
+    color: #5d3e21;
+    border-color: transparent;
+}
+.pagelayout-login .baitalgahwa-signup-form .fitem:last-of-type {
+    margin-bottom: 0;
+}
 .pagelayout-login .baitalgahwa-login-submit.btn-primary,
 .pagelayout-login #loginbtn {
     width: 100%;
@@ -340,6 +501,140 @@ body.pagelayout-login.theme {
 .pagelayout-login .baitalgahwa-login__card {
     transform: translateY(-1.1rem);
 }
+{{#is_signup_page}}
+body.pagelayout-login.theme,
+.pagelayout-login #page,
+.pagelayout-login #page-wrapper,
+.pagelayout-login #region-main-box,
+.pagelayout-login #region-main {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+}
+.pagelayout-login .baitalgahwa-login-page,
+.pagelayout-login .baitalgahwa-login {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+}
+.pagelayout-login .baitalgahwa-login__panel {
+    justify-content: flex-start;
+    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+.pagelayout-login .baitalgahwa-login__card {
+    max-width: 31rem;
+    transform: none;
+}
+.pagelayout-login .baitalgahwa-auth-header {
+    margin-bottom: 1.4rem !important;
+    transform: none;
+}
+.pagelayout-login .baitalgahwa-login__form > h2:first-child,
+.pagelayout-login .baitalgahwa-login__form > .mform > h2:first-child {
+    display: none !important;
+}
+.pagelayout-login .baitalgahwa-signup-merged {
+    margin-bottom: 1rem;
+}
+.pagelayout-login .baitalgahwa-login__panel {
+    grid-column: 2;
+    padding-left: clamp(2rem, 5vw, 4.5rem);
+    padding-right: clamp(2rem, 5vw, 4.75rem);
+}
+.pagelayout-login .baitalgahwa-login__visual {
+    grid-column: 1;
+    background-position: center center;
+}
+.pagelayout-login .baitalgahwa-login__visual-scrim {
+    background: linear-gradient(0deg, rgba(53, 29, 13, 0.56) 0%, rgba(61, 33, 15, 0.22) 42%, rgba(94, 55, 27, 0.08) 100%);
+}
+.pagelayout-login .baitalgahwa-login__visual-inner {
+    justify-content: flex-end;
+    max-width: 30rem;
+    padding: 0 clamp(2rem, 4vw, 3.6rem) clamp(3rem, 5vw, 4.2rem);
+    transform: none;
+}
+.pagelayout-login .baitalgahwa-login__visual-title {
+    max-width: 26rem;
+    font-size: clamp(2.9rem, 4.2vw, 4rem);
+    line-height: 1.14;
+}
+.pagelayout-login .baitalgahwa-login__visual-text {
+    max-width: 21rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+.pagelayout-login .baitalgahwa-login__card {
+    max-width: 24rem;
+}
+.pagelayout-login .baitalgahwa-auth-header {
+    margin-bottom: 1.2rem !important;
+}
+.pagelayout-login .baitalgahwa-auth-title {
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.35;
+}
+.pagelayout-login .baitalgahwa-auth-sub {
+    display: none !important;
+}
+.pagelayout-login .baitalgahwa-signup-loginlink {
+    margin-top: 0.35rem;
+    color: #8a8a8a;
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+.pagelayout-login .baitalgahwa-signup-social {
+    margin-bottom: 1rem;
+}
+.pagelayout-login .baitalgahwa-signup-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    width: 100%;
+    min-height: 2.95rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(17, 24, 39, 0.12);
+    border-radius: 0.45rem;
+    background: #fff;
+    color: #2d2d2d;
+    font-size: 0.88rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+.pagelayout-login .baitalgahwa-signup-google:hover,
+.pagelayout-login .baitalgahwa-signup-google:focus {
+    color: #2d2d2d;
+    border-color: rgba(93, 62, 33, 0.28);
+    box-shadow: 0 0 0 0.16rem rgba(93, 62, 33, 0.06);
+    transform: translateY(-1px);
+}
+.pagelayout-login .baitalgahwa-signup-google__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    display: block;
+}
+.pagelayout-login .baitalgahwa-signup-socialicons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.05rem;
+    margin-top: 1.45rem;
+}
+.pagelayout-login .baitalgahwa-signup-socialicons .baitalgahwa-idp-round {
+    width: auto;
+    height: auto;
+    background: transparent;
+    color: #7b7b8f;
+}
+.pagelayout-login .baitalgahwa-signup-socialicons .baitalgahwa-social-svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+{{/is_signup_page}}
 @media (max-width: 991.98px) {
     .pagelayout-login .baitalgahwa-login__visual--mobile {
         min-height: 11rem;
@@ -436,6 +731,47 @@ body.pagelayout-login.theme {
         grid-template-columns: 1fr;
         gap: 0;
     }
+    .pagelayout-login .baitalgahwa-login__form .mform input[type="text"],
+    .pagelayout-login .baitalgahwa-login__form .mform input[type="password"],
+    .pagelayout-login .baitalgahwa-login__form .mform input[type="email"],
+    .pagelayout-login .baitalgahwa-login__form .mform input[type="tel"],
+    .pagelayout-login .baitalgahwa-login__form .mform input[type="search"],
+    .pagelayout-login .baitalgahwa-login__form .mform input[type="url"],
+    .pagelayout-login .baitalgahwa-login__form .mform select,
+    .pagelayout-login .baitalgahwa-login__form .mform textarea,
+    .pagelayout-login .baitalgahwa-login__form .mform .btn,
+    .pagelayout-login .baitalgahwa-login__form .mform input[type="submit"],
+    .pagelayout-login .baitalgahwa-login__form .mform button[type="submit"] {
+        min-height: 3rem;
+    }
+    {{#is_signup_page}}
+    body.pagelayout-login.theme,
+    .pagelayout-login .baitalgahwa-login-page,
+    .pagelayout-login #page,
+    .pagelayout-login #page-wrapper,
+    .pagelayout-login #region-main-box,
+    .pagelayout-login #region-main,
+    .pagelayout-login .baitalgahwa-login {
+        height: auto;
+        min-height: 100svh;
+        overflow: visible;
+    }
+    .pagelayout-login .baitalgahwa-login {
+        background-position: center 22%;
+    }
+    .pagelayout-login .baitalgahwa-login__panel {
+        grid-column: 1;
+        margin-top: -2.65rem;
+        min-height: auto;
+        padding-bottom: 1.25rem;
+    }
+    .pagelayout-login .baitalgahwa-login__card {
+        overflow: visible;
+    }
+    .pagelayout-login .baitalgahwa-signup-google {
+        min-height: 3rem;
+    }
+    {{/is_signup_page}}
     .pagelayout-login .baitalgahwa-login__visual-inner {
         transform: none;
     }
@@ -520,6 +856,18 @@ body.pagelayout-login.theme {
     .pagelayout-login .baitalgahwa-login {
         background-position: center 14%;
     }
+    {{#is_signup_page}}
+    .pagelayout-login .baitalgahwa-login__panel {
+        margin-top: -2.15rem;
+        padding: 0 1rem 1rem;
+    }
+    .pagelayout-login .baitalgahwa-login__card .card-body {
+        padding: 0.85rem 0.9rem 1rem !important;
+    }
+    .pagelayout-login .baitalgahwa-signup-loginlink {
+        font-size: 0.76rem;
+    }
+    {{/is_signup_page}}
 }
 </style>
 <body {{{ bodyattributes }}}>
@@ -545,15 +893,14 @@ body.pagelayout-login.theme {
 
                         {{#is_signup_page}}
                         <h2 class="baitalgahwa-auth-title mb-2">{{#str}} authpanel_signup_title, theme_baitalgahwa {{/str}}</h2>
-                        <p class="baitalgahwa-auth-sub text-muted small mb-0 px-sm-1">{{#str}} authpanel_signup_sub, theme_baitalgahwa {{/str}}</p>
-                        <p class="text-muted small mt-2 mb-0">
+                        <p class="baitalgahwa-signup-loginlink mb-0">
                             {{#str}} authpanel_already, theme_baitalgahwa {{/str}}
                             <a class="baitalgahwa-auth-link" href="{{{ loginindexurl }}}">{{#str}} login {{/str}}</a>
                         </p>
                         {{/is_signup_page}}
                         {{^is_signup_page}}
                         <h2 class="baitalgahwa-auth-title mb-2">{{#str}} authpanel_welcome, theme_baitalgahwa {{/str}}</h2>
-                        <p class="baitalgahwa-auth-sub text-muted small mb-0 px-sm-1">Kindly fill in your details below to create an account</p>
+                        <p class="baitalgahwa-auth-sub text-muted small mb-0 px-sm-1">{{#str}} authpanel_login_sub, theme_baitalgahwa {{/str}}</p>
                         {{/is_signup_page}}
                     </div>
                     <div class="baitalgahwa-login__form">
@@ -565,8 +912,14 @@ body.pagelayout-login.theme {
         <div class="baitalgahwa-login__visual d-none d-lg-flex" {{#heroimageurl}}style="background-image: url('{{{ heroimageurl }}}');"{{/heroimageurl}}>
             <div class="baitalgahwa-login__visual-scrim" aria-hidden="true"></div>
             <div class="baitalgahwa-login__visual-inner p-5 text-white position-relative">
+                {{#is_signup_page}}
+                <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">{{#str}} authpanel_signup_hero_title, theme_baitalgahwa {{/str}}</h2>
+                <p class="baitalgahwa-login__visual-text lead mb-0">{{#str}} authpanel_signup_hero_sub, theme_baitalgahwa {{/str}}</p>
+                {{/is_signup_page}}
+                {{^is_signup_page}}
                 <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">{{ herotitle }}</h2>
                 <p class="baitalgahwa-login__visual-text lead mb-0">{{ herosubtitle }}</p>
+                {{/is_signup_page}}
             </div>
         </div>
     </div>
@@ -585,6 +938,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 });
 (function() {
     var isSignup = {{#is_signup_page}}true{{/is_signup_page}}{{^is_signup_page}}false{{/is_signup_page}};
+    var loginIndexUrl = '{{{ loginindexurl }}}';
     var findRow = function(input) {
         if (!input) {
             return null;
@@ -624,6 +978,40 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             '</span>' +
         '</div>';
 
+    var signupGoogleMarkup = '' +
+        '<div class="baitalgahwa-signup-social">' +
+            '<a class="baitalgahwa-signup-google" href="' + loginIndexUrl + '">' +
+                '<span>{{#str}} authpanel_google_signup, theme_baitalgahwa {{/str}}</span>' +
+                '<svg class="baitalgahwa-signup-google__icon" viewBox="0 0 24 24" aria-hidden="true">' +
+                    '<path fill="#EA4335" d="M12 10.2v3.9h5.42c-.23 1.26-.95 2.32-2.03 3.04l3.29 2.55c1.92-1.77 3.02-4.38 3.02-7.48 0-.71-.06-1.4-.18-2.06H12z"/>' +
+                    '<path fill="#34A853" d="M12 22c2.73 0 5.02-.91 6.69-2.47l-3.29-2.55c-.91.61-2.08.97-3.4.97-2.62 0-4.84-1.77-5.64-4.14H3.96v2.63A10.1 10.1 0 0 0 12 22z"/>' +
+                    '<path fill="#4A90E2" d="M6.36 13.81A6.08 6.08 0 0 1 6.05 12c0-.63.11-1.24.31-1.81V7.56H3.96A10.03 10.03 0 0 0 2 12c0 1.62.39 3.15 1.08 4.44l3.28-2.63z"/>' +
+                    '<path fill="#FBBC05" d="M12 6.05c1.48 0 2.8.51 3.84 1.51l2.88-2.88C17 3.09 14.71 2 12 2a10.1 10.1 0 0 0-8.04 5.56l3.4 2.63C7.16 7.82 9.38 6.05 12 6.05z"/>' +
+                '</svg>' +
+            '</a>' +
+        '</div>' +
+        '<div class="baitalgahwa-login-divider" role="separator" aria-hidden="true">' +
+            '<span class="baitalgahwa-login-divider__line"></span>' +
+            '<span class="baitalgahwa-login-divider__text">{{#str}} divideror, theme_baitalgahwa {{/str}}</span>' +
+            '<span class="baitalgahwa-login-divider__line"></span>' +
+        '</div>';
+
+    var signupBottomIconsMarkup = '' +
+        '<div class="baitalgahwa-signup-socialicons" aria-hidden="true">' +
+            '<span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">' +
+                '<svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.09 22v-8.2h2.77l.42-3.2h-3.19V8.56c0-.93.26-1.56 1.6-1.56h1.71V4.14c-.3-.04-1.32-.14-2.52-.14-2.49 0-4.19 1.52-4.19 4.31v2.29H6.9v3.2h2.79V22h3.4z"/></svg>' +
+            '</span>' +
+            '<span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">' +
+                '<svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M23 4.58a9.4 9.4 0 0 1-2.7.76 4.72 4.72 0 0 0 2.07-2.6 9.28 9.28 0 0 1-2.99 1.16A4.66 4.66 0 0 0 16 2.5c-2.61 0-4.72 2.14-4.72 4.78 0 .37.04.74.12 1.09-3.92-.2-7.39-2.1-9.72-4.98a4.82 4.82 0 0 0-.64 2.4c0 1.66.83 3.12 2.09 3.98a4.63 4.63 0 0 1-2.14-.6v.06c0 2.32 1.63 4.25 3.8 4.69a4.56 4.56 0 0 1-2.13.08 4.71 4.71 0 0 0 4.4 3.28A9.35 9.35 0 0 1 1 19.32 13.18 13.18 0 0 0 8.23 21.5c8.67 0 13.41-7.28 13.41-13.6 0-.2 0-.41-.01-.61A9.68 9.68 0 0 0 23 4.58z"/></svg>' +
+            '</span>' +
+            '<span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">' +
+                '<svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm-.19 1.8A3.76 3.76 0 0 0 3.8 7.56v8.88a3.76 3.76 0 0 0 3.76 3.76h8.88a3.76 3.76 0 0 0 3.76-3.76V7.56a3.76 3.76 0 0 0-3.76-3.76H7.56zm9.54 1.35a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 6.85A5.15 5.15 0 1 1 6.85 12 5.15 5.15 0 0 1 12 6.85zm0 1.8A3.35 3.35 0 1 0 15.35 12 3.35 3.35 0 0 0 12 8.65z"/></svg>' +
+            '</span>' +
+            '<span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">' +
+                '<svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5zm.22-3.56A1.96 1.96 0 0 0 5.22 3a1.95 1.95 0 1 0-.06 3.9h.02a1.96 1.96 0 0 0 1.98-1.96zM20 20h-3.38v-5.86c0-1.47-.52-2.47-1.84-2.47-1 0-1.59.67-1.85 1.32-.1.23-.12.55-.12.87V20H9.43s.05-10.02 0-11.5h3.38v1.63c.45-.69 1.26-1.67 3.06-1.67 2.23 0 3.91 1.46 3.91 4.6V20z"/></svg>' +
+            '</span>' +
+        '</div>';
+
     var setupPasswordToggleDelegation = function() {
         if (document.body.dataset.passwordToggleBound === '1') {
             return;
@@ -646,6 +1034,48 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             toggle.setAttribute('aria-label', visible ? 'Show password' : 'Hide password');
         });
         document.body.dataset.passwordToggleBound = '1';
+    };
+
+    var forEachNode = function(nodeList, callback) {
+        Array.prototype.forEach.call(nodeList || [], callback);
+    };
+
+    var createPasswordToggleButton = function(targetId) {
+        var toggle = document.createElement('button');
+        toggle.className = 'baitalgahwa-password-toggle';
+        toggle.type = 'button';
+        toggle.setAttribute('aria-label', 'Show password');
+        toggle.setAttribute('aria-pressed', 'false');
+        toggle.setAttribute('data-password-toggle', '');
+        toggle.setAttribute('data-target', targetId);
+        toggle.innerHTML = '' +
+            '<svg class="baitalgahwa-password-toggle__icon baitalgahwa-password-toggle__icon--eye" viewBox="0 0 24 24" aria-hidden="true">' +
+                '<path fill="currentColor" d="M12 5C6.5 5 2.08 8.44.25 12c1.83 3.56 6.25 7 11.75 7s9.92-3.44 11.75-7C21.92 8.44 17.5 5 12 5zm0 11.2A4.2 4.2 0 1 1 12 7.8a4.2 4.2 0 0 1 0 8.4zm0-6.72A2.52 2.52 0 1 0 12 14.52a2.52 2.52 0 0 0 0-5.04z"/>' +
+            '</svg>' +
+            '<svg class="baitalgahwa-password-toggle__icon baitalgahwa-password-toggle__icon--eyeoff" viewBox="0 0 24 24" aria-hidden="true">' +
+                '<path fill="currentColor" d="M2.1 3.51 1 4.61l3.09 3.08C2.51 8.82 1.16 10.31.25 12c1.83 3.56 6.25 7 11.75 7 2.2 0 4.25-.55 6.03-1.5l3.36 3.36 1.1-1.1Zm9.9 3.29c4.67 0 8.54 2.78 10.13 5.2-.67 1.02-1.67 2.09-2.9 3l-1.91-1.91A4.17 4.17 0 0 0 12.9 8.7l-1.46-1.46c.18-.02.37-.04.56-.04Zm-6.25 3.1 2.05 2.05a4.2 4.2 0 0 0 4.25 4.25l2.05 2.05c-.67.15-1.37.25-2.1.25-4.67 0-8.54-2.78-10.13-5.2.52-.8 1.18-1.61 1.88-2.35Zm3.21 3.21 2.93 2.93a2.52 2.52 0 0 1-2.93-2.93Zm4.15-.59 1.89 1.89a2.51 2.51 0 0 0-1.89-1.89Z"/>' +
+            '</svg>';
+        return toggle;
+    };
+
+    var wrapPasswordInput = function(input) {
+        if (!input || !input.id || input.type !== 'password' || input.dataset.baitPasswordReady === '1') {
+            return;
+        }
+
+        if (input.closest('.baitalgahwa-password-wrap')) {
+            input.classList.add('baitalgahwa-input--password');
+            input.dataset.baitPasswordReady = '1';
+            return;
+        }
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'baitalgahwa-password-wrap';
+        input.parentNode.insertBefore(wrapper, input);
+        wrapper.appendChild(input);
+        input.classList.add('baitalgahwa-input--password');
+        wrapper.appendChild(createPasswordToggleButton(input.id));
+        input.dataset.baitPasswordReady = '1';
     };
 
     var applyLoginEnhancements = function() {
@@ -712,10 +1142,38 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
     };
 
     var applySignupEnhancements = function() {
+        var signupForm = document.querySelector('.baitalgahwa-login__form form');
         var email = document.getElementById('id_email');
         var email2 = document.getElementById('id_email2');
         var firstname = document.getElementById('id_firstname');
         var lastname = document.getElementById('id_lastname');
+        var signupTitle = document.querySelector('.baitalgahwa-login__form > h2, .baitalgahwa-login__form .mform > h2');
+
+        if (signupForm) {
+            signupForm.classList.add('baitalgahwa-signup-form');
+            if (!signupForm.querySelector('.baitalgahwa-signup-social')) {
+                signupForm.insertAdjacentHTML('afterbegin', signupGoogleMarkup);
+            }
+            forEachNode(signupForm.querySelectorAll('input, select, textarea'), function(field) {
+                var type = (field.getAttribute('type') || '').toLowerCase();
+                if (!type || ['text', 'password', 'email', 'tel', 'search', 'url'].indexOf(type) !== -1) {
+                    field.classList.add('form-control', 'baitalgahwa-input');
+                }
+                if (type === 'password') {
+                    wrapPasswordInput(field);
+                }
+            });
+            forEachNode(signupForm.querySelectorAll('button[type="submit"], input[type="submit"]'), function(button) {
+                button.classList.add('btn', 'btn-primary', 'baitalgahwa-login-submit');
+            });
+            if (!signupForm.querySelector('.baitalgahwa-signup-socialicons')) {
+                signupForm.insertAdjacentHTML('beforeend', signupBottomIconsMarkup);
+            }
+        }
+
+        if (signupTitle) {
+            signupTitle.style.display = 'none';
+        }
 
         if (email && email2) {
             if (!email.dataset.baitSyncBound) {
@@ -760,6 +1218,19 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                 grid.appendChild(lastrow);
             }
         }
+
+        [
+            ['id_username', 'Choose a username'],
+            ['id_email', 'Enter your email address'],
+            ['id_city', 'Enter your city'],
+            ['id_password', 'Create a password']
+        ].forEach(function(config) {
+            var field = document.getElementById(config[0]);
+            if (field && !field.placeholder) {
+                field.placeholder = config[1];
+            }
+        });
+
         setupPasswordToggleDelegation();
     };
 
