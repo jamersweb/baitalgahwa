@@ -724,12 +724,15 @@ body.pagelayout-login.theme,
     .pagelayout-login #region-main,
     .pagelayout-login .baitalgahwa-login-page,
     .pagelayout-login .baitalgahwa-login {
-        height: auto;
+        height: 100vh;
         min-height: 100vh;
-        overflow: visible;
+        overflow: hidden;
     }
     .pagelayout-login .baitalgahwa-login__panel {
-        align-self: start;
+        align-self: stretch;
+        justify-content: center;
+        padding-top: 1rem;
+        padding-bottom: 0.9rem;
     }
     .pagelayout-login .baitalgahwa-login__card .card-body {
         padding-top: 0.05rem !important;
@@ -738,7 +741,7 @@ body.pagelayout-login.theme,
         padding-bottom: 0.75rem !important;
     }
     .pagelayout-login .baitalgahwa-auth-header {
-        margin-bottom: 0.72rem !important;
+        margin-bottom: 0.58rem !important;
     }
     .pagelayout-login .baitalgahwa-login__visual {
         position: relative;
@@ -749,23 +752,38 @@ body.pagelayout-login.theme,
     }
     .pagelayout-login .baitalgahwa-login__visual-inner {
         max-width: 24rem;
-        padding: 0 0 4.4rem 1.45rem;
+        padding: 0 0 5.15rem 1.35rem;
         justify-content: flex-end;
         align-items: flex-start;
-        transform: translateY(-1.55rem);
+        transform: translateY(-2.2rem);
     }
     .pagelayout-login .baitalgahwa-login__visual-title {
         max-width: 19rem;
     }
     .pagelayout-login .baitalgahwa-login__visual-text {
         max-width: 18rem;
-        margin-bottom: 0.72rem !important;
+        margin-bottom: 0.58rem !important;
     }
     .pagelayout-login .baitalgahwa-login__visual-social {
         display: flex;
         align-items: center;
         gap: 1rem;
         padding-left: 0.1rem;
+    }
+    .pagelayout-login .baitalgahwa-login__form .mform .fitem {
+        margin-bottom: 0.72rem;
+    }
+    .pagelayout-login .baitalgahwa-login__form .mform .col-form-label,
+    .pagelayout-login .baitalgahwa-login__form .mform .fitemtitle {
+        margin-bottom: 0.3rem;
+    }
+    .pagelayout-login .baitalgahwa-signup-google {
+        min-height: 2.72rem;
+        padding-top: 0.64rem;
+        padding-bottom: 0.64rem;
+    }
+    .pagelayout-login .baitalgahwa-login-submit.btn-primary {
+        min-height: 2.6rem;
     }
     .pagelayout-login .baitalgahwa-signup-socialicons {
         display: none;
