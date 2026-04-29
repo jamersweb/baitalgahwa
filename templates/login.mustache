@@ -173,8 +173,12 @@ body.pagelayout-login.theme {
 }
 .pagelayout-login .baitalgahwa-password-wrap {
     position: relative;
+    display: block;
+    width: 100%;
 }
 .pagelayout-login .baitalgahwa-input--password {
+    display: block;
+    width: 100%;
     padding-right: 2.9rem;
 }
 .pagelayout-login .baitalgahwa-password-toggle {
@@ -338,6 +342,15 @@ body.pagelayout-login.theme {
     font-weight: 400;
     line-height: 1.4;
     color: #6a6a6a !important;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .col-form-label .text-danger,
+.pagelayout-login .baitalgahwa-login__form .mform .fitemtitle .text-danger,
+.pagelayout-login .baitalgahwa-login__form .mform .col-form-label abbr,
+.pagelayout-login .baitalgahwa-login__form .mform .fitemtitle abbr {
+    color: #1f1f1f !important;
+    border-bottom: 0 !important;
+    text-decoration: none !important;
+    opacity: 0.9;
 }
 .pagelayout-login .baitalgahwa-login__form .mform .felement > .d-flex,
 .pagelayout-login .baitalgahwa-login__form .mform .felement > span {
@@ -694,6 +707,13 @@ body.pagelayout-login.theme,
     }
     .pagelayout-login .baitalgahwa-login__panel {
         align-self: start;
+    }
+    .pagelayout-login .baitalgahwa-login__visual {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        min-height: 100vh;
+        height: 100vh;
     }
     {{/is_signup_page}}
 }
