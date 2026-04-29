@@ -654,6 +654,19 @@ body.pagelayout-login.theme,
     width: 1.15rem;
     height: 1.15rem;
 }
+.pagelayout-login .baitalgahwa-login__visual-social {
+    display: none;
+}
+.pagelayout-login .baitalgahwa-login__visual-social .baitalgahwa-idp-round {
+    width: auto;
+    height: auto;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.84);
+}
+.pagelayout-login .baitalgahwa-login__visual-social .baitalgahwa-social-svg {
+    width: 1.05rem;
+    height: 1.05rem;
+}
 .pagelayout-login .baitalgahwa-login__form h1,
 .pagelayout-login .baitalgahwa-signup-form h2,
 .pagelayout-login .baitalgahwa-signup-form legend {
@@ -718,12 +731,40 @@ body.pagelayout-login.theme,
     .pagelayout-login .baitalgahwa-login__panel {
         align-self: start;
     }
+    .pagelayout-login .baitalgahwa-login__card .card-body {
+        padding-top: 0.45rem !important;
+        padding-right: 2rem !important;
+        padding-left: 2rem !important;
+        padding-bottom: 1rem !important;
+    }
     .pagelayout-login .baitalgahwa-login__visual {
         position: relative;
         top: auto;
         align-self: stretch;
         min-height: 100%;
         height: auto;
+    }
+    .pagelayout-login .baitalgahwa-login__visual-inner {
+        max-width: 24rem;
+        padding: 0 0 2.15rem 1.65rem;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+    .pagelayout-login .baitalgahwa-login__visual-title {
+        max-width: 19rem;
+    }
+    .pagelayout-login .baitalgahwa-login__visual-text {
+        max-width: 18rem;
+        margin-bottom: 0.95rem !important;
+    }
+    .pagelayout-login .baitalgahwa-login__visual-social {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding-left: 0.1rem;
+    }
+    .pagelayout-login .baitalgahwa-signup-socialicons {
+        display: none;
     }
     {{/is_signup_page}}
 }
@@ -1008,6 +1049,20 @@ body.pagelayout-login.theme,
                 {{#is_signup_page}}
                 <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">Start your learning journey today</h2>
                 <p class="baitalgahwa-login__visual-text lead mb-0">Join thousands of professionals advancing their careers with Bait Al Gahwa's premium training programs.</p>
+                <div class="baitalgahwa-login__visual-social" aria-hidden="true">
+                    <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">
+                        <svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.09 22v-8.2h2.77l.42-3.2h-3.19V8.56c0-.93.26-1.56 1.6-1.56h1.71V4.14c-.3-.04-1.32-.14-2.52-.14-2.49 0-4.19 1.52-4.19 4.31v2.29H6.9v3.2h2.79V22h3.4z"/></svg>
+                    </span>
+                    <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">
+                        <svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M23 4.58a9.4 9.4 0 0 1-2.7.76 4.72 4.72 0 0 0 2.07-2.6 9.28 9.28 0 0 1-2.99 1.16A4.66 4.66 0 0 0 16 2.5c-2.61 0-4.72 2.14-4.72 4.78 0 .37.04.74.12 1.09-3.92-.2-7.39-2.1-9.72-4.98a4.82 4.82 0 0 0-.64 2.4c0 1.66.83 3.12 2.09 3.98a4.63 4.63 0 0 1-2.14-.6v.06c0 2.32 1.63 4.25 3.8 4.69a4.56 4.56 0 0 1-2.13.08 4.71 4.71 0 0 0 4.4 3.28A9.35 9.35 0 0 1 1 19.32 13.18 13.18 0 0 0 8.23 21.5c8.67 0 13.41-7.28 13.41-13.6 0-.2 0-.41-.01-.61A9.68 9.68 0 0 0 23 4.58z"/></svg>
+                    </span>
+                    <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">
+                        <svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm-.19 1.8A3.76 3.76 0 0 0 3.8 7.56v8.88a3.76 3.76 0 0 0 3.76 3.76h8.88a3.76 3.76 0 0 0 3.76-3.76V7.56a3.76 3.76 0 0 0-3.76-3.76H7.56zm9.54 1.35a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 6.85A5.15 5.15 0 1 1 6.85 12 5.15 5.15 0 0 1 12 6.85zm0 1.8A3.35 3.35 0 1 0 15.35 12 3.35 3.35 0 0 0 12 8.65z"/></svg>
+                    </span>
+                    <span class="baitalgahwa-idp-round baitalgahwa-idp-round--static">
+                        <svg class="baitalgahwa-social-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5zm.22-3.56A1.96 1.96 0 0 0 5.22 3a1.95 1.95 0 1 0-.06 3.9h.02a1.96 1.96 0 0 0 1.98-1.96zM20 20h-3.38v-5.86c0-1.47-.52-2.47-1.84-2.47-1 0-1.59.67-1.85 1.32-.1.23-.12.55-.12.87V20H9.43s.05-10.02 0-11.5h3.38v1.63c.45-.69 1.26-1.67 3.06-1.67 2.23 0 3.91 1.46 3.91 4.6V20z"/></svg>
+                    </span>
+                </div>
                 {{/is_signup_page}}
                 {{^is_signup_page}}
                 <h2 class="baitalgahwa-login__visual-title text-uppercase mb-3">{{ herotitle }}</h2>
