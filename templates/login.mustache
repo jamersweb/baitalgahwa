@@ -175,10 +175,13 @@ body.pagelayout-login.theme {
     position: relative;
     display: block;
     width: 100%;
+    min-height: 2.75rem;
 }
 .pagelayout-login .baitalgahwa-input--password {
     display: block;
     width: 100%;
+    min-height: 2.75rem;
+    box-sizing: border-box;
     padding-right: 2.9rem;
 }
 .pagelayout-login .baitalgahwa-password-toggle {
@@ -348,9 +351,16 @@ body.pagelayout-login.theme {
 .pagelayout-login .baitalgahwa-login__form .mform .col-form-label abbr,
 .pagelayout-login .baitalgahwa-login__form .mform .fitemtitle abbr {
     color: #1f1f1f !important;
+    background: transparent !important;
     border-bottom: 0 !important;
+    border: 0 !important;
     text-decoration: none !important;
     opacity: 0.9;
+}
+.pagelayout-login .baitalgahwa-login__form .mform .felement .baitalgahwa-password-wrap,
+.pagelayout-login .baitalgahwa-login__form .mform .felement .baitalgahwa-password-wrap input {
+    width: 100% !important;
+    max-width: 100% !important;
 }
 .pagelayout-login .baitalgahwa-login__form .mform .felement > .d-flex,
 .pagelayout-login .baitalgahwa-login__form .mform .felement > span {
@@ -709,11 +719,11 @@ body.pagelayout-login.theme,
         align-self: start;
     }
     .pagelayout-login .baitalgahwa-login__visual {
-        position: sticky;
-        top: 0;
-        align-self: start;
-        min-height: 100vh;
-        height: 100vh;
+        position: relative;
+        top: auto;
+        align-self: stretch;
+        min-height: 100%;
+        height: auto;
     }
     {{/is_signup_page}}
 }
