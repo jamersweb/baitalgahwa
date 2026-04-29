@@ -631,14 +631,22 @@ body.pagelayout-login.theme,
     width: 1.15rem;
     height: 1.15rem;
 }
+.pagelayout-login .baitalgahwa-login__form h1,
 .pagelayout-login .baitalgahwa-signup-form h2,
 .pagelayout-login .baitalgahwa-signup-form legend {
     display: none !important;
 }
-.pagelayout-login .baitalgahwa-signup-form .baitalgahwa-password-hint {
+.pagelayout-login .baitalgahwa-signup-flow {
+    display: flex;
+    flex-direction: column;
+}
+.pagelayout-login .baitalgahwa-signup-flow > * + * {
+    margin-top: 0;
+}
+.pagelayout-login .baitalgahwa-password-hint {
     display: none !important;
 }
-.pagelayout-login .baitalgahwa-signup-form .baitalgahwa-password-hint.is-visible {
+.pagelayout-login .baitalgahwa-password-hint.is-visible {
     display: block !important;
 }
 .pagelayout-login .baitalgahwa-signup-form .fdescription.required,
@@ -672,6 +680,22 @@ body.pagelayout-login.theme,
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
     }
+    {{#is_signup_page}}
+    body.pagelayout-login.theme,
+    .pagelayout-login #page,
+    .pagelayout-login #page-wrapper,
+    .pagelayout-login #region-main-box,
+    .pagelayout-login #region-main,
+    .pagelayout-login .baitalgahwa-login-page,
+    .pagelayout-login .baitalgahwa-login {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+    .pagelayout-login .baitalgahwa-login__panel {
+        align-self: start;
+    }
+    {{/is_signup_page}}
 }
 {{/is_signup_page}}
 @media (max-width: 991.98px) {
@@ -1144,6 +1168,44 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         });
     };
 
+    var setHintVisibility = function(node, visible) {
+        if (!node) {
+            return;
+        }
+        node.classList.toggle('is-visible', visible);
+        node.style.display = visible ? 'block' : 'none';
+    };
+
+    var ensureSignupFlow = function(signupForm) {
+        if (!signupForm) {
+            return null;
+        }
+
+        var existing = signupForm.querySelector('.baitalgahwa-signup-flow');
+        if (existing) {
+            return existing;
+        }
+
+        var flow = document.createElement('div');
+        flow.className = 'baitalgahwa-signup-flow';
+        var socialBlock = signupForm.querySelector('.baitalgahwa-signup-social');
+        var divider = signupForm.querySelector('.baitalgahwa-login-divider');
+
+        if (divider && divider.nextSibling) {
+            divider.parentNode.insertBefore(flow, divider.nextSibling);
+        } else if (divider) {
+            divider.parentNode.appendChild(flow);
+        } else if (socialBlock && socialBlock.nextSibling) {
+            socialBlock.parentNode.insertBefore(flow, socialBlock.nextSibling);
+        } else if (socialBlock) {
+            socialBlock.parentNode.appendChild(flow);
+        } else {
+            signupForm.insertBefore(flow, signupForm.firstChild);
+        }
+
+        return flow;
+    };
+
     var applyLoginEnhancements = function() {
         var username = document.getElementById('username');
         var password = document.getElementById('password');
@@ -1225,6 +1287,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         var submitButton = signupForm ? signupForm.querySelector('button[type="submit"], input[type="submit"]') : null;
         var submitRow = findRow(submitButton);
         var socialIcons = signupForm ? signupForm.querySelector('.baitalgahwa-signup-socialicons') : null;
+        var signupFlow = null;
 
         if (signupForm) {
             signupForm.classList.add('baitalgahwa-signup-form');
@@ -1246,6 +1309,8 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             if (!signupForm.querySelector('.baitalgahwa-signup-socialicons')) {
                 signupForm.insertAdjacentHTML('beforeend', signupBottomIconsMarkup);
             }
+            signupFlow = ensureSignupFlow(signupForm);
+            socialIcons = signupForm.querySelector('.baitalgahwa-signup-socialicons');
         }
 
         if (signupTitle) {
@@ -1260,17 +1325,8 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 
         if (username && email) {
             var usernameRow = findRow(username);
-            var syncUsername = function() {
-                username.value = email.value.trim();
-            };
-            if (!email.dataset.baitUsernameBound) {
-                email.addEventListener('input', syncUsername);
-                email.addEventListener('change', syncUsername);
-                email.dataset.baitUsernameBound = '1';
-            }
-            syncUsername();
-            if (usernameRow) {
-                usernameRow.style.display = 'none';
+            if (!username.placeholder) {
+                username.placeholder = 'Choose a username';
             }
         }
 
@@ -1278,9 +1334,6 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             if (!email.dataset.baitSyncBound) {
                 var syncEmail = function() {
                     email2.value = email.value;
-                    if (username) {
-                        username.value = email.value.trim();
-                    }
                 };
                 email.addEventListener('input', syncEmail);
                 email.addEventListener('change', syncEmail);
@@ -1318,6 +1371,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                 }
                 if (passwordHelp) {
                     passwordHelp.classList.add('baitalgahwa-password-hint');
+                    setHintVisibility(passwordHelp, false);
 
                     var syncPasswordHint = function(forceShow) {
                         var value = password.value || '';
@@ -1333,7 +1387,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                             shouldShow = true;
                         }
 
-                        passwordHelp.classList.toggle('is-visible', shouldShow);
+                        setHintVisibility(passwordHelp, shouldShow);
                     };
 
                     if (!password.dataset.baitHintBound) {
@@ -1357,31 +1411,13 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         }
 
         if (firstname && lastname) {
-            if (!firstname.placeholder) {
-                firstname.placeholder = 'Enter your full name';
-            }
-
-            var firstnameLabel = signupForm ? signupForm.querySelector('label[for="' + firstname.id + '"]') : null;
-            if (firstnameLabel) {
-                firstnameLabel.textContent = 'Full Name';
-            }
-
-            if (!firstname.dataset.baitLastnameBound) {
-                var syncLastname = function() {
-                    lastname.value = firstname.value.trim();
-                };
-                firstname.addEventListener('input', syncLastname);
-                firstname.addEventListener('change', syncLastname);
-                firstname.dataset.baitLastnameBound = '1';
-                syncLastname();
-            }
-
+            setRowVisibility(firstnameRow, false);
             setRowVisibility(lastnameRow, false);
         }
 
         [
+            ['id_username', 'Choose a username'],
             ['id_email', 'Enter your email address'],
-            ['id_firstname', 'Enter your full name'],
             ['id_password', 'Create your password'],
             ['id_password1', 'Create your password']
         ].forEach(function(config) {
@@ -1400,7 +1436,10 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             }
         });
 
-        appendRowsInOrder(signupForm, [emailRow, firstnameRow, passwordRow, submitRow], socialIcons);
+        appendRowsInOrder(signupFlow || signupForm, [findRow(username), emailRow, passwordRow, submitRow], socialIcons);
+        if (signupFlow && socialIcons && signupFlow.contains(submitRow)) {
+            signupFlow.appendChild(socialIcons);
+        }
 
         setupPasswordToggleDelegation();
     };
