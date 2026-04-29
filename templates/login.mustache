@@ -1176,6 +1176,26 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         node.style.display = visible ? 'block' : 'none';
     };
 
+    var removePasswordRuleText = function(scope) {
+        if (!scope) {
+            return;
+        }
+
+        forEachNode(scope.querySelectorAll('div, p, span, small, li'), function(node) {
+            var text = (node.textContent || '').trim();
+            if (!/The password must have at least 8 characters/i.test(text)) {
+                return;
+            }
+
+            var row = node.closest('.fitem') || node.closest('.form-group') || node.closest('[data-fieldtype]');
+            if (row && !row.querySelector('#id_password, #id_password1')) {
+                row.style.display = 'none';
+            }
+
+            node.style.display = 'none';
+        });
+    };
+
     var ensureSignupFlow = function(signupForm) {
         if (!signupForm) {
             return null;
@@ -1291,6 +1311,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 
         if (signupForm) {
             signupForm.classList.add('baitalgahwa-signup-form');
+            removePasswordRuleText(signupForm);
             if (!signupForm.querySelector('.baitalgahwa-signup-social')) {
                 signupForm.insertAdjacentHTML('afterbegin', signupGoogleMarkup);
             }
@@ -1372,40 +1393,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                 if (passwordHelp) {
                     passwordHelp.classList.add('baitalgahwa-password-hint');
                     setHintVisibility(passwordHelp, false);
-
-                    var syncPasswordHint = function(forceShow) {
-                        var value = password.value || '';
-                        var shouldShow = false;
-
-                        if (value.length > 0) {
-                            shouldShow = !isStrongPassword(value);
-                        } else if (forceShow) {
-                            shouldShow = true;
-                        }
-
-                        if (password.classList.contains('is-invalid') || password.getAttribute('aria-invalid') === 'true') {
-                            shouldShow = true;
-                        }
-
-                        setHintVisibility(passwordHelp, shouldShow);
-                    };
-
-                    if (!password.dataset.baitHintBound) {
-                        password.addEventListener('input', function() {
-                            syncPasswordHint(false);
-                        });
-                        password.addEventListener('blur', function() {
-                            syncPasswordHint((password.value || '').length > 0);
-                        });
-                        if (signupForm) {
-                            signupForm.addEventListener('submit', function() {
-                                syncPasswordHint(true);
-                            });
-                        }
-                        password.dataset.baitHintBound = '1';
-                    }
-
-                    syncPasswordHint(false);
+                    passwordHelp.style.display = 'none';
                 }
             }
         }
