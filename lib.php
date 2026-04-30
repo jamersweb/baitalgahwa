@@ -390,19 +390,33 @@ function theme_baitalgahwa_get_course_image_url($course): string {
  * @return array<int, array<string, mixed>>
  */
 function theme_baitalgahwa_get_featured_courses(int $max = 8): array {
-    global $DB, $CFG, $USER;
+    global $DB, $CFG;
     require_once($CFG->libdir . '/modinfolib.php');
     $out = [];
+    $seenids = [];
+
+    $tryadd = static function ($course) use (&$out, &$seenids, $max): bool {
+        $id = (int) $course->id;
+        if ($id === (int) SITEID || isset($seenids[$id])) {
+            return false;
+        }
+        if (count($out) >= $max) {
+            return true;
+        }
+        $seenids[$id] = true;
+        $out[] = theme_baitalgahwa_format_course_for_template($course);
+        return count($out) >= $max;
+    };
+
     if (isloggedin() && !isguestuser()) {
         $mycourses = enrol_get_my_courses(
             'summary, summaryformat, startdate, enddate, category, timecreated',
             'visible DESC, fullname ASC'
         );
         foreach ($mycourses as $c) {
-            if (count($out) >= $max) {
-                break;
+            if ($tryadd($c)) {
+                return $out;
             }
-            $out[] = theme_baitalgahwa_format_course_for_template($c);
         }
     }
     if (count($out) >= $max) {
@@ -410,15 +424,13 @@ function theme_baitalgahwa_get_featured_courses(int $max = 8): array {
     }
     $fields = 'id, category, fullname, shortname, visible, summary, sortorder, summaryformat, startdate, enddate, timecreated';
     $sql = "id > :siteid AND visible = 1";
-    $records = $DB->get_records_select('course', $sql, ['siteid' => SITEID], 'sortorder ASC', $fields, 0, $max * 3);
+    // Fetch enough rows that we can still reach $max after skipping enrol overlap and hidden edge cases.
+    $fetchlimit = max(48, $max * 8);
+    $records = $DB->get_records_select('course', $sql, ['siteid' => SITEID], 'sortorder ASC', $fields, 0, $fetchlimit);
     foreach ($records as $c) {
-        if (count($out) >= $max) {
+        if ($tryadd($c)) {
             break;
         }
-        if ((int) $c->id === (int) SITEID) {
-            continue;
-        }
-        $out[] = theme_baitalgahwa_format_course_for_template($c);
     }
     return $out;
 }

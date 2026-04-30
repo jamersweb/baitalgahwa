@@ -109,8 +109,18 @@ body#page-my-index #topofscroll.main-inner {
 }
 .baitalgahwa-dashboard-programmes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+@media (max-width: 1199.98px) {
+    .baitalgahwa-dashboard-programmes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 575.98px) {
+    .baitalgahwa-dashboard-programmes {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 .baitalgahwa-dashboard-programme {
     display: flex;
@@ -141,8 +151,8 @@ body#page-my-index #topofscroll.main-inner {
     padding: .75rem .75rem 0;
 }
 .baitalgahwa-dashboard-programme__image {
-    height: 10.5rem;
-    border-radius: 1rem;
+    height: 7.25rem;
+    border-radius: .85rem;
     background-size: cover;
     background-position: center;
 }
@@ -194,16 +204,16 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-programme__title {
     margin: 0;
     color: #201813;
-    font-size: 1rem;
+    font-size: .92rem;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.35;
 }
 .baitalgahwa-dashboard-programme__copy {
     margin: 0;
     color: #7c7268;
-    font-size: .84rem;
-    line-height: 1.6;
-    min-height: 4rem;
+    font-size: .78rem;
+    line-height: 1.55;
+    min-height: 3.1rem;
 }
 .baitalgahwa-dashboard-programme__meta {
     display: flex;
@@ -329,11 +339,9 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-widget__controls {
     display: flex;
     flex-wrap: wrap;
-    gap: .55rem;
+    gap: .5rem;
     align-items: center;
-}
-    gap: .5rem !important;
-    padding-bottom: 1.05rem !important;
+    padding-bottom: 1.05rem;
 }
 .baitalgahwa-dashboard-widget__calendar-head {
     display: flex;
