@@ -463,6 +463,8 @@ function theme_baitalgahwa_format_course_for_template($c): array {
     $startdate = isset($c->startdate) ? (int) $c->startdate : 0;
     $enddate = isset($c->enddate) ? (int) $c->enddate : 0;
     $isnew = $timecreated > 0 && (time() - $timecreated) < 30 * DAYSECS;
+    $starts = $startdate > 0 ? userdate($startdate, '%d/%m/%Y') : '';
+    $ends = $enddate > 0 ? userdate($enddate, '%d/%m/%Y') : '';
     return [
         'id' => (int) $c->id,
         'url' => (new \moodle_url('/course/view.php', ['id' => $c->id]))->out(false),
@@ -471,9 +473,15 @@ function theme_baitalgahwa_format_course_for_template($c): array {
         'categoryname' => $catname,
         'programme_focus_gahwa' => theme_baitalgahwa_is_certified_gahwa_specialist_course($c),
         'imageurl' => theme_baitalgahwa_get_course_image_url($c),
-        'startdate_display' => $startdate > 0 ? userdate($startdate, '%d/%m/%Y') : '',
-        'enddate_display' => $enddate > 0 ? userdate($enddate, '%d/%m/%Y') : '',
+        'startdate_display' => $starts,
+        'enddate_display' => $ends,
         'isnew' => $isnew,
+        'card_starts_line' => $starts !== ''
+            ? get_string('mycourse_card_starts', 'theme_baitalgahwa', $starts) : '',
+        'card_ends_line' => $ends !== ''
+            ? get_string('mycourse_card_ends', 'theme_baitalgahwa', $ends) : '',
+        'has_card_schedule' => ($starts !== '' || $ends !== ''),
+        'instructor_host' => get_string('mycourse_card_instructor_host', 'theme_baitalgahwa'),
     ];
 }
 
@@ -505,7 +513,7 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     $context['dashboard_members'] = theme_baitalgahwa_get_dashboard_recent_users(8, $userid);
     $context['has_dashboard_members'] = !empty($context['dashboard_members']);
     $context['news_mail_subject'] = rawurlencode(get_string('dashboard_news_title', 'theme_baitalgahwa'));
-    $context['mycourses'] = theme_baitalgahwa_get_featured_courses(8);
+    $context['mycourses'] = theme_baitalgahwa_get_featured_courses(16);
     $context['has_mycourses'] = !empty($context['mycourses']);
     $programmes = array_slice($context['mycourses'], 0, 4);
     // Always show four tiles in the row when at least one programme exists (pad by cycling).
@@ -581,7 +589,16 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     $context['featuredcourse'] = $context['mycourses'][0] ?? [];
     $context['has_featuredcourse'] = !empty($context['featuredcourse']);
     if (!empty($context['mycourses'])) {
-        $context['activity_courses'] = array_slice($context['mycourses'], 0, 4);
+        $activity = array_slice($context['mycourses'], 0, 8);
+        $i = 0;
+        $n = count($activity);
+        if ($n > 0) {
+            while (count($activity) < 8) {
+                $activity[] = array_merge($activity[$i % $n]);
+                $i++;
+            }
+        }
+        $context['activity_courses'] = $activity;
         $context['has_activity_courses'] = !empty($context['activity_courses']);
         if (!empty($context['featuredcourse']['summary'])) {
             $context['dashboard_intro_text'] = $context['featuredcourse']['summary'];
@@ -1403,7 +1420,7 @@ function theme_baitalgahwa_get_mycourses_toolbar_context(): array {
         'createcourseurl' => $createurl,
         'canmanagecourses' => $canmanage,
         'cancreatecourse' => $cancreate,
-        'managecoursetext' => get_string('managecourses'),
+        'managecoursetext' => get_string('mycourses_manage_btn', 'theme_baitalgahwa'),
         'createcoursetext' => get_string('mycourses_createcourse', 'theme_baitalgahwa'),
     ];
 }

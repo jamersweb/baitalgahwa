@@ -123,6 +123,20 @@ $string['course_new'] = 'جديد';
 
 // My courses / course catalogue (block_myoverview + mycourses layout).
 $string['mycourses_createcourse'] = 'إنشاء مقرر';
+$string['mycourses_manage_btn'] = 'إدارة المقرر';
+$string['mycourses_catalog_intro'] = 'تصفح كل البرامج المتاحة في الكتالوج. استخدم التبويبات والبحث لتضييق النتائج.';
+$string['mycourses_tab_all'] = 'الكل';
+$string['mycourses_tab_inprogress'] = 'قيد المتابعة';
+$string['mycourses_tab_starred'] = 'مميّز';
+$string['mycourses_tab_removed'] = 'مخفي عن العرض';
+$string['mycourses_search_placeholder'] = 'ابحث في المقررات…';
+$string['mycourses_filter'] = 'تصفية';
+$string['mycourses_sort_by'] = 'الترتيب';
+$string['mycourses_sort_latest'] = 'الأحدث';
+$string['mycourses_columns'] = 'الأعمدة';
+$string['mycourse_card_starts'] = 'يبدأ في {$a}';
+$string['mycourse_card_ends'] = 'ينتهي في {$a}';
+$string['mycourse_card_instructor_host'] = 'أخصائي قهوة عربية، مضيف بيت القهوة';
 $string['mycourses_toolbar_aria'] = 'إجراءات صفحة مقرراتي';
 $string['mycourse_available'] = 'متاح';
 $string['mycourse_dates_hint'] = 'مفتوح للتسجيل';

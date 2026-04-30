@@ -135,6 +135,20 @@ $string['course_new'] = 'New';
 
 // My courses / course catalogue (block_myoverview + mycourses layout).
 $string['mycourses_createcourse'] = 'Create course';
+$string['mycourses_manage_btn'] = 'Manage course';
+$string['mycourses_catalog_intro'] = 'Browse every programme available in your catalogue. Use the tabs and search to narrow what you see.';
+$string['mycourses_tab_all'] = 'All';
+$string['mycourses_tab_inprogress'] = 'In progress';
+$string['mycourses_tab_starred'] = 'Starred';
+$string['mycourses_tab_removed'] = 'Removed from view';
+$string['mycourses_search_placeholder'] = 'Search courses…';
+$string['mycourses_filter'] = 'Filter';
+$string['mycourses_sort_by'] = 'Sort by';
+$string['mycourses_sort_latest'] = 'Latest';
+$string['mycourses_columns'] = 'Column';
+$string['mycourse_card_starts'] = 'It starts on {$a}';
+$string['mycourse_card_ends'] = 'It ends on {$a}';
+$string['mycourse_card_instructor_host'] = 'Gahwa specialist, Bait Al Gahwa host';
 $string['mycourses_toolbar_aria'] = 'My courses actions';
 $string['mycourse_available'] = 'Available';
 $string['mycourse_dates_hint'] = 'Open for enrolment';
