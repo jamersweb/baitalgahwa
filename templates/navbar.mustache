@@ -283,17 +283,21 @@
 .baitalgahwa-navbar .usermenu .login {
     font-size: .98rem;
 }
+/* Crisp caret (avoid thick bordered square that reads as “glitched”). */
 .baitalgahwa-navbar .usermenu .dropdown-toggle::after {
-    margin-inline-start: .05rem;
-    margin-inline-end: 0;
-    font-size: 1rem;
-    color: #8f7869;
-    border: 0;
-    width: .7rem;
-    height: .7rem;
-    border-right: 3px solid currentColor;
-    border-bottom: 3px solid currentColor;
-    transform: rotate(45deg) translateY(-.05rem);
+    content: "";
+    display: inline-block;
+    margin-inline: .35rem 0;
+    margin-block: 0;
+    padding: 0;
+    border: none;
+    width: 0;
+    height: 0;
+    border-left: 0.28rem solid transparent;
+    border-right: 0.28rem solid transparent;
+    border-top: 0.36rem solid #6b5548;
+    transform: none;
+    vertical-align: middle;
 }
 .baitalgahwa-navbar__icon:hover,
 .baitalgahwa-navbar__icon:focus-visible,
