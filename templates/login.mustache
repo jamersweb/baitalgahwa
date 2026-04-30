@@ -717,6 +717,7 @@ body.pagelayout-login.theme,
     margin-bottom: 0.85rem;
 }
 @media (min-width: 992px) {
+    /* Allow vertical scroll so post-signup success / errors (email confirm, admin approval) stay visible. */
     body.pagelayout-login.theme,
     .pagelayout-login #page,
     .pagelayout-login #page-wrapper,
@@ -724,9 +725,11 @@ body.pagelayout-login.theme,
     .pagelayout-login #region-main,
     .pagelayout-login .baitalgahwa-login-page,
     .pagelayout-login .baitalgahwa-login {
-        height: 100vh;
         min-height: 100vh;
-        overflow: hidden;
+        height: auto;
+        max-height: none;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
     .pagelayout-login .baitalgahwa-login__panel,
     .pagelayout-login .baitalgahwa-login__visual {
@@ -742,17 +745,6 @@ body.pagelayout-login.theme,
         padding-bottom: 1rem !important;
     }
     {{#is_signup_page}}
-    body.pagelayout-login.theme,
-    .pagelayout-login #page,
-    .pagelayout-login #page-wrapper,
-    .pagelayout-login #region-main-box,
-    .pagelayout-login #region-main,
-    .pagelayout-login .baitalgahwa-login-page,
-    .pagelayout-login .baitalgahwa-login {
-        height: 100vh;
-        min-height: 100vh;
-        overflow: hidden;
-    }
     .pagelayout-login .baitalgahwa-login__panel {
         align-self: stretch;
         justify-content: center;
@@ -956,6 +948,7 @@ body.pagelayout-login.theme,
     .pagelayout-login .baitalgahwa-login__visual-inner {
         transform: none;
     }
+    {{^is_signup_page}}
     body.pagelayout-login.theme,
     .pagelayout-login .baitalgahwa-login-page,
     .pagelayout-login #page,
@@ -966,6 +959,7 @@ body.pagelayout-login.theme,
         min-height: 100svh;
         overflow: hidden;
     }
+    {{/is_signup_page}}
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
     .pagelayout-login .baitalgahwa-login__visual--mobile {
@@ -1344,45 +1338,18 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
     };
 
     var applyLoginEnhancements = function() {
-        var username = document.getElementById('username');
-        var password = document.getElementById('password');
-        var loginButton = document.getElementById('loginbtn');
-        var forgot = document.querySelector('.login-form-forgotpassword');
         var guestTitle = document.querySelector('h2.h6.text-muted');
         var guestForm = document.getElementById('guestlogin');
         var meta = document.querySelector('.baitalgahwa-login-meta');
-        var authSub = document.querySelector('.baitalgahwa-auth-sub');
         var form = document.getElementById('login');
         var subCta = document.querySelector('.baitalgahwa-login-subcta');
 
-        if (authSub) {
-            authSub.textContent = 'Kindly fill in your details below to create an account';
-        }
+        // Do not change auth title/sub copy or submit label — core + login.mustache already
+        // show "Welcome back" and {{#str}} login. Previous JS overwrote these with sign-up
+        // strings and "Register with us", which broke the login page UX.
 
-        if (username) {
-            username.placeholder = 'Daphne Smith';
-            var usernameLabel = document.querySelector('label[for="username"]');
-            if (usernameLabel) {
-                usernameLabel.textContent = 'Email Address';
-            }
-        }
-
-        if (password) {
-            password.placeholder = '**************';
-            var passwordLabel = document.querySelector('label[for="password"]');
-            if (passwordLabel) {
-                passwordLabel.textContent = 'Password';
-            }
-        }
         setupPasswordToggleDelegation();
 
-        if (loginButton) {
-            loginButton.textContent = 'Register with us';
-        }
-
-        if (forgot) {
-            forgot.style.display = 'none';
-        }
         if (guestTitle) {
             guestTitle.style.display = 'none';
         }
@@ -1414,6 +1381,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         var firstname = document.getElementById('id_firstname');
         var lastname = document.getElementById('id_lastname');
         var password = document.querySelector('#id_password, #id_password1');
+        var password2 = document.getElementById('id_password2');
         var city = document.getElementById('id_city');
         var country = document.getElementById('id_country');
         var signupTitle = document.querySelector('.baitalgahwa-login__form > h2, .baitalgahwa-login__form .mform > h2');
@@ -1447,6 +1415,9 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             }
             signupFlow = ensureSignupFlow(signupForm);
             socialIcons = signupForm.querySelector('.baitalgahwa-signup-socialicons');
+            if (!password2) {
+                password2 = signupForm.querySelector('input#id_password2, input[name="password2"]');
+            }
         }
 
         if (signupTitle) {
@@ -1485,6 +1456,16 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             }
         }
 
+        if (password && password2 && !password.dataset.baitPw2SyncBound) {
+            var syncPassword2 = function() {
+                password2.value = password.value;
+            };
+            password.addEventListener('input', syncPassword2);
+            password.addEventListener('change', syncPassword2);
+            password.dataset.baitPw2SyncBound = '1';
+            syncPassword2();
+        }
+
         if (city) {
             var cityRow = findRow(city);
             setRowVisibility(cityRow, false);
@@ -1520,7 +1501,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                     firstname.value = parts[0] || u;
                 }
                 if (!lastname.value.trim()) {
-                    lastname.value = parts.length > 1 ? parts.slice(1).join(' ') : '.';
+                    lastname.value = parts.length > 1 ? parts.slice(1).join(' ') : (parts[0] || u);
                 }
             };
             if (!firstname.dataset.baitNamesyncBound) {
@@ -1556,17 +1537,12 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 
         if (signupForm && !signupForm.dataset.baitSignupPrevalidate) {
             signupForm.dataset.baitSignupPrevalidate = '1';
-            signupForm.addEventListener('click', function(ev) {
-                var t = ev.target;
-                if (!t || typeof t.closest !== 'function') {
-                    return;
-                }
-                var btn = t.closest('button[type="submit"], input[type="submit"]');
-                if (!btn || !signupForm.contains(btn)) {
-                    return;
-                }
+            signupForm.addEventListener('submit', function() {
                 if (email && email2) {
                     email2.value = email.value;
+                }
+                if (password && password2) {
+                    password2.value = password.value;
                 }
                 if (firstname && lastname && username) {
                     var u = username.value ? username.value.trim() : '';
@@ -1576,7 +1552,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                             firstname.value = segs[0] || u;
                         }
                         if (!lastname.value.trim()) {
-                            lastname.value = segs.length > 1 ? segs.slice(1).join(' ') : '.';
+                            lastname.value = segs.length > 1 ? segs.slice(1).join(' ') : (segs[0] || u);
                         }
                     }
                 }
@@ -1592,7 +1568,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                     }
                     country.dispatchEvent(new Event('change', { bubbles: true }));
                 }
-            }, true);
+            });
         }
 
         appendRowsInOrder(signupFlow || signupForm, [findRow(username), emailRow, passwordRow], socialIcons);
