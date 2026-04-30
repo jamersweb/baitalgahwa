@@ -67,6 +67,40 @@ body.pagelayout-mycourses {
     overflow: hidden;
   }
 
+  // Catalogue grid uses full horizontal space (Boost caps #page / .main-inner otherwise).
+  #page-wrapper,
+  #page,
+  #page.drawers {
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  #topofscroll.main-inner {
+    max-width: none !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .main-inner {
+    max-width: none !important;
+  }
+
+  .baitalgahwa-mycourses-page {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .baitalgahwa-mycourses-shell {
+    width: 98% !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+  }
+
   // Grouping: horizontal tab strip (replaces default dropdown in theme override)
   .baitalgahwa-mycourse-grouping {
     overflow-x: auto;
