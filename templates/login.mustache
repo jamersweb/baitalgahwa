@@ -1128,6 +1128,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 (function() {
     var isSignup = {{#is_signup_page}}true{{/is_signup_page}}{{^is_signup_page}}false{{/is_signup_page}};
     var loginIndexUrl = '{{{ loginindexurl }}}';
+    var dividerOrText = {{{ divideror_json }}};
     var findRow = function(input) {
         if (!input) {
             return null;
@@ -1181,7 +1182,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         '</div>' +
         '<div class="baitalgahwa-login-divider" role="separator" aria-hidden="true">' +
             '<span class="baitalgahwa-login-divider__line"></span>' +
-            '<span class="baitalgahwa-login-divider__text">{{#str}} divideror, theme_baitalgahwa {{/str}}</span>' +
+            '<span class="baitalgahwa-login-divider__text">' + dividerOrText + '</span>' +
             '<span class="baitalgahwa-login-divider__line"></span>' +
         '</div>';
 
@@ -1345,7 +1346,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         var subCta = document.querySelector('.baitalgahwa-login-subcta');
 
         // Do not change auth title/sub copy or submit label — core + login.mustache already
-        // show "Welcome back" and {{#str}} login. Previous JS overwrote these with sign-up
+        // show welcome copy and the login button label. Previous JS overwrote with sign-up
         // strings and "Register with us", which broke the login page UX.
 
         setupPasswordToggleDelegation();

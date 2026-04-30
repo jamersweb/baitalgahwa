@@ -45,6 +45,8 @@ $context = [
     'cansignup' => $cansignup,
     'signupurl' => (new \moodle_url('/login/signup.php'))->out(false),
     'loginindexurl' => (new \moodle_url('/login/index.php'))->out(false),
+    // JSON for {{#js}}; do not use {{#str}} inside JavaScript (Mustache nesting error).
+    'divideror_json' => json_encode(get_string('divideror', 'theme_baitalgahwa'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE),
 ];
 $herodefault = theme_baitalgahwa_get_hero_context();
 $authhero = theme_baitalgahwa_get_auth_page_hero_context();
