@@ -1098,7 +1098,11 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
         if ($section !== null && (int) $section !== 0) {
             return ['course_dashboard' => false];
         }
-        if (!is_enrolled($context, $USER, '', true)) {
+        // Enrolled learners see the branded layout; so do staff who manage the course
+        // but are not explicitly enrolled (common for admins QA-ing /course/view.php).
+        $seehome = is_enrolled($context, $USER, '', true)
+            || has_capability('moodle/course:update', $context);
+        if (!$seehome) {
             return ['course_dashboard' => false];
         }
     } else if ($path === '/course/edit.php') {
