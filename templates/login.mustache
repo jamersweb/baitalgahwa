@@ -1264,7 +1264,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             return;
         }
         rows.forEach(function(row) {
-            if (!row || !parent.contains(row)) {
+            if (!row) {
                 return;
             }
             if (beforeNode && parent.contains(beforeNode)) {
@@ -1411,7 +1411,12 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         var firstnameRow = findRow(firstname);
         var lastnameRow = findRow(lastname);
         var passwordRow = findRow(password);
-        var submitButton = signupForm ? signupForm.querySelector('button[type="submit"], input[type="submit"]') : null;
+        var submitButton = signupForm ? (
+            signupForm.querySelector('#id_submitbutton') ||
+            signupForm.querySelector('input[name="submitbutton"]') ||
+            signupForm.querySelector('button[name="submitbutton"]') ||
+            signupForm.querySelector('button[type="submit"], input[type="submit"]')
+        ) : null;
         var submitRow = findRow(submitButton);
         var socialIcons = signupForm ? signupForm.querySelector('.baitalgahwa-signup-socialicons') : null;
         var signupFlow = null;
@@ -1480,11 +1485,22 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         if (city) {
             var cityRow = findRow(city);
             setRowVisibility(cityRow, false);
+            if (cityRow && !city.value.trim()) {
+                city.value = '-';
+            }
         }
 
         if (country) {
             var countryRow = findRow(country);
             setRowVisibility(countryRow, false);
+            if (countryRow && !country.value && country.options && country.options.length) {
+                for (var ci = 0; ci < country.options.length; ci++) {
+                    if (country.options[ci].value) {
+                        country.value = country.options[ci].value;
+                        break;
+                    }
+                }
+            }
         }
 
         if (password) {
@@ -1508,6 +1524,27 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         if (firstname && lastname) {
             setRowVisibility(firstnameRow, false);
             setRowVisibility(lastnameRow, false);
+            var syncHiddenNamesFromUsername = function() {
+                var u = username && username.value ? username.value.trim() : '';
+                if (!u) {
+                    return;
+                }
+                var parts = u.split(/[\s._-]+/).filter(function(p) { return p.length; });
+                if (!firstname.value.trim()) {
+                    firstname.value = parts[0] || u;
+                }
+                if (!lastname.value.trim()) {
+                    lastname.value = parts.length > 1 ? parts.slice(1).join(' ') : '.';
+                }
+            };
+            if (!firstname.dataset.baitNamesyncBound) {
+                firstname.dataset.baitNamesyncBound = '1';
+                if (username) {
+                    username.addEventListener('input', syncHiddenNamesFromUsername);
+                    username.addEventListener('change', syncHiddenNamesFromUsername);
+                }
+                syncHiddenNamesFromUsername();
+            }
         }
 
         [
@@ -1534,6 +1571,46 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         appendRowsInOrder(signupFlow || signupForm, [findRow(username), emailRow, passwordRow, submitRow], socialIcons);
         if (signupFlow && socialIcons && signupFlow.contains(submitRow)) {
             signupFlow.appendChild(socialIcons);
+        }
+
+        if (signupForm && !signupForm.dataset.baitSignupPrevalidate) {
+            signupForm.dataset.baitSignupPrevalidate = '1';
+            signupForm.addEventListener('click', function(ev) {
+                var t = ev.target;
+                if (!t || typeof t.closest !== 'function') {
+                    return;
+                }
+                var btn = t.closest('button[type="submit"], input[type="submit"]');
+                if (!btn || !signupForm.contains(btn)) {
+                    return;
+                }
+                if (email && email2) {
+                    email2.value = email.value;
+                }
+                if (firstname && lastname && username) {
+                    var u = username.value ? username.value.trim() : '';
+                    if (u) {
+                        var segs = u.split(/[\s._-]+/).filter(function(p) { return p.length; });
+                        if (!firstname.value.trim()) {
+                            firstname.value = segs[0] || u;
+                        }
+                        if (!lastname.value.trim()) {
+                            lastname.value = segs.length > 1 ? segs.slice(1).join(' ') : '.';
+                        }
+                    }
+                }
+                if (city && !city.value.trim()) {
+                    city.value = '-';
+                }
+                if (country && !country.value && country.options && country.options.length) {
+                    for (var ck = 0; ck < country.options.length; ck++) {
+                        if (country.options[ck].value) {
+                            country.value = country.options[ck].value;
+                            break;
+                        }
+                    }
+                }
+            }, true);
         }
 
         setupPasswordToggleDelegation();
