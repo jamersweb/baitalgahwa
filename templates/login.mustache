@@ -1300,11 +1300,14 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         if (!scope) {
             return;
         }
+        var row = null;
         var pol = scope.querySelector('#id_passwordpolicyinfo');
-        if (!pol) {
-            return;
+        if (pol) {
+            row = pol.closest('.fitem') || pol.closest('.form-group');
         }
-        var row = pol.closest('.fitem') || pol.closest('.form-group');
+        if (!row) {
+            row = scope.querySelector('#fitem_id_passwordpolicyinfo');
+        }
         if (row) {
             row.style.display = 'none';
         }
@@ -1423,7 +1426,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 
         if (signupForm) {
             signupForm.classList.add('baitalgahwa-signup-form');
-            removePasswordPolicyStaticRow(signupForm);
+            hidePasswordPolicyStaticRow(signupForm);
             if (!signupForm.querySelector('.baitalgahwa-signup-social')) {
                 signupForm.insertAdjacentHTML('afterbegin', signupGoogleMarkup);
             }
