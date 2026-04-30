@@ -322,6 +322,7 @@ function theme_baitalgahwa_get_auth_page_fallback_image(bool $issignup = false):
  * @return string
  */
 function theme_baitalgahwa_get_course_image_url($course): string {
+    $fallback = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
     if (empty($course->id)) {
         return '';
     }
@@ -333,16 +334,27 @@ function theme_baitalgahwa_get_course_image_url($course): string {
         'overviewfiles',
         0,
         'filesize > 0',
-        'filesize, timemodified, filename',
-        0
+        'filepath, filename',
+        false
     );
-    if (!$files) {
-        return theme_baitalgahwa_get_theme_image_url('course-activity-layout');
+    $images = [];
+    foreach ($files as $file) {
+        if (!$file || $file->is_directory()) {
+            continue;
+        }
+        $mime = $file->get_mimetype();
+        if (strpos((string) $mime, 'image/') !== 0) {
+            continue;
+        }
+        $images[] = $file;
     }
-    $file = reset($files);
-    if (!$file) {
-        return theme_baitalgahwa_get_theme_image_url('course-activity-layout');
+    if (!$images) {
+        return $fallback;
     }
+    usort($images, static function (\stored_file $a, \stored_file $b): int {
+        return $b->get_timemodified() <=> $a->get_timemodified();
+    });
+    $file = $images[0];
     return \moodle_url::make_pluginfile_url(
         $file->get_contextid(),
         $file->get_component(),
