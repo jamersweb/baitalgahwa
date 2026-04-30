@@ -1278,7 +1278,8 @@ function theme_baitalgahwa_get_dashboard_recent_users(int $limit = 8, int $useri
 /**
  * Context for the Bait course strip (hero + stats) on course home and course settings.
  *
- * Shown on /course/view.php (section 0), /course/edit.php (existing course), and /user/index.php (participants).
+ * Shown on /course/view.php (section 0), /course/edit.php, /user/index.php (participants),
+ * and course enrol pages under /enrol/* (e.g. enrolment options).
  *
  * @return array
  */
@@ -1292,6 +1293,7 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
     $path = $PAGE->url->get_path();
     $isedit = false;
     $isparticipants = false;
+    $isenrol = false;
 
     if ($path === '/course/view.php') {
         $section = $PAGE->url->get_param('section');
@@ -1322,6 +1324,9 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
             return ['course_dashboard' => false];
         }
         $isparticipants = true;
+    } else if (strpos($path, '/enrol/') === 0 || strpos($path, 'enrol/') === 0) {
+        // Course enrolment hub (e.g. /enrol/index.php?id=…) — same branded shell as course home.
+        $isenrol = true;
     } else {
         return ['course_dashboard' => false];
     }
@@ -1416,6 +1421,7 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
         'course_ctalabel' => get_string('course_enter', 'theme_baitalgahwa'),
         'course_strip_settings_layout' => false,
         'course_strip_participants' => false,
+        'course_strip_enrol' => $isenrol,
     ];
     if ($isedit) {
         $ctx['course_strip_settings_layout'] = true;
@@ -1470,6 +1476,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         }
         if (!empty($coursedashboardctx['course_strip_participants'])) {
             $extraclasses[] = 'baitalgahwa-course-participants';
+        }
+        if (!empty($coursedashboardctx['course_strip_enrol'])) {
+            $extraclasses[] = 'baitalgahwa-course-enrol';
         }
     }
     $bodyattributes = $OUTPUT->body_attributes($extraclasses);

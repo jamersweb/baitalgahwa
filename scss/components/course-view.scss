@@ -2,7 +2,7 @@
 // Triggered on body.baitalgahwa-course-dashboard
 
 $bag-course-radius: 1rem;
-$bag-course-shell-max: 1320px;
+$bag-course-shell-max: 1320px; // Legacy cap; course + enrol shells use full width below.
 $bag-brown: $primary;
 
 body.baitalgahwa-course-dashboard {
@@ -10,8 +10,8 @@ body.baitalgahwa-course-dashboard {
 
   #page.drawers,
   #topofscroll.main-inner {
-    max-width: 100%;
-    width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   .drawer-toggles,
@@ -19,10 +19,28 @@ body.baitalgahwa-course-dashboard {
   .baitalgahwa-course-stats,
   .secondary-navigation,
   #page-content {
-    width: min(calc(100% - 1.5rem), #{$bag-course-shell-max});
-    max-width: #{$bag-course-shell-max};
+    width: 100%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding-left: clamp(0.65rem, 2.4vw, 1.5rem);
+    padding-right: clamp(0.65rem, 2.4vw, 1.5rem);
+    box-sizing: border-box;
+  }
+
+  #page-content .container,
+  #page-content .container-fluid {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // Enrolment options: drop duplicate course tab row (hero already brands the page).
+  &.baitalgahwa-course-enrol .secondary-navigation {
+    display: none;
   }
 
   .drawer-toggles {
@@ -37,6 +55,7 @@ body.baitalgahwa-course-dashboard {
   #region-main-box,
   #region-main {
     width: 100%;
+    max-width: 100%;
   }
 
   #region-main {
@@ -826,7 +845,8 @@ body.baitalgahwa-course-settings {
     .baitalgahwa-course-stats,
     .secondary-navigation,
     #page-content {
-      width: min(calc(100% - 1rem), #{$bag-course-shell-max}) !important;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
     .secondary-navigation .nav-tabs,
