@@ -1,7 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+
 // Appended in prescss after Boost pre-SCSS. Typography baseline.
-$font-family-sans-serif: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$line-height-base: 1.55; // Match $figma-line-body; lock with Figma text styles.
+$font-family-sans-serif:
+  "Plus Jakarta Sans",
+  "Segoe UI",
+  system-ui,
+  -apple-system,
+  "Helvetica Neue",
+  Arial,
+  "Noto Sans Arabic",
+  "Noto Sans",
+  "Liberation Sans",
+  sans-serif,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "Noto Color Emoji";
+
+$font-family-base: $font-family-sans-serif;
+
+$headings-font-family: "Plus Jakarta Sans", "Noto Sans Arabic", "Segoe UI", system-ui, sans-serif;
 
 .baitalgahwa-js :focus {
   outline: 2px solid var(--bait-gold, #c9a227);

@@ -692,7 +692,7 @@ function theme_baitalgahwa_get_dashboard_donut(int $userid): array {
             'total' => 0,
             'centerlabel' => '0',
             'segments' => [],
-            'conic' => 'conic-gradient(#e8e0d8 0% 100%)',
+            'conic' => 'conic-gradient(from 0.14turn at 50% 50%, #e8e0d8 0deg 360deg)',
         ];
     }
     $courses = enrol_get_my_courses('id, category', 'visible ASC', 0, 0);
@@ -714,7 +714,7 @@ function theme_baitalgahwa_get_dashboard_donut(int $userid): array {
             'total' => 0,
             'centerlabel' => '0',
             'segments' => [],
-            'conic' => 'conic-gradient(#e8e0d8 0% 100%)',
+            'conic' => 'conic-gradient(from 0.14turn at 50% 50%, #e8e0d8 0deg 360deg)',
         ];
     }
     arsort($bycat);
@@ -746,14 +746,15 @@ function theme_baitalgahwa_get_dashboard_donut(int $userid): array {
         $from = $running;
         $running += $pct;
         $col = $colours[$idx % count($colours)];
-        $parts[] = $col . ' ' . round($from, 2) . '% ' . round($running, 2) . '%';
+        // Degree-based stops + explicit origin (reliable ring vs. thin/squeezed arcs in some layouts).
+        $parts[] = $col . ' ' . round($from * 3.6, 3) . 'deg ' . round($running * 3.6, 3) . 'deg';
         $segments[] = [
             'label' => $sl['label'],
             'count' => $sl['count'],
             'color' => $col,
         ];
     }
-    $conic = 'conic-gradient(' . implode(', ', $parts) . ')';
+    $conic = 'conic-gradient(from 0.14turn at 50% 50%, ' . implode(', ', $parts) . ')';
     return [
         'total' => $total,
         'centerlabel' => (string) $total,

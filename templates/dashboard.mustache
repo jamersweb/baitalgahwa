@@ -329,26 +329,41 @@ body#page-my-index #topofscroll.main-inner {
     gap: .55rem;
     align-items: center;
 }
-.baitalgahwa-dashboard-widget__controls--calendar {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: stretch;
-    gap: .5rem;
+    gap: .5rem !important;
+    padding-bottom: 1.05rem !important;
+}
+.baitalgahwa-dashboard-widget__calendar-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .65rem;
     width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
+    flex-wrap: nowrap;
 }
-.baitalgahwa-dashboard-widget__controls--calendar select {
-    flex: 1 1 40%;
-    max-width: 100%;
+.baitalgahwa-dashboard-widget__calendar-head .baitalgahwa-dashboard-widget__titlegroup {
+    flex: 1 1 auto;
     min-width: 0;
 }
-.baitalgahwa-dashboard-widget__controls--calendar .baitalgahwa-dashboard-widget__button {
-    flex: 0 1 auto;
-    min-width: min(100%, 7.5rem);
-    max-width: 100%;
-    text-align: center;
+.baitalgahwa-dashboard-widget__calendar-head .baitalgahwa-dashboard-widget__button {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    margin-top: .05rem;
+}
+.baitalgahwa-dashboard-widget__calendar-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    width: 100%;
+    align-items: center;
+}
+.baitalgahwa-dashboard-widget__calendar-filters select {
+    flex: 1 1 46%;
+    min-width: 0;
+}
+.baitalgahwa-dashboard-widget--calendar .baitalgahwa-dashboard-widget__controls--actions {
+    margin-top: .35rem !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 .baitalgahwa-dashboard-widget__controls--quiz {
     flex-direction: column;
@@ -379,7 +394,10 @@ body#page-my-index #topofscroll.main-inner {
         row-gap: .65rem;
     }
     .baitalgahwa-dashboard-widgets-row .baitalgahwa-dashboard-widget .baitalgahwa-dashboard-donut {
-        flex: 1 1 auto;
+        flex: 0 0 auto;
+        align-self: center;
+        margin-top: .35rem;
+        margin-bottom: .35rem;
     }
     .baitalgahwa-dashboard-widgets-row .baitalgahwa-dashboard-widget .baitalgahwa-dashboard-calendar {
         flex: 1 1 auto;
@@ -452,19 +470,24 @@ body#page-my-index #topofscroll.main-inner {
     color: #8a5a2b;
 }
 .baitalgahwa-dashboard-donut {
-    width: 10.5rem;
-    height: 10.5rem;
-    margin: .25rem auto .2rem;
+    width: 11rem;
+    height: 11rem;
+    min-width: 11rem;
+    min-height: 11rem;
+    margin: .35rem auto;
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: var(--bag-donut, conic-gradient(#e8e0d8 0% 100%));
+    background: var(--bag-donut, conic-gradient(#e8e0d8 0deg 360deg));
     position: relative;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
 }
 .baitalgahwa-dashboard-donut::before {
     content: "";
     position: absolute;
-    inset: 1.1rem;
+    inset: 1.15rem;
     background: #fff;
     border-radius: 50%;
 }
@@ -505,7 +528,9 @@ body#page-my-index #topofscroll.main-inner {
     display: inline-block;
 }
 .baitalgahwa-dashboard-calendar {
-    margin-top: .15rem;
+    margin-top: .05rem;
+    margin-bottom: 0;
+    width: 100%;
 }
 .baitalgahwa-dashboard-calendar th {
     padding: .45rem .2rem;
@@ -1065,25 +1090,25 @@ body#page-my-index #topofscroll.main-inner {
                             </section>
                         </div>
                         <div class="col-lg-4 d-flex align-items-lg-stretch">
-                            <section class="baitalgahwa-dashboard-widget flex-grow-1">
-                                <div class="baitalgahwa-dashboard-widget__top">
+                            <section class="baitalgahwa-dashboard-widget flex-grow-1 baitalgahwa-dashboard-widget--calendar">
+                                <div class="baitalgahwa-dashboard-widget__calendar-head">
                                     <div class="baitalgahwa-dashboard-widget__titlegroup">
                                         <h2 class="baitalgahwa-dashboard-widget__title">{{#str}}calendar, calendar{{/str}}</h2>
                                         <p class="baitalgahwa-dashboard-widget__sub">{{ dashboard_calendar.title }}</p>
                                     </div>
-                                    <div class="baitalgahwa-dashboard-widget__controls baitalgahwa-dashboard-widget__controls--calendar">
-                                        <select aria-label="{{ dashboard_ui.filterallcourses }}" data-bag-calendar-course>
-                                            {{#dashboard_calendar_course_options}}
-                                            <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
-                                            {{/dashboard_calendar_course_options}}
-                                        </select>
-                                        <select aria-label="{{ dashboard_ui.filterallevents }}" data-bag-calendar-type>
-                                            {{#dashboard_calendar_type_options}}
-                                            <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
-                                            {{/dashboard_calendar_type_options}}
-                                        </select>
-                                        <a class="baitalgahwa-dashboard-widget__button" href="{{{ config.calurl }}}">{{ dashboard_ui.newevent }}</a>
-                                    </div>
+                                    <a class="baitalgahwa-dashboard-widget__button" href="{{{ config.calurl }}}">{{ dashboard_ui.newevent }}</a>
+                                </div>
+                                <div class="baitalgahwa-dashboard-widget__calendar-filters">
+                                    <select aria-label="{{ dashboard_ui.filterallcourses }}" data-bag-calendar-course>
+                                        {{#dashboard_calendar_course_options}}
+                                        <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                        {{/dashboard_calendar_course_options}}
+                                    </select>
+                                    <select aria-label="{{ dashboard_ui.filterallevents }}" data-bag-calendar-type>
+                                        {{#dashboard_calendar_type_options}}
+                                        <option value="{{ value }}" {{#selected}}selected{{/selected}}>{{ label }}</option>
+                                        {{/dashboard_calendar_type_options}}
+                                    </select>
                                 </div>
                                 <table class="table table-sm text-center baitalgahwa-dashboard-calendar mb-0" role="grid" aria-label="{{#str}}calendar, calendar{{/str}}">
                                     <thead>

@@ -1,0 +1,19 @@
+{{!
+    Theme override of core/user_menu_metadata — show full name before the dropdown chevron.
+    Context matches core\navigation\output\primary::get_user_menu (userfullname).
+    @template core/user_menu_metadata
+}}
+{{#metadata}}
+
+ {{{content}}}
+
+{{/metadata}}
+
+ {{#avatardata}}
+
+ {{{content}}}
+
+ {{/avatardata}}
+{{#userfullname}}
+<span class="baitalgahwa-navbar__user-fullname">{{.}}</span>
+{{/userfullname}}
