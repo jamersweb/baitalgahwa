@@ -316,6 +316,21 @@ function theme_baitalgahwa_get_auth_page_fallback_image(bool $issignup = false):
 }
 
 /**
+ * Whether this course should use the Certified Gahwa Specialist programme hero asset.
+ *
+ * @param stdClass $course Raw course row (fullname as stored).
+ * @return bool
+ */
+function theme_baitalgahwa_is_certified_gahwa_specialist_course($course): bool {
+    $name = isset($course->fullname) ? (string) $course->fullname : '';
+    if ($name === '') {
+        return false;
+    }
+    $needle = 'certified gahwa specialist';
+    return strpos(\core_text::strtolower($name), $needle) !== false;
+}
+
+/**
  * Resolves a course image URL for cards if an overview file exists.
  *
  * @param stdClass $course
@@ -325,6 +340,9 @@ function theme_baitalgahwa_get_course_image_url($course): string {
     $fallback = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
     if (empty($course->id)) {
         return '';
+    }
+    if (theme_baitalgahwa_is_certified_gahwa_specialist_course($course)) {
+        return theme_baitalgahwa_get_theme_image_url('course-gahwa-specialist-hero');
     }
     $context = \context_course::instance($course->id);
     $fs = get_file_storage();
@@ -439,6 +457,7 @@ function theme_baitalgahwa_format_course_for_template($c): array {
         'fullname' => format_string($c->fullname, true, ['context' => $context]),
         'summary' => $short,
         'categoryname' => $catname,
+        'programme_focus_gahwa' => theme_baitalgahwa_is_certified_gahwa_specialist_course($c),
         'imageurl' => theme_baitalgahwa_get_course_image_url($c),
         'startdate_display' => $startdate > 0 ? userdate($startdate, '%d/%m/%Y') : '',
         'enddate_display' => $enddate > 0 ? userdate($enddate, '%d/%m/%Y') : '',

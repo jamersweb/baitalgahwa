@@ -274,6 +274,9 @@ body.pagelayout-mycourses #topofscroll.main-inner {
     background-size: cover;
     background-position: center;
 }
+.baitalgahwa-mycourses-card__image--gahwa {
+    background-position: 58% 42%;
+}
 .baitalgahwa-mycourses-card__media::after {
     content: "";
     position: absolute;
@@ -589,7 +592,7 @@ body.pagelayout-mycourses #topofscroll.main-inner {
                                 <article class="baitalgahwa-mycourses-card h-100">
                                     <div class="baitalgahwa-mycourses-card__media">
                                         {{#imageurl}}
-                                        <div class="baitalgahwa-mycourses-card__image" style="background-image:url('{{{ imageurl }}}');"></div>
+                                        <div class="baitalgahwa-mycourses-card__image{{#programme_focus_gahwa}} baitalgahwa-mycourses-card__image--gahwa{{/programme_focus_gahwa}}" style="background-image:url('{{{ imageurl }}}');"></div>
                                         {{/imageurl}}
                                         {{^imageurl}}
                                         <div class="baitalgahwa-mycourses-card__image baitalgahwa-mycourses-card__image--placeholder"></div>

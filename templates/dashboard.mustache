@@ -146,6 +146,9 @@ body#page-my-index #topofscroll.main-inner {
     background-size: cover;
     background-position: center;
 }
+.baitalgahwa-dashboard-programme__image--gahwa {
+    background-position: 58% 42%;
+}
 .baitalgahwa-dashboard-programme__image--placeholder {
     background:
         radial-gradient(circle at 70% 30%, rgba(201, 162, 39, .24), transparent 20rem),
@@ -988,7 +991,7 @@ body#page-my-index #topofscroll.main-inner {
                             <article class="baitalgahwa-dashboard-programme h-100" role="listitem">
                                 <div class="baitalgahwa-dashboard-programme__media">
                                     {{#imageurl}}
-                                    <div class="baitalgahwa-dashboard-programme__image" style="background-image:url('{{{ imageurl }}}');"></div>
+                                    <div class="baitalgahwa-dashboard-programme__image{{#programme_focus_gahwa}} baitalgahwa-dashboard-programme__image--gahwa{{/programme_focus_gahwa}}" style="background-image:url('{{{ imageurl }}}');"></div>
                                     {{/imageurl}}
                                     {{^imageurl}}
                                     <div class="baitalgahwa-dashboard-programme__image baitalgahwa-dashboard-programme__image--placeholder"></div>
