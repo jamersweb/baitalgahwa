@@ -30,6 +30,7 @@ $userid = (int) $USER->id;
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
 $context = array_merge($context, theme_baitalgahwa_get_learning_page_context($userid));
 $context = array_merge($context, theme_baitalgahwa_get_mycourses_toolbar_context());
+$context = array_merge($context, theme_baitalgahwa_get_mycourses_page_labels());
 $context['config']['calurl'] = (new \moodle_url('/calendar/view.php'))->out(false);
 $context['config']['membersurl'] = (new \moodle_url('/my/courses.php'))->out(false);
 $context['config']['coursetodo'] = (new \moodle_url('/my/courses.php'))->out(false);

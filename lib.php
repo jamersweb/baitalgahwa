@@ -52,6 +52,25 @@ function theme_baitalgahwa_string_or_default(string $identifier, string $fallbac
 }
 
 /**
+ * Like get_string with an extra parameter, but returns $fallback if Moodle would print [[placeholder]].
+ *
+ * @param string $identifier
+ * @param string $fallback
+ * @param mixed|null $param
+ * @return string
+ */
+function theme_baitalgahwa_safe_lang(string $identifier, string $fallback, $param = null): string {
+    if ($param === null) {
+        return theme_baitalgahwa_string_or_default($identifier, $fallback);
+    }
+    $value = get_string($identifier, 'theme_baitalgahwa', $param);
+    if (preg_match('/^\[\[[^\]]+\]\]$/', (string) $value)) {
+        return $fallback;
+    }
+    return $value;
+}
+
+/**
  * Dashboard UI labels with safe fallbacks.
  *
  * @return array<string, string>
@@ -450,7 +469,10 @@ function theme_baitalgahwa_format_course_for_template($c): array {
     if (mb_strlen(preg_replace('/\s+/', ' ', html_to_text($summary, 0))) > 0) {
         $short = shorten_text(html_to_text($summary, 0), 120);
     } else {
-        $short = get_string('mycourse_excerpt', 'theme_baitalgahwa');
+        $short = theme_baitalgahwa_string_or_default(
+            'mycourse_excerpt',
+            'A guided programme with clear outcomes and support along the way.'
+        );
     }
     $catname = '';
     if (!empty($c->category)) {
@@ -477,11 +499,14 @@ function theme_baitalgahwa_format_course_for_template($c): array {
         'enddate_display' => $ends,
         'isnew' => $isnew,
         'card_starts_line' => $starts !== ''
-            ? get_string('mycourse_card_starts', 'theme_baitalgahwa', $starts) : '',
+            ? theme_baitalgahwa_safe_lang('mycourse_card_starts', 'It starts on ' . $starts, $starts) : '',
         'card_ends_line' => $ends !== ''
-            ? get_string('mycourse_card_ends', 'theme_baitalgahwa', $ends) : '',
+            ? theme_baitalgahwa_safe_lang('mycourse_card_ends', 'It ends on ' . $ends, $ends) : '',
         'has_card_schedule' => ($starts !== '' || $ends !== ''),
-        'instructor_host' => get_string('mycourse_card_instructor_host', 'theme_baitalgahwa'),
+        'instructor_host' => theme_baitalgahwa_safe_lang(
+            'mycourse_card_instructor_host',
+            'Gahwa specialist, Bait Al Gahwa host'
+        ),
     ];
 }
 
@@ -496,7 +521,12 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     $context = [];
     $user = ((int) $USER->id === $userid) ? $USER : \core_user::get_user($userid);
     $context['dashboard_ui'] = theme_baitalgahwa_get_dashboard_ui_strings();
-    $context['dashboardwelcome'] = get_string('dashboardwelcome', 'theme_baitalgahwa', fullname($user));
+    $welcomename = fullname($user);
+    $context['dashboardwelcome'] = theme_baitalgahwa_safe_lang(
+        'dashboardwelcome',
+        'Welcome back, ' . $welcomename,
+        $welcomename
+    );
     $context['dashboard_featured_tag'] = get_string('dashboard_featured_tag', 'theme_baitalgahwa');
     $context['dashboard_overview_tab'] = get_string('dashboard_overview_tab', 'theme_baitalgahwa');
     $context['dashboard_intro_heading'] = get_string('dashboard_intro_heading', 'theme_baitalgahwa');
@@ -1393,6 +1423,32 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
 }
 
 /**
+ * Pre-resolved catalogue labels for the My courses template (never shows raw [[string]] if language cache lags).
+ *
+ * @return array<string, string>
+ */
+function theme_baitalgahwa_get_mycourses_page_labels(): array {
+    $c = 'theme_baitalgahwa';
+    return [
+        'mc_toolbar_aria' => theme_baitalgahwa_string_or_default('mycourses_toolbar_aria', 'My courses actions', $c),
+        'mc_tab_all' => theme_baitalgahwa_string_or_default('mycourses_tab_all', 'All', $c),
+        'mc_tab_inprogress' => theme_baitalgahwa_string_or_default('mycourses_tab_inprogress', 'In progress', $c),
+        'mc_tab_starred' => theme_baitalgahwa_string_or_default('mycourses_tab_starred', 'Starred', $c),
+        'mc_tab_removed' => theme_baitalgahwa_string_or_default('mycourses_tab_removed', 'Removed from view', $c),
+        'mc_search_placeholder' => theme_baitalgahwa_string_or_default('mycourses_search_placeholder', 'Search courses...', $c),
+        'mc_filter' => theme_baitalgahwa_string_or_default('mycourses_filter', 'Filter', $c),
+        'mc_sort_by' => theme_baitalgahwa_string_or_default('mycourses_sort_by', 'Sort by', $c),
+        'mc_sort_latest' => theme_baitalgahwa_string_or_default('mycourses_sort_latest', 'Latest', $c),
+        'mc_columns' => theme_baitalgahwa_string_or_default('mycourses_columns', 'Column', $c),
+        'mc_course_new' => theme_baitalgahwa_string_or_default('course_new', 'New', $c),
+        'mc_available' => theme_baitalgahwa_string_or_default('mycourse_available', 'Available', $c),
+        'mc_dates_hint' => theme_baitalgahwa_string_or_default('mycourse_dates_hint', 'Open for enrolment', $c),
+        'mc_gotocourse' => theme_baitalgahwa_string_or_default('gotocourse', 'View course', $c),
+        'mc_nocourses' => theme_baitalgahwa_string_or_default('nocourses', 'No published courses to show yet.', $c),
+    ];
+}
+
+/**
  * Toolbar for the My courses page: title + Manage / Create (same capability pattern as myoverview).
  *
  * @return array{ mycourses_toolbar: bool, mycourses_title: string, managecourseurl: string, createcourseurl: string, canmanagecourses: bool, cancreatecourse: bool, managecoursetext: string, createcoursetext: string }
@@ -1413,15 +1469,19 @@ function theme_baitalgahwa_get_mycourses_toolbar_context(): array {
             $createurl = (new \moodle_url('/course/edit.php', ['category' => $cat->id]))->out(false);
         }
     }
+    $mycoursestitle = get_string('mycourses', 'moodle');
+    if (preg_match('/^\[\[[^\]]+\]\]$/', (string) $mycoursestitle)) {
+        $mycoursestitle = 'My courses';
+    }
     return [
         'mycourses_toolbar' => true,
-        'mycourses_title' => get_string('mycourses', 'moodle'),
+        'mycourses_title' => $mycoursestitle,
         'managecourseurl' => $manageurl,
         'createcourseurl' => $createurl,
         'canmanagecourses' => $canmanage,
         'cancreatecourse' => $cancreate,
-        'managecoursetext' => get_string('mycourses_manage_btn', 'theme_baitalgahwa'),
-        'createcoursetext' => get_string('mycourses_createcourse', 'theme_baitalgahwa'),
+        'managecoursetext' => theme_baitalgahwa_string_or_default('mycourses_manage_btn', 'Manage course'),
+        'createcoursetext' => theme_baitalgahwa_string_or_default('mycourses_createcourse', 'Create course'),
     ];
 }
 

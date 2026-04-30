@@ -27,8 +27,10 @@ body.pagelayout-mycourses #topofscroll.main-inner {
     display: flex;
     flex-direction: column;
     gap: 0;
-    width: min(100%, 1320px);
-    margin: 0 auto;
+    width: 98%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 .baitalgahwa-mycourses-pagehead {
     display: flex;
@@ -328,83 +330,6 @@ body.pagelayout-mycourses #topofscroll.main-inner {
     box-shadow: 0 .75rem 2rem rgba(48, 27, 12, .06);
     padding: 1.5rem 1.6rem;
 }
-.baitalgahwa-mycourses-section__header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-.baitalgahwa-mycourses-section__title {
-    margin: 0;
-    color: #201813;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-.baitalgahwa-mycourses-section__intro {
-    color: #7c7268;
-    font-size: .95rem;
-    line-height: 1.65;
-}
-.baitalgahwa-mycourses-minical th {
-    color: #61574f;
-    font-size: .82rem;
-    font-weight: 700;
-    border: 0;
-    padding: .45rem .2rem;
-}
-.baitalgahwa-mycourses-minical td {
-    border: 0;
-    padding: .3rem .2rem;
-}
-.baitalgahwa-mycourses-minical__day {
-    min-width: 2rem;
-    line-height: 2rem;
-    border-radius: 999px;
-}
-.baitalgahwa-mycourses-minical__today {
-    background: #8a5a2b;
-    color: #fff;
-    font-weight: 700;
-}
-.baitalgahwa-mycourses-member {
-    display: flex;
-    align-items: center;
-    gap: .9rem;
-    height: 100%;
-    border: 1px solid #efe5db;
-    border-radius: 1rem;
-    background: #f6f1eb;
-    padding: .85rem 1rem;
-}
-.baitalgahwa-mycourses-member__avatar .userpicture,
-.baitalgahwa-mycourses-member__avatar img {
-    width: 2.7rem;
-    height: 2.7rem;
-    border-radius: 999px;
-}
-.baitalgahwa-mycourses-member__copy {
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-}
-.baitalgahwa-mycourses-member__name {
-    color: #201813;
-    font-weight: 700;
-}
-.baitalgahwa-mycourses-member__role {
-    color: #7c7268;
-    font-size: .88rem;
-}
-.baitalgahwa-mycourses-inline-link {
-    color: #8a5a2b;
-    font-size: .9rem;
-    font-weight: 700;
-    text-decoration: none;
-}
-.baitalgahwa-mycourses-secondary {
-    margin-top: 2.25rem;
-}
 .baitalgahwa-mycourses-panel__body {
     color: #7c7268;
     font-size: .96rem;
@@ -515,7 +440,7 @@ body.pagelayout-mycourses #topofscroll.main-inner {
                             <h1 class="baitalgahwa-mycourses-pagehead__title">{{#mycourses_title}}{{mycourses_title}}{{/mycourses_title}}{{^mycourses_title}}{{#str}}mycourses, moodle{{/str}}{{/mycourses_title}}</h1>
                         </div>
                         {{#mycourses_toolbar}}
-                        <div class="baitalgahwa-mycourses-pagehead__actions" role="group" aria-label="{{#str}}mycourses_toolbar_aria, theme_baitalgahwa{{/str}}">
+                        <div class="baitalgahwa-mycourses-pagehead__actions" role="group" aria-label="{{{ mc_toolbar_aria }}}">
                             {{#canmanagecourses}}
                             <a href="{{{ managecourseurl }}}" class="btn-manage">{{{ managecoursetext }}}</a>
                             {{/canmanagecourses}}
@@ -526,28 +451,28 @@ body.pagelayout-mycourses #topofscroll.main-inner {
                         {{/mycourses_toolbar}}
                     </header>
 
-                    <div class="baitalgahwa-mycourses-tabs" role="tablist" aria-label="{{#str}}mycourses, moodle{{/str}}">
-                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="true" data-bag-mycourses-tab="all">{{#str}}mycourses_tab_all, theme_baitalgahwa{{/str}}</button>
-                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="false" data-bag-mycourses-tab="inprogress">{{#str}}mycourses_tab_inprogress, theme_baitalgahwa{{/str}}</button>
-                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="false" data-bag-mycourses-tab="starred">{{#str}}mycourses_tab_starred, theme_baitalgahwa{{/str}}</button>
-                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="false" data-bag-mycourses-tab="removed">{{#str}}mycourses_tab_removed, theme_baitalgahwa{{/str}}</button>
+                    <div class="baitalgahwa-mycourses-tabs" role="tablist" aria-label="{{{ mycourses_title }}}">
+                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="true" data-bag-mycourses-tab="all">{{{ mc_tab_all }}}</button>
+                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="false" data-bag-mycourses-tab="inprogress">{{{ mc_tab_inprogress }}}</button>
+                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="false" data-bag-mycourses-tab="starred">{{{ mc_tab_starred }}}</button>
+                        <button type="button" class="baitalgahwa-mycourses-tabs__tab" role="tab" aria-selected="false" data-bag-mycourses-tab="removed">{{{ mc_tab_removed }}}</button>
                     </div>
 
                     <div class="baitalgahwa-mycourses-toolbarrow">
-                        <label class="sr-only" for="bag-mycourses-search">{{#str}}mycourses_search_placeholder, theme_baitalgahwa{{/str}}</label>
-                        <input id="bag-mycourses-search" class="baitalgahwa-mycourses-toolbarrow__search" type="search" data-bag-course-filter autocomplete="off" placeholder="{{#str}}mycourses_search_placeholder, theme_baitalgahwa{{/str}}">
-                        <button type="button" class="baitalgahwa-mycourses-toolbarrow__btn"><i class="fa fa-sliders" aria-hidden="true"></i> {{#str}}mycourses_filter, theme_baitalgahwa{{/str}}</button>
+                        <label class="sr-only" for="bag-mycourses-search">{{{ mc_search_placeholder }}}</label>
+                        <input id="bag-mycourses-search" class="baitalgahwa-mycourses-toolbarrow__search" type="search" data-bag-course-filter autocomplete="off" placeholder="{{{ mc_search_placeholder }}}">
+                        <button type="button" class="baitalgahwa-mycourses-toolbarrow__btn"><i class="fa fa-sliders" aria-hidden="true"></i> {{{ mc_filter }}}</button>
                         <div class="baitalgahwa-mycourses-toolbarrow__sort">
-                            <label for="bag-mycourses-sort">{{#str}}mycourses_sort_by, theme_baitalgahwa{{/str}}</label>
-                            <select id="bag-mycourses-sort" aria-label="{{#str}}mycourses_sort_by, theme_baitalgahwa{{/str}}">
-                                <option>{{#str}}mycourses_sort_latest, theme_baitalgahwa{{/str}}</option>
+                            <label for="bag-mycourses-sort">{{{ mc_sort_by }}}</label>
+                            <select id="bag-mycourses-sort" aria-label="{{{ mc_sort_by }}}">
+                                <option>{{{ mc_sort_latest }}}</option>
                             </select>
                         </div>
-                        <button type="button" class="baitalgahwa-mycourses-toolbarrow__btn">{{#str}}mycourses_columns, theme_baitalgahwa{{/str}}</button>
+                        <button type="button" class="baitalgahwa-mycourses-toolbarrow__btn">{{{ mc_columns }}}</button>
                     </div>
 
                     {{#has_activity_courses}}
-                    <ul class="baitalgahwa-mycourses-catalog__grid" role="list" aria-label="{{#str}}mycourses, moodle{{/str}}">
+                    <ul class="baitalgahwa-mycourses-catalog__grid" role="list" aria-label="{{{ mycourses_title }}}">
                         {{#activity_courses}}
                         <li class="baitalgahwa-mycourses-catalog__cell" role="listitem">
                             <article class="baitalgahwa-mycourses-card" data-bag-course-card data-search="{{fullname}}">
@@ -559,10 +484,10 @@ body.pagelayout-mycourses #topofscroll.main-inner {
                                     <div class="baitalgahwa-mycourses-card__image baitalgahwa-mycourses-card__image--placeholder"></div>
                                     {{/imageurl}}
                                     {{#isnew}}
-                                    <span class="baitalgahwa-mycourses-card__badge">{{#str}}course_new, theme_baitalgahwa{{/str}}</span>
+                                    <span class="baitalgahwa-mycourses-card__badge">{{{ mc_course_new }}}</span>
                                     {{/isnew}}
                                     {{^isnew}}
-                                    <span class="baitalgahwa-mycourses-card__badge">{{#str}}mycourse_available, theme_baitalgahwa{{/str}}</span>
+                                    <span class="baitalgahwa-mycourses-card__badge">{{{ mc_available }}}</span>
                                     {{/isnew}}
                                     <div class="baitalgahwa-mycourses-card__schedule">
                                         {{#has_card_schedule}}
@@ -570,7 +495,7 @@ body.pagelayout-mycourses #topofscroll.main-inner {
                                             {{#card_ends_line}}<span><i class="fa fa-clock-o" aria-hidden="true"></i> {{ card_ends_line }}</span>{{/card_ends_line}}
                                         {{/has_card_schedule}}
                                         {{^has_card_schedule}}
-                                            <span><i class="fa fa-calendar-o" aria-hidden="true"></i> {{#str}}mycourse_dates_hint, theme_baitalgahwa{{/str}}</span>
+                                            <span><i class="fa fa-calendar-o" aria-hidden="true"></i> {{{ mc_dates_hint }}}</span>
                                         {{/has_card_schedule}}
                                     </div>
                                 </div>
@@ -581,7 +506,7 @@ body.pagelayout-mycourses #topofscroll.main-inner {
                                         <span class="baitalgahwa-mycourses-card__host-avatar" aria-hidden="true"><i class="fa fa-user"></i></span>
                                         <span>{{ instructor_host }}</span>
                                     </div>
-                                    <a class="baitalgahwa-mycourses-card__cta" href="{{{ url }}}">{{#str}}gotocourse, theme_baitalgahwa{{/str}}</a>
+                                    <a class="baitalgahwa-mycourses-card__cta" href="{{{ url }}}">{{{ mc_gotocourse }}}</a>
                                 </div>
                             </article>
                         </li>
@@ -590,76 +515,9 @@ body.pagelayout-mycourses #topofscroll.main-inner {
                     {{/has_activity_courses}}
                     {{^has_activity_courses}}
                     <section class="baitalgahwa-mycourses-panel">
-                        <p class="baitalgahwa-mycourses-panel__body mb-0">{{#str}}nocourses, theme_baitalgahwa{{/str}}</p>
+                        <p class="baitalgahwa-mycourses-panel__body mb-0">{{{ mc_nocourses }}}</p>
                     </section>
                     {{/has_activity_courses}}
-
-                    <div class="row g-4 baitalgahwa-mycourses-secondary">
-                        <div class="col-lg-5" id="bag-mycourses-calendar">
-                            <section class="baitalgahwa-mycourses-panel h-100">
-                                <div class="baitalgahwa-mycourses-section__header">
-                                    <div>
-                                        <h2 class="baitalgahwa-mycourses-section__title">{{#str}}calendar, calendar{{/str}}</h2>
-                                        <p class="baitalgahwa-mycourses-section__intro mb-0">{{ dashboard_calendar.title }}</p>
-                                    </div>
-                                    <a class="baitalgahwa-mycourses-inline-link" href="{{{ config.calurl }}}">{{#str}}dashboard_fullcal, theme_baitalgahwa{{/str}}</a>
-                                </div>
-                                <table class="table table-sm text-center small baitalgahwa-mycourses-minical mb-0" role="grid" aria-label="{{#str}}calendar, calendar{{/str}}">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} sunday, calendar {{/str}}">{{#str}} dashboard_cal_s, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} monday, calendar {{/str}}">{{#str}} dashboard_cal_m, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} tuesday, calendar {{/str}}">{{#str}} dashboard_cal_tu, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} wednesday, calendar {{/str}}">{{#str}} dashboard_cal_w, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} thursday, calendar {{/str}}">{{#str}} dashboard_cal_th, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} friday, calendar {{/str}}">{{#str}} dashboard_cal_f, theme_baitalgahwa {{/str}}</abbr></th>
-                                            <th scope="col" class="p-1"><abbr title="{{#str}} saturday, calendar {{/str}}">{{#str}} dashboard_cal_sa, theme_baitalgahwa {{/str}}</abbr></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{#dashboard_calendar.weeks}}
-                                        <tr>
-                                            {{# . }}
-                                            <td class="p-1">
-                                                {{#inmonth}}<span class="baitalgahwa-mycourses-minical__day d-inline-block {{#istoday}}baitalgahwa-mycourses-minical__today{{/istoday}}">{{ day }}</span>{{/inmonth}}
-                                            </td>
-                                            {{/ . }}
-                                        </tr>
-                                        {{/dashboard_calendar.weeks}}
-                                    </tbody>
-                                </table>
-                            </section>
-                        </div>
-                        <div class="col-lg-7" id="bag-mycourses-members">
-                            <section class="baitalgahwa-mycourses-panel h-100">
-                                <div class="baitalgahwa-mycourses-section__header">
-                                    <div>
-                                        <h2 class="baitalgahwa-mycourses-section__title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
-                                        <p class="baitalgahwa-mycourses-section__intro mb-0">{{#str}}dashboard_training_intro, theme_baitalgahwa{{/str}}</p>
-                                    </div>
-                                    <a class="baitalgahwa-mycourses-inline-link" href="{{{ config.membersurl }}}">{{ dashboard_members_link }}</a>
-                                </div>
-                                {{#has_dashboard_members}}
-                                <div class="row g-3">
-                                    {{#dashboard_members}}
-                                    <div class="col-md-6">
-                                        <a class="baitalgahwa-mycourses-member text-reset text-decoration-none" href="{{{ profileurl }}}">
-                                            <span class="baitalgahwa-mycourses-member__avatar">{{{ avatar }}}</span>
-                                            <span class="baitalgahwa-mycourses-member__copy">
-                                                <span class="baitalgahwa-mycourses-member__name">{{ fullname }}</span>
-                                                <span class="baitalgahwa-mycourses-member__role">{{ role }}</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    {{/dashboard_members}}
-                                </div>
-                                {{/has_dashboard_members}}
-                                {{^has_dashboard_members}}
-                                <p class="baitalgahwa-mycourses-panel__body mb-0">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
-                                {{/has_dashboard_members}}
-                            </section>
-                        </div>
-                    </div>
 
                     {{#hasmaincontent}}
                     <div id="page-content" class="baitalgahwa-mycourses-hidden-content" hidden aria-hidden="true">
