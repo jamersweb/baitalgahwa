@@ -1107,11 +1107,56 @@ function theme_baitalgahwa_get_dashboard_calendar(int $userid = 0, int $time = 0
 }
 
 /**
+ * Localized course role label for dashboard member cards.
+ *
+ * @param \context_course $context
+ * @param int $userid
+ * @return string
+ */
+function theme_baitalgahwa_dashboard_member_role_label(\context_course $context, int $userid): string {
+    global $DB;
+    $assignments = get_user_roles($context, $userid, false);
+    if (empty($assignments)) {
+        return get_string('dashboard_peer', 'theme_baitalgahwa');
+    }
+    $ra = reset($assignments);
+    $role = $DB->get_record('role', ['id' => $ra->roleid]);
+    if (!$role) {
+        return get_string('dashboard_peer', 'theme_baitalgahwa');
+    }
+    $name = role_get_name($role, $context);
+    if (is_string($name) && $name !== '' && strpos($name, '[[') === false) {
+        return $name;
+    }
+    return get_string('dashboard_peer', 'theme_baitalgahwa');
+}
+
+/**
+ * Formatted “joined” date for dashboard member cards (first access, else account created).
+ *
+ * @param int $userid
+ * @return string empty if unknown
+ */
+function theme_baitalgahwa_dashboard_member_joined_display(int $userid): string {
+    $user = \core_user::get_user($userid);
+    $ts = 0;
+    if (!empty($user->firstaccess)) {
+        $ts = (int) $user->firstaccess;
+    } else if (!empty($user->timecreated)) {
+        $ts = (int) $user->timecreated;
+    }
+    if ($ts < 1) {
+        return '';
+    }
+    return userdate($ts, get_string('strftimedate', 'langconfig'));
+}
+
+/**
  * Co-learners from the user’s enrolled courses (not site-wide for privacy).
  *
  * @param int $limit
  * @param int $userid
- * @return array<int, array{fullname: string, profileurl: string, role: string, avatar: string}>
+ * @return array<int, array{fullname: string, profileurl: string, role: string, avatar: string, joined_display: string}>
  */
 function theme_baitalgahwa_get_dashboard_recent_users(int $limit = 8, int $userid = 0): array {
     global $CFG, $USER, $OUTPUT;
@@ -1160,7 +1205,8 @@ function theme_baitalgahwa_get_dashboard_recent_users(int $limit = 8, int $useri
             $out[] = [
                 'fullname' => fullname($user),
                 'profileurl' => (new \moodle_url('/user/view.php', ['id' => $u->id, 'course' => $course->id]))->out(false),
-                'role' => get_string('dashboard_peer', 'theme_baitalgahwa'),
+                'role' => theme_baitalgahwa_dashboard_member_role_label($context, (int) $u->id),
+                'joined_display' => theme_baitalgahwa_dashboard_member_joined_display((int) $u->id),
                 'avatar' => $OUTPUT->user_picture($user, [
                     'size' => 50,
                     'link' => false,
