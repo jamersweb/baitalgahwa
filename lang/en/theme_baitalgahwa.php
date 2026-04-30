@@ -160,7 +160,7 @@ $string['mycourse_instructor_chip_role'] = 'Member';
 $string['mycourse_instructor_date_open'] = 'Open enrolment';
 
 // Single course page (dashboard layout)
-$string['course_enter'] = 'View course detail page';
+$string['course_enter'] = 'View course overview page';
 $string['course_viewpage'] = 'View course page';
 $string['course_manage'] = 'Manage course';
 $string['course_instructor_default'] = 'Course team';

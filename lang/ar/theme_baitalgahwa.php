@@ -147,7 +147,7 @@ $string['mycourse_instructor_chip_name'] = 'ميسّر المقرر';
 $string['mycourse_instructor_chip_role'] = 'عضو';
 $string['mycourse_instructor_date_open'] = 'تسجيل مفتوح';
 
-$string['course_enter'] = 'عرض المقرر';
+$string['course_enter'] = 'عرض صفحة نظرة عامة على المقرر';
 $string['course_viewpage'] = 'عرض صفحة المقرر';
 $string['course_manage'] = 'إدارة المقرر';
 $string['course_instructor_default'] = 'فريق المقرر';

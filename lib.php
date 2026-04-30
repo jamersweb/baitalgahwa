@@ -1334,13 +1334,21 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
     }
 
     $instructor = get_string('course_instructor_default', 'theme_baitalgahwa');
+    $instructoravatar = '';
     $teachers = get_enrolled_users($context, 'moodle/course:update', 0, 'u.id, u.firstname, u.lastname', 'u.lastname ASC, u.firstname ASC');
     if (!$teachers) {
         $teachers = get_enrolled_users($context, 'mod/assign:grade', 0, 'u.id, u.firstname, u.lastname', 'u.lastname ASC, u.firstname ASC');
     }
     if ($teachers) {
         $t = reset($teachers);
-        $instructor = fullname($t, true);
+        $tuser = \core_user::get_user($t->id);
+        $instructor = fullname($tuser, true);
+        $instructoravatar = $OUTPUT->user_picture($tuser, [
+            'size' => 64,
+            'link' => false,
+            'class' => 'rounded-circle baitalgahwa-course-hero__hostuserpic',
+            'alttext' => true,
+        ]);
     }
 
     $enrolled = count_enrolled_users($context);
@@ -1396,6 +1404,8 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
         'course_summary' => $summary,
         'course_image' => $courseimage,
         'course_instructor' => $instructor,
+        'course_instructor_avatar' => $instructoravatar,
+        'course_hero_hostline' => get_string('mycourse_card_instructor_host', 'theme_baitalgahwa'),
         'stat_enrolled' => $enrolled,
         'stat_enrolled_f' => $enrolledf,
         'stat_completed_f' => $hascompletion && $statcompleted !== null ? $twodigit((int) $statcompleted) : '—',

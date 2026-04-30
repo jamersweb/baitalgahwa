@@ -29,8 +29,13 @@ body.baitalgahwa-course-dashboard {
         <div class="baitalgahwa-course-hero__caption position-absolute bottom-0 left-0 right-0 w-100">
             <p class="h4 text-white mb-1 baitalgahwa-course-hero__caption-title">{{course_fullname}}</p>
             <p class="small text-white mb-0 baitalgahwa-course-hero__meta">
+                {{#course_instructor_avatar}}
+                <span class="baitalgahwa-course-hero__hostpic">{{{course_instructor_avatar}}}</span>
+                {{/course_instructor_avatar}}
+                {{^course_instructor_avatar}}
                 <span class="baitalgahwa-course-hero__meta-icon" aria-hidden="true"><i class="icon fa fa-user"></i></span>
-                <span>{{course_instructor}}</span>
+                {{/course_instructor_avatar}}
+                <span class="baitalgahwa-course-hero__hosttext">{{course_hero_hostline}}</span>
             </p>
         </div>
     </div>
@@ -49,7 +54,7 @@ body.baitalgahwa-course-dashboard {
         </div>
         <div class="col-6 col-md-3">
             <article class="baitalgahwa-course-stats__card h-100 d-flex align-items-center p-3">
-                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-calendar fa-2x"></i></span>
+                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-calendar-check-o fa-2x"></i></span>
                 <div>
                     <div class="baitalgahwa-course-stats__num font-weight-bold">{{{ stat_completed_f }}}</div>
                     <div class="baitalgahwa-course-stats__label small text-muted mb-0">{{#str}} course_stat_completed, theme_baitalgahwa {{/str}}</div>
@@ -67,7 +72,7 @@ body.baitalgahwa-course-dashboard {
         </div>
         <div class="col-6 col-md-3">
             <article class="baitalgahwa-course-stats__card h-100 d-flex align-items-center p-3">
-                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-list fa-2x"></i></span>
+                <span class="baitalgahwa-course-stats__icon flex-shrink-0" aria-hidden="true"><i class="icon fa fa-clipboard fa-2x"></i></span>
                 <div>
                     <div class="baitalgahwa-course-stats__num font-weight-bold">{{{ stat_nottostart_f }}}</div>
                     <div class="baitalgahwa-course-stats__label small text-muted mb-0">{{#str}} course_stat_yettostart, theme_baitalgahwa {{/str}}</div>
