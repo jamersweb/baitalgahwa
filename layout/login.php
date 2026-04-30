@@ -24,11 +24,17 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-global $CFG, $PAGE;
+global $CFG, $PAGE, $SESSION;
 
 $path = (string) $PAGE->url->get_path();
 $is_signup = (bool) preg_match('~/login/signup\.php$~', $path) || (bool) preg_match('~/signup\.php$~', $path);
 $cansignup = !empty($CFG->registerauth);
+
+// After self-registration (and email confirmation when used), send users to the dashboard (/my/)
+// instead of the site home. auth_email stores $SESSION->wantsurl in the new user's preferences.
+if ($is_signup) {
+    $SESSION->wantsurl = (new \moodle_url('/my/index.php'))->out(false);
+}
 
 $bodyattributes = $OUTPUT->body_attributes(['baitalgahwa-login']);
 $context = [
