@@ -41,48 +41,6 @@ body#page-my-index #topofscroll.main-inner {
     font-size: 1.05rem;
     font-weight: 700;
 }
-.baitalgahwa-dashboard-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .25rem 1.5rem;
-    border-bottom: 1px solid #ede4da;
-    padding-bottom: .65rem;
-    margin-bottom: .15rem;
-}
-.baitalgahwa-dashboard-tabs__btn {
-    position: relative;
-    border: 0;
-    background: none;
-    padding: .35rem 0 .55rem;
-    color: #7c7268;
-    font-size: .9rem;
-    font-weight: 700;
-    cursor: pointer;
-}
-.baitalgahwa-dashboard-tabs__btn:hover {
-    color: #5c5248;
-}
-.baitalgahwa-dashboard-tabs__btn.is-active {
-    color: #201813;
-}
-.baitalgahwa-dashboard-tabs__btn.is-active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -.66rem;
-    height: 3px;
-    border-radius: 3px;
-    background: #8a5a2b;
-}
-.baitalgahwa-dashboard-tabpanels {
-    display: flex;
-    flex-direction: column;
-    gap: 1.4rem;
-}
-.baitalgahwa-dashboard-tabpanel[hidden] {
-    display: none !important;
-}
 .baitalgahwa-dashboard-panel,
 .baitalgahwa-dashboard-stats,
 .baitalgahwa-dashboard-programme,
@@ -763,18 +721,13 @@ body#page-my-index #topofscroll.main-inner {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.baitalgahwa-dashboard-member-card__role {
+.baitalgahwa-dashboard-member-card__meta {
     color: #7c7268;
     font-size: .72rem;
-    line-height: 1.3;
+    line-height: 1.35;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-.baitalgahwa-dashboard-member-card__date {
-    color: #917f6f;
-    font-size: .68rem;
-    line-height: 1.3;
 }
 .baitalgahwa-dashboard-todo__head {
     display: flex;
@@ -1026,14 +979,6 @@ body#page-my-index #topofscroll.main-inner {
             <main class="baitalgahwa-dashboard" id="bag-dashboard-overview">
                 <div class="baitalgahwa-dashboard-shell">
                     <h1 class="baitalgahwa-dashboard-title">{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}</h1>
-
-                    <div class="baitalgahwa-dashboard-tabs" role="tablist" aria-label="{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}">
-                        <button type="button" class="baitalgahwa-dashboard-tabs__btn is-active" role="tab" id="bag-dash-tab-overview" aria-selected="true" aria-controls="bag-dash-panel-overview" data-bag-dash-tab="0">{{#str}}dashboard_overview_tab, theme_baitalgahwa{{/str}}</button>
-                        <button type="button" class="baitalgahwa-dashboard-tabs__btn" role="tab" id="bag-dash-tab-members" aria-selected="false" aria-controls="bag-dash-panel-members" tabindex="-1" data-bag-dash-tab="1">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</button>
-                    </div>
-
-                    <div class="baitalgahwa-dashboard-tabpanels">
-                    <div id="bag-dash-panel-overview" class="baitalgahwa-dashboard-tabpanel baitalgahwa-dashboard-tabpanel--active" role="tabpanel" aria-labelledby="bag-dash-tab-overview">
 
                     <section class="baitalgahwa-dashboard-stats" aria-label="{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}">
                         <div class="row g-0" role="list">
@@ -1338,6 +1283,29 @@ body#page-my-index #topofscroll.main-inner {
                         {{/has_dashboard_todo}}
                     </section>
 
+                    <section class="baitalgahwa-dashboard-members-panel">
+                        <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
+                        {{#has_dashboard_members}}
+                        <div class="baitalgahwa-dashboard-members-grid">
+                            {{#dashboard_members}}
+                            <a class="baitalgahwa-dashboard-member-card" href="{{{ profileurl }}}">
+                                <span class="baitalgahwa-dashboard-member-card__avatar">{{{ avatar }}}</span>
+                                <span class="baitalgahwa-dashboard-member-card__body">
+                                    <span class="baitalgahwa-dashboard-member-card__name">{{ fullname }}</span>
+                                    <span class="baitalgahwa-dashboard-member-card__meta">{{ role }}{{#joined_display}} — {{ joined_display }}{{/joined_display}}</span>
+                                </span>
+                            </a>
+                            {{/dashboard_members}}
+                        </div>
+                        {{/has_dashboard_members}}
+                        {{^has_dashboard_members}}
+                        <p class="baitalgahwa-dashboard-section-copy mb-0 mt-3">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
+                        {{/has_dashboard_members}}
+                        <div class="baitalgahwa-dashboard-members-panel__footer">
+                            <a class="baitalgahwa-dashboard-members-panel__viewall" href="{{{ config.membersurl }}}">{{#str}}dashboard_members_link, theme_baitalgahwa{{/str}}</a>
+                        </div>
+                    </section>
+
                     <section class="baitalgahwa-dashboard-newsletter">
                         <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_news_title, theme_baitalgahwa{{/str}}</h2>
                         <p class="baitalgahwa-dashboard-newsletter__copy">{{#str}}dashboard_news_intro, theme_baitalgahwa{{/str}}</p>
@@ -1378,36 +1346,6 @@ body#page-my-index #topofscroll.main-inner {
                         {{{ maincontent }}}
                     </div>
                     {{/hasmaincontent}}
-
-                    </div>
-
-                    <div id="bag-dash-panel-members" class="baitalgahwa-dashboard-tabpanel" role="tabpanel" aria-labelledby="bag-dash-tab-members" hidden>
-                    <section class="baitalgahwa-dashboard-members-panel">
-                        <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
-                        {{#has_dashboard_members}}
-                        <div class="baitalgahwa-dashboard-members-grid">
-                            {{#dashboard_members}}
-                            <a class="baitalgahwa-dashboard-member-card" href="{{{ profileurl }}}">
-                                <span class="baitalgahwa-dashboard-member-card__avatar">{{{ avatar }}}</span>
-                                <span class="baitalgahwa-dashboard-member-card__body">
-                                    <span class="baitalgahwa-dashboard-member-card__name">{{ fullname }}</span>
-                                    <span class="baitalgahwa-dashboard-member-card__role">{{ role }}</span>
-                                    {{#joined_display}}<span class="baitalgahwa-dashboard-member-card__date">{{ joined_display }}</span>{{/joined_display}}
-                                </span>
-                            </a>
-                            {{/dashboard_members}}
-                        </div>
-                        {{/has_dashboard_members}}
-                        {{^has_dashboard_members}}
-                        <p class="baitalgahwa-dashboard-section-copy mb-0 mt-3">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
-                        {{/has_dashboard_members}}
-                        <div class="baitalgahwa-dashboard-members-panel__footer">
-                            <a class="baitalgahwa-dashboard-members-panel__viewall" href="{{{ config.membersurl }}}">{{#str}}dashboard_members_link, theme_baitalgahwa{{/str}}</a>
-                        </div>
-                    </section>
-                    </div>
-
-                    </div>
 
                 </div>
             </main>
@@ -1515,56 +1453,9 @@ require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'],
         quiz.addEventListener('change', render);
         render();
     };
-    var initDashboardTabs = function() {
-        var tabwrap = document.querySelector('.baitalgahwa-dashboard-tabs');
-        if (!tabwrap) {
-            return;
-        }
-        var tabs = tabwrap.querySelectorAll('[role="tab"]');
-        var panels = document.querySelectorAll('.baitalgahwa-dashboard-tabpanel');
-        if (!tabs.length || !panels.length) {
-            return;
-        }
-        var activate = function(index) {
-            tabs.forEach(function(t, i) {
-                var on = i === index;
-                t.classList.toggle('is-active', on);
-                t.setAttribute('aria-selected', on ? 'true' : 'false');
-                t.tabIndex = on ? 0 : -1;
-            });
-            panels.forEach(function(p, i) {
-                var on = i === index;
-                if (on) {
-                    p.removeAttribute('hidden');
-                } else {
-                    p.setAttribute('hidden', 'hidden');
-                }
-                p.classList.toggle('baitalgahwa-dashboard-tabpanel--active', on);
-            });
-        };
-        tabs.forEach(function(tab, i) {
-            tab.addEventListener('click', function() {
-                activate(i);
-            });
-            tab.addEventListener('keydown', function(e) {
-                var next = null;
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    next = (i + 1) % tabs.length;
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    next = (i - 1 + tabs.length) % tabs.length;
-                }
-                if (next !== null) {
-                    e.preventDefault();
-                    tabs[next].focus();
-                    activate(next);
-                }
-            });
-        });
-    };
     initDashboardDonut();
     initDashboardCalendar();
     initDashboardQuiz();
-    initDashboardTabs();
     document.querySelectorAll('[data-bag-newsletter-form]').forEach(function(form) {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
