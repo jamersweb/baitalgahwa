@@ -1273,10 +1273,6 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         input.dataset.baitPasswordReady = '1';
     };
 
-    var isStrongPassword = function(value) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(value || '');
-    };
-
     var setRowVisibility = function(row, visible) {
         if (!row) {
             return;
@@ -1300,32 +1296,18 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         });
     };
 
-    var setHintVisibility = function(node, visible) {
-        if (!node) {
-            return;
-        }
-        node.classList.toggle('is-visible', visible);
-        node.style.display = visible ? 'block' : 'none';
-    };
-
-    var removePasswordRuleText = function(scope) {
+    var hidePasswordPolicyStaticRow = function(scope) {
         if (!scope) {
             return;
         }
-
-        forEachNode(scope.querySelectorAll('div, p, span, small, li'), function(node) {
-            var text = (node.textContent || '').trim();
-            if (!/The password must have at least 8 characters/i.test(text)) {
-                return;
-            }
-
-            var row = node.closest('.fitem') || node.closest('.form-group') || node.closest('[data-fieldtype]');
-            if (row && !row.querySelector('#id_password, #id_password1')) {
-                row.style.display = 'none';
-            }
-
-            node.style.display = 'none';
-        });
+        var pol = scope.querySelector('#id_passwordpolicyinfo');
+        if (!pol) {
+            return;
+        }
+        var row = pol.closest('.fitem') || pol.closest('.form-group');
+        if (row) {
+            row.style.display = 'none';
+        }
     };
 
     var ensureSignupFlow = function(signupForm) {
@@ -1441,7 +1423,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
 
         if (signupForm) {
             signupForm.classList.add('baitalgahwa-signup-form');
-            removePasswordRuleText(signupForm);
+            removePasswordPolicyStaticRow(signupForm);
             if (!signupForm.querySelector('.baitalgahwa-signup-social')) {
                 signupForm.insertAdjacentHTML('afterbegin', signupGoogleMarkup);
             }
@@ -1519,24 +1501,6 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                     }
                 }
                 country.dispatchEvent(new Event('change', { bubbles: true }));
-            }
-        }
-
-        if (password) {
-            if (passwordRow) {
-                var passwordHelp = passwordRow.querySelector('.form-control-feedback, .form-text, .hint, .text-muted');
-                if (!passwordHelp && signupForm) {
-                    forEachNode(signupForm.querySelectorAll('div, p, span, small'), function(node) {
-                        if (!passwordHelp && /The password must have/i.test((node.textContent || '').trim())) {
-                            passwordHelp = node;
-                        }
-                    });
-                }
-                if (passwordHelp) {
-                    passwordHelp.classList.add('baitalgahwa-password-hint');
-                    setHintVisibility(passwordHelp, false);
-                    passwordHelp.style.display = 'none';
-                }
             }
         }
 
@@ -1631,14 +1595,18 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         appendRowsInOrder(signupFlow || signupForm, [findRow(username), emailRow, passwordRow], socialIcons);
 
         if (signupForm) {
-            var errSel = '.error, .invalid-feedback, .notifyproblem, [aria-invalid="true"], .is-invalid';
-            var firstErr = signupForm.querySelector(errSel) ||
-                signupForm.querySelector('.felement .text-danger') ||
-                signupForm.querySelector('.moodle-exception-message');
+            var firstErr = null;
+            var ecands = signupForm.querySelectorAll('.felement .error, .fitem .error, span.error, .invalid-feedback, .form-control-feedback.text-danger');
+            for (var ei = 0; ei < ecands.length; ei++) {
+                if ((ecands[ei].textContent || '').trim().length) {
+                    firstErr = ecands[ei];
+                    break;
+                }
+            }
             if (firstErr) {
                 window.setTimeout(function() {
                     firstErr.scrollIntoView({ block: 'center', behavior: 'smooth' });
-                }, 100);
+                }, 150);
             }
         }
 
