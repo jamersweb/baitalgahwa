@@ -1152,7 +1152,63 @@ function theme_baitalgahwa_dashboard_member_joined_display(int $userid): string 
 }
 
 /**
- * Co-learners from the user’s enrolled courses (not site-wide for privacy).
+ * Course IDs scanned for dashboard “latest members”, aligned with the training programme grid:
+ * the viewer’s enrolled visible courses first, then other visible catalogue courses (same idea as
+ * {@see theme_baitalgahwa_get_featured_courses()} when the grid is filled from the catalogue).
+ *
+ * @param int $userid
+ * @param int $maxcourses Performance cap on how many courses we scan.
+ * @return array<int, int>
+ */
+function theme_baitalgahwa_get_dashboard_members_course_ids(int $userid, int $maxcourses = 48): array {
+    global $DB, $CFG;
+    $seen = [];
+    $ids = [];
+    $add = static function (int $id) use (&$seen, &$ids, $maxcourses): void {
+        if ($id < 2 || $id === (int) SITEID || isset($seen[$id])) {
+            return;
+        }
+        if (count($ids) >= $maxcourses) {
+            return;
+        }
+        $seen[$id] = true;
+        $ids[] = $id;
+    };
+
+    require_once($CFG->libdir . '/enrollib.php');
+    if (isloggedin() && !isguestuser()) {
+        foreach (enrol_get_my_courses('id, visible', 'visible DESC, sortorder ASC') as $c) {
+            if (empty($c->visible)) {
+                continue;
+            }
+            $add((int) $c->id);
+            if (count($ids) >= $maxcourses) {
+                return $ids;
+            }
+        }
+    }
+
+    $more = max(64, $maxcourses * 6);
+    $records = $DB->get_records_select(
+        'course',
+        'id > :siteid AND visible = 1',
+        ['siteid' => SITEID],
+        'sortorder ASC',
+        'id',
+        0,
+        $more
+    );
+    foreach ($records as $c) {
+        $add((int) $c->id);
+        if (count($ids) >= $maxcourses) {
+            break;
+        }
+    }
+    return $ids;
+}
+
+/**
+ * Peers enrolled in the same visible courses we use for the programme strip (enrolled + catalogue).
  *
  * @param int $limit
  * @param int $userid
@@ -1167,25 +1223,22 @@ function theme_baitalgahwa_get_dashboard_recent_users(int $limit = 8, int $useri
         $userid = (int) $USER->id;
     }
     require_once($CFG->libdir . '/enrollib.php');
-    $myc = enrol_get_my_courses('id, visible', 'visible DESC', 0, 8);
+    $courseids = theme_baitalgahwa_get_dashboard_members_course_ids($userid, 48);
     $out = [];
     $seen = [$userid => true];
-    foreach ($myc as $course) {
-        if ((int) $course->id === (int) SITEID) {
-            continue;
-        }
+    foreach ($courseids as $courseid) {
         if (count($out) >= $limit) {
             break;
         }
-        $context = \context_course::instance($course->id);
+        $context = \context_course::instance($courseid);
         $enrolled = get_enrolled_users(
             $context,
             '',
             0,
-            'u.id, u.firstname, u.lastname, u.picture, u.imagealt, u.deleted, u.suspended',
-            'lastname ASC, firstname ASC',
+            'u.id, u.firstname, u.lastname, u.picture, u.imagealt, u.deleted, u.suspended, u.timecreated',
+            'u.timecreated DESC, u.lastname ASC, u.firstname ASC',
             0,
-            20
+            80
         );
         foreach ($enrolled as $u) {
             if (!empty($u->deleted) || !empty($u->suspended)) {
@@ -1204,7 +1257,7 @@ function theme_baitalgahwa_get_dashboard_recent_users(int $limit = 8, int $useri
             $user = \core_user::get_user($u->id);
             $out[] = [
                 'fullname' => fullname($user),
-                'profileurl' => (new \moodle_url('/user/view.php', ['id' => $u->id, 'course' => $course->id]))->out(false),
+                'profileurl' => (new \moodle_url('/user/view.php', ['id' => $u->id, 'course' => $courseid]))->out(false),
                 'role' => theme_baitalgahwa_dashboard_member_role_label($context, (int) $u->id),
                 'joined_display' => theme_baitalgahwa_dashboard_member_joined_display((int) $u->id),
                 'avatar' => $OUTPUT->user_picture($user, [
