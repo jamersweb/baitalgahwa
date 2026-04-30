@@ -507,7 +507,17 @@ function theme_baitalgahwa_get_learning_page_context(int $userid): array {
     $context['news_mail_subject'] = rawurlencode(get_string('dashboard_news_title', 'theme_baitalgahwa'));
     $context['mycourses'] = theme_baitalgahwa_get_featured_courses(8);
     $context['has_mycourses'] = !empty($context['mycourses']);
-    $context['dashboard_programmes'] = array_slice($context['mycourses'], 0, 4);
+    $programmes = array_slice($context['mycourses'], 0, 4);
+    // Always show four tiles in the row when at least one programme exists (pad by cycling).
+    if (!empty($programmes)) {
+        $i = 0;
+        $n = count($programmes);
+        while (count($programmes) < 4) {
+            $programmes[] = array_merge($programmes[$i % $n]);
+            $i++;
+        }
+    }
+    $context['dashboard_programmes'] = $programmes;
     $context['has_dashboard_programmes'] = !empty($context['dashboard_programmes']);
     $context['dashboard_category_options'] = [[
         'value' => 'all',
