@@ -685,45 +685,54 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-member-card {
     display: flex;
     align-items: center;
-    gap: .75rem;
+    gap: .8rem;
     min-width: 0;
-    border: 1px solid #efe5db;
-    border-radius: .9rem;
-    background: #faf6f1;
-    padding: .75rem .85rem;
+    border: 1px solid #f0e4da;
+    border-radius: 1rem;
+    background: #fff7f2;
+    padding: .8rem .9rem;
     color: inherit;
     text-decoration: none;
     transition: box-shadow .15s ease, border-color .15s ease;
 }
 .baitalgahwa-dashboard-member-card:hover {
-    border-color: #e0d3c4;
+    border-color: #e5d5c8;
     box-shadow: 0 .35rem 1rem rgba(48, 27, 12, .06);
 }
 .baitalgahwa-dashboard-member-card__avatar .userpicture,
 .baitalgahwa-dashboard-member-card__avatar img {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.65rem;
+    height: 2.65rem;
     border-radius: 999px;
     display: block;
 }
 .baitalgahwa-dashboard-member-card__body {
     display: flex;
     flex-direction: column;
-    gap: .12rem;
+    gap: .08rem;
     min-width: 0;
 }
 .baitalgahwa-dashboard-member-card__name {
     color: #201813;
-    font-size: .84rem;
+    font-size: .86rem;
     font-weight: 700;
     line-height: 1.25;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.baitalgahwa-dashboard-member-card__meta {
-    color: #7c7268;
-    font-size: .72rem;
+.baitalgahwa-dashboard-member-card__role {
+    color: #6d6154;
+    font-size: .73rem;
+    line-height: 1.35;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.baitalgahwa-dashboard-member-card__date {
+    color: #8a7d72;
+    font-size: .7rem;
     line-height: 1.35;
     white-space: nowrap;
     overflow: hidden;
@@ -1254,6 +1263,30 @@ body#page-my-index #topofscroll.main-inner {
                     <script type="application/json" id="bag-dashboard-calendar-data">{{{ dashboard_calendar_events_json }}}</script>
                     <script type="application/json" id="bag-dashboard-quiz-data">{{{ dashboard_quiz_chart_json }}}</script>
 
+                    <section class="baitalgahwa-dashboard-members-panel">
+                        <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
+                        {{#has_dashboard_members}}
+                        <div class="baitalgahwa-dashboard-members-grid">
+                            {{#dashboard_members}}
+                            <a class="baitalgahwa-dashboard-member-card" href="{{{ profileurl }}}">
+                                <span class="baitalgahwa-dashboard-member-card__avatar">{{{ avatar }}}</span>
+                                <span class="baitalgahwa-dashboard-member-card__body">
+                                    <span class="baitalgahwa-dashboard-member-card__name">{{ fullname }}</span>
+                                    <span class="baitalgahwa-dashboard-member-card__role">{{ role }}</span>
+                                    {{#joined_display}}<span class="baitalgahwa-dashboard-member-card__date">{{ joined_display }}</span>{{/joined_display}}
+                                </span>
+                            </a>
+                            {{/dashboard_members}}
+                        </div>
+                        {{/has_dashboard_members}}
+                        {{^has_dashboard_members}}
+                        <p class="baitalgahwa-dashboard-section-copy mb-0 mt-3">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
+                        {{/has_dashboard_members}}
+                        <div class="baitalgahwa-dashboard-members-panel__footer">
+                            <a class="baitalgahwa-dashboard-members-panel__viewall" href="{{{ config.membersurl }}}">{{#str}}dashboard_members_link, theme_baitalgahwa{{/str}}</a>
+                        </div>
+                    </section>
+
                     <section class="baitalgahwa-dashboard-todo">
                         <div class="baitalgahwa-dashboard-todo__head">
                             <div>
@@ -1281,29 +1314,6 @@ body#page-my-index #topofscroll.main-inner {
                         {{^has_dashboard_todo}}
                         <p class="baitalgahwa-dashboard-section-copy mb-0">{{#str}}dashboard_todo_body, theme_baitalgahwa{{/str}}</p>
                         {{/has_dashboard_todo}}
-                    </section>
-
-                    <section class="baitalgahwa-dashboard-members-panel">
-                        <h2 class="baitalgahwa-dashboard-section-title">{{#str}}dashboard_members_title, theme_baitalgahwa{{/str}}</h2>
-                        {{#has_dashboard_members}}
-                        <div class="baitalgahwa-dashboard-members-grid">
-                            {{#dashboard_members}}
-                            <a class="baitalgahwa-dashboard-member-card" href="{{{ profileurl }}}">
-                                <span class="baitalgahwa-dashboard-member-card__avatar">{{{ avatar }}}</span>
-                                <span class="baitalgahwa-dashboard-member-card__body">
-                                    <span class="baitalgahwa-dashboard-member-card__name">{{ fullname }}</span>
-                                    <span class="baitalgahwa-dashboard-member-card__meta">{{ role }}{{#joined_display}} — {{ joined_display }}{{/joined_display}}</span>
-                                </span>
-                            </a>
-                            {{/dashboard_members}}
-                        </div>
-                        {{/has_dashboard_members}}
-                        {{^has_dashboard_members}}
-                        <p class="baitalgahwa-dashboard-section-copy mb-0 mt-3">{{#str}}dashboard_members_empty, theme_baitalgahwa{{/str}}</p>
-                        {{/has_dashboard_members}}
-                        <div class="baitalgahwa-dashboard-members-panel__footer">
-                            <a class="baitalgahwa-dashboard-members-panel__viewall" href="{{{ config.membersurl }}}">{{#str}}dashboard_members_link, theme_baitalgahwa{{/str}}</a>
-                        </div>
                     </section>
 
                     <section class="baitalgahwa-dashboard-newsletter">
