@@ -668,9 +668,14 @@ body.pagelayout-login.theme,
     height: 1.05rem;
 }
 .pagelayout-login .baitalgahwa-login__form h1,
-.pagelayout-login .baitalgahwa-signup-form h2,
-.pagelayout-login .baitalgahwa-signup-form legend {
+.pagelayout-login .baitalgahwa-signup-form h2 {
     display: none !important;
+}
+.pagelayout-login .baitalgahwa-signup-form legend {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: #3d3d3d;
 }
 .pagelayout-login .baitalgahwa-signup-flow {
     display: flex;
@@ -690,6 +695,26 @@ body.pagelayout-login.theme,
 .pagelayout-login .baitalgahwa-signup-form input[name="cancel"],
 .pagelayout-login .baitalgahwa-signup-form button[name="cancel"] {
     display: none !important;
+}
+/* Sign-up validation: keep server errors obvious (policy / reCAPTCHA / profile fields). */
+.pagelayout-login .baitalgahwa-signup-form .is-invalid,
+.pagelayout-login .baitalgahwa-signup-form .has-danger input,
+.pagelayout-login .baitalgahwa-signup-form .has-danger select,
+.pagelayout-login .baitalgahwa-signup-form .has-danger textarea {
+    border-color: #b94a48 !important;
+}
+.pagelayout-login .baitalgahwa-signup-form .felement .error,
+.pagelayout-login .baitalgahwa-signup-form .invalid-feedback,
+.pagelayout-login .baitalgahwa-signup-form .form-control-feedback:not(:empty) {
+    display: block !important;
+    color: #9a2b2b !important;
+    font-weight: 500;
+    margin-top: 0.35rem;
+}
+.pagelayout-login .baitalgahwa-signup-form .alert-danger,
+.pagelayout-login .baitalgahwa-signup-form .notifyproblem,
+.pagelayout-login .baitalgahwa-signup-form #user-notifications .alert {
+    margin-bottom: 0.85rem;
 }
 @media (min-width: 992px) {
     body.pagelayout-login.theme,
@@ -1411,13 +1436,6 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
         var firstnameRow = findRow(firstname);
         var lastnameRow = findRow(lastname);
         var passwordRow = findRow(password);
-        var submitButton = signupForm ? (
-            signupForm.querySelector('#id_submitbutton') ||
-            signupForm.querySelector('input[name="submitbutton"]') ||
-            signupForm.querySelector('button[name="submitbutton"]') ||
-            signupForm.querySelector('button[type="submit"], input[type="submit"]')
-        ) : null;
-        var submitRow = findRow(submitButton);
         var socialIcons = signupForm ? signupForm.querySelector('.baitalgahwa-signup-socialicons') : null;
         var signupFlow = null;
 
@@ -1500,6 +1518,7 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                         break;
                     }
                 }
+                country.dispatchEvent(new Event('change', { bubbles: true }));
             }
         }
 
@@ -1568,11 +1587,6 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
             }
         });
 
-        appendRowsInOrder(signupFlow || signupForm, [findRow(username), emailRow, passwordRow, submitRow], socialIcons);
-        if (signupFlow && socialIcons && signupFlow.contains(submitRow)) {
-            signupFlow.appendChild(socialIcons);
-        }
-
         if (signupForm && !signupForm.dataset.baitSignupPrevalidate) {
             signupForm.dataset.baitSignupPrevalidate = '1';
             signupForm.addEventListener('click', function(ev) {
@@ -1609,8 +1623,23 @@ require(['theme_boost/loader', 'theme_baitalgahwa/theme'], function(Loader, Bait
                             break;
                         }
                     }
+                    country.dispatchEvent(new Event('change', { bubbles: true }));
                 }
             }, true);
+        }
+
+        appendRowsInOrder(signupFlow || signupForm, [findRow(username), emailRow, passwordRow], socialIcons);
+
+        if (signupForm) {
+            var errSel = '.error, .invalid-feedback, .notifyproblem, [aria-invalid="true"], .is-invalid';
+            var firstErr = signupForm.querySelector(errSel) ||
+                signupForm.querySelector('.felement .text-danger') ||
+                signupForm.querySelector('.moodle-exception-message');
+            if (firstErr) {
+                window.setTimeout(function() {
+                    firstErr.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                }, 100);
+            }
         }
 
         setupPasswordToggleDelegation();
