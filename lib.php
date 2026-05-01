@@ -1276,6 +1276,28 @@ function theme_baitalgahwa_get_dashboard_recent_users(int $limit = 8, int $useri
 }
 
 /**
+ * True when the page URL path ends with a Moodle script (works for subdirectory installs).
+ *
+ * @param string $path Value from moodle_url::get_path() (no query string).
+ * @param string $script Relative script path, e.g. "course/view.php".
+ */
+function theme_baitalgahwa_url_path_ends_with_script(string $path, string $script): bool {
+    $script = ltrim($script, '/');
+    return (bool) preg_match('#(^|/)' . preg_quote($script, '#') . '$#', $path);
+}
+
+/**
+ * Course enrolment hub (enrol/index.php), including sites served under a URL prefix.
+ */
+function theme_baitalgahwa_is_course_enrol_hub_page(string $path): bool {
+    global $PAGE;
+    if (theme_baitalgahwa_url_path_ends_with_script($path, 'enrol/index.php')) {
+        return true;
+    }
+    return isset($PAGE->pagetype) && $PAGE->pagetype === 'enrol-index';
+}
+
+/**
  * Context for the Bait course strip (hero + stats) on course home and course settings.
  *
  * Shown on /course/view.php (section 0), /course/edit.php, /user/index.php (participants),
@@ -1295,7 +1317,7 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
     $isparticipants = false;
     $isenrol = false;
 
-    if ($path === '/course/view.php') {
+    if (theme_baitalgahwa_url_path_ends_with_script($path, 'course/view.php')) {
         $section = $PAGE->url->get_param('section');
         if ($section !== null && (int) $section !== 0) {
             return ['course_dashboard' => false];
@@ -1307,7 +1329,7 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
         if (!$seehome) {
             return ['course_dashboard' => false];
         }
-    } else if ($path === '/course/edit.php') {
+    } else if (theme_baitalgahwa_url_path_ends_with_script($path, 'course/edit.php')) {
         if (!$PAGE->url->get_param('id')) {
             return ['course_dashboard' => false];
         }
@@ -1315,7 +1337,7 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
             return ['course_dashboard' => false];
         }
         $isedit = true;
-    } else if ($path === '/user/index.php') {
+    } else if (theme_baitalgahwa_url_path_ends_with_script($path, 'user/index.php')) {
         $cid = (int) $PAGE->url->get_param('id');
         if ($cid !== (int) $course->id) {
             return ['course_dashboard' => false];
@@ -1324,7 +1346,7 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
             return ['course_dashboard' => false];
         }
         $isparticipants = true;
-    } else if (strpos($path, '/enrol/') === 0 || strpos($path, 'enrol/') === 0) {
+    } else if (theme_baitalgahwa_is_course_enrol_hub_page($path)) {
         // Course enrolment hub (e.g. /enrol/index.php?id=…) — same branded shell as course home.
         $isenrol = true;
     } else {

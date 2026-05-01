@@ -670,6 +670,14 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
   }
 }
 
+// Enrol hub width: Boost adds body.limitedwidth on enrol/index.php. Target Moodle pagetype so full width
+// still applies if theme enrol flags are missing (stale CSS) after deploy; pagetype is stable across URLs.
+body.limitedwidth.pagetype-enrol-index #page.drawers .main-inner,
+body.limitedwidth.pagetype-enrol-index #page.drawers .footer-popover {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
 // Course → Enrolment options (/enrol/index.php): Boost adds body.limitedwidth; stack summary under wide course image.
 body.baitalgahwa-course-dashboard.baitalgahwa-course-enrol {
   &.limitedwidth #page.drawers .main-inner,
