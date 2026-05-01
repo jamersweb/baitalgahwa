@@ -31,10 +31,18 @@ body#page-enrol-index #region-main .container-fluid {
 body#page-enrol-index {
     --bag-enrol-summary-heading: {{{ enrol_intro_heading_json }}};
 }
-body#page-enrol-index #region-main .box.generalbox.info .coursebox .content > .d-flex {
-    flex-direction: column !important;
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .content .d-flex {
+    display: flex !important;
+    flex-flow: column nowrap !important;
     align-items: stretch !important;
     gap: 0 !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .flex-grow-1 {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.15rem 1.65rem 1.45rem !important;
 }
 body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage {
     float: none !important;
@@ -43,14 +51,20 @@ body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage 
     margin-left: 0 !important;
     margin-right: 0 !important;
     flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    align-self: stretch !important;
+    display: block !important;
+    box-sizing: border-box !important;
     text-align: center !important;
     overflow: hidden !important;
     border-radius: 1rem 1rem 0 0 !important;
 }
 body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage img {
     width: 100% !important;
-    height: clamp(15rem, 36vw, 24rem) !important;
-    max-height: none !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 13rem !important;
+    aspect-ratio: 21 / 9 !important;
     display: block !important;
     margin: 0 !important;
     object-fit: cover !important;
@@ -58,11 +72,17 @@ body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage 
     border-radius: 0 !important;
     box-shadow: none !important;
 }
-body#page-enrol-index #region-main .box.generalbox.info .coursebox .flex-grow-1 {
-    flex: 1 1 auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 1.15rem 1.65rem 1.45rem !important;
+@supports not (aspect-ratio: 1) {
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage img {
+    aspect-ratio: unset !important;
+    height: clamp(13rem, 36vw, 22rem) !important;
+}
+}
+@media (max-width: 575.98px) {
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage img {
+    aspect-ratio: 4 / 3 !important;
+    min-height: 11rem !important;
+}
 }
 body#page-enrol-index #region-main .box.generalbox.info .coursebox .summary {
     color: #5c534c !important;
@@ -161,6 +181,49 @@ body#page-enrol-index #region-main ul.teachers {
 body#page-enrol-index #region-main ul.teachers li {
     font-size: 0.92rem !important;
     color: #5c534c !important;
+}
+/* core notice() on enrol/index.php: box.generalbox#notice + continue_button */
+body#page-enrol-index #region-main #notice.box.generalbox {
+    margin-top: 1.35rem !important;
+    margin-bottom: 0 !important;
+    padding: 1.1rem 1.35rem !important;
+    border-radius: 0.85rem !important;
+    border: 1px solid rgba(139, 90, 43, 0.22) !important;
+    border-left: 4px solid #a67c52 !important;
+    background: linear-gradient(135deg, rgba(255, 248, 235, 0.95) 0%, rgba(255, 255, 255, 0.98) 70%) !important;
+    color: #4a433c !important;
+    font-size: 0.98rem !important;
+    line-height: 1.55 !important;
+    box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.06) !important;
+}
+body#page-enrol-index #region-main #notice.box.generalbox p:last-child {
+    margin-bottom: 0 !important;
+}
+body#page-enrol-index #region-main .alert {
+    margin-top: 1.25rem !important;
+    border-radius: 0.85rem !important;
+    border-left-width: 4px !important;
+    box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.05) !important;
+}
+body#page-enrol-index #region-main form.mform {
+    margin-top: 1.35rem !important;
+    padding: 1.25rem 1.35rem 1.45rem !important;
+    background: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.09) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 0.45rem 1.15rem rgba(0, 0, 0, 0.06) !important;
+}
+body#page-enrol-index #region-main form.mform .col-form-label label,
+body#page-enrol-index #region-main form.mform .fitemtitle label {
+    font-weight: 600 !important;
+}
+body#page-enrol-index #region-main form.mform .fdescription.required {
+    margin-top: 0.35rem !important;
+}
+body#page-enrol-index #region-main form.mform .btn-primary {
+    border-radius: 0.55rem !important;
+    padding: 0.45rem 1.35rem !important;
+    font-weight: 600 !important;
 }
 </style>
 {{> core/local/toast/wrapper}}

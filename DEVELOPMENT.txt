@@ -12,3 +12,10 @@ Deploy / live site
 
 Reference assets
 - Design PNG mockups in `assets/` (if present) map to: layouts under `layout/`, templates under `templates/`, and SCSS under `scss/` (e.g. my courses: `mycourses.scss` + `block_myoverview` overrides, course home: `course-view.scss` + `course_dashboard_hero.mustache`).
+
+Enrol hub (/enrol/index.php) — backend vs theme
+- Core flow (see Moodle `enrol/index.php`): logged-in users see `course_info_box` plus one block per enrol instance that returns a form from `enrol_page_hook()`. If **no** instances expose a form, core calls `notice(get_string('notenrollable','enrol'), …)` which renders `#notice.box.generalbox` and a Continue button (`lib/weblib.php` `notice()`). Fixing “cannot enrol yourself” requires **course enrolment methods** in Moodle (e.g. enable **Self enrolment** on the course, guest access, payment plugins, etc.), not theme CSS alone.
+- Guests hit `noguestaccess` the same way (`notice()`). Not logged in → redirect to login (`wantsurl` set to the course view URL).
+- Already enrolled → redirect away before the hub renders.
+- **Custom fields** (phone, city, country): use Moodle **User profile fields** (required or optional) and map collection through enrol plugins / signup — or a `local_` plugin using enrol APIs. This theme styles core `form.mform` on the enrol page when plugins output forms; it does not create enrol instances or store arbitrary POST data without a Moodle plugin.
+- **Course image**: overview files come from the course’s overview files area; a missing or broken image URL is a course/content issue. Layout fixes assume a valid `<img>` inside `.courseimage`.

@@ -673,27 +673,44 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
 // Shared enrol summary layout (course overview image + text). Used when body id is page-enrol-index even if
 // theme PHP body flags are missing on deploy; pairs with enrol/index.php course_info_box markup.
 @mixin baitalgahwa-enrol-course-summary-layout {
-  #region-main .box.generalbox.info .coursebox .content > .d-flex {
-    flex-direction: column !important;
+  // Descendant (not direct child): some stacks wrap .d-flex so `>` misses and row layout leaves a squeezed strip.
+  #region-main .box.generalbox.info .coursebox .content .d-flex {
+    display: flex !important;
+    flex-flow: column nowrap !important;
     align-items: stretch !important;
     gap: 0;
   }
 
-  #region-main .box.generalbox.info .coursebox .courseimage {
-    float: none !important;
+  #region-main .box.generalbox.info .coursebox .flex-grow-1 {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
     width: 100%;
     max-width: 100%;
+    padding: 1.15rem 1.65rem 1.45rem;
+  }
+
+  #region-main .box.generalbox.info .coursebox .courseimage {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    align-self: stretch !important;
+    display: block !important;
+    box-sizing: border-box !important;
     text-align: center;
     overflow: hidden;
     border-radius: $bag-course-radius $bag-course-radius 0 0;
   }
 
   #region-main .box.generalbox.info .coursebox .courseimage img {
-    width: 100%;
-    height: clamp(15rem, 36vw, 24rem);
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 13rem;
+    aspect-ratio: 21 / 9;
     display: block;
     margin: 0 auto;
     object-fit: cover;
@@ -702,11 +719,10 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
     box-shadow: none;
   }
 
-  #region-main .box.generalbox.info .coursebox .flex-grow-1 {
-    flex: 1 1 auto !important;
-    width: 100%;
-    max-width: 100%;
-    padding: 1.15rem 1.65rem 1.45rem;
+  @supports not (aspect-ratio: 1) {
+    #region-main .box.generalbox.info .coursebox .courseimage img {
+      height: clamp(13rem, 36vw, 22rem);
+    }
   }
 
   #region-main .box.generalbox.info .coursebox .summary {
@@ -881,6 +897,56 @@ body#page-enrol-index {
     }
   }
 
+  // enrol/index.php: notice() emits #notice (weblib.php); plugin hooks emit .alert / form.mform.
+  #region-main #notice.box.generalbox {
+    margin-top: 1.35rem;
+    margin-bottom: 0;
+    padding: 1.1rem 1.35rem;
+    border-radius: 0.85rem;
+    border: 1px solid rgba($bag-brown, 0.22);
+    border-left: 4px solid mix($bag-brown, #c9a227, 55%);
+    background: linear-gradient(135deg, rgba(255, 248, 235, 0.95) 0%, rgba($white, 0.98) 70%);
+    color: mix($body-color, $gray-800, 55%);
+    font-size: 0.98rem;
+    line-height: 1.55;
+    box-shadow: 0 0.35rem 1rem rgba($black, 0.06);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  #region-main .alert {
+    margin-top: 1.25rem;
+    border-radius: 0.85rem;
+    border-left-width: 4px;
+    box-shadow: 0 0.35rem 1rem rgba($black, 0.05);
+  }
+
+  #region-main form.mform {
+    margin-top: 1.35rem;
+    padding: 1.25rem 1.35rem 1.45rem;
+    background: $white;
+    border: 1px solid rgba($black, 0.09);
+    border-radius: 1rem;
+    box-shadow: 0 0.45rem 1.15rem rgba($black, 0.06);
+
+    .col-form-label label,
+    .fitemtitle label {
+      font-weight: 600;
+    }
+
+    .fdescription.required {
+      margin-top: 0.35rem;
+    }
+
+    .btn-primary {
+      border-radius: 0.55rem;
+      padding: 0.45rem 1.35rem;
+      font-weight: 600;
+    }
+  }
+
   @include media-breakpoint-down(sm) {
     .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__toolbar {
       flex-direction: column;
@@ -896,6 +962,11 @@ body#page-enrol-index {
     .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__media,
     .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__img {
       min-height: 15rem;
+    }
+
+    #region-main .box.generalbox.info .coursebox .courseimage img {
+      aspect-ratio: 4 / 3;
+      min-height: 11rem;
     }
   }
 }
