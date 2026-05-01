@@ -26,15 +26,93 @@ body#page-enrol-index #region-main .container-fluid {
 <script>
 (function(){var b=document.body;if(!b||b.id!=="page-enrol-index"){return;}b.classList.remove("limitedwidth");})();
 </script>
-{{> core/local/toast/wrapper}}
-{{#course_strip_enrol}}
-<style>
-/* Enrol page: localized label for summary chip (see course-view.scss). */
-:root {
-    --bag-enrol-summary-heading: "{{#str}} enrol_intro_heading, theme_baitalgahwa {{/str}}";
+<style id="baitalgahwa-enrol-summary-critical">
+/* Same workflow as width-critical: enrol summary layout always ships with drawers (no dependency on course_dashboard flags). */
+body#page-enrol-index {
+    --bag-enrol-summary-heading: {{{ enrol_intro_heading_json }}};
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .content > .d-flex {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage {
+    float: none !important;
+    width: 98% !important;
+    max-width: 98% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    flex: 0 0 auto !important;
+    text-align: center !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .courseimage img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1) !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .flex-grow-1 {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .summary {
+    color: #5c534c !important;
+    font-size: 0.97rem !important;
+    line-height: 1.75 !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox .summary::before {
+    content: var(--bag-enrol-summary-heading, "Introduction") !important;
+    display: block !important;
+    font-weight: 700 !important;
+    font-size: 1.15rem !important;
+    letter-spacing: -0.02em !important;
+    color: #63422b !important;
+    margin-bottom: 1rem !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info {
+    margin-top: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+body#page-enrol-index #region-main .box.generalbox.info .coursebox {
+    margin: 0 !important;
+    padding: 1.45rem 1.65rem !important;
+    background: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.09) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 0.55rem 1.45rem rgba(0, 0, 0, 0.06) !important;
+}
+body#page-enrol-index #region-main > h2:first-of-type {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    font-weight: 700 !important;
+    font-size: 1.22rem !important;
+    letter-spacing: -0.02em !important;
+    color: #63422b !important;
+    margin: 0 0 1rem !important;
+}
+body#page-enrol-index #region-main > h2:first-of-type::after {
+    font-family: FontAwesome !important;
+    content: "\f045" !important;
+    font-size: 0.92rem !important;
+    opacity: 0.38 !important;
+    font-weight: 400 !important;
+    flex-shrink: 0 !important;
 }
 </style>
-{{/course_strip_enrol}}
+{{> core/local/toast/wrapper}}
 <div id="page-wrapper" class="d-print-block">
     {{{ output.standard_top_of_body_html }}}
     {{> theme_baitalgahwa/navbar }}

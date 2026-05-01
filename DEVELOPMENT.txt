@@ -7,7 +7,7 @@ Build / AMD
 Deploy / live site
 - moodle.acusync.net (or any host) only picks up changes after this theme folder is updated on the server and **Site administration → Development → Purge all caches** is run. There is no CI in this repo; missing deploy or skipped purge looks exactly like “CSS not applying”.
 - Enrol hub detection in lib.php uses path suffix matching so subdirectory installs (e.g. `/moodle/enrol/index.php`) still get `baitalgahwa-course-enrol`; plain `/enrol/index.php` worked before only by accident.
-- **Enrol workflow:** `enrol/index.php?id=COURSEID` → layout `theme_baitalgahwa/drawers` → hero `course_dashboard_hero.mustache` (when course dashboard context applies) → `#region-main` from core (`course_info_box` + enrol plugins). Width-critical inline CSS lives in `drawers.mustache`; visual enrol tweaks live in `scss/components/course-view.scss` under `body#page-enrol-index`.
+- If enrol hero/summary never appears but width CSS does: `course_dashboard` was false (URL/path detection). lib.php now falls back when **SCRIPT_NAME** contains `enrol/index.php` and re-builds context with `$forceenrolhub`. Summary layout also ships as **`baitalgahwa-enrol-summary-critical`** inline in `drawers.mustache` (search page source).
 - If enrol width still never changes after deploy + purge: open **View page source** on `/enrol/index.php` and search for **`baitalgahwa-enrol-width-critical`**. If it is missing, Moodle is **not** rendering **theme_baitalgahwa/drawers** (e.g. site default theme is RemUI only). Switch theme to Bait Al Gahwa or paste equivalent rules into RemUI Custom CSS.
 
 Reference assets

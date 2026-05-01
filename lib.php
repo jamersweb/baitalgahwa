@@ -1294,6 +1294,21 @@ function theme_baitalgahwa_is_course_enrol_hub_page(string $path): bool {
     if (theme_baitalgahwa_url_path_ends_with_script($path, 'enrol/index.php')) {
         return true;
     }
+    if ($path !== '' && strpos($path, 'enrol/index.php') !== false) {
+        return true;
+    }
+    try {
+        $full = $PAGE->url->out_omit_querystring(false);
+        if (strpos($full, 'enrol/index.php') !== false) {
+            return true;
+        }
+    } catch (\Throwable $e) {
+        // PAGE may be incomplete during rare bootstrap ordering.
+    }
+    $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+    if ($script !== '' && strpos($script, 'enrol/index.php') !== false) {
+        return true;
+    }
     return isset($PAGE->pagetype) && $PAGE->pagetype === 'enrol-index';
 }
 
@@ -1303,9 +1318,10 @@ function theme_baitalgahwa_is_course_enrol_hub_page(string $path): bool {
  * Shown on /course/view.php (section 0), /course/edit.php, /user/index.php (participants),
  * and course enrol pages under /enrol/* (e.g. enrolment options).
  *
+ * @param bool $forceenrolhub Skip URL routing and treat this request as the course enrol hub (last resort for RemUI / path quirks).
  * @return array
  */
-function theme_baitalgahwa_get_course_dashboard_context(): array {
+function theme_baitalgahwa_get_course_dashboard_context(bool $forceenrolhub = false): array {
     global $PAGE, $DB, $CFG, $USER, $OUTPUT;
     if (empty($PAGE->course) || $PAGE->course->id <= SITEID) {
         return ['course_dashboard' => false];
@@ -1317,7 +1333,9 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
     $isparticipants = false;
     $isenrol = false;
 
-    if (theme_baitalgahwa_url_path_ends_with_script($path, 'course/view.php')) {
+    if ($forceenrolhub) {
+        $isenrol = true;
+    } else if (theme_baitalgahwa_url_path_ends_with_script($path, 'course/view.php')) {
         $section = $PAGE->url->get_param('section');
         if ($section !== null && (int) $section !== 0) {
             return ['course_dashboard' => false];
@@ -1472,6 +1490,12 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     require_once($CFG->libdir . '/behat/lib.php');
     require_once($CFG->dirroot . '/course/lib.php');
     $coursedashboardctx = theme_baitalgahwa_get_course_dashboard_context();
+    if (empty($coursedashboardctx['course_dashboard']) && !empty($PAGE->course) && $PAGE->course->id > SITEID) {
+        $sn = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+        if ($sn !== '' && strpos($sn, 'enrol/index.php') !== false) {
+            $coursedashboardctx = theme_baitalgahwa_get_course_dashboard_context(true);
+        }
+    }
     if (isloggedin()) {
         $courseindexopen = (get_user_preferences('drawer-open-index', true) == true);
         $blockdraweropen = (get_user_preferences('drawer-open-block') == true);
@@ -1563,6 +1587,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'trainingurl' => (new \moodle_url('/', ['section' => 'programs']))->out(false) . '#bag-footer-programs',
         'contacturl' => (new \moodle_url('/', ['section' => 'contact']))->out(false) . '#bag-footer-contact',
     ];
+    $label = get_string('enrol_intro_heading', 'theme_baitalgahwa');
+    $jsonlabel = json_encode($label, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG);
+    $context['enrol_intro_heading_json'] = ($jsonlabel !== false) ? $jsonlabel : '"Introduction"';
     $context = array_merge($context, $coursedashboardctx);
     return $context;
 }
