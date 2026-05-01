@@ -670,43 +670,9 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
   }
 }
 
-// Enrol hub width: Boost adds body.limitedwidth on enrol/index.php. Target Moodle pagetype so full width
-// still applies if theme enrol flags are missing (stale CSS) after deploy; pagetype is stable across URLs.
-body.limitedwidth.pagetype-enrol-index #page.drawers .main-inner,
-body.limitedwidth.pagetype-enrol-index #page.drawers .footer-popover {
-  max-width: 100% !important;
-  width: 100% !important;
-}
-
-// Course → Enrolment options (/enrol/index.php): Boost adds body.limitedwidth; stack summary under wide course image.
-body.baitalgahwa-course-dashboard.baitalgahwa-course-enrol {
-  &.limitedwidth #page.drawers .main-inner,
-  &.limitedwidth #page.drawers .footer-popover {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-
-  .baitalgahwa-course-hero__title {
-    font-family: $headings-font-family;
-    font-weight: 800;
-    font-size: clamp(1.85rem, 3vw, 2.45rem);
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    color: mix($body-color, $bag-brown, 22%);
-  }
-
-  #region-main > h2:first-of-type {
-    font-family: $headings-font-family;
-    font-weight: 700;
-    font-size: clamp(1.12rem, 1.75vw, 1.32rem);
-    letter-spacing: -0.02em;
-    color: $bag-brown;
-    margin-bottom: 1rem;
-    padding-bottom: 0.35rem;
-    border-bottom: 2px solid rgba($bag-brown, 0.22);
-    display: inline-block;
-  }
-
+// Shared enrol summary layout (course overview image + text). Used when body id is page-enrol-index even if
+// theme PHP body flags are missing on deploy; pairs with enrol/index.php course_info_box markup.
+@mixin baitalgahwa-enrol-course-summary-layout {
   #region-main .box.generalbox.info .coursebox .content > .d-flex {
     flex-direction: column !important;
     align-items: stretch !important;
@@ -757,6 +723,57 @@ body.baitalgahwa-course-dashboard.baitalgahwa-course-enrol {
     padding: 0.3rem 0.9rem;
     margin-bottom: 0.9rem;
   }
+}
+
+// Enrol hub width: Boost adds body.limitedwidth. DevTools often show id=page-enrol-index WITHOUT pagetype-enrol-index.
+// RemUI / course format stacks may omit pagetype-* on body; header-maxwidth caps width separately.
+body#page-enrol-index.limitedwidth #page.drawers .main-inner,
+body#page-enrol-index.limitedwidth #page.drawers .footer-popover,
+body#page-enrol-index.limitedwidth #topofscroll.main-inner,
+body#page-enrol-index.limitedwidth #page.drawers,
+body#page-enrol-index.limitedwidth .header-maxwidth,
+body#page-enrol-index.limitedwidth .secondary-navigation,
+body.limitedwidth.pagetype-enrol-index #page.drawers .main-inner,
+body.limitedwidth.pagetype-enrol-index #page.drawers .footer-popover {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+// Enrol index summary layout — works when baitalgahwa-course-enrol is missing from body (stale lib.php / flags).
+body#page-enrol-index {
+  @include baitalgahwa-enrol-course-summary-layout;
+}
+
+// Course → Enrolment options (/enrol/index.php): Boost adds body.limitedwidth; stack summary under wide course image.
+body.baitalgahwa-course-dashboard.baitalgahwa-course-enrol {
+  &.limitedwidth #page.drawers .main-inner,
+  &.limitedwidth #page.drawers .footer-popover {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .baitalgahwa-course-hero__title {
+    font-family: $headings-font-family;
+    font-weight: 800;
+    font-size: clamp(1.85rem, 3vw, 2.45rem);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: mix($body-color, $bag-brown, 22%);
+  }
+
+  #region-main > h2:first-of-type {
+    font-family: $headings-font-family;
+    font-weight: 700;
+    font-size: clamp(1.12rem, 1.75vw, 1.32rem);
+    letter-spacing: -0.02em;
+    color: $bag-brown;
+    margin-bottom: 1rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid rgba($bag-brown, 0.22);
+    display: inline-block;
+  }
+
+  @include baitalgahwa-enrol-course-summary-layout;
 }
 
 // Course → Participants (enrolled users table, filters, pagination)
