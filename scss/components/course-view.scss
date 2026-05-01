@@ -709,19 +709,20 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
   }
 
   #region-main .box.generalbox.info .coursebox .summary::before {
-    content: var(--bag-enrol-summary-heading, "Information");
+    content: var(--bag-enrol-summary-heading, "Introduction");
     display: block;
-    width: fit-content;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: $bag-brown;
-    background: mix($white, $bag-brown, 92%);
-    border: 1px solid rgba($bag-brown, 0.14);
-    border-radius: 999px;
-    padding: 0.3rem 0.9rem;
-    margin-bottom: 0.9rem;
+    font-family: $headings-font-family;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: mix($bag-brown, #63422b, 35%);
+    text-transform: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 1rem;
+    width: auto;
   }
 }
 
@@ -742,6 +743,146 @@ body.limitedwidth.pagetype-enrol-index #page.drawers .footer-popover {
 // Enrol index summary layout — works when baitalgahwa-course-enrol is missing from body (stale lib.php / flags).
 body#page-enrol-index {
   @include baitalgahwa-enrol-course-summary-layout;
+
+  .baitalgahwa-course-hero--enrol {
+    .baitalgahwa-course-hero__toolbar {
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .baitalgahwa-course-hero__title {
+      color: $body-color;
+      font-family: $headings-font-family;
+      font-weight: 800;
+      font-size: clamp(1.65rem, 2.85vw, 2.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .baitalgahwa-course-hero__cta {
+      flex-shrink: 0;
+      border-radius: 0.65rem;
+      padding: 0.48rem 1.2rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 0.2rem 0.65rem rgba($bag-brown, 0.28);
+    }
+
+    .baitalgahwa-course-hero__media {
+      border-radius: 1.25rem;
+      min-height: 19rem;
+      box-shadow: 0 1.15rem 2.65rem rgba($black, 0.14);
+    }
+
+    .baitalgahwa-course-hero__img {
+      min-height: 19rem;
+    }
+
+    .baitalgahwa-course-hero__overlay {
+      background: linear-gradient(180deg, rgba($black, 0.06) 38%, rgba(darken($bag-brown, 8%), 0.82) 100%);
+    }
+
+    .baitalgahwa-course-hero__caption {
+      padding: 1.35rem 1.55rem 1.55rem;
+    }
+
+    .baitalgahwa-course-hero__caption-title {
+      font-weight: 700;
+      text-shadow: 0 0.12rem 1rem rgba($black, 0.4);
+    }
+
+    .baitalgahwa-course-hero__meta {
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+  }
+
+  #region-main > h2:first-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    font-family: $headings-font-family;
+    font-weight: 700;
+    font-size: 1.22rem;
+    letter-spacing: -0.02em;
+    color: mix($bag-brown, #63422b, 38%);
+    margin: 0 0 1rem;
+    padding-bottom: 0;
+    border-bottom: 0;
+
+    &::after {
+      font-family: FontAwesome;
+      content: "\f045";
+      font-size: 0.92rem;
+      opacity: 0.38;
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+  }
+
+  #region-main .box.generalbox.info {
+    margin-top: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #region-main .box.generalbox.info .coursebox {
+    margin: 0;
+    padding: 1.45rem 1.65rem 1.55rem;
+    background: $white;
+    border: 1px solid rgba($black, 0.09);
+    border-radius: 1rem;
+    box-shadow: 0 0.55rem 1.45rem rgba($black, 0.06);
+  }
+
+  #region-main .box.generalbox.info .coursebox .summary {
+    color: mix($body-color, $gray-600, 42%);
+    font-size: 0.97rem;
+    line-height: 1.75;
+
+    p {
+      margin-bottom: 0.85rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  #region-main .box.generalbox.info .coursebox .info .coursename {
+    margin-bottom: 0.65rem;
+
+    a {
+      font-weight: 600;
+      color: mix($primary, $bag-brown, 45%);
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__cta {
+      align-self: flex-start;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__media,
+    .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__img {
+      min-height: 14rem;
+    }
+  }
 }
 
 // Course → Enrolment options (/enrol/index.php): Boost adds body.limitedwidth; stack summary under wide course image.
@@ -750,27 +891,6 @@ body.baitalgahwa-course-dashboard.baitalgahwa-course-enrol {
   &.limitedwidth #page.drawers .footer-popover {
     max-width: 100% !important;
     width: 100% !important;
-  }
-
-  .baitalgahwa-course-hero__title {
-    font-family: $headings-font-family;
-    font-weight: 800;
-    font-size: clamp(1.85rem, 3vw, 2.45rem);
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    color: mix($body-color, $bag-brown, 22%);
-  }
-
-  #region-main > h2:first-of-type {
-    font-family: $headings-font-family;
-    font-weight: 700;
-    font-size: clamp(1.12rem, 1.75vw, 1.32rem);
-    letter-spacing: -0.02em;
-    color: $bag-brown;
-    margin-bottom: 1rem;
-    padding-bottom: 0.35rem;
-    border-bottom: 2px solid rgba($bag-brown, 0.22);
-    display: inline-block;
   }
 
   @include baitalgahwa-enrol-course-summary-layout;

@@ -4,16 +4,18 @@
     Course cover URL is exposed as a CSS variable for activity thumbnails (compiled in components/course-view.scss).
 }}
 <style>
-body.baitalgahwa-course-dashboard {
+body.baitalgahwa-course-dashboard,
+body#page-enrol-index {
     --bag-course-cover: radial-gradient(circle at 68% 28%, rgba(255, 255, 255, .18), transparent 18rem), linear-gradient(135deg, #2b1a12 0%, #5d371f 48%, #17100c 100%);
 }
 {{#course_image}}
-body.baitalgahwa-course-dashboard {
+body.baitalgahwa-course-dashboard,
+body#page-enrol-index {
     --bag-course-cover: url('{{{ course_image }}}');
 }
 {{/course_image}}
 </style>
-<div class="baitalgahwa-course-hero mb-3{{#course_strip_settings_layout}} baitalgahwa-course-hero--settings{{/course_strip_settings_layout}}{{#course_strip_participants}} baitalgahwa-course-hero--participants{{/course_strip_participants}}">
+<div class="baitalgahwa-course-hero mb-3{{#course_strip_settings_layout}} baitalgahwa-course-hero--settings{{/course_strip_settings_layout}}{{#course_strip_participants}} baitalgahwa-course-hero--participants{{/course_strip_participants}}{{#course_strip_enrol}} baitalgahwa-course-hero--enrol{{/course_strip_enrol}}">
     <div class="baitalgahwa-course-hero__toolbar">
         <h1 class="h2 mb-0 baitalgahwa-course-hero__title">{{course_fullname}}</h1>
         <a href="{{course_ctaurl}}" class="btn btn-primary baitalgahwa-course-hero__cta">{{{ course_ctalabel }}}</a>
@@ -41,6 +43,7 @@ body.baitalgahwa-course-dashboard {
     </div>
 </div>
 
+{{^course_strip_enrol}}
 <div class="baitalgahwa-course-stats mb-3" role="region" aria-label="{{#str}} course_stats_region, theme_baitalgahwa {{/str}}">
     <div class="baitalgahwa-course-stats__row row g-0">
         <div class="col-6 col-md-3">
@@ -84,3 +87,4 @@ body.baitalgahwa-course-dashboard {
     <p class="small text-muted mb-0 mt-2 baitalgahwa-course-stats__hint">{{#str}} course_stats_completion_off, theme_baitalgahwa {{/str}}</p>
     {{/has_completion}}
 </div>
+{{/course_strip_enrol}}

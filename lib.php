@@ -1454,6 +1454,11 @@ function theme_baitalgahwa_get_course_dashboard_context(): array {
         $ctx['course_ctaurl'] = $manageurl;
         $ctx['course_ctalabel'] = get_string('course_manage', 'theme_baitalgahwa');
     }
+    if ($isenrol) {
+        $enrolurl = new \moodle_url('/enrol/index.php', ['id' => $course->id]);
+        $ctx['course_ctaurl'] = $enrolurl->out(false) . '#page-content';
+        $ctx['course_ctalabel'] = get_string('course_enrol_cta', 'theme_baitalgahwa');
+    }
     return $ctx;
 }
 
