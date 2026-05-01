@@ -676,32 +676,37 @@ body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-settings) #region-main
   #region-main .box.generalbox.info .coursebox .content > .d-flex {
     flex-direction: column !important;
     align-items: stretch !important;
-    gap: 1rem;
+    gap: 0;
   }
 
   #region-main .box.generalbox.info .coursebox .courseimage {
     float: none !important;
-    width: 98%;
-    max-width: 98%;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     flex: 0 0 auto !important;
     text-align: center;
+    overflow: hidden;
+    border-radius: $bag-course-radius $bag-course-radius 0 0;
   }
 
   #region-main .box.generalbox.info .coursebox .courseimage img {
     width: 100%;
-    height: auto;
+    height: clamp(15rem, 36vw, 24rem);
     display: block;
     margin: 0 auto;
-    border-radius: $bag-course-radius;
-    box-shadow: 0 0.5rem 1.5rem rgba($black, 0.1);
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   #region-main .box.generalbox.info .coursebox .flex-grow-1 {
     flex: 1 1 auto !important;
     width: 100%;
     max-width: 100%;
+    padding: 1.15rem 1.65rem 1.45rem;
   }
 
   #region-main .box.generalbox.info .coursebox .summary {
@@ -773,12 +778,12 @@ body#page-enrol-index {
 
     .baitalgahwa-course-hero__media {
       border-radius: 1.25rem;
-      min-height: 19rem;
+      min-height: clamp(17rem, 42vw, 26rem);
       box-shadow: 0 1.15rem 2.65rem rgba($black, 0.14);
     }
 
     .baitalgahwa-course-hero__img {
-      min-height: 19rem;
+      min-height: clamp(17rem, 42vw, 26rem);
     }
 
     .baitalgahwa-course-hero__overlay {
@@ -836,11 +841,21 @@ body#page-enrol-index {
 
   #region-main .box.generalbox.info .coursebox {
     margin: 0;
-    padding: 1.45rem 1.65rem 1.55rem;
+    padding: 0;
+    overflow: hidden;
     background: $white;
     border: 1px solid rgba($black, 0.09);
     border-radius: 1rem;
     box-shadow: 0 0.55rem 1.45rem rgba($black, 0.06);
+  }
+
+  #region-main .box.generalbox.info .coursebox .info {
+    padding: 1rem 1.65rem 0.25rem;
+    margin: 0;
+  }
+
+  #region-main .box.generalbox.info .coursebox .content {
+    padding: 0;
   }
 
   #region-main .box.generalbox.info .coursebox .summary {
@@ -880,7 +895,7 @@ body#page-enrol-index {
 
     .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__media,
     .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__img {
-      min-height: 14rem;
+      min-height: 15rem;
     }
   }
 }
