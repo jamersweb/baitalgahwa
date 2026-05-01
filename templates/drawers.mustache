@@ -4,6 +4,28 @@
 }}
 {{> theme_boost/head }}
 <body {{{ bodyattributes }}}>
+{{! Enrol index full width: inlined so it survives RemUI/specificity fights and stale compiled CSS. View source for id=baitalgahwa-enrol-width-critical — if missing, this layout/theme is not baitalgahwa. }}
+<style id="baitalgahwa-enrol-width-critical">
+body#page-enrol-index #page.drawers .main-inner,
+body#page-enrol-index #page.drawers .footer-popover,
+body#page-enrol-index #topofscroll.main-inner,
+body#page-enrol-index #page.drawers,
+body#page-enrol-index .header-maxwidth,
+body#page-enrol-index .secondary-navigation,
+body#page-enrol-index #region-main-box,
+body#page-enrol-index #region-main {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+body#page-enrol-index #region-main .container,
+body#page-enrol-index #region-main .container-fluid {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+</style>
+<script>
+(function(){var b=document.body;if(!b||b.id!=="page-enrol-index"){return;}b.classList.remove("limitedwidth");})();
+</script>
 {{> core/local/toast/wrapper}}
 {{#course_strip_enrol}}
 <style>
