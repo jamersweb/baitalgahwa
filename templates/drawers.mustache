@@ -5,6 +5,14 @@
 {{> theme_boost/head }}
 <body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
+{{#course_strip_enrol}}
+<style>
+/* Enrol page: localized label for summary chip (see course-view.scss). */
+:root {
+    --bag-enrol-summary-heading: "{{#str}} enrol_information_tab, theme_baitalgahwa {{/str}}";
+}
+</style>
+{{/course_strip_enrol}}
 <div id="page-wrapper" class="d-print-block">
     {{{ output.standard_top_of_body_html }}}
     {{> theme_baitalgahwa/navbar }}

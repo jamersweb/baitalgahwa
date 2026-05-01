@@ -157,6 +157,7 @@ $string['course_stat_completed'] = 'أكملوا المقرر';
 $string['course_stat_inprogress'] = 'قيد المتابعة';
 $string['course_stat_yettostart'] = 'لم يبدأوا بعد';
 $string['course_stats_completion_off'] = 'تتبع الإكمال غير مفعّل لهذا المقرر؛ يُعرض عدد المسجلين فقط.';
+$string['enrol_information_tab'] = 'معلومات';
 
 $string['dashboard_pagetitle'] = 'لوحة التحكم';
 $string['dashboard_stat_enrolled'] = 'المقررات المسجّل بها';

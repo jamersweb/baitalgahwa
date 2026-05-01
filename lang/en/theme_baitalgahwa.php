@@ -170,6 +170,7 @@ $string['course_stat_completed'] = 'Students completed';
 $string['course_stat_inprogress'] = 'In progress';
 $string['course_stat_yettostart'] = 'Yet to start';
 $string['course_stats_completion_off'] = 'Completion tracking is off for this course; only enrolment is shown.';
+$string['enrol_information_tab'] = 'Information';
 $string['dashboard_pagetitle'] = 'Dashboard';
 $string['dashboard_stat_enrolled'] = 'Courses enrolled';
 $string['dashboard_stat_inprogress'] = 'Courses in progress';
