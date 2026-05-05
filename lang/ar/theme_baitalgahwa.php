@@ -161,6 +161,23 @@ $string['enrol_information_tab'] = 'معلومات';
 $string['enrol_intro_heading'] = 'مقدمة';
 $string['course_enrol_cta'] = 'عرض صفحة التسجيل في المقرر';
 
+$string['enrol_application_eyebrow'] = 'بياناتك';
+$string['enrol_application_title'] = 'طلب التسجيل';
+$string['enrol_application_subtitle'] = 'أدخل بيانات التواصل لهذا البرنامج.';
+$string['enrol_application_required'] = 'مطلوب';
+$string['enrol_application_demo_hint'] = 'هذا النموذج للمعاينة فقط — سيُربط الإرسال بالخادم لاحقاً. إذا كان للمقرر تسجيل رسمي في مودل، استخدم القسم أدناه أيضاً.';
+$string['enrol_application_preview_ok'] = 'البيانات تبدو صحيحة (معاينة فقط — لم يُحفظ بعد).';
+$string['enrol_application_err_required'] = 'يرجى تعبئة هذا الحقل.';
+$string['enrol_application_err_email'] = 'يرجى إدخال بريد إلكتروني صالح.';
+$string['enrol_application_fullname'] = 'الاسم الكامل';
+$string['enrol_application_email'] = 'البريد الإلكتروني';
+$string['enrol_application_phone'] = 'رقم الهاتف';
+$string['enrol_application_city'] = 'المدينة';
+$string['enrol_application_country'] = 'الدولة';
+$string['enrol_application_notes'] = 'ملاحظات أو أسئلة';
+$string['enrol_application_optional'] = 'اختياري';
+$string['enrol_application_submit'] = 'إرسال الطلب';
+
 $string['dashboard_pagetitle'] = 'لوحة التحكم';
 $string['dashboard_stat_enrolled'] = 'المقررات المسجّل بها';
 $string['dashboard_stat_inprogress'] = 'مقررات قيد المتابعة';

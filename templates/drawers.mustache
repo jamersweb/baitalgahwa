@@ -225,7 +225,100 @@ body#page-enrol-index #region-main form.mform .btn-primary {
     padding: 0.45rem 1.35rem !important;
     font-weight: 600 !important;
 }
+/* Enrol application preview card — inlined so it survives aggressive caching */
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell {
+    margin-top: 1.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.09) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 0.55rem 1.55rem rgba(0, 0, 0, 0.07) !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__rail {
+    flex: 0 0 0.35rem !important;
+    background: linear-gradient(180deg, #a67c52 0%, #5d3e21 100%) !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__inner {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    padding: 1.35rem 1.5rem 1.55rem !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__title {
+    font-weight: 800 !important;
+    letter-spacing: -0.03em !important;
+    color: #3d2818 !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__hint {
+    display: flex !important;
+    gap: 0.65rem !important;
+    margin-top: 1.1rem !important;
+    margin-bottom: 1.25rem !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.65rem !important;
+    background: rgba(201, 162, 39, 0.12) !important;
+    border: 1px solid rgba(93, 62, 33, 0.14) !important;
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__submit {
+    border-radius: 0.55rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0.22rem 0.65rem rgba(93, 62, 33, 0.28) !important;
+}
+body.dir-rtl#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__card {
+    flex-direction: row-reverse !important;
+}
 </style>
+{{#course_strip_enrol}}
+<script>
+(function(){
+function bagTx(id){var el=document.getElementById(id);return el?el.textContent.trim():'';}
+function run(){
+if(!document.body||document.body.id!=='page-enrol-index'){return;}
+var main=document.getElementById('region-main');
+var shell=document.getElementById('baitalgahwa-enrol-application-shell');
+if(!main||!shell){return;}
+var info=main.querySelector('.box.generalbox.info');
+if(info&&info.parentNode){info.parentNode.insertBefore(shell,info.nextSibling);}
+var form=shell.querySelector('form[data-bag-enrol-preview]');
+if(!form){return;}
+var okMsg=bagTx('bag-enrol-str-ok');
+var reqMsg=bagTx('bag-enrol-str-req');
+var emailMsg=bagTx('bag-enrol-str-email');
+var statusEl=document.getElementById('bag-enrol-preview-status');
+function clearErrors(){
+form.querySelectorAll('.is-invalid').forEach(function(el){el.classList.remove('is-invalid');});
+form.querySelectorAll('.invalid-feedback').forEach(function(el){el.textContent='';});
+if(statusEl){statusEl.classList.add('d-none');statusEl.textContent='';}
+}
+function showErr(input,fbId,msg){
+if(input){input.classList.add('is-invalid');}
+var fb=document.getElementById(fbId);
+if(fb){fb.textContent=msg;}
+}
+form.addEventListener('submit',function(e){
+e.preventDefault();
+clearErrors();
+var fn=document.getElementById('bag-enrol-fullname');
+var em=document.getElementById('bag-enrol-email');
+var ok=true;
+if(!fn||!fn.value.trim()){showErr(fn,'bag-enrol-fullname-feedback',reqMsg);ok=false;}
+if(!em||!em.value.trim()){showErr(em,'bag-enrol-email-feedback',reqMsg);ok=false;}
+else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())){showErr(em,'bag-enrol-email-feedback',emailMsg);ok=false;}
+if(ok&&statusEl){statusEl.textContent=okMsg;statusEl.classList.remove('d-none');}
+});
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}
+})();
+</script>
+{{/course_strip_enrol}}
 {{> core/local/toast/wrapper}}
 <div id="page-wrapper" class="d-print-block">
     {{{ output.standard_top_of_body_html }}}
@@ -348,6 +441,9 @@ body#page-enrol-index #region-main form.mform .btn-primary {
                             </div>
                         {{/overflow}}
                         {{{ output.main_content }}}
+                        {{#course_strip_enrol}}
+                            {{> theme_baitalgahwa/enrol_application_shell }}
+                        {{/course_strip_enrol}}
                         {{{ output.activity_navigation }}}
                         {{{ output.course_content_footer }}}
                     </div>

@@ -947,6 +947,128 @@ body#page-enrol-index {
     }
   }
 
+  // Branded “enrolment request” preview card (theme_baitalgahwa/enrol_application_shell).
+  .baitalgahwa-enrol-application-shell {
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .baitalgahwa-enrol-application-shell__card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    background: $white;
+    border: 1px solid rgba($black, 0.09);
+    border-radius: $bag-course-radius;
+    box-shadow: 0 0.55rem 1.55rem rgba($black, 0.07);
+  }
+
+  .baitalgahwa-enrol-application-shell__rail {
+    flex: 0 0 0.35rem;
+    width: 0.35rem;
+    background: linear-gradient(180deg, mix($bag-brown, $figma-color-accent, 70%) 0%, $bag-brown 100%);
+  }
+
+  .baitalgahwa-enrol-application-shell__inner {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 1.35rem 1.5rem 1.55rem;
+    @include media-breakpoint-up(md) {
+      padding: 1.5rem 1.85rem 1.75rem;
+    }
+  }
+
+  .baitalgahwa-enrol-application-shell__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: mix($bag-brown, $figma-color-accent, 40%);
+    margin-bottom: 0.35rem;
+  }
+
+  .baitalgahwa-enrol-application-shell__title {
+    font-family: $headings-font-family;
+    font-weight: 800;
+    font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: mix($bag-brown, #3d2314, 25%);
+    margin-bottom: 0.35rem;
+  }
+
+  .baitalgahwa-enrol-application-shell__sub {
+    font-size: 0.96rem;
+    line-height: $figma-line-body;
+    color: mix($body-color, $gray-600, 45%);
+    margin-bottom: 0;
+  }
+
+  .baitalgahwa-enrol-application-shell__hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-top: 1.1rem;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.65rem;
+    background: rgba($figma-color-accent, 0.12);
+    border: 1px solid rgba($bag-brown, 0.14);
+    color: mix($body-color, $bag-brown, 55%);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .baitalgahwa-enrol-application-shell__hint-icon {
+    flex-shrink: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.12rem;
+    border-radius: 50%;
+    background: rgba($bag-brown, 0.85);
+    opacity: 0.9;
+    box-shadow: 0 0 0 2px rgba($figma-color-accent, 0.35);
+  }
+
+  .baitalgahwa-enrol-application-shell__req {
+    color: darken(#dc3545, 6%);
+    text-decoration: none;
+    margin-inline-start: 0.15rem;
+    cursor: help;
+    border: 0;
+  }
+
+  .baitalgahwa-enrol-application-shell__textarea {
+    min-height: 5.5rem;
+    resize: vertical;
+  }
+
+  .baitalgahwa-enrol-application-shell__actions {
+    margin-top: 0.35rem;
+    padding-top: 0.25rem;
+  }
+
+  .baitalgahwa-enrol-application-shell__submit {
+    border-radius: 0.55rem !important;
+    font-weight: 700 !important;
+    padding: 0.5rem 1.5rem !important;
+    box-shadow: 0 0.22rem 0.65rem rgba($bag-brown, 0.28) !important;
+    border: none;
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0 0.35rem 0.85rem rgba($bag-brown, 0.38) !important;
+    }
+  }
+
+  .baitalgahwa-enrol-application-shell__status {
+    font-weight: 600;
+  }
+
   @include media-breakpoint-down(sm) {
     .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__toolbar {
       flex-direction: column;
@@ -969,6 +1091,10 @@ body#page-enrol-index {
       min-height: 11rem;
     }
   }
+}
+
+body.dir-rtl#page-enrol-index .baitalgahwa-enrol-application-shell__card {
+  flex-direction: row-reverse;
 }
 
 // Course → Enrolment options (/enrol/index.php): Boost adds body.limitedwidth; stack summary under wide course image.

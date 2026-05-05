@@ -1,0 +1,70 @@
+{{!
+    Enrol hub (/enrol/index.php): branded request form — UI only until backend wiring.
+    Placement + validation: inline script in drawers.mustache (course_strip_enrol).
+}}
+<section id="baitalgahwa-enrol-application-shell" class="baitalgahwa-enrol-application-shell" aria-labelledby="bag-enrol-app-title">
+    <div class="baitalgahwa-enrol-application-shell__card">
+        <div class="baitalgahwa-enrol-application-shell__rail" aria-hidden="true"></div>
+        <div class="baitalgahwa-enrol-application-shell__inner">
+            <header class="baitalgahwa-enrol-application-shell__head">
+                <p class="baitalgahwa-enrol-application-shell__eyebrow">{{#str}} enrol_application_eyebrow, theme_baitalgahwa {{/str}}</p>
+                <h3 id="bag-enrol-app-title" class="baitalgahwa-enrol-application-shell__title">{{#str}} enrol_application_title, theme_baitalgahwa {{/str}}</h3>
+                <p class="baitalgahwa-enrol-application-shell__sub">{{#str}} enrol_application_subtitle, theme_baitalgahwa {{/str}}</p>
+            </header>
+            <div class="baitalgahwa-enrol-application-shell__hint" role="note">
+                <span class="baitalgahwa-enrol-application-shell__hint-icon" aria-hidden="true"></span>
+                <span>{{#str}} enrol_application_demo_hint, theme_baitalgahwa {{/str}}</span>
+            </div>
+            <form class="baitalgahwa-enrol-application-shell__form row g-3" action="#" method="post" autocomplete="on"
+                  data-bag-enrol-preview="1"
+                  novalidate>
+                <div class="col-md-6">
+                    <label class="baitalgahwa-field-label" for="bag-enrol-fullname">
+                        {{#str}} enrol_application_fullname, theme_baitalgahwa {{/str}}
+                        <abbr class="baitalgahwa-enrol-application-shell__req" title="{{#str}} enrol_application_required, theme_baitalgahwa {{/str}}">*</abbr>
+                    </label>
+                    <input id="bag-enrol-fullname" name="bag_fullname" type="text" class="form-control baitalgahwa-input"
+                           maxlength="120" required autocomplete="name"
+                           aria-required="true">
+                    <div class="invalid-feedback" id="bag-enrol-fullname-feedback"></div>
+                </div>
+                <div class="col-md-6">
+                    <label class="baitalgahwa-field-label" for="bag-enrol-email">
+                        {{#str}} enrol_application_email, theme_baitalgahwa {{/str}}
+                        <abbr class="baitalgahwa-enrol-application-shell__req" title="{{#str}} enrol_application_required, theme_baitalgahwa {{/str}}">*</abbr>
+                    </label>
+                    <input id="bag-enrol-email" name="bag_email" type="email" class="form-control baitalgahwa-input"
+                           maxlength="100" required autocomplete="email"
+                           aria-required="true">
+                    <div class="invalid-feedback" id="bag-enrol-email-feedback"></div>
+                </div>
+                <div class="col-md-6">
+                    <label class="baitalgahwa-field-label" for="bag-enrol-phone">{{#str}} enrol_application_phone, theme_baitalgahwa {{/str}}</label>
+                    <input id="bag-enrol-phone" name="bag_phone" type="tel" class="form-control baitalgahwa-input" maxlength="40" autocomplete="tel">
+                </div>
+                <div class="col-md-6">
+                    <label class="baitalgahwa-field-label" for="bag-enrol-city">{{#str}} enrol_application_city, theme_baitalgahwa {{/str}}</label>
+                    <input id="bag-enrol-city" name="bag_city" type="text" class="form-control baitalgahwa-input" maxlength="80" autocomplete="address-level2">
+                </div>
+                <div class="col-12">
+                    <label class="baitalgahwa-field-label" for="bag-enrol-country">{{#str}} enrol_application_country, theme_baitalgahwa {{/str}}</label>
+                    <input id="bag-enrol-country" name="bag_country" type="text" class="form-control baitalgahwa-input" maxlength="80" autocomplete="country-name">
+                </div>
+                <div class="col-12">
+                    <label class="baitalgahwa-field-label" for="bag-enrol-notes">{{#str}} enrol_application_notes, theme_baitalgahwa {{/str}}</label>
+                    <textarea id="bag-enrol-notes" name="bag_notes" class="form-control baitalgahwa-input baitalgahwa-enrol-application-shell__textarea" rows="3" maxlength="500"></textarea>
+                    <small class="form-text text-muted">{{#str}} enrol_application_optional, theme_baitalgahwa {{/str}}</small>
+                </div>
+                <div class="col-12 baitalgahwa-enrol-application-shell__actions">
+                    <button type="submit" class="btn btn-primary baitalgahwa-enrol-application-shell__submit px-4">{{#str}} enrol_application_submit, theme_baitalgahwa {{/str}}</button>
+                </div>
+            </form>
+            <div id="bag-enrol-preview-status" class="baitalgahwa-enrol-application-shell__status mt-2 small text-success d-none" role="status"></div>
+            <div class="d-none" aria-hidden="true">
+                <span id="bag-enrol-str-ok">{{#str}} enrol_application_preview_ok, theme_baitalgahwa {{/str}}</span>
+                <span id="bag-enrol-str-req">{{#str}} enrol_application_err_required, theme_baitalgahwa {{/str}}</span>
+                <span id="bag-enrol-str-email">{{#str}} enrol_application_err_email, theme_baitalgahwa {{/str}}</span>
+            </div>
+        </div>
+    </div>
+</section>
