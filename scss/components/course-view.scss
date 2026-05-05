@@ -1108,6 +1108,235 @@ body.baitalgahwa-course-dashboard.baitalgahwa-course-enrol {
   @include baitalgahwa-enrol-course-summary-layout;
 }
 
+// Learner-facing enrolment options page: polished programme overview + clear status/action area.
+body#page-enrol-index {
+  background: linear-gradient(180deg, rgba($figma-color-surface, 0.92) 0%, $body-bg 42%, $body-bg 100%);
+
+  #topofscroll.main-inner,
+  #page-content,
+  .baitalgahwa-course-hero,
+  #region-main-box {
+    padding-left: clamp(1.25rem, 5vw, 4.5rem);
+    padding-right: clamp(1.25rem, 5vw, 4.5rem);
+  }
+
+  .baitalgahwa-course-hero--enrol {
+    margin-top: 1.35rem !important;
+    margin-bottom: 1.6rem !important;
+
+    .baitalgahwa-course-hero__toolbar {
+      margin-bottom: 1.05rem;
+    }
+
+    .baitalgahwa-course-hero__title {
+      color: #15110e;
+      font-size: clamp(1.8rem, 2.5vw, 2.45rem);
+      letter-spacing: 0;
+    }
+
+    .baitalgahwa-course-hero__cta {
+      min-width: 12rem;
+      padding: 0.7rem 1.3rem;
+      border-radius: 0.45rem;
+      border-color: $bag-brown;
+      background: $bag-brown;
+      font-size: 0.78rem;
+      font-weight: 800;
+      box-shadow: 0 0.45rem 1rem rgba($bag-brown, 0.22);
+    }
+
+    .baitalgahwa-course-hero__media,
+    .baitalgahwa-course-hero__img {
+      min-height: clamp(18rem, 36vw, 28rem);
+    }
+
+    .baitalgahwa-course-hero__media {
+      border-radius: 1.1rem;
+      box-shadow: 0 1.1rem 2.6rem rgba($black, 0.13);
+    }
+
+    .baitalgahwa-course-hero__overlay {
+      background: linear-gradient(180deg, rgba($black, 0.02) 22%, rgba($black, 0.2) 54%, rgba($bag-brown, 0.86) 100%);
+    }
+
+    .baitalgahwa-course-hero__caption {
+      padding: clamp(1.2rem, 2.2vw, 1.85rem);
+    }
+  }
+
+  #region-main {
+    padding: 0;
+
+    > h2:first-of-type {
+      display: none;
+    }
+
+    .box.generalbox.info {
+      position: relative;
+      margin: 0 auto;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .box.generalbox.info .coursebox {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      gap: 0;
+      overflow: hidden;
+      min-height: 23rem;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba($black, 0.08);
+      border-radius: 1.05rem;
+      background: $white;
+      box-shadow: 0 1rem 2.8rem rgba($black, 0.07);
+    }
+
+    .box.generalbox.info .coursebox .info {
+      display: none;
+    }
+
+    .box.generalbox.info .coursebox .content,
+    .box.generalbox.info .coursebox .content .d-flex {
+      display: contents;
+    }
+
+    .box.generalbox.info .coursebox .courseimage {
+      float: none;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100%;
+      margin: 0;
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .box.generalbox.info .coursebox .courseimage img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      min-height: 23rem;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .box.generalbox.info .coursebox .flex-grow-1 {
+      min-width: 0;
+      width: 100%;
+      padding: clamp(1.55rem, 3vw, 2.65rem);
+    }
+
+    .box.generalbox.info .coursebox .summary {
+      max-width: 58rem;
+      color: #4c433d;
+      font-size: 1rem;
+      line-height: 1.85;
+
+      &::before {
+        content: var(--bag-enrol-summary-heading, "Introduction");
+        display: block;
+        margin-bottom: 1.05rem;
+        color: $bag-brown;
+        font-size: clamp(1.18rem, 1.8vw, 1.42rem);
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin-bottom: 0.95rem;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul.teachers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+      margin: 1.3rem 0 0;
+      padding: 1.1rem 0 0;
+      list-style: none;
+      border-top: 1px solid rgba($black, 0.08);
+      color: #4b4039;
+      font-size: 0.92rem;
+    }
+
+    ul.teachers li {
+      margin: 0;
+    }
+
+    #notice.box.generalbox,
+    .alert {
+      max-width: 100%;
+      margin: 1.45rem auto 0;
+      padding: 1.05rem 1.25rem;
+      border: 1px solid rgba($bag-brown, 0.22);
+      border-left: 0.32rem solid $bag-brown;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, rgba(255, 249, 237, 0.98), rgba($white, 0.98));
+      color: #3f3630;
+      box-shadow: 0 0.65rem 1.55rem rgba($black, 0.055);
+    }
+
+    .continuebutton {
+      display: flex;
+      justify-content: center;
+      margin: 1.55rem 0 2rem;
+    }
+
+    .continuebutton input[type="submit"],
+    .continuebutton button,
+    .continuebutton .btn,
+    .singlebutton .btn {
+      min-width: 8.5rem;
+      padding: 0.72rem 1.55rem;
+      border-radius: 0.5rem;
+      border-color: $bag-brown;
+      background: $bag-brown;
+      color: $white;
+      font-weight: 800;
+      box-shadow: 0 0.45rem 1rem rgba($bag-brown, 0.2);
+    }
+
+    .baitalgahwa-enrol-application-shell {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    #topofscroll.main-inner,
+    #page-content,
+    .baitalgahwa-course-hero,
+    #region-main-box {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .baitalgahwa-course-hero--enrol .baitalgahwa-course-hero__toolbar {
+      align-items: stretch;
+    }
+
+    #region-main .box.generalbox.info .coursebox {
+      display: block;
+      min-height: 0;
+    }
+
+    #region-main .box.generalbox.info .coursebox .courseimage img {
+      min-height: 14rem;
+      aspect-ratio: 16 / 10;
+    }
+  }
+}
+
 // Course → Participants (enrolled users table, filters, pagination)
 body.baitalgahwa-course-participants {
   .secondary-navigation {
