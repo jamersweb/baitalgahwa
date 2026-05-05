@@ -33,14 +33,14 @@ $context['config']['calurl'] = (new \moodle_url('/calendar/view.php'))->out(fals
 $context['config']['membersurl'] = (new \moodle_url('/my/courses.php'))->out(false);
 $context['config']['coursetodo'] = (new \moodle_url('/my/courses.php'))->out(false);
 $context['bag_home_hero_url'] = theme_baitalgahwa_get_theme_image_url('hero-workshop-bg');
-$context['bag_home_coffee_url'] = theme_baitalgahwa_get_theme_image_url('auth-signup-hero');
-$context['bag_home_activity_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
-$context['bag_home_member_url'] = theme_baitalgahwa_get_theme_image_url('member-card');
+$context['bag_home_coffee_url'] = theme_baitalgahwa_get_theme_image_url('gahwa-beans-bag');
+$context['bag_home_activity_url'] = theme_baitalgahwa_get_theme_image_url('gahwa-beans-pan');
+$context['bag_home_member_url'] = theme_baitalgahwa_get_theme_image_url('gahwa-woman');
 $context['dashboard_home_programmes'] = array_slice($context['dashboard_programmes'] ?? [], 0, 3);
 $homeimages = [
-    theme_baitalgahwa_get_theme_image_url('course-gahwa-specialist-hero'),
-    theme_baitalgahwa_get_theme_image_url('auth-signin-hero'),
-    theme_baitalgahwa_get_theme_image_url('auth-signup-hero'),
+    theme_baitalgahwa_get_theme_image_url('gahwa-beans-pan'),
+    theme_baitalgahwa_get_theme_image_url('gahwa-screen'),
+    theme_baitalgahwa_get_theme_image_url('gahwa-presenter'),
 ];
 foreach ($context['dashboard_home_programmes'] as $index => $programme) {
     $context['dashboard_home_programmes'][$index]['imageurl'] = $homeimages[$index % count($homeimages)];

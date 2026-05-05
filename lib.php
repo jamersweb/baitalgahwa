@@ -1704,7 +1704,7 @@ function theme_baitalgahwa_get_branding_context(): array {
     $theme = \theme_config::load('baitalgahwa');
     $logourl = $theme->setting_file_url('logo', 'logo');
     return [
-        'themelogourl' => $logourl ? (string) $logourl : theme_baitalgahwa_get_theme_image_url('logo'),
-        'footerflowerurl' => theme_baitalgahwa_get_theme_image_url('footer-flower'),
+        'themelogourl' => $logourl ? (string) $logourl : theme_baitalgahwa_get_theme_image_url('logo-gold'),
+        'footerflowerurl' => theme_baitalgahwa_get_theme_image_url('footer-flower-new'),
     ];
 }

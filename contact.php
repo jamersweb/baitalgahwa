@@ -32,8 +32,8 @@ $PAGE->set_title(format_string($SITE->fullname) . ': Contact Us');
 $PAGE->set_heading(format_string($SITE->fullname));
 
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
-$context['contact_hero_url'] = theme_baitalgahwa_get_theme_image_url('misc-reference');
-$context['contact_location_url'] = theme_baitalgahwa_get_theme_image_url('auth-signup-hero');
+$context['contact_hero_url'] = theme_baitalgahwa_get_theme_image_url('hero-workshop-bg');
+$context['contact_location_url'] = theme_baitalgahwa_get_theme_image_url('house-of-artisans');
 $context['contact_email_display'] = !empty($context['footeremail']) ? $context['footeremail'] : 'BaitAlGahwa@ACTechnology.ae';
 $context['contact_phone_display'] = !empty($context['footerphone']) ? $context['footerphone'] : '+971 52 442 0444';
 $context['contact_location_display'] = !empty($context['footeraddress']) ? $context['footeraddress'] : 'Abu Dhabi';

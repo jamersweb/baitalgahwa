@@ -36,9 +36,10 @@ $context['training_hero_url'] = theme_baitalgahwa_get_theme_image_url('hero-work
 $context['training_fallback_course_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
 $courses = theme_baitalgahwa_get_featured_courses(6);
 $trainingimages = [
-    theme_baitalgahwa_get_theme_image_url('course-gahwa-specialist-hero'),
-    theme_baitalgahwa_get_theme_image_url('auth-signin-hero'),
-    theme_baitalgahwa_get_theme_image_url('auth-signup-hero'),
+    theme_baitalgahwa_get_theme_image_url('gahwa-beans-pan'),
+    theme_baitalgahwa_get_theme_image_url('gahwa-screen'),
+    theme_baitalgahwa_get_theme_image_url('gahwa-presenter'),
+    theme_baitalgahwa_get_theme_image_url('gahwa-beans-bag'),
 ];
 foreach ($courses as $index => $course) {
     $courses[$index]['imageurl'] = $trainingimages[$index % count($trainingimages)];

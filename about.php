@@ -33,8 +33,8 @@ $PAGE->set_heading(format_string($SITE->fullname));
 
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
 $context['about_hero_url'] = theme_baitalgahwa_get_theme_image_url('hero-workshop-bg');
-$context['about_coffee_url'] = theme_baitalgahwa_get_theme_image_url('auth-signup-hero');
-$context['about_activity_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
-$context['about_member_url'] = theme_baitalgahwa_get_theme_image_url('member-card');
+$context['about_coffee_url'] = theme_baitalgahwa_get_theme_image_url('gahwa-beans-bag');
+$context['about_activity_url'] = theme_baitalgahwa_get_theme_image_url('gahwa-beans-pan');
+$context['about_member_url'] = theme_baitalgahwa_get_theme_image_url('gahwa-woman');
 
 echo $OUTPUT->render_from_template('theme_baitalgahwa/about', $context);
