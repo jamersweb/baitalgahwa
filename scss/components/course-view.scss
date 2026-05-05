@@ -23,8 +23,8 @@ body.baitalgahwa-course-dashboard {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: clamp(0.65rem, 2.4vw, 1.5rem);
-    padding-right: clamp(0.65rem, 2.4vw, 1.5rem);
+    padding-left: clamp(1rem, 5vw, 4.25rem);
+    padding-right: clamp(1rem, 5vw, 4.25rem);
     box-sizing: border-box;
   }
 
@@ -120,42 +120,45 @@ body.baitalgahwa-course-dashboard {
 }
 
 .baitalgahwa-course-hero {
-  margin-bottom: 1rem !important;
+  margin-bottom: 1.25rem !important;
 
   &__toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.35rem;
   }
 
   &__title {
     color: $body-color;
     font-family: $headings-font-family;
-    font-size: clamp(1.8rem, 2.5vw, 2.2rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.9rem, 2.6vw, 2.55rem);
+    font-weight: 800;
+    letter-spacing: 0;
   }
 
   &__cta {
     background: $primary;
     border-color: $primary;
-    border-radius: 0.55rem;
-    padding: 0.55rem 1.15rem;
-    font-size: 0.82rem;
+    border-radius: 0.42rem;
+    padding: 0.78rem 2.1rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.01em;
+    width: 100%;
+    max-width: 12.6rem;
+    box-shadow: none;
   }
 
   &__media {
-    min-height: 17.75rem;
-    border-radius: $bag-course-radius;
-    box-shadow: 0 1rem 2.4rem rgba($black, 0.12);
+    min-height: clamp(25rem, 45vw, 35rem);
+    border-radius: 1.25rem;
+    box-shadow: none;
   }
 
   &__img {
-    min-height: 17.75rem;
+    min-height: clamp(25rem, 45vw, 35rem);
     background-size: cover;
     background-position: center;
     &--placeholder {
@@ -169,19 +172,19 @@ body.baitalgahwa-course-dashboard {
     right: 0;
     bottom: 0;
     top: 0;
-    background: linear-gradient(180deg, rgba($black, 0.08) 15%, rgba($black, 0.76) 100%);
+    background: linear-gradient(180deg, rgba($black, 0.02) 42%, rgba(darken($bag-brown, 8%), 0.82) 100%);
     pointer-events: none;
   }
 
   &__caption {
     z-index: 1;
-    padding: 1.5rem 1.7rem;
+    padding: clamp(1.35rem, 2.4vw, 2rem);
   }
 
   &__caption-title {
-    font-size: clamp(1.5rem, 2.25vw, 2rem);
+    font-size: clamp(1.75rem, 2.45vw, 2.35rem);
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   &__meta {
@@ -229,8 +232,10 @@ body.baitalgahwa-course-dashboard {
   background: $white;
   border: 1px solid rgba($black, 0.08);
   border-radius: 1rem;
-  box-shadow: 0 0.75rem 1.8rem rgba($black, 0.06);
+  box-shadow: 0 0.45rem 1.3rem rgba($black, 0.08);
   overflow: hidden;
+  margin-top: 3.2rem;
+  margin-bottom: 2.25rem !important;
 
   &__row {
     margin-left: 0;
@@ -243,7 +248,8 @@ body.baitalgahwa-course-dashboard {
     border: 0;
     border-radius: 0;
     min-height: 100%;
-    gap: 0.9rem;
+    gap: clamp(0.85rem, 1.4vw, 1.35rem);
+    min-height: 8.2rem;
   }
 
   &__icon {
@@ -251,12 +257,12 @@ body.baitalgahwa-course-dashboard {
     opacity: 0.9;
     line-height: 1;
     margin-inline-end: 0;
-    font-size: 1.4rem;
+    font-size: clamp(1.75rem, 2.1vw, 2.45rem);
   }
 
   &__num {
     color: $bag-brown;
-    font-size: 1.9rem;
+    font-size: clamp(2rem, 3.1vw, 2.8rem);
     line-height: 1.1;
     font-weight: 800;
   }
@@ -268,7 +274,7 @@ body.baitalgahwa-course-dashboard {
 
   &__label {
     color: $text-muted !important;
-    font-size: 0.85rem;
+    font-size: clamp(0.88rem, 1.1vw, 1.05rem);
     font-weight: 500;
     line-height: 1.4;
   }
@@ -1484,21 +1490,69 @@ body#page-enrol-index {
 
 // Course → Participants (enrolled users table, filters, pagination)
 body.baitalgahwa-course-participants {
+  --bag-participants-line: rgba(120, 75, 39, 0.78);
+  --bag-participants-soft-line: rgba(120, 75, 39, 0.22);
+
+  .baitalgahwa-course-hero,
+  .baitalgahwa-course-stats,
+  .secondary-navigation,
+  #page-content {
+    padding-left: clamp(1.25rem, 5.4vw, 4.5rem);
+    padding-right: clamp(1.25rem, 5.4vw, 4.5rem);
+  }
+
   .secondary-navigation {
-    border-top: 1px solid rgba($black, 0.08);
-    border-bottom: 1px solid rgba($black, 0.08);
-    padding-top: 0.25rem;
+    margin-top: 1.65rem;
+    margin-bottom: 1.65rem;
+    padding: 0;
+    border-top: 0;
+    border-bottom: 1px solid rgba($black, 0.34);
+
+    .nav-tabs,
+    .moremenu.navigation {
+      gap: clamp(1.35rem, 4vw, 4.25rem);
+      min-height: 2.55rem;
+      padding: 0;
+    }
+
+    .nav-link,
+    .moremenu .nav-link {
+      padding: 0 0 0.72rem;
+      color: #393532;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus,
+    .nav-link.active,
+    .active > .nav-link,
+    a[aria-current="true"] {
+      color: $bag-brown;
+      box-shadow: inset 0 -0.28rem 0 $bag-brown;
+    }
   }
 
   #region-main {
-    background: $body-bg;
-    border-radius: $bag-course-radius;
-    padding: 1rem 0.5rem 1.5rem;
-    @include media-breakpoint-up(md) {
-      padding-left: 1rem;
-      padding-right: 1rem;
+    overflow: visible;
+    background: $white;
+    border: 1px solid rgba($black, 0.09);
+    border-radius: 0.55rem;
+    padding: clamp(1.25rem, 2.7vw, 2rem);
+    margin-bottom: 2.7rem;
+    box-shadow: 0 0.7rem 2rem rgba($black, 0.035);
+
+    > h2:first-child,
+    > h2:first-of-type {
+      margin: 0 0 1.35rem;
+      color: $bag-brown;
+      font-size: clamp(1.12rem, 1.35vw, 1.28rem);
+      font-weight: 800;
+      letter-spacing: 0;
     }
-    box-shadow: 0 0.15rem 0.9rem rgba($black, 0.05);
   }
 
   #region-main .tertiary-navigation,
@@ -1507,12 +1561,34 @@ body.baitalgahwa-course-participants {
     border-radius: 0.5rem;
   }
 
+  #region-main [data-region="participantsfilter"],
+  #region-main .initialbar,
+  #region-main .tertiary-navigation,
+  #region-main .userlist .controls,
+  #region-main .path-course-view .controls {
+    margin-bottom: 1rem;
+  }
+
+  #region-main .participantsform,
+  #region-main .userlist,
+  #region-main [data-region="participantslist"] {
+    overflow-x: auto;
+    padding: clamp(1rem, 2.2vw, 1.55rem);
+    border: 1px solid var(--bag-participants-line);
+    border-radius: 0.8rem;
+    background: $white;
+  }
+
   // Participants list only (avoid styling unrelated tables under the same body classes)
   #region-main .userlist table.generaltable,
   #region-main .userlist .table,
   #region-main [data-region="participantslist"] table,
   #region-main [data-region="participantslist"] .table {
-    background: $body-bg;
+    min-width: 58rem;
+    margin-bottom: 0;
+    background: $white;
+    border-collapse: separate;
+    border-spacing: 0;
     border-radius: 0.5rem;
   }
 
@@ -1520,33 +1596,78 @@ body.baitalgahwa-course-participants {
   #region-main .userlist .table thead th,
   #region-main [data-region="participantslist"] table thead th,
   #region-main [data-region="participantslist"] .table thead th {
-    color: $body-color;
-    font-weight: 600;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    color: #1d252f;
+    font-size: 0.86rem;
+    font-weight: 800;
+    background: rgba($gray-100, 0.72);
     border-bottom: 1px solid rgba($black, 0.1);
+  }
+
+  #region-main .userlist table.generaltable tbody td,
+  #region-main .userlist .table tbody td,
+  #region-main [data-region="participantslist"] table tbody td,
+  #region-main [data-region="participantslist"] .table tbody td {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    color: #1f2937;
+    font-size: 0.88rem;
+    vertical-align: middle;
+    border-top: 0;
+    border-bottom: 1px solid rgba($black, 0.09);
   }
 
   #region-main .userlist table.generaltable tbody tr:hover,
   #region-main [data-region="participantslist"] table tbody tr:hover {
-    background: rgba(mix($body-bg, $primary, 85%), 0.4);
+    background: rgba(mix($body-bg, $primary, 88%), 0.35);
   }
 
   #region-main .btn,
   #region-main a.btn,
   #region-main input.btn {
-    border-radius: 0.5rem;
+    border-radius: 0.42rem;
+    font-weight: 700;
+  }
+
+  #region-main .btn-primary,
+  #region-main a.btn-primary,
+  #region-main input.btn-primary {
+    border-color: $bag-brown;
+    background: $bag-brown;
+    color: $white;
+    box-shadow: none;
   }
 
   #region-main .form-control,
   #region-main input[type="text"],
   #region-main select {
-    border-radius: 1.5rem;
+    min-height: 2.7rem;
+    border-radius: 0.38rem;
     border-color: rgba($black, 0.12);
+    box-shadow: none;
+  }
+
+  #region-main .userpicture,
+  #region-main img.userpicture {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 999px;
+    object-fit: cover;
   }
 
   #region-main .pagination {
+    margin-top: 1.35rem;
+
     .page-item .page-link {
       border-radius: 0.35rem;
       color: $primary;
+      min-width: 2rem;
+      min-height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0.18rem;
     }
     .page-item.active .page-link {
       background: $primary;

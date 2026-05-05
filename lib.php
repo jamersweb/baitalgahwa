@@ -1377,6 +1377,12 @@ function theme_baitalgahwa_get_course_dashboard_context(bool $forceenrolhub = fa
     if (class_exists('\core_course\external\course_summary_exporter')) {
         $courseimage = (string) \core_course\external\course_summary_exporter::get_course_image($course);
     }
+    if ($courseimage === '' && theme_baitalgahwa_is_certified_gahwa_specialist_course($course)) {
+        $courseimage = theme_baitalgahwa_get_theme_image_url('course-gahwa-specialist-hero');
+    }
+    if ($courseimage === '') {
+        $courseimage = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
+    }
 
     $instructor = get_string('course_instructor_default', 'theme_baitalgahwa');
     $instructoravatar = '';
