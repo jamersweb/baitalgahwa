@@ -621,11 +621,14 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
         margin-top: .35rem;
     }
     body.bag-figma-user-dashboard .baitalgahwa-navbar {
-        padding-inline: .35rem;
+        width: min(calc(100% - .7rem), 1120px);
+        min-height: 2.9rem;
+        padding-inline: .7rem;
     }
     body.bag-figma-user-dashboard .baitalgahwa-navbar__inner {
         flex-wrap: nowrap;
-        gap: .42rem;
+        min-height: 2.9rem;
+        gap: .7rem;
     }
     body.bag-figma-user-dashboard .baitalgahwa-navbar__custom-links {
         min-width: 0;
@@ -682,6 +685,47 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
         min-height: 1.65rem;
         padding: .38rem .52rem;
         font-size: .58rem;
+    }
+}
+@media (max-width: 575.98px) {
+    body.bag-figma-user-dashboard .baitalgahwa-navbar {
+        top: .35rem;
+        width: calc(100% - .9rem);
+        min-height: 2.65rem;
+        padding-inline: .55rem;
+        border-radius: .16rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__inner {
+        min-height: 2.65rem;
+        gap: .48rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar .navbar-brand {
+        margin-right: .35rem !important;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-custom-logo,
+    body.bag-figma-user-dashboard .baitalgahwa-navbar .logo {
+        max-height: 1.05rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__logo-subtitle {
+        display: none;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__custom-links {
+        flex: 1 1 auto;
+        gap: .72rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__link {
+        flex: 0 0 auto;
+        font-size: .56rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__auth {
+        gap: .25rem;
+        margin-inline-start: .25rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-link,
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary {
+        min-height: 1.45rem;
+        padding: .32rem .42rem;
+        font-size: .52rem;
     }
 }
 </style>

@@ -6,8 +6,15 @@
 body.bag-figma-user-dashboard .baitalgahwa-dashboard#bag-dashboard-overview {
     display: none !important;
 }
+body.bag-figma-user-dashboard #page,
+body.bag-figma-user-dashboard #topofscroll,
 body.bag-figma-user-dashboard .main-inner {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
     background: #fffaf3;
+}
+body.bag-figma-user-dashboard #page.drawers {
+    padding-top: 0 !important;
 }
 .bag-figma-home {
     --bag-brown: #7a4a22;
@@ -33,9 +40,25 @@ body.bag-figma-user-dashboard .main-inner {
     place-items: center;
     color: #fff;
     text-align: center;
-    background:
-        linear-gradient(180deg, rgba(18, 15, 13, .62), rgba(18, 15, 13, .58)),
-        url('{{{ bag_home_hero_url }}}') center / cover no-repeat;
+    isolation: isolate;
+    overflow: hidden;
+    background: #15110d;
+}
+.bag-figma-hero::before,
+.bag-figma-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+.bag-figma-hero::before {
+    z-index: -2;
+    background: url('{{{ bag_home_hero_url }}}') center 36% / cover no-repeat;
+    filter: grayscale(100%);
+    transform: scale(1.01);
+}
+.bag-figma-hero::after {
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(18, 15, 13, .48), rgba(18, 15, 13, .66));
 }
 .bag-figma-hero__title {
     max-width: 42rem;
@@ -318,6 +341,9 @@ body.bag-figma-user-dashboard .main-inner {
     border-color: #fff4e7;
 }
 @media (max-width: 991.98px) {
+    .bag-figma-home__section {
+        padding-inline: 1rem;
+    }
     .bag-figma-expertise__panel,
     .bag-figma-development__inner {
         grid-template-columns: 1fr;
@@ -331,23 +357,70 @@ body.bag-figma-user-dashboard .main-inner {
         padding-top: 0;
     }
     .bag-figma-hero {
-        min-height: 15.7rem;
+        min-height: 21rem;
+        align-items: start;
+        padding-top: 5.1rem;
+        padding-bottom: 2.2rem;
+    }
+    .bag-figma-hero::before {
+        background-position: center top;
+    }
+    .bag-figma-hero__title {
+        margin-top: 0;
+        max-width: 18rem;
+        font-size: clamp(1.55rem, 8vw, 2.15rem);
+    }
+    .bag-figma-hero__copy {
+        max-width: 19rem;
+        font-size: .82rem;
     }
     .bag-figma-expertise {
         margin-top: 0;
     }
     .bag-figma-expertise__panel {
-        padding: 1.2rem;
+        padding: 1.15rem;
+        box-shadow: none;
+        border-inline: 0;
     }
     .bag-figma-collage {
-        min-height: 11.5rem;
+        min-height: 13.25rem;
+        max-width: 20rem;
+        margin-inline: auto;
+    }
+    .bag-figma-collage::before {
+        left: 0;
+    }
+    .bag-figma-collage::after {
+        right: .6rem;
+    }
+    .bag-figma-title {
+        font-size: 1.45rem;
+    }
+    .bag-figma-copy {
+        font-size: .84rem;
+        line-height: 1.65;
     }
     .bag-figma-grid,
     .bag-figma-metrics {
         grid-template-columns: 1fr;
     }
+    .bag-figma-metrics {
+        gap: .75rem;
+    }
     .bag-figma-programmes {
         padding-top: 2rem;
+    }
+    .bag-figma-grid {
+        gap: 1rem;
+    }
+    .bag-figma-development__inner {
+        gap: 1.2rem;
+    }
+    .bag-figma-development__image {
+        max-height: 18rem;
+    }
+    .bag-figma-cta {
+        padding-block: 1.4rem;
     }
 }
 </style>
