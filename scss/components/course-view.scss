@@ -1108,6 +1108,151 @@ body.baitalgahwa-course-dashboard.baitalgahwa-course-enrol {
   @include baitalgahwa-enrol-course-summary-layout;
 }
 
+// Fallback course view styling for live course-format pages that miss custom body flags.
+body[id^="page-course-view-"] {
+  background: linear-gradient(180deg, rgba($figma-color-surface, 0.94) 0%, $body-bg 38%, $body-bg 100%) !important;
+
+  #page.drawers,
+  #topofscroll.main-inner,
+  #page.drawers .main-inner,
+  .header-maxwidth,
+  #region-main-box,
+  #region-main {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #topofscroll.main-inner,
+  #page-content,
+  .secondary-navigation,
+  #region-main-box {
+    padding-left: clamp(1rem, 5vw, 4.25rem) !important;
+    padding-right: clamp(1rem, 5vw, 4.25rem) !important;
+  }
+
+  .drawer-toggles {
+    position: fixed !important;
+    left: 0.75rem !important;
+    top: 8.75rem !important;
+    z-index: 30 !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  #page-header,
+  .page-header-headings {
+    display: none !important;
+  }
+
+  #region-main {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .course-content,
+  #region-main > div[role="main"],
+  #region-main > .box {
+    max-width: 1180px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .course-content > ul,
+  .course-content ul.topics,
+  .course-content ul.sections {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .course-content > ul > li:first-child,
+  .course-content ul.topics > li:first-child,
+  .course-content ul.sections > li:first-child,
+  .course-section:first-child {
+    margin-top: 1.25rem !important;
+    padding: clamp(1.25rem, 2.6vw, 2rem) !important;
+    border: 1px solid rgba($bag-brown, 0.12) !important;
+    border-radius: 1rem !important;
+    background: $white !important;
+    box-shadow: 0 1rem 2.8rem rgba($black, 0.06) !important;
+  }
+
+  .course-content h2,
+  .course-content h3,
+  .sectionname,
+  .sectionname a {
+    color: #2b211b !important;
+    font-weight: 800 !important;
+    letter-spacing: 0 !important;
+    text-decoration: none !important;
+  }
+
+  .course-content .summary,
+  .course-content .description,
+  .course-content p {
+    color: #524841 !important;
+    font-size: 1rem !important;
+    line-height: 1.82 !important;
+  }
+
+  .secondary-navigation {
+    max-width: 1180px !important;
+    margin: 1.35rem auto 1.55rem !important;
+    border-bottom: 1px solid rgba($bag-brown, 0.22) !important;
+
+    .nav-tabs,
+    .moremenu.navigation {
+      gap: clamp(1rem, 3.2vw, 3.25rem) !important;
+      border-bottom: 0 !important;
+    }
+
+    .nav-link {
+      padding: 0 0 0.85rem !important;
+      border: 0 !important;
+      color: #3d332d !important;
+      font-weight: 700 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .nav-link.active,
+    .active > .nav-link,
+    a[aria-current="true"] {
+      color: $bag-brown !important;
+      box-shadow: inset 0 -0.24rem 0 $bag-brown !important;
+    }
+  }
+
+  .course-content .activity,
+  .course-content .activity-item {
+    overflow: hidden !important;
+    margin-bottom: 0.9rem !important;
+    border: 1px solid rgba($bag-brown, 0.12) !important;
+    border-radius: 0.85rem !important;
+    background: $white !important;
+    box-shadow: 0 0.55rem 1.3rem rgba($black, 0.045) !important;
+    transition: transform 0.16s ease, box-shadow 0.16s ease !important;
+  }
+
+  .course-content .activity:hover,
+  .course-content .activity-item:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0.85rem 1.7rem rgba($black, 0.07) !important;
+  }
+
+  .btn-primary,
+  input.btn-primary,
+  button.btn-primary {
+    border-color: $bag-brown !important;
+    background: $bag-brown !important;
+    color: $white !important;
+    border-radius: 0.55rem !important;
+    font-weight: 800 !important;
+  }
+}
+
 // Learner-facing enrolment options page: polished programme overview + clear status/action area.
 body#page-enrol-index {
   background: linear-gradient(180deg, rgba($figma-color-surface, 0.92) 0%, $body-bg 42%, $body-bg 100%);
