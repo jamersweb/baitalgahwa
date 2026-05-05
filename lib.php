@@ -1523,6 +1523,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     if (strpos($scriptname, '/theme/baitalgahwa/programme.php') !== false) {
         $extraclasses[] = 'bag-programme-body';
     }
+    if (strpos($scriptname, '/theme/baitalgahwa/contact.php') !== false) {
+        $extraclasses[] = 'bag-contact-body';
+    }
     if ($PAGE->pagelayout === 'mydashboard' && !is_siteadmin($USER)) {
         $extraclasses[] = 'bag-figma-user-dashboard';
     }
@@ -1596,13 +1599,17 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
     $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
     $trainingurl = new \moodle_url('/theme/baitalgahwa/training.php');
+    $contacturl = new \moodle_url('/theme/baitalgahwa/contact.php');
     $programmepath = (new \moodle_url('/theme/baitalgahwa/programme.php'))->get_path(false);
     $currentpath = $PAGE->url ? $PAGE->url->get_path(false) : '';
     $aboutpath = $abouturl->get_path(false);
     $trainingpath = $trainingurl->get_path(false);
+    $contactpath = $contacturl->get_path(false);
     $context['nav_about_active'] = ($currentpath === $aboutpath);
     $context['nav_training_active'] = ($currentpath === $trainingpath || $currentpath === $programmepath);
-    $context['nav_home_active'] = !$context['nav_about_active'] && !$context['nav_training_active'];
+    $context['nav_contact_active'] = ($currentpath === $contactpath);
+    $context['nav_home_active'] = !$context['nav_about_active'] && !$context['nav_training_active']
+        && !$context['nav_contact_active'];
     $context['config'] = [
         'wwwroot' => $CFG->wwwroot,
         'homeurl' => (new \moodle_url('/'))->out(false),
@@ -1613,7 +1620,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'messagesurl' => (new \moodle_url('/message/index.php'))->out(false),
         'abouturl' => $abouturl->out(false),
         'trainingurl' => $trainingurl->out(false),
-        'contacturl' => (new \moodle_url('/', ['section' => 'contact']))->out(false) . '#bag-footer-contact',
+        'contacturl' => $contacturl->out(false),
         'loginurl' => (new \moodle_url('/login/index.php'))->out(false),
         'signupurl' => (new \moodle_url('/login/signup.php'))->out(false),
     ];

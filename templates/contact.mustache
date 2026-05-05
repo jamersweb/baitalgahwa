@@ -1,0 +1,418 @@
+{{!
+    @template theme_baitalgahwa/contact
+    Public Contact page matching the supplied Figma visual.
+}}
+{{> theme_boost/head }}
+<style>
+body.bag-contact-body {
+    background: #fffaf3;
+}
+body.bag-contact-body #page-header,
+body.bag-contact-body .secondary-navigation {
+    display: none;
+}
+.bag-contact-page {
+    --bag-brown: #7a4a22;
+    --bag-brown-deep: #5f3616;
+    --bag-gold: #caa758;
+    --bag-ink: #18110c;
+    --bag-muted: #7d7065;
+    --bag-cream: #f6efe6;
+    --bag-line: #eadfce;
+    background: #fff;
+    color: var(--bag-ink);
+    padding-top: 3.55rem;
+    overflow: hidden;
+}
+.bag-contact-hero {
+    position: relative;
+    min-height: clamp(8.25rem, 17vw, 13.25rem);
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--bag-brown);
+}
+.bag-contact-hero::before,
+.bag-contact-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+.bag-contact-hero::before {
+    z-index: -2;
+    background:
+        linear-gradient(90deg, rgba(122, 74, 34, .86), rgba(122, 74, 34, .9)),
+        url('{{{ footerflowerurl }}}') left center / 22rem auto no-repeat,
+        url('{{{ contact_hero_url }}}') center 38% / cover no-repeat;
+    filter: saturate(.9);
+}
+.bag-contact-hero::after {
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(67, 36, 16, .08), rgba(67, 36, 16, .2));
+}
+.bag-contact-hero__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.35rem, 2.5vw, 2.1rem);
+    line-height: 1.1;
+    font-weight: 800;
+}
+.bag-contact-section {
+    width: min(100%, 1060px);
+    margin: 0 auto;
+    padding-inline: 1.05rem;
+}
+.bag-contact-main {
+    background: var(--bag-cream);
+    padding-block: clamp(2rem, 4.2vw, 3.8rem);
+}
+.bag-contact-grid {
+    display: grid;
+    grid-template-columns: minmax(15rem, .78fr) minmax(0, 1.22fr);
+    gap: clamp(1.5rem, 4vw, 3.6rem);
+    align-items: start;
+}
+.bag-contact-info {
+    padding-top: .55rem;
+}
+.bag-contact-kicker {
+    margin: 0 0 1rem;
+    color: var(--bag-ink);
+    font-size: .96rem;
+    font-weight: 800;
+}
+.bag-contact-list {
+    display: grid;
+    gap: .9rem;
+    margin: 0 0 2.1rem;
+    padding: 0;
+    list-style: none;
+}
+.bag-contact-item {
+    display: grid;
+    grid-template-columns: 2.15rem minmax(0, 1fr);
+    gap: .72rem;
+    align-items: start;
+}
+.bag-contact-icon {
+    display: inline-flex;
+    width: 2.15rem;
+    height: 2.15rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--bag-brown);
+    box-shadow: 0 .45rem 1rem rgba(82, 49, 23, .07);
+}
+.bag-contact-label {
+    display: block;
+    color: #201711;
+    font-size: .76rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+.bag-contact-value {
+    display: block;
+    margin-top: .18rem;
+    color: var(--bag-muted);
+    font-size: .72rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+.bag-contact-response {
+    color: var(--bag-muted);
+    font-size: .7rem;
+    line-height: 1.6;
+}
+.bag-contact-response p {
+    margin: .28rem 0;
+}
+.bag-contact-form {
+    background: #fff;
+    border: 1px solid #f0e5d9;
+    border-radius: .55rem;
+    padding: clamp(1.05rem, 2.4vw, 1.45rem);
+    box-shadow: 0 1rem 2rem rgba(51, 31, 15, .08);
+}
+.bag-contact-form__title {
+    margin: 0 0 .95rem;
+    color: var(--bag-ink);
+    font-size: .98rem;
+    font-weight: 800;
+}
+.bag-contact-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .72rem .85rem;
+}
+.bag-contact-field {
+    display: grid;
+    gap: .26rem;
+}
+.bag-contact-field--wide {
+    grid-column: 1 / -1;
+}
+.bag-contact-field label {
+    color: #5c4a3d;
+    font-size: .58rem;
+    font-weight: 800;
+}
+.bag-contact-input,
+.bag-contact-select,
+.bag-contact-textarea {
+    width: 100%;
+    border: 1px solid #eee3d7;
+    border-radius: .38rem;
+    background: #fff;
+    color: #241a13;
+    font-size: .72rem;
+    line-height: 1.3;
+    outline: 0;
+    transition: border-color .16s ease, box-shadow .16s ease;
+}
+.bag-contact-input,
+.bag-contact-select {
+    height: 2.45rem;
+    padding: 0 .78rem;
+}
+.bag-contact-textarea {
+    min-height: 5.2rem;
+    resize: vertical;
+    padding: .72rem .78rem;
+}
+.bag-contact-input:focus,
+.bag-contact-select:focus,
+.bag-contact-textarea:focus {
+    border-color: #d7bc8a;
+    box-shadow: 0 0 0 .16rem rgba(202, 167, 88, .16);
+}
+.bag-contact-note {
+    margin: .85rem 0 .72rem;
+    color: #8b8077;
+    font-size: .62rem;
+    line-height: 1.45;
+}
+.bag-contact-submit,
+.bag-contact-directions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: .22rem;
+    background: var(--bag-brown);
+    color: #fff;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background-color .16s ease, transform .16s ease;
+}
+.bag-contact-submit {
+    width: 100%;
+    min-height: 2.18rem;
+    font-size: .7rem;
+}
+.bag-contact-submit:hover,
+.bag-contact-submit:focus-visible,
+.bag-contact-directions:hover,
+.bag-contact-directions:focus-visible {
+    background: var(--bag-brown-deep);
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+.bag-contact-location {
+    background: #fff;
+    padding-block: clamp(2rem, 4.2vw, 3.5rem);
+}
+.bag-contact-location__title {
+    margin: 0 0 1.45rem;
+    text-align: center;
+    color: var(--bag-ink);
+    font-size: clamp(1.12rem, 2.1vw, 1.65rem);
+    font-weight: 800;
+}
+.bag-contact-location__grid {
+    display: grid;
+    grid-template-columns: minmax(15rem, .82fr) minmax(0, 1fr);
+    gap: clamp(1.2rem, 3vw, 2.2rem);
+    align-items: center;
+}
+.bag-contact-location__image {
+    width: 100%;
+    aspect-ratio: 1.45;
+    object-fit: cover;
+    display: block;
+}
+.bag-contact-location__copy h2 {
+    margin: 0 0 .42rem;
+    color: var(--bag-ink);
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    line-height: 1.04;
+    font-weight: 800;
+}
+.bag-contact-location__copy p {
+    max-width: 27rem;
+    margin: 0 0 .9rem;
+    color: var(--bag-muted);
+    font-size: .78rem;
+    line-height: 1.6;
+}
+.bag-contact-directions {
+    min-height: 2rem;
+    padding: .62rem 1.05rem;
+    font-size: .66rem;
+}
+@media (max-width: 767.98px) {
+    .bag-contact-grid,
+    .bag-contact-location__grid {
+        grid-template-columns: 1fr;
+    }
+    .bag-contact-fields {
+        grid-template-columns: 1fr;
+    }
+    .bag-contact-info {
+        padding-top: 0;
+    }
+}
+</style>
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+<div id="page-wrapper" class="d-print-block">
+    {{{ output.standard_top_of_body_html }}}
+    {{> theme_baitalgahwa/navbar }}
+    <div id="page" data-region="mainpage" class="drawers drag-container">
+        <div id="topofscroll" class="main-inner">
+            <main class="bag-contact-page" id="bag-contact-main">
+                <section class="bag-contact-hero" aria-labelledby="bag-contact-title">
+                    <h1 class="bag-contact-hero__title" id="bag-contact-title">Contact Us</h1>
+                </section>
+
+                <section class="bag-contact-main" aria-label="Contact information and message form">
+                    <div class="bag-contact-section bag-contact-grid">
+                        <aside class="bag-contact-info">
+                            <h2 class="bag-contact-kicker">Contact Information</h2>
+                            <ul class="bag-contact-list">
+                                <li class="bag-contact-item">
+                                    <span class="bag-contact-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                    <span>
+                                        <span class="bag-contact-label">Email</span>
+                                        <span class="bag-contact-value">{{ contact_email_display }}</span>
+                                    </span>
+                                </li>
+                                <li class="bag-contact-item">
+                                    <span class="bag-contact-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                    <span>
+                                        <span class="bag-contact-label">Phone</span>
+                                        <span class="bag-contact-value">{{ contact_phone_display }}</span>
+                                    </span>
+                                </li>
+                                <li class="bag-contact-item">
+                                    <span class="bag-contact-icon"><i class="fa fa-instagram" aria-hidden="true"></i></span>
+                                    <span>
+                                        <span class="bag-contact-label">Instagram</span>
+                                        <span class="bag-contact-value">{{ contact_instagram_display }}</span>
+                                    </span>
+                                </li>
+                                <li class="bag-contact-item">
+                                    <span class="bag-contact-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                    <span>
+                                        <span class="bag-contact-label">Location</span>
+                                        <span class="bag-contact-value">{{ contact_location_display }}</span>
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <h2 class="bag-contact-kicker">Response Time</h2>
+                            <div class="bag-contact-response">
+                                <p>We typically respond within 24 hours. For urgent training enquiries, our support team is available by phone.</p>
+                                <p>Usually within during UAE business hours.</p>
+                            </div>
+                        </aside>
+
+                        <form class="bag-contact-form" data-bag-contact-form data-mailto="{{ contact_email_display }}">
+                            <h2 class="bag-contact-form__title">Send Us a Message</h2>
+                            <div class="bag-contact-fields">
+                                <div class="bag-contact-field">
+                                    <label for="bag-contact-firstname">First Name *</label>
+                                    <input class="bag-contact-input" id="bag-contact-firstname" name="firstname" type="text" placeholder="First Name" autocomplete="given-name" required>
+                                </div>
+                                <div class="bag-contact-field">
+                                    <label for="bag-contact-lastname">Last Name *</label>
+                                    <input class="bag-contact-input" id="bag-contact-lastname" name="lastname" type="text" placeholder="Last Name" autocomplete="family-name" required>
+                                </div>
+                                <div class="bag-contact-field bag-contact-field--wide">
+                                    <label for="bag-contact-email">Email *</label>
+                                    <input class="bag-contact-input" id="bag-contact-email" name="email" type="email" placeholder="Your Email" autocomplete="email" required>
+                                </div>
+                                <div class="bag-contact-field bag-contact-field--wide">
+                                    <label for="bag-contact-phone">Phone Number *</label>
+                                    <input class="bag-contact-input" id="bag-contact-phone" name="phone" type="tel" placeholder="Phone Number" autocomplete="tel" required>
+                                </div>
+                                <div class="bag-contact-field bag-contact-field--wide">
+                                    <label for="bag-contact-type">Inquiry Type</label>
+                                    <select class="bag-contact-select" id="bag-contact-type" name="type">
+                                        <option>General Inquiry</option>
+                                        <option>Training Programme</option>
+                                        <option>Corporate Booking</option>
+                                        <option>Support</option>
+                                    </select>
+                                </div>
+                                <div class="bag-contact-field bag-contact-field--wide">
+                                    <label for="bag-contact-message">Message</label>
+                                    <textarea class="bag-contact-textarea" id="bag-contact-message" name="message" placeholder="Write Message..."></textarea>
+                                </div>
+                            </div>
+                            <p class="bag-contact-note">Note: This form is for demonstration purposes. For actual inquiries, please contact us via email or call BaitAlGahwa@ACTechnology.ae.</p>
+                            <button class="bag-contact-submit" type="submit">Send Message</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="bag-contact-location" aria-labelledby="bag-contact-location-title">
+                    <div class="bag-contact-section">
+                        <h2 class="bag-contact-location__title" id="bag-contact-location-title">Our Location</h2>
+                        <div class="bag-contact-location__grid">
+                            <img class="bag-contact-location__image" src="{{{ contact_location_url }}}" alt="" loading="lazy">
+                            <div class="bag-contact-location__copy">
+                                <h2>House of Artisans - Al Hosn Site</h2>
+                                <p>Bait Al Gahwa Experience - General Floor near Al Hosn Training Centre. Visit our Abu Dhabi site for Bait Al Gahwa experiences and guided learning.</p>
+                                <a class="bag-contact-directions" href="{{{ contact_directions_url }}}" target="_blank" rel="noopener">Get Directions</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        {{> theme_baitalgahwa/footer }}
+    </div>
+    {{{ output.standard_after_main_region_html }}}
+</div>
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'], function(Loader, Drawer, Bait) {
+    Drawer.init();
+    Bait.init();
+    var form = document.querySelector('[data-bag-contact-form]');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var data = new FormData(form);
+            var mailto = form.getAttribute('data-mailto') || 'BaitAlGahwa@ACTechnology.ae';
+            var subject = encodeURIComponent('Bait Al Gahwa contact inquiry');
+            var body = encodeURIComponent(
+                'First Name: ' + (data.get('firstname') || '') + '\n' +
+                'Last Name: ' + (data.get('lastname') || '') + '\n' +
+                'Email: ' + (data.get('email') || '') + '\n' +
+                'Phone: ' + (data.get('phone') || '') + '\n' +
+                'Inquiry Type: ' + (data.get('type') || '') + '\n\n' +
+                (data.get('message') || '')
+            );
+            window.location.href = 'mailto:' + mailto + '?subject=' + subject + '&body=' + body;
+        });
+    }
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}
