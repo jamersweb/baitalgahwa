@@ -1,0 +1,365 @@
+{{!
+    @template theme_baitalgahwa/about
+    Public About page matching the supplied Figma visual.
+}}
+{{> theme_boost/head }}
+<style>
+body.bag-about-body {
+    background: #fffaf3;
+}
+body.bag-about-body #page-header,
+body.bag-about-body .secondary-navigation {
+    display: none;
+}
+.bag-about-page {
+    --bag-brown: #7a4a22;
+    --bag-gold: #c99d42;
+    --bag-ink: #15110d;
+    --bag-muted: #8d7f73;
+    --bag-cream: #fffaf3;
+    --bag-line: #eadfce;
+    background: var(--bag-cream);
+    color: var(--bag-ink);
+    padding-top: 3.55rem;
+    overflow: hidden;
+}
+.bag-about-section {
+    width: min(100%, 1060px);
+    margin: 0 auto;
+    padding-inline: 1.05rem;
+}
+.bag-about-hero {
+    position: relative;
+    min-height: clamp(13.5rem, 31vw, 24rem);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    text-align: center;
+    isolation: isolate;
+    overflow: hidden;
+}
+.bag-about-hero::before,
+.bag-about-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+.bag-about-hero::before {
+    background: url('{{{ about_hero_url }}}') center 44% / cover no-repeat;
+    filter: grayscale(100%);
+    transform: scale(1.01);
+}
+.bag-about-hero::after {
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(15, 13, 12, .58), rgba(15, 13, 12, .7));
+}
+.bag-about-hero__title {
+    max-width: 38rem;
+    margin: 0 auto .7rem;
+    color: #fff;
+    font-size: clamp(1.55rem, 3.8vw, 3rem);
+    line-height: 1.05;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.bag-about-hero__copy {
+    max-width: 30rem;
+    margin: 0 auto 1rem;
+    color: rgba(255,255,255,.9);
+    font-size: .9rem;
+    line-height: 1.55;
+}
+.bag-about-btn {
+    display: inline-flex;
+    min-height: 2.22rem;
+    align-items: center;
+    justify-content: center;
+    padding: .62rem 1.12rem;
+    border: 1px solid var(--bag-brown);
+    border-radius: .2rem;
+    background: var(--bag-brown);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 .45rem 1rem rgba(90, 52, 20, .18);
+}
+.bag-about-btn:hover,
+.bag-about-btn:focus-visible {
+    color: #fff;
+    background: #5f3616;
+    border-color: #5f3616;
+    text-decoration: none;
+}
+.bag-about-expertise {
+    position: relative;
+    z-index: 1;
+    margin-top: -1.35rem;
+}
+.bag-about-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, .9fr);
+    gap: clamp(1.5rem, 5vw, 4.1rem);
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(122,74,34,.1);
+    box-shadow: 0 1rem 2.4rem rgba(52, 30, 12, .08);
+    padding: clamp(1.45rem, 4.5vw, 4.1rem);
+}
+.bag-about-collage {
+    position: relative;
+    min-height: 15rem;
+}
+.bag-about-collage::before,
+.bag-about-collage::after {
+    content: "";
+    position: absolute;
+    border: 1px solid #e7d8c8;
+}
+.bag-about-collage::before {
+    width: 5.2rem;
+    height: 9.3rem;
+    left: -1.35rem;
+    top: .8rem;
+}
+.bag-about-collage::after {
+    width: 6.7rem;
+    height: 5.2rem;
+    right: .4rem;
+    bottom: 1.7rem;
+}
+.bag-about-collage__image {
+    position: absolute;
+    object-fit: cover;
+    box-shadow: 0 .8rem 1.7rem rgba(40, 24, 12, .16);
+}
+.bag-about-collage__image--one {
+    width: 52%;
+    height: 7.4rem;
+    left: 2%;
+    top: 13%;
+    border-radius: 999px;
+}
+.bag-about-collage__image--two {
+    width: 43%;
+    height: 7rem;
+    right: 5%;
+    top: 0;
+}
+.bag-about-collage__image--three {
+    width: 58%;
+    height: 7rem;
+    right: 15%;
+    bottom: 0;
+}
+.bag-about-kicker {
+    margin: 0 0 .5rem;
+    color: var(--bag-brown);
+    font-size: .75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.bag-about-title {
+    margin: 0;
+    color: #17120f;
+    font-size: clamp(1.35rem, 3vw, 2.15rem);
+    line-height: 1.08;
+    font-weight: 800;
+}
+.bag-about-copy {
+    margin: .78rem 0 0;
+    color: var(--bag-muted);
+    font-size: .92rem;
+    line-height: 1.7;
+}
+.bag-about-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+.bag-about-metric strong {
+    display: block;
+    color: var(--bag-gold);
+    font-size: 1.6rem;
+    line-height: 1;
+    font-weight: 800;
+}
+.bag-about-metric span {
+    display: block;
+    margin-top: .3rem;
+    color: #6d5c4c;
+    font-size: .72rem;
+    font-weight: 700;
+}
+.bag-about-development {
+    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+.bag-about-development__inner {
+    display: grid;
+    grid-template-columns: minmax(0, .96fr) minmax(16rem, 1.04fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+}
+.bag-about-checks {
+    display: grid;
+    gap: .68rem;
+    margin: 1.18rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: #75685d;
+    font-size: .86rem;
+}
+.bag-about-checks li {
+    display: flex;
+    gap: .52rem;
+    align-items: flex-start;
+}
+.bag-about-checks i {
+    color: var(--bag-brown);
+    margin-top: .18rem;
+}
+.bag-about-development__image {
+    display: block;
+    width: 100%;
+    max-height: 23rem;
+    object-fit: cover;
+}
+.bag-about-cta {
+    padding-bottom: 2rem;
+}
+.bag-about-cta__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .78rem;
+    text-align: center;
+    background: var(--bag-brown);
+    color: #fff;
+    border-radius: .3rem;
+    padding: clamp(1.65rem, 4vw, 2.8rem) 1rem;
+}
+.bag-about-cta__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.15rem, 3vw, 1.85rem);
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+.bag-about-cta .bag-about-btn {
+    background: #fff4e7;
+    color: var(--bag-brown);
+    border-color: #fff4e7;
+}
+.bag-about-cta .bag-about-btn:hover,
+.bag-about-cta .bag-about-btn:focus-visible {
+    color: #5f3616;
+    background: #fff;
+    border-color: #fff;
+}
+@media (max-width: 991.98px) {
+    .bag-about-panel,
+    .bag-about-development__inner {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 575.98px) {
+    .bag-about-page {
+        padding-top: 3.55rem;
+    }
+    .bag-about-hero {
+        min-height: 15rem;
+    }
+    .bag-about-expertise {
+        margin-top: 0;
+    }
+    .bag-about-panel {
+        padding: 1.2rem;
+    }
+    .bag-about-collage {
+        min-height: 11.5rem;
+    }
+    .bag-about-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+<div id="page-wrapper" class="d-print-block">
+    {{{ output.standard_top_of_body_html }}}
+    {{> theme_baitalgahwa/navbar }}
+    <div id="page" data-region="mainpage" class="drawers drag-container">
+        <div id="topofscroll" class="main-inner">
+            <main class="bag-about-page" id="bag-about-main">
+                <section class="bag-about-hero" aria-labelledby="bag-about-hero-title">
+                    <div class="bag-about-section">
+                        <h1 class="bag-about-hero__title" id="bag-about-hero-title">About Bait Al Gahwa</h1>
+                        <p class="bag-about-hero__copy">Professional learning inspired by Emirati hospitality, cultural craft, and service excellence.</p>
+                        <a class="bag-about-btn" href="{{{ config.trainingurl }}}">Explore Programmes</a>
+                    </div>
+                </section>
+
+                <section class="bag-about-expertise bag-about-section" aria-labelledby="bag-about-expertise-title">
+                    <div class="bag-about-panel">
+                        <div class="bag-about-collage" aria-hidden="true">
+                            <img class="bag-about-collage__image bag-about-collage__image--one" src="{{{ about_coffee_url }}}" alt="" loading="lazy">
+                            <img class="bag-about-collage__image bag-about-collage__image--two" src="{{{ about_hero_url }}}" alt="" loading="lazy">
+                            <img class="bag-about-collage__image bag-about-collage__image--three" src="{{{ about_activity_url }}}" alt="" loading="lazy">
+                        </div>
+                        <div>
+                            <p class="bag-about-kicker">Expertise Across All Disciplines</p>
+                            <h2 class="bag-about-title" id="bag-about-expertise-title">A Training Platform Built Around Excellence</h2>
+                            <p class="bag-about-copy">Bait Al Gahwa helps professionals build practical capability through guided programmes, thoughtful cultural context, and measurable learning journeys.</p>
+                            <div class="bag-about-metrics" role="list">
+                                <span class="bag-about-metric" role="listitem"><strong>500+</strong><span>Certified Learners</span></span>
+                                <span class="bag-about-metric" role="listitem"><strong>20+</strong><span>Training Experts</span></span>
+                                <span class="bag-about-metric" role="listitem"><strong>50+</strong><span>Expert Sessions</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bag-about-development">
+                    <div class="bag-about-section bag-about-development__inner">
+                        <div>
+                            <p class="bag-about-kicker">Excellence In Professional Development</p>
+                            <h2 class="bag-about-title">Developing Confident Service Leaders</h2>
+                            <p class="bag-about-copy">Our learning experience brings structure, mentor guidance, and practical application together for learners and teams.</p>
+                            <ul class="bag-about-checks">
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Programmes aligned with professional growth and workplace outcomes.</span></li>
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Hands-on training supported by experienced specialists.</span></li>
+                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Progress-focused learning paths for individuals and organizations.</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <img class="bag-about-development__image" src="{{{ about_member_url }}}" alt="" loading="lazy">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bag-about-cta bag-about-section">
+                    <div class="bag-about-cta__panel">
+                        <h2 class="bag-about-cta__title">Ready To Begin Your Journey?</h2>
+                        <a class="bag-about-btn" href="{{{ config.trainingurl }}}">Start Training</a>
+                    </div>
+                </section>
+            </main>
+        </div>
+        {{> theme_baitalgahwa/footer }}
+    </div>
+    {{{ output.standard_after_main_region_html }}}
+</div>
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'], function(Loader, Drawer, Bait) {
+    Drawer.init();
+    Bait.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

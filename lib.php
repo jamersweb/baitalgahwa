@@ -1513,6 +1513,10 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         $blockdraweropen = true;
     }
     $extraclasses = ['uses-drawers'];
+    $scriptname = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+    if (strpos($scriptname, '/theme/baitalgahwa/about.php') !== false) {
+        $extraclasses[] = 'bag-about-body';
+    }
     if ($courseindexopen) {
         $extraclasses[] = 'drawer-open-index';
     }
@@ -1581,6 +1585,11 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     ];
     $context = array_merge($context, theme_baitalgahwa_get_footer_context());
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
+    $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
+    $currentpath = $PAGE->url ? $PAGE->url->get_path(false) : '';
+    $aboutpath = $abouturl->get_path(false);
+    $context['nav_about_active'] = ($currentpath === $aboutpath);
+    $context['nav_home_active'] = !$context['nav_about_active'];
     $context['config'] = [
         'wwwroot' => $CFG->wwwroot,
         'homeurl' => (new \moodle_url('/'))->out(false),
@@ -1589,7 +1598,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'searchurl' => (new \moodle_url('/course/search.php'))->out(false),
         'notificationsurl' => (new \moodle_url('/message/output/popup/notifications.php'))->out(false),
         'messagesurl' => (new \moodle_url('/message/index.php'))->out(false),
-        'abouturl' => (new \moodle_url('/', ['section' => 'about']))->out(false) . '#bag-footer-about',
+        'abouturl' => $abouturl->out(false),
         'trainingurl' => (new \moodle_url('/', ['section' => 'programs']))->out(false) . '#bag-footer-programs',
         'contacturl' => (new \moodle_url('/', ['section' => 'contact']))->out(false) . '#bag-footer-contact',
         'loginurl' => (new \moodle_url('/login/index.php'))->out(false),
