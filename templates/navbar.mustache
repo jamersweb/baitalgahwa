@@ -299,13 +299,13 @@ body.bag-contact-body .baitalgahwa-navbar {
     left: 50%;
     right: auto;
     top: .08rem;
-    width: min(calc(100% - 2.6rem), 1120px);
+    width: min(calc(100% - 2.6rem), 1240px);
     min-height: 3.05rem;
     transform: translateX(-50%);
     border: 0;
     border-radius: 0 0 .28rem .28rem;
     background: rgba(255, 255, 255, .985) !important;
-    padding-inline: clamp(1.05rem, 2.8vw, 2.2rem);
+    padding-inline: clamp(1.35rem, 3.2vw, 2.7rem);
     box-shadow: 0 .35rem 1rem rgba(26, 15, 8, .16);
     pointer-events: auto;
 }
@@ -316,7 +316,7 @@ body.bag-programme-body .baitalgahwa-navbar__inner,
 body.bag-contact-body .baitalgahwa-navbar__inner {
     width: 100%;
     min-height: 3.05rem;
-    gap: clamp(.9rem, 3vw, 2.45rem);
+    gap: clamp(1.15rem, 3.5vw, 3rem);
     justify-content: flex-start;
 }
 body.bag-figma-user-dashboard .baitalgahwa-navbar .navbar-brand,
@@ -324,7 +324,7 @@ body.bag-about-body .baitalgahwa-navbar .navbar-brand,
 body.bag-training-body .baitalgahwa-navbar .navbar-brand,
 body.bag-programme-body .baitalgahwa-navbar .navbar-brand,
 body.bag-contact-body .baitalgahwa-navbar .navbar-brand {
-    margin-right: clamp(.85rem, 3vw, 2.25rem) !important;
+    margin-right: clamp(1rem, 3.4vw, 2.75rem) !important;
 }
 body.bag-figma-user-dashboard .baitalgahwa-custom-logo,
 body.bag-figma-user-dashboard .baitalgahwa-navbar .logo,
@@ -353,6 +353,12 @@ body.bag-programme-body .baitalgahwa-navbar__link,
 body.bag-contact-body .baitalgahwa-navbar__link {
     padding-inline: .08rem;
     font-size: clamp(.58rem, .98vw, .72rem);
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__custom-links {
+    gap: clamp(.9rem, 2.4vw, 2rem);
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth {
+    margin-inline-start: clamp(.7rem, 2.4vw, 2rem);
 }
 body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-link,
 body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary,
@@ -621,7 +627,7 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
         margin-top: .35rem;
     }
     body.bag-figma-user-dashboard .baitalgahwa-navbar {
-        width: min(calc(100% - .7rem), 1120px);
+        width: min(calc(100% - .7rem), 1240px);
         min-height: 2.9rem;
         padding-inline: .7rem;
     }
@@ -759,10 +765,12 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
             <a class="baitalgahwa-navbar__link {{#nav_training_active}}baitalgahwa-navbar__link--active{{/nav_training_active}}" href="{{{ config.trainingurl }}}">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
             <a class="baitalgahwa-navbar__link {{#nav_contact_active}}baitalgahwa-navbar__link--active{{/nav_contact_active}}" href="{{{ config.contacturl }}}">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>
         </div>
+        {{#showauthbuttons}}
         <div class="baitalgahwa-navbar__auth" aria-label="Account actions">
             <a class="baitalgahwa-navbar__auth-link" href="{{{ config.loginurl }}}">Login</a>
             <a class="baitalgahwa-navbar__auth-primary" href="{{{ config.signupurl }}}">Sign Up</a>
         </div>
+        {{/showauthbuttons}}
         {{#primarymoremenu}}
         <div class="primary-navigation d-none d-md-flex d-lg-none">
             {{> core/moremenu}}

@@ -1588,6 +1588,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'mobileprimarynav' => $primarymenu['mobileprimarynav'],
         'usermenu' => $primarymenu['user'],
         'langmenu' => $primarymenu['lang'],
+        'showauthbuttons' => !isloggedin() || isguestuser(),
         'forceblockdraweropen' => $forceblockdraweropen,
         'regionmainsettingsmenu' => $regionmainsettingsmenu,
         'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
