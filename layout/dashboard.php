@@ -37,6 +37,14 @@ $context['bag_home_coffee_url'] = theme_baitalgahwa_get_theme_image_url('auth-si
 $context['bag_home_activity_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
 $context['bag_home_member_url'] = theme_baitalgahwa_get_theme_image_url('member-card');
 $context['dashboard_home_programmes'] = array_slice($context['dashboard_programmes'] ?? [], 0, 3);
+$homeimages = [
+    theme_baitalgahwa_get_theme_image_url('course-gahwa-specialist-hero'),
+    theme_baitalgahwa_get_theme_image_url('auth-signin-hero'),
+    theme_baitalgahwa_get_theme_image_url('auth-signup-hero'),
+];
+foreach ($context['dashboard_home_programmes'] as $index => $programme) {
+    $context['dashboard_home_programmes'][$index]['imageurl'] = $homeimages[$index % count($homeimages)];
+}
 $context['has_dashboard_home_programmes'] = !empty($context['dashboard_home_programmes']);
 $context['show_figma_user_dashboard'] = !is_siteadmin($USER);
 if (!empty($context['featuredcourse'])) {
