@@ -1,0 +1,307 @@
+{{!
+    @template theme_baitalgahwa/training
+    Public Training Programmes catalogue matching the supplied Figma visual.
+}}
+{{> theme_boost/head }}
+<style>
+body.bag-training-body {
+    background: #fffaf3;
+}
+body.bag-training-body #page-header,
+body.bag-training-body .secondary-navigation {
+    display: none;
+}
+.bag-training-page {
+    --bag-brown: #7a4a22;
+    --bag-gold: #c99d42;
+    --bag-ink: #15110d;
+    --bag-muted: #8d7f73;
+    --bag-cream: #fffaf3;
+    --bag-line: #eadfce;
+    background: var(--bag-cream);
+    color: var(--bag-ink);
+    padding-top: 3.55rem;
+    overflow: hidden;
+}
+.bag-training-section {
+    width: min(100%, 1060px);
+    margin: 0 auto;
+    padding-inline: 1.05rem;
+}
+.bag-training-hero {
+    position: relative;
+    min-height: clamp(12.5rem, 27vw, 22rem);
+    isolation: isolate;
+    overflow: hidden;
+}
+.bag-training-hero::before,
+.bag-training-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+.bag-training-hero::before {
+    z-index: -2;
+    background: url('{{{ training_hero_url }}}') center 43% / cover no-repeat;
+    filter: grayscale(100%);
+    transform: scale(1.01);
+}
+.bag-training-hero::after {
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(18, 15, 13, .38), rgba(18, 15, 13, .64));
+}
+.bag-training-catalogue {
+    padding-block: clamp(2.1rem, 4.5vw, 4rem);
+}
+.bag-training-head {
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+.bag-training-title {
+    margin: 0;
+    color: #14100d;
+    font-size: clamp(1.55rem, 3vw, 2.35rem);
+    line-height: 1.08;
+    font-weight: 800;
+}
+.bag-training-copy {
+    margin: .75rem auto 0;
+    color: var(--bag-muted);
+    font-size: .9rem;
+    line-height: 1.65;
+}
+.bag-training-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.15rem;
+}
+.bag-training-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--bag-line);
+    border-radius: .34rem;
+    box-shadow: 0 .75rem 1.35rem rgba(49, 31, 16, .08);
+    transition: transform .16s ease, box-shadow .16s ease;
+}
+.bag-training-card:hover,
+.bag-training-card:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 1.8rem rgba(49, 31, 16, .12);
+}
+.bag-training-card__media {
+    position: relative;
+    overflow: hidden;
+}
+.bag-training-card__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.24;
+    object-fit: cover;
+}
+.bag-training-badge {
+    position: absolute;
+    top: .62rem;
+    left: .62rem;
+    z-index: 1;
+    min-width: 4.2rem;
+    padding: .24rem .56rem;
+    border-radius: 999px;
+    background: #fff4ea;
+    color: var(--bag-brown);
+    font-size: .58rem;
+    font-weight: 800;
+    text-align: center;
+}
+.bag-training-datebar {
+    position: absolute;
+    left: .55rem;
+    right: .55rem;
+    bottom: .55rem;
+    display: flex;
+    justify-content: space-between;
+    gap: .45rem;
+    border-radius: 999px;
+    background: rgba(255, 244, 234, .96);
+    color: var(--bag-brown);
+    padding: .34rem .55rem;
+    font-size: .55rem;
+    font-weight: 800;
+}
+.bag-training-card__body {
+    padding: .9rem .9rem .95rem;
+}
+.bag-training-card__title {
+    margin: 0;
+    color: #14100d;
+    font-size: .95rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+.bag-training-card__text {
+    margin: .52rem 0 .75rem;
+    color: #82776e;
+    font-size: .72rem;
+    line-height: 1.55;
+    min-height: 3.35rem;
+}
+.bag-training-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .7rem;
+    color: var(--bag-brown);
+    font-size: .65rem;
+    font-weight: 800;
+}
+.bag-training-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: .34rem;
+}
+.bag-training-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.7rem;
+    height: 1.52rem;
+    margin-top: .85rem;
+    border-radius: .2rem;
+    background: var(--bag-brown);
+    color: #fff;
+    font-size: .62rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+.bag-training-action:hover,
+.bag-training-action:focus-visible {
+    color: #fff;
+    background: #5f3616;
+    text-decoration: none;
+}
+.bag-training-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: .9rem;
+    padding-top: .72rem;
+    border-top: 1px solid #f0e4d6;
+    color: #8a8178;
+    font-size: .62rem;
+    font-weight: 700;
+}
+.bag-training-pagination {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 2rem;
+}
+.bag-training-pagebtn {
+    display: inline-flex;
+    width: 1.75rem;
+    height: 1.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dfcfbd;
+    border-radius: .18rem;
+    background: #fff;
+    color: var(--bag-brown);
+    font-size: .7rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+.bag-training-pagebtn.is-active,
+.bag-training-pagebtn:hover,
+.bag-training-pagebtn:focus-visible {
+    background: var(--bag-brown);
+    color: #fff;
+    border-color: var(--bag-brown);
+    text-decoration: none;
+}
+@media (max-width: 991.98px) {
+    .bag-training-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 575.98px) {
+    .bag-training-grid {
+        grid-template-columns: 1fr;
+    }
+    .bag-training-hero {
+        min-height: 11rem;
+    }
+}
+</style>
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+<div id="page-wrapper" class="d-print-block">
+    {{{ output.standard_top_of_body_html }}}
+    {{> theme_baitalgahwa/navbar }}
+    <div id="page" data-region="mainpage" class="drawers drag-container">
+        <div id="topofscroll" class="main-inner">
+            <main class="bag-training-page" id="bag-training-main">
+                <section class="bag-training-hero" aria-label="Training programmes"></section>
+
+                <section class="bag-training-catalogue bag-training-section" aria-labelledby="bag-training-title">
+                    <div class="bag-training-head">
+                        <h1 class="bag-training-title" id="bag-training-title">Our Training Programmes</h1>
+                        <p class="bag-training-copy">Our hands-on programmes explore the history, techniques and rituals of Gahwa. Whether you are passionate about heritage or want to deepen your skills, each session offers an immersive experience guided by seasoned experts.</p>
+                    </div>
+
+                    {{#has_training_courses}}
+                    <div class="bag-training-grid" role="list">
+                        {{#training_courses}}
+                        <article class="bag-training-card" role="listitem">
+                            <div class="bag-training-card__media">
+                                {{#imageurl}}<img class="bag-training-card__image" src="{{{ imageurl }}}" alt="" loading="lazy">{{/imageurl}}
+                                {{^imageurl}}<img class="bag-training-card__image" src="{{{ training_fallback_course_url }}}" alt="" loading="lazy">{{/imageurl}}
+                                <span class="bag-training-badge">{{#isnew}}New{{/isnew}}{{^isnew}}Available{{/isnew}}</span>
+                                <div class="bag-training-datebar">
+                                    <span>{{#startdate_display}}{{ startdate_display }}{{/startdate_display}}{{^startdate_display}}Starts Soon{{/startdate_display}}</span>
+                                    <span>{{#enddate_display}}{{ enddate_display }}{{/enddate_display}}{{^enddate_display}}Open Track{{/enddate_display}}</span>
+                                </div>
+                            </div>
+                            <div class="bag-training-card__body">
+                                <h2 class="bag-training-card__title">{{ fullname }}</h2>
+                                {{#summary}}<p class="bag-training-card__text">{{ summary }}</p>{{/summary}}
+                                {{^summary}}<p class="bag-training-card__text">A guided programme with clear outcomes and support along the way.</p>{{/summary}}
+                                <div class="bag-training-meta">
+                                    <span><i class="fa fa-user-circle-o" aria-hidden="true"></i>{{#categoryname}}{{ categoryname }}{{/categoryname}}{{^categoryname}}Category 1{{/categoryname}}</span>
+                                </div>
+                                <a class="bag-training-action" href="{{{ url }}}">Explore</a>
+                                <div class="bag-training-card__foot">
+                                    <span>{{#has_card_schedule}}In Session{{/has_card_schedule}}{{^has_card_schedule}}Flexible{{/has_card_schedule}}</span>
+                                    <span>View more</span>
+                                </div>
+                            </div>
+                        </article>
+                        {{/training_courses}}
+                    </div>
+                    {{/has_training_courses}}
+                    {{^has_training_courses}}
+                    <p class="bag-training-copy">{{#str}}nocourses, theme_baitalgahwa{{/str}}</p>
+                    {{/has_training_courses}}
+
+                    <nav class="bag-training-pagination" aria-label="Training programme pages">
+                        <a class="bag-training-pagebtn is-active" href="#bag-training-main">1</a>
+                        <a class="bag-training-pagebtn" href="#bag-training-main">2</a>
+                        <a class="bag-training-pagebtn" href="#bag-training-main">3</a>
+                        <a class="bag-training-pagebtn" href="#bag-training-main" aria-label="Next page"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </nav>
+                </section>
+            </main>
+        </div>
+        {{> theme_baitalgahwa/footer }}
+    </div>
+    {{{ output.standard_after_main_region_html }}}
+</div>
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'], function(Loader, Drawer, Bait) {
+    Drawer.init();
+    Bait.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

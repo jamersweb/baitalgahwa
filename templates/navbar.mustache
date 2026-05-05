@@ -184,39 +184,47 @@ body.bag-figma-user-dashboard .baitalgahwa-navbar .navbar-toggler,
 body.bag-figma-user-dashboard .baitalgahwa-navbar .primary-navigation {
     display: none !important;
 }
-body.bag-about-body .baitalgahwa-navbar {
+body.bag-about-body .baitalgahwa-navbar,
+body.bag-training-body .baitalgahwa-navbar {
     min-height: 3.55rem;
     padding-inline: .7rem;
     background: rgba(255,255,255,.98) !important;
     border-bottom: 1px solid rgba(122,74,34,.12);
     box-shadow: 0 .45rem 1.1rem rgba(28, 17, 10, .14);
 }
-body.bag-about-body .baitalgahwa-navbar__inner {
+body.bag-about-body .baitalgahwa-navbar__inner,
+body.bag-training-body .baitalgahwa-navbar__inner {
     width: min(100%, 1060px);
     min-height: 3.55rem;
     gap: clamp(.35rem, 1.9vw, 1.2rem);
     justify-content: center;
 }
-body.bag-about-body .baitalgahwa-navbar .navbar-brand {
+body.bag-about-body .baitalgahwa-navbar .navbar-brand,
+body.bag-training-body .baitalgahwa-navbar .navbar-brand {
     display: inline-flex !important;
     margin-right: clamp(.3rem, 2vw, 1.2rem) !important;
     flex-shrink: 0;
 }
 body.bag-about-body .baitalgahwa-custom-logo,
-body.bag-about-body .baitalgahwa-navbar .logo {
+body.bag-about-body .baitalgahwa-navbar .logo,
+body.bag-training-body .baitalgahwa-custom-logo,
+body.bag-training-body .baitalgahwa-navbar .logo {
     max-height: 1.55rem;
 }
-body.bag-about-body .baitalgahwa-navbar__logo-subtitle {
+body.bag-about-body .baitalgahwa-navbar__logo-subtitle,
+body.bag-training-body .baitalgahwa-navbar__logo-subtitle {
     font-size: .32rem;
     letter-spacing: .26em;
 }
-body.bag-about-body .baitalgahwa-navbar__custom-links {
+body.bag-about-body .baitalgahwa-navbar__custom-links,
+body.bag-training-body .baitalgahwa-navbar__custom-links {
     display: inline-flex !important;
     gap: clamp(.45rem, 2.3vw, 1.35rem);
     margin-inline: 0;
     flex: 0 1 auto;
 }
-body.bag-about-body .baitalgahwa-navbar__link {
+body.bag-about-body .baitalgahwa-navbar__link,
+body.bag-training-body .baitalgahwa-navbar__link {
     padding-block: .25rem;
     color: #33271f;
     font-size: clamp(.6rem, 1.15vw, .78rem);
@@ -224,19 +232,26 @@ body.bag-about-body .baitalgahwa-navbar__link {
 }
 body.bag-about-body .baitalgahwa-navbar__link--active::after,
 body.bag-about-body .baitalgahwa-navbar__link:hover::after,
-body.bag-about-body .baitalgahwa-navbar__link:focus-visible::after {
+body.bag-about-body .baitalgahwa-navbar__link:focus-visible::after,
+body.bag-training-body .baitalgahwa-navbar__link--active::after,
+body.bag-training-body .baitalgahwa-navbar__link:hover::after,
+body.bag-training-body .baitalgahwa-navbar__link:focus-visible::after {
     width: 1.1rem;
     bottom: -.44rem;
     height: 1px;
 }
-body.bag-about-body .baitalgahwa-navbar__auth {
+body.bag-about-body .baitalgahwa-navbar__auth,
+body.bag-training-body .baitalgahwa-navbar__auth {
     display: inline-flex;
     flex-shrink: 0;
     margin-inline-start: clamp(.2rem, 2vw, 1rem);
 }
 body.bag-about-body .baitalgahwa-navbar__endcap,
 body.bag-about-body .baitalgahwa-navbar .navbar-toggler,
-body.bag-about-body .baitalgahwa-navbar .primary-navigation {
+body.bag-about-body .baitalgahwa-navbar .primary-navigation,
+body.bag-training-body .baitalgahwa-navbar__endcap,
+body.bag-training-body .baitalgahwa-navbar .navbar-toggler,
+body.bag-training-body .baitalgahwa-navbar .primary-navigation {
     display: none !important;
 }
 .baitalgahwa-navbar .primary-navigation {
@@ -504,23 +519,29 @@ body.bag-about-body .baitalgahwa-navbar .primary-navigation {
         padding: .38rem .52rem;
         font-size: .58rem;
     }
-    body.bag-about-body .baitalgahwa-navbar {
+    body.bag-about-body .baitalgahwa-navbar,
+    body.bag-training-body .baitalgahwa-navbar {
         padding-inline: .35rem;
     }
-    body.bag-about-body .baitalgahwa-navbar__inner {
+    body.bag-about-body .baitalgahwa-navbar__inner,
+    body.bag-training-body .baitalgahwa-navbar__inner {
         flex-wrap: nowrap;
         gap: .42rem;
     }
-    body.bag-about-body .baitalgahwa-navbar__custom-links {
+    body.bag-about-body .baitalgahwa-navbar__custom-links,
+    body.bag-training-body .baitalgahwa-navbar__custom-links {
         min-width: 0;
         overflow-x: auto;
         scrollbar-width: none;
     }
-    body.bag-about-body .baitalgahwa-navbar__custom-links::-webkit-scrollbar {
+    body.bag-about-body .baitalgahwa-navbar__custom-links::-webkit-scrollbar,
+    body.bag-training-body .baitalgahwa-navbar__custom-links::-webkit-scrollbar {
         display: none;
     }
     body.bag-about-body .baitalgahwa-navbar__auth-link,
-    body.bag-about-body .baitalgahwa-navbar__auth-primary {
+    body.bag-about-body .baitalgahwa-navbar__auth-primary,
+    body.bag-training-body .baitalgahwa-navbar__auth-link,
+    body.bag-training-body .baitalgahwa-navbar__auth-primary {
         min-height: 1.65rem;
         padding: .38rem .52rem;
         font-size: .58rem;
@@ -554,7 +575,7 @@ body.bag-about-body .baitalgahwa-navbar .primary-navigation {
         <div class="baitalgahwa-navbar__custom-links d-none d-lg-flex" aria-label="Primary">
             <a class="baitalgahwa-navbar__link {{#nav_home_active}}baitalgahwa-navbar__link--active{{/nav_home_active}}" href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
             <a class="baitalgahwa-navbar__link {{#nav_about_active}}baitalgahwa-navbar__link--active{{/nav_about_active}}" href="{{{ config.abouturl }}}">{{#str}}aboutus, theme_baitalgahwa{{/str}}</a>
-            <a class="baitalgahwa-navbar__link" href="{{{ config.trainingurl }}}">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
+            <a class="baitalgahwa-navbar__link {{#nav_training_active}}baitalgahwa-navbar__link--active{{/nav_training_active}}" href="{{{ config.trainingurl }}}">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
             <a class="baitalgahwa-navbar__link" href="{{{ config.contacturl }}}">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>
         </div>
         <div class="baitalgahwa-navbar__auth" aria-label="Account actions">

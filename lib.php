@@ -1517,6 +1517,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     if (strpos($scriptname, '/theme/baitalgahwa/about.php') !== false) {
         $extraclasses[] = 'bag-about-body';
     }
+    if (strpos($scriptname, '/theme/baitalgahwa/training.php') !== false) {
+        $extraclasses[] = 'bag-training-body';
+    }
     if ($PAGE->pagelayout === 'mydashboard' && !is_siteadmin($USER)) {
         $extraclasses[] = 'bag-figma-user-dashboard';
     }
@@ -1589,10 +1592,13 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $context = array_merge($context, theme_baitalgahwa_get_footer_context());
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
     $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
+    $trainingurl = new \moodle_url('/theme/baitalgahwa/training.php');
     $currentpath = $PAGE->url ? $PAGE->url->get_path(false) : '';
     $aboutpath = $abouturl->get_path(false);
+    $trainingpath = $trainingurl->get_path(false);
     $context['nav_about_active'] = ($currentpath === $aboutpath);
-    $context['nav_home_active'] = !$context['nav_about_active'];
+    $context['nav_training_active'] = ($currentpath === $trainingpath);
+    $context['nav_home_active'] = !$context['nav_about_active'] && !$context['nav_training_active'];
     $context['config'] = [
         'wwwroot' => $CFG->wwwroot,
         'homeurl' => (new \moodle_url('/'))->out(false),
@@ -1602,7 +1608,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'notificationsurl' => (new \moodle_url('/message/output/popup/notifications.php'))->out(false),
         'messagesurl' => (new \moodle_url('/message/index.php'))->out(false),
         'abouturl' => $abouturl->out(false),
-        'trainingurl' => (new \moodle_url('/', ['section' => 'programs']))->out(false) . '#bag-footer-programs',
+        'trainingurl' => $trainingurl->out(false),
         'contacturl' => (new \moodle_url('/', ['section' => 'contact']))->out(false) . '#bag-footer-contact',
         'loginurl' => (new \moodle_url('/login/index.php'))->out(false),
         'signupurl' => (new \moodle_url('/login/signup.php'))->out(false),
