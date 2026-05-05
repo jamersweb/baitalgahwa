@@ -1592,6 +1592,8 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'abouturl' => (new \moodle_url('/', ['section' => 'about']))->out(false) . '#bag-footer-about',
         'trainingurl' => (new \moodle_url('/', ['section' => 'programs']))->out(false) . '#bag-footer-programs',
         'contacturl' => (new \moodle_url('/', ['section' => 'contact']))->out(false) . '#bag-footer-contact',
+        'loginurl' => (new \moodle_url('/login/index.php'))->out(false),
+        'signupurl' => (new \moodle_url('/login/signup.php'))->out(false),
     ];
     $label = get_string('enrol_intro_heading', 'theme_baitalgahwa');
     $jsonlabel = json_encode($label, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG);

@@ -84,6 +84,121 @@
     border-radius: 999px;
     background: #8a5a2b;
 }
+.baitalgahwa-navbar__auth {
+    display: none;
+    align-items: center;
+    gap: .45rem;
+    margin-inline-start: auto;
+    white-space: nowrap;
+}
+.baitalgahwa-navbar__auth-link,
+.baitalgahwa-navbar__auth-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+    padding: .48rem .95rem;
+    border-radius: .18rem;
+    font-size: .76rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color .16s ease, border-color .16s ease, color .16s ease, transform .16s ease;
+}
+.baitalgahwa-navbar__auth-link {
+    color: #7a4a22;
+    border: 1px solid transparent;
+    background: transparent;
+}
+.baitalgahwa-navbar__auth-primary {
+    color: #fff;
+    border: 1px solid #7a4a22;
+    background: #7a4a22;
+}
+.baitalgahwa-navbar__auth-link:hover,
+.baitalgahwa-navbar__auth-link:focus-visible {
+    color: #5f3616;
+    background: #fbf3eb;
+    text-decoration: none;
+}
+.baitalgahwa-navbar__auth-primary:hover,
+.baitalgahwa-navbar__auth-primary:focus-visible {
+    color: #fff;
+    background: #5f3616;
+    border-color: #5f3616;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar,
+body#page-my-index .baitalgahwa-navbar {
+    min-height: 3.55rem;
+    padding-inline: .7rem;
+    background: rgba(255,255,255,.98) !important;
+    border-bottom: 1px solid rgba(122,74,34,.12);
+    box-shadow: 0 .45rem 1.1rem rgba(28, 17, 10, .14);
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar__inner,
+body#page-my-index .baitalgahwa-navbar__inner {
+    width: min(100%, 1060px);
+    min-height: 3.55rem;
+    gap: clamp(.35rem, 1.9vw, 1.2rem);
+    justify-content: center;
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar .navbar-brand,
+body#page-my-index .baitalgahwa-navbar .navbar-brand {
+    display: inline-flex !important;
+    margin-right: clamp(.3rem, 2vw, 1.2rem) !important;
+    flex-shrink: 0;
+}
+body.pagelayout-mydashboard .baitalgahwa-custom-logo,
+body.pagelayout-mydashboard .baitalgahwa-navbar .logo,
+body#page-my-index .baitalgahwa-custom-logo,
+body#page-my-index .baitalgahwa-navbar .logo {
+    max-height: 1.55rem;
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar__logo-subtitle,
+body#page-my-index .baitalgahwa-navbar__logo-subtitle {
+    font-size: .32rem;
+    letter-spacing: .26em;
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar__custom-links,
+body#page-my-index .baitalgahwa-navbar__custom-links {
+    display: inline-flex !important;
+    gap: clamp(.45rem, 2.3vw, 1.35rem);
+    margin-inline: 0;
+    flex: 0 1 auto;
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar__link,
+body#page-my-index .baitalgahwa-navbar__link {
+    padding-block: .25rem;
+    color: #33271f;
+    font-size: clamp(.6rem, 1.15vw, .78rem);
+    font-weight: 700;
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar__link--active::after,
+body.pagelayout-mydashboard .baitalgahwa-navbar__link:hover::after,
+body.pagelayout-mydashboard .baitalgahwa-navbar__link:focus-visible::after,
+body#page-my-index .baitalgahwa-navbar__link--active::after,
+body#page-my-index .baitalgahwa-navbar__link:hover::after,
+body#page-my-index .baitalgahwa-navbar__link:focus-visible::after {
+    width: 1.1rem;
+    bottom: -.44rem;
+    height: 1px;
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar__auth,
+body#page-my-index .baitalgahwa-navbar__auth {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-inline-start: clamp(.2rem, 2vw, 1rem);
+}
+body.pagelayout-mydashboard .baitalgahwa-navbar__endcap,
+body#page-my-index .baitalgahwa-navbar__endcap,
+body.pagelayout-mydashboard .baitalgahwa-navbar .navbar-toggler,
+body#page-my-index .baitalgahwa-navbar .navbar-toggler,
+body.pagelayout-mydashboard .baitalgahwa-navbar .primary-navigation,
+body#page-my-index .baitalgahwa-navbar .primary-navigation {
+    display: none !important;
+}
 .baitalgahwa-navbar .primary-navigation {
     margin-right: auto;
 }
@@ -328,6 +443,33 @@
         flex-wrap: wrap;
         margin-top: .35rem;
     }
+    body.pagelayout-mydashboard .baitalgahwa-navbar,
+    body#page-my-index .baitalgahwa-navbar {
+        padding-inline: .35rem;
+    }
+    body.pagelayout-mydashboard .baitalgahwa-navbar__inner,
+    body#page-my-index .baitalgahwa-navbar__inner {
+        flex-wrap: nowrap;
+        gap: .42rem;
+    }
+    body.pagelayout-mydashboard .baitalgahwa-navbar__custom-links,
+    body#page-my-index .baitalgahwa-navbar__custom-links {
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+    body.pagelayout-mydashboard .baitalgahwa-navbar__custom-links::-webkit-scrollbar,
+    body#page-my-index .baitalgahwa-navbar__custom-links::-webkit-scrollbar {
+        display: none;
+    }
+    body.pagelayout-mydashboard .baitalgahwa-navbar__auth-link,
+    body.pagelayout-mydashboard .baitalgahwa-navbar__auth-primary,
+    body#page-my-index .baitalgahwa-navbar__auth-link,
+    body#page-my-index .baitalgahwa-navbar__auth-primary {
+        min-height: 1.65rem;
+        padding: .38rem .52rem;
+        font-size: .58rem;
+    }
 }
 </style>
 <header class="baitalgahwa-header">
@@ -359,6 +501,10 @@
             <a class="baitalgahwa-navbar__link" href="{{{ config.abouturl }}}">{{#str}}aboutus, theme_baitalgahwa{{/str}}</a>
             <a class="baitalgahwa-navbar__link" href="{{{ config.trainingurl }}}">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
             <a class="baitalgahwa-navbar__link" href="{{{ config.contacturl }}}">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>
+        </div>
+        <div class="baitalgahwa-navbar__auth" aria-label="Account actions">
+            <a class="baitalgahwa-navbar__auth-link" href="{{{ config.loginurl }}}">Login</a>
+            <a class="baitalgahwa-navbar__auth-primary" href="{{{ config.signupurl }}}">Sign Up</a>
         </div>
         {{#primarymoremenu}}
         <div class="primary-navigation d-none d-md-flex d-lg-none">
