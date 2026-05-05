@@ -32,6 +32,12 @@ $context = array_merge($context, theme_baitalgahwa_get_learning_page_context($us
 $context['config']['calurl'] = (new \moodle_url('/calendar/view.php'))->out(false);
 $context['config']['membersurl'] = (new \moodle_url('/my/courses.php'))->out(false);
 $context['config']['coursetodo'] = (new \moodle_url('/my/courses.php'))->out(false);
+$context['bag_home_hero_url'] = theme_baitalgahwa_get_theme_image_url('misc-reference');
+$context['bag_home_coffee_url'] = theme_baitalgahwa_get_theme_image_url('auth-signup-hero');
+$context['bag_home_activity_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
+$context['bag_home_member_url'] = theme_baitalgahwa_get_theme_image_url('member-card');
+$context['dashboard_home_programmes'] = array_slice($context['dashboard_programmes'] ?? [], 0, 3);
+$context['has_dashboard_home_programmes'] = !empty($context['dashboard_home_programmes']);
 if (!empty($context['featuredcourse'])) {
     $context['config']['membersurl'] = (new \moodle_url('/user/index.php', ['id' => $context['featuredcourse']['id']]))->out(false);
 }
