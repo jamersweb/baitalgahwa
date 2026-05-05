@@ -35,6 +35,11 @@ $context = theme_baitalgahwa_bootstrap_drawer_template_context();
 $context['training_hero_url'] = theme_baitalgahwa_get_theme_image_url('misc-reference');
 $context['training_fallback_course_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
 $courses = theme_baitalgahwa_get_featured_courses(6);
+foreach ($courses as $index => $course) {
+    if (!empty($course['id'])) {
+        $courses[$index]['detailurl'] = (new \moodle_url('/theme/baitalgahwa/programme.php', ['id' => $course['id']]))->out(false);
+    }
+}
 if (!empty($courses)) {
     $i = 0;
     $n = count($courses);

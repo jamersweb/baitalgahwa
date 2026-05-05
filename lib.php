@@ -1520,6 +1520,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     if (strpos($scriptname, '/theme/baitalgahwa/training.php') !== false) {
         $extraclasses[] = 'bag-training-body';
     }
+    if (strpos($scriptname, '/theme/baitalgahwa/programme.php') !== false) {
+        $extraclasses[] = 'bag-programme-body';
+    }
     if ($PAGE->pagelayout === 'mydashboard' && !is_siteadmin($USER)) {
         $extraclasses[] = 'bag-figma-user-dashboard';
     }
@@ -1593,11 +1596,12 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
     $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
     $trainingurl = new \moodle_url('/theme/baitalgahwa/training.php');
+    $programmepath = (new \moodle_url('/theme/baitalgahwa/programme.php'))->get_path(false);
     $currentpath = $PAGE->url ? $PAGE->url->get_path(false) : '';
     $aboutpath = $abouturl->get_path(false);
     $trainingpath = $trainingurl->get_path(false);
     $context['nav_about_active'] = ($currentpath === $aboutpath);
-    $context['nav_training_active'] = ($currentpath === $trainingpath);
+    $context['nav_training_active'] = ($currentpath === $trainingpath || $currentpath === $programmepath);
     $context['nav_home_active'] = !$context['nav_about_active'] && !$context['nav_training_active'];
     $context['config'] = [
         'wwwroot' => $CFG->wwwroot,

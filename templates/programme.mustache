@@ -1,0 +1,318 @@
+{{!
+    @template theme_baitalgahwa/programme
+    Public programme detail page opened from Training Programme cards.
+}}
+{{> theme_boost/head }}
+<style>
+body.bag-programme-body {
+    background: #f6efe5;
+}
+body.bag-programme-body #page-header,
+body.bag-programme-body .secondary-navigation {
+    display: none;
+}
+.bag-programme-page {
+    --bag-brown: #7a4a22;
+    --bag-gold: #d0af63;
+    --bag-muted: rgba(255,255,255,.78);
+    --bag-cream: #f6efe5;
+    background: var(--bag-cream);
+    padding-top: 3.55rem;
+    color: #15110d;
+}
+.bag-programme-section {
+    position: relative;
+    width: min(100%, 1060px);
+    margin: 0 auto;
+    padding-inline: 1.05rem;
+}
+.bag-programme-hero {
+    position: relative;
+    min-height: 21rem;
+    overflow: hidden;
+    background: var(--bag-brown);
+    color: #fff;
+}
+.bag-programme-hero::before {
+    content: "";
+    position: absolute;
+    left: -7rem;
+    bottom: -5rem;
+    width: 28rem;
+    height: 28rem;
+    background: url('{{{ footerflowerurl }}}') center / contain no-repeat;
+    opacity: .13;
+}
+.bag-programme-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(16rem, 23rem) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    padding-top: 2.2rem;
+}
+.bag-programme-card {
+    overflow: hidden;
+    background: #fff;
+    border-radius: .42rem;
+    box-shadow: 0 1.1rem 2rem rgba(31, 18, 10, .28);
+}
+.bag-programme-card__media {
+    position: relative;
+}
+.bag-programme-card__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: .82;
+    object-fit: cover;
+}
+.bag-programme-badge {
+    position: absolute;
+    top: .7rem;
+    left: .7rem;
+    padding: .28rem .72rem;
+    border-radius: 999px;
+    background: #fff4ea;
+    color: var(--bag-brown);
+    font-size: .62rem;
+    font-weight: 800;
+}
+.bag-programme-card__fee {
+    padding: .65rem 1rem;
+    color: #5f4737;
+    text-align: center;
+    font-size: .72rem;
+    font-weight: 800;
+}
+.bag-programme-enrol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2.25rem;
+    margin: 0 .75rem .55rem;
+    border-radius: .25rem;
+    background: var(--bag-brown);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+.bag-programme-enrol:hover,
+.bag-programme-enrol:focus-visible {
+    color: #fff;
+    background: #5f3616;
+    text-decoration: none;
+}
+.bag-programme-card__seats {
+    padding: 0 1rem .9rem;
+    color: #8b7c70;
+    text-align: center;
+    font-size: .62rem;
+    font-weight: 700;
+}
+.bag-programme-copy {
+    padding-top: .9rem;
+}
+.bag-programme-title {
+    margin: 0 0 .5rem;
+    color: #fff;
+    font-size: clamp(1.7rem, 3.5vw, 2.7rem);
+    font-weight: 800;
+    line-height: 1.05;
+}
+.bag-programme-summary {
+    max-width: 37rem;
+    margin: 0 0 .85rem;
+    color: var(--bag-muted);
+    font-size: .82rem;
+    line-height: 1.55;
+}
+.bag-programme-dates {
+    display: inline-flex;
+    gap: .75rem;
+    max-width: 100%;
+    border-radius: 999px;
+    background: #fff4ea;
+    color: var(--bag-brown);
+    padding: .42rem .78rem;
+    font-size: .62rem;
+    font-weight: 800;
+}
+.bag-programme-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 34rem;
+    margin-top: 1rem;
+}
+.bag-programme-fact span {
+    display: block;
+    color: #d7bd86;
+    font-size: .76rem;
+    font-weight: 800;
+}
+.bag-programme-fact strong {
+    display: block;
+    margin-top: .25rem;
+    color: #fff;
+    font-size: .9rem;
+}
+.bag-programme-host {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+}
+.bag-programme-host__avatar {
+    width: 2.45rem;
+    height: 2.45rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.bag-programme-host__name {
+    display: block;
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 800;
+}
+.bag-programme-host__role {
+    display: block;
+    color: rgba(255,255,255,.72);
+    font-size: .68rem;
+}
+.bag-programme-learn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+    padding: .55rem 1rem;
+    border-radius: .22rem;
+    background: #fff4ea;
+    color: var(--bag-brown);
+    font-size: .7rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+.bag-programme-learn:hover,
+.bag-programme-learn:focus-visible {
+    color: #5f3616;
+    background: #fff;
+    text-decoration: none;
+}
+.bag-programme-main {
+    padding-block: 1.4rem 4.5rem;
+}
+.bag-programme-main__grid {
+    display: grid;
+    grid-template-columns: minmax(16rem, 23rem) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+}
+.bag-programme-outcomes {
+    align-self: start;
+}
+.bag-programme-outcomes__title {
+    margin: 0 0 .9rem;
+    border-radius: .22rem;
+    background: var(--bag-gold);
+    color: #654018;
+    padding: 1rem 1.2rem;
+    font-size: .95rem;
+    font-weight: 800;
+}
+.bag-programme-outcome {
+    margin: 0 0 .75rem;
+    border-radius: 999px;
+    background: #fff;
+    color: #5e524a;
+    padding: .85rem 1.1rem;
+    box-shadow: 0 .65rem 1.2rem rgba(60, 38, 20, .07);
+    font-size: .78rem;
+    line-height: 1.45;
+}
+.bag-programme-spacer {
+    min-height: 5rem;
+}
+@media (max-width: 767.98px) {
+    .bag-programme-hero__inner,
+    .bag-programme-main__grid {
+        grid-template-columns: 1fr;
+    }
+    .bag-programme-card__image {
+        aspect-ratio: 1.18;
+    }
+    .bag-programme-facts {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+<div id="page-wrapper" class="d-print-block">
+    {{{ output.standard_top_of_body_html }}}
+    {{> theme_baitalgahwa/navbar }}
+    <div id="page" data-region="mainpage" class="drawers drag-container">
+        <div id="topofscroll" class="main-inner">
+            <main class="bag-programme-page" id="bag-programme-main">
+                <section class="bag-programme-hero">
+                    <div class="bag-programme-section bag-programme-hero__inner">
+                        <aside class="bag-programme-card">
+                            <div class="bag-programme-card__media">
+                                {{#programme.imageurl}}<img class="bag-programme-card__image" src="{{{ programme.imageurl }}}" alt="" loading="lazy">{{/programme.imageurl}}
+                                <span class="bag-programme-badge">{{#programme.isnew}}New{{/programme.isnew}}{{^programme.isnew}}Available{{/programme.isnew}}</span>
+                            </div>
+                            <div class="bag-programme-card__fee">{{ programme.fee_line }}</div>
+                            <a class="bag-programme-enrol" href="{{{ programme.enrolurl }}}">Enroll Now</a>
+                            <div class="bag-programme-card__seats">{{ programme.seat_line }}</div>
+                        </aside>
+
+                        <div class="bag-programme-copy">
+                            <h1 class="bag-programme-title">{{ programme.fullname }}</h1>
+                            <p class="bag-programme-summary">{{ programme.summary }}</p>
+                            <div class="bag-programme-dates">
+                                <span>{{#programme.startdate_display}}It starts on {{ programme.startdate_display }}{{/programme.startdate_display}}{{^programme.startdate_display}}Starts soon{{/programme.startdate_display}}</span>
+                                <span>{{#programme.enddate_display}}It end on {{ programme.enddate_display }}{{/programme.enddate_display}}{{^programme.enddate_display}}Open track{{/programme.enddate_display}}</span>
+                            </div>
+                            <div class="bag-programme-facts">
+                                <div class="bag-programme-fact"><span>Duration</span><strong>{{ programme.duration }}</strong></div>
+                                <div class="bag-programme-fact"><span>Languages</span><strong>{{ programme.languages }}</strong></div>
+                                <div class="bag-programme-fact"><span>Location</span><strong>{{ programme.location }}</strong></div>
+                            </div>
+                            <div class="bag-programme-host">
+                                {{#programme.imageurl}}<img class="bag-programme-host__avatar" src="{{{ programme.imageurl }}}" alt="" loading="lazy">{{/programme.imageurl}}
+                                <span>
+                                    <span class="bag-programme-host__name">{{ programme.instructor_host }}</span>
+                                    <span class="bag-programme-host__role">Out of Gahwa Host</span>
+                                </span>
+                                <a class="bag-programme-learn" href="{{{ programme.learnurl }}}">Learn and access</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bag-programme-main">
+                    <div class="bag-programme-section bag-programme-main__grid">
+                        <div class="bag-programme-spacer" aria-hidden="true"></div>
+                        <div class="bag-programme-outcomes">
+                            <h2 class="bag-programme-outcomes__title">Program Outcome</h2>
+                            {{#programme_outcomes}}
+                            <p class="bag-programme-outcome">{{ text }}</p>
+                            {{/programme_outcomes}}
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        {{> theme_baitalgahwa/footer }}
+    </div>
+    {{{ output.standard_after_main_region_html }}}
+</div>
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'], function(Loader, Drawer, Bait) {
+    Drawer.init();
+    Bait.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}
