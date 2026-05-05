@@ -11,6 +11,16 @@ body.bag-training-body #page-header,
 body.bag-training-body .secondary-navigation {
     display: none;
 }
+body.bag-training-body #page,
+body.bag-training-body #topofscroll,
+body.bag-training-body .main-inner {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background: #fffaf3;
+}
+body.bag-training-body #page.drawers {
+    padding-top: 0 !important;
+}
 .bag-training-page {
     --bag-brown: #7a4a22;
     --bag-gold: #c99d42;
@@ -30,7 +40,10 @@ body.bag-training-body .secondary-navigation {
 }
 .bag-training-hero {
     position: relative;
-    min-height: clamp(13rem, 27vw, 20rem);
+    width: 100vw;
+    max-width: 100vw;
+    min-height: clamp(12.8rem, 26vw, 19rem);
+    margin-inline: calc(50% - 50vw);
     isolation: isolate;
     overflow: hidden;
 }
@@ -42,7 +55,7 @@ body.bag-training-body .secondary-navigation {
 }
 .bag-training-hero::before {
     z-index: -2;
-    background: url('{{{ training_hero_url }}}') center 43% / cover no-repeat;
+    background: url('{{{ training_hero_url }}}') center top / 100% auto no-repeat;
     transform: scale(1.01);
 }
 .bag-training-hero::after {
@@ -228,6 +241,10 @@ body.bag-training-body .secondary-navigation {
     }
     .bag-training-hero {
         min-height: 11rem;
+    }
+    .bag-training-hero::before {
+        background-size: cover;
+        background-position: center top;
     }
 }
 </style>
