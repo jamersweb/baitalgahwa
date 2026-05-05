@@ -32,7 +32,7 @@ $PAGE->set_title(format_string($SITE->fullname) . ': About Us');
 $PAGE->set_heading(format_string($SITE->fullname));
 
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
-$context['about_hero_url'] = theme_baitalgahwa_get_theme_image_url('misc-reference');
+$context['about_hero_url'] = theme_baitalgahwa_get_theme_image_url('hero-workshop-bg');
 $context['about_coffee_url'] = theme_baitalgahwa_get_theme_image_url('auth-signup-hero');
 $context['about_activity_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
 $context['about_member_url'] = theme_baitalgahwa_get_theme_image_url('member-card');

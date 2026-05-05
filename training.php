@@ -32,7 +32,7 @@ $PAGE->set_title(format_string($SITE->fullname) . ': Training Programmes');
 $PAGE->set_heading(format_string($SITE->fullname));
 
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
-$context['training_hero_url'] = theme_baitalgahwa_get_theme_image_url('misc-reference');
+$context['training_hero_url'] = theme_baitalgahwa_get_theme_image_url('hero-workshop-bg');
 $context['training_fallback_course_url'] = theme_baitalgahwa_get_theme_image_url('course-activity-layout');
 $courses = theme_baitalgahwa_get_featured_courses(6);
 $trainingimages = [
