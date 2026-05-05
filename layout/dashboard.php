@@ -38,6 +38,7 @@ $context['bag_home_activity_url'] = theme_baitalgahwa_get_theme_image_url('cours
 $context['bag_home_member_url'] = theme_baitalgahwa_get_theme_image_url('member-card');
 $context['dashboard_home_programmes'] = array_slice($context['dashboard_programmes'] ?? [], 0, 3);
 $context['has_dashboard_home_programmes'] = !empty($context['dashboard_home_programmes']);
+$context['show_figma_user_dashboard'] = !is_siteadmin($USER);
 if (!empty($context['featuredcourse'])) {
     $context['config']['membersurl'] = (new \moodle_url('/user/index.php', ['id' => $context['featuredcourse']['id']]))->out(false);
 }

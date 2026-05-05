@@ -985,7 +985,9 @@ body#page-my-index #topofscroll.main-inner {
                 {{/hasblocks}}
             </div>
             {{{ output.full_header }}}
+            {{#show_figma_user_dashboard}}
             {{> theme_baitalgahwa/components/figma_dashboard_home }}
+            {{/show_figma_user_dashboard}}
             <main class="baitalgahwa-dashboard" id="bag-dashboard-overview">
                 <div class="baitalgahwa-dashboard-shell">
                     <h1 class="baitalgahwa-dashboard-title">{{#str}}dashboard_pagetitle, theme_baitalgahwa{{/str}}</h1>

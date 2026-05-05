@@ -1492,7 +1492,7 @@ function theme_baitalgahwa_get_course_dashboard_context(bool $forceenrolhub = fa
  * @return array
  */
 function theme_baitalgahwa_bootstrap_drawer_template_context() {
-    global $OUTPUT, $PAGE, $SITE, $CFG;
+    global $OUTPUT, $PAGE, $SITE, $CFG, $USER;
     require_once($CFG->libdir . '/behat/lib.php');
     require_once($CFG->dirroot . '/course/lib.php');
     $coursedashboardctx = theme_baitalgahwa_get_course_dashboard_context();
@@ -1516,6 +1516,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $scriptname = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
     if (strpos($scriptname, '/theme/baitalgahwa/about.php') !== false) {
         $extraclasses[] = 'bag-about-body';
+    }
+    if ($PAGE->pagelayout === 'mydashboard' && !is_siteadmin($USER)) {
+        $extraclasses[] = 'bag-figma-user-dashboard';
     }
     if ($courseindexopen) {
         $extraclasses[] = 'drawer-open-index';
