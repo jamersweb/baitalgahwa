@@ -1,0 +1,198 @@
+// Site administration landing/search pages. Keep Moodle admin links and forms intact.
+body#page-admin-search,
+body#page-admin-index {
+  --bag-admin-brown: #754a24;
+  --bag-admin-brown-dark: #5f3616;
+  --bag-admin-gold: #c9a227;
+  --bag-admin-cream: #fcfaf7;
+  --bag-admin-line: rgba(117, 74, 36, 0.22);
+  --bag-admin-soft: rgba(117, 74, 36, 0.07);
+  --bag-admin-ink: #17120e;
+  --bag-admin-muted: #6f6862;
+
+  background: var(--bag-admin-cream);
+
+  #page.drawers,
+  #topofscroll.main-inner,
+  #page.drawers .main-inner,
+  .header-maxwidth,
+  #region-main-box,
+  #region-main {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #page-header,
+  .tertiary-navigation {
+    display: none;
+  }
+
+  #region-main {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #page-content {
+    width: min(calc(100% - clamp(3rem, 10vw, 12rem)), 1560px);
+    max-width: 1560px;
+    margin: 2.75rem auto 4.5rem;
+    padding: 0;
+  }
+
+  #region-main > div[role="main"] {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #region-main h2:first-child,
+  #region-main .h2:first-child {
+    margin: 0 0 1.7rem;
+    color: var(--bag-admin-ink);
+    font-size: clamp(1.7rem, 2.2vw, 2.45rem);
+    font-weight: 800;
+    line-height: 1.12;
+  }
+
+  #adminsettings,
+  .adminsettings,
+  .settingsform,
+  #region-main > div[role="main"] > .box,
+  #region-main .box.generalbox {
+    border: 1px solid var(--bag-admin-line);
+    border-radius: 1.15rem;
+    background: linear-gradient(180deg, #fff 0%, #fffdfb 100%);
+    box-shadow: 0 0.55rem 1.25rem rgba(20, 12, 7, 0.035);
+    padding: clamp(1.25rem, 2vw, 2rem);
+  }
+
+  #adminsettings .nav-tabs,
+  #region-main .nav-tabs,
+  #region-main .moremenu.navigation {
+    gap: clamp(1.45rem, 3.8vw, 4.5rem);
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #26211d;
+  }
+
+  #adminsettings .nav-link,
+  #region-main .nav-tabs .nav-link,
+  #region-main .moremenu.navigation .nav-link {
+    padding: 0 0 1rem;
+    border: 0;
+    background: transparent;
+    color: #2f2f2f;
+    font-weight: 800;
+    box-shadow: none;
+  }
+
+  #adminsettings .nav-link.active,
+  #region-main .nav-tabs .nav-link.active,
+  #region-main .active > .nav-link,
+  #region-main a[aria-current="true"] {
+    color: var(--bag-admin-brown);
+    box-shadow: inset 0 -0.34rem 0 var(--bag-admin-brown);
+  }
+
+  #region-main form[action*="search.php"],
+  #region-main .simplesearchform,
+  #region-main .adminsearchform {
+    margin-bottom: 1.5rem;
+  }
+
+  #region-main input[type="search"],
+  #region-main input.form-control,
+  #region-main .form-control {
+    border-color: #e4d8cf;
+    border-radius: 0.7rem;
+    color: #3b332d;
+    box-shadow: none;
+  }
+
+  #region-main input[type="search"]:focus,
+  #region-main input.form-control:focus,
+  #region-main .form-control:focus {
+    border-color: var(--bag-admin-brown);
+    box-shadow: 0 0 0 0.18rem rgba(117, 74, 36, 0.12);
+  }
+
+  #region-main .btn-primary,
+  #region-main button.btn-primary,
+  #region-main input.btn-primary,
+  #region-main .simplesearchform button {
+    border-color: var(--bag-admin-brown);
+    background: var(--bag-admin-brown);
+    color: #fff;
+    border-radius: 0.55rem;
+    font-weight: 700;
+  }
+
+  #region-main .adminsettings h3,
+  #region-main .settingsform h3,
+  #region-main .box h3,
+  #region-main .adminsearchresult h3 {
+    color: var(--bag-admin-brown);
+    font-size: clamp(1.15rem, 1.35vw, 1.45rem);
+    font-weight: 800;
+  }
+
+  #region-main .adminsettings a,
+  #region-main .settingsform a,
+  #region-main .box a,
+  #region-main .adminsearchresult a {
+    color: #126bbd;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  #region-main .adminsettings a:hover,
+  #region-main .settingsform a:hover,
+  #region-main .box a:hover,
+  #region-main .adminsearchresult a:hover {
+    color: var(--bag-admin-brown-dark);
+    text-decoration: none;
+  }
+
+  #region-main .adminsettings .row,
+  #region-main .settingsform .row,
+  #region-main .adminsearchresult,
+  #region-main .adminsettings .form-item,
+  #region-main .adminsettings .form-setting {
+    border-color: rgba(117, 74, 36, 0.16);
+  }
+
+  #region-main .adminsettings .row,
+  #region-main .settingsform .row,
+  #region-main .adminsearchresult {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  #region-main ul,
+  #region-main .list-unstyled {
+    line-height: 1.62;
+  }
+
+  @media (max-width: 767.98px) {
+    #page-content {
+      width: min(calc(100% - 1.5rem), 1560px);
+      margin-top: 1.5rem;
+    }
+
+    #adminsettings,
+    .adminsettings,
+    .settingsform,
+    #region-main > div[role="main"] > .box,
+    #region-main .box.generalbox {
+      padding: 1rem;
+    }
+
+    #adminsettings .nav-tabs,
+    #region-main .nav-tabs,
+    #region-main .moremenu.navigation {
+      gap: 1.5rem;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+    }
+  }
+}
