@@ -566,6 +566,570 @@ body[id^="page-course-view-"] #region-main-box {
 }
 }
 </style>
+<style id="baitalgahwa-course-shell-critical">
+/* Course, settings, and participants: Figma shell fallback for stale compiled CSS and body-class misses. */
+body[id^="page-course-view-"],
+body#page-course-edit,
+body#page-user-index {
+    background: #fff !important;
+}
+body[id^="page-course-view-"] #page.drawers,
+body#page-course-edit #page.drawers,
+body#page-user-index #page.drawers,
+body[id^="page-course-view-"] #topofscroll.main-inner,
+body#page-course-edit #topofscroll.main-inner,
+body#page-user-index #topofscroll.main-inner,
+body[id^="page-course-view-"] #page.drawers .main-inner,
+body#page-course-edit #page.drawers .main-inner,
+body#page-user-index #page.drawers .main-inner,
+body[id^="page-course-view-"] .header-maxwidth,
+body#page-course-edit .header-maxwidth,
+body#page-user-index .header-maxwidth,
+body[id^="page-course-view-"] #region-main-box,
+body#page-course-edit #region-main-box,
+body#page-user-index #region-main-box,
+body[id^="page-course-view-"] #region-main,
+body#page-course-edit #region-main,
+body#page-user-index #region-main {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero,
+body#page-course-edit .baitalgahwa-course-hero,
+body#page-user-index .baitalgahwa-course-hero,
+body[id^="page-course-view-"] .baitalgahwa-course-stats,
+body#page-course-edit .baitalgahwa-course-stats,
+body#page-user-index .baitalgahwa-course-stats,
+body[id^="page-course-view-"] .secondary-navigation,
+body#page-course-edit .secondary-navigation,
+body#page-user-index .secondary-navigation,
+body[id^="page-course-view-"] #page-content,
+body#page-course-edit #page-content,
+body#page-user-index #page-content {
+    max-width: 100% !important;
+    padding-left: clamp(1.25rem, 5vw, 4.5rem) !important;
+    padding-right: clamp(1.25rem, 5vw, 4.5rem) !important;
+}
+body[id^="page-course-view-"] #page-header,
+body#page-course-edit #page-header,
+body#page-user-index #page-header,
+body[id^="page-course-view-"] .tertiary-navigation,
+body#page-course-edit .tertiary-navigation,
+body#page-user-index .tertiary-navigation {
+    display: none !important;
+}
+body[id^="page-course-view-"] #region-main,
+body#page-course-edit #region-main,
+body#page-user-index #region-main {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero,
+body#page-course-edit .baitalgahwa-course-hero,
+body#page-user-index .baitalgahwa-course-hero {
+    margin-top: 2.85rem !important;
+    margin-bottom: 2.8rem !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__toolbar,
+body#page-course-edit .baitalgahwa-course-hero__toolbar,
+body#page-user-index .baitalgahwa-course-hero__toolbar {
+    align-items: center !important;
+    gap: 1.5rem !important;
+    margin-bottom: 1.95rem !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__title,
+body#page-course-edit .baitalgahwa-course-hero__title,
+body#page-user-index .baitalgahwa-course-hero__title {
+    color: #050505 !important;
+    font-size: clamp(2rem, 2.6vw, 3.05rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.12 !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__cta,
+body#page-course-edit .baitalgahwa-course-hero__cta,
+body#page-user-index .baitalgahwa-course-hero__cta {
+    min-width: clamp(11rem, 16vw, 17rem) !important;
+    padding: 0.9rem 1.35rem !important;
+    border: 0 !important;
+    border-radius: 0.45rem !important;
+    background: #754a24 !important;
+    color: #fff !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__media,
+body#page-course-edit .baitalgahwa-course-hero__media,
+body#page-user-index .baitalgahwa-course-hero__media,
+body[id^="page-course-view-"] .baitalgahwa-course-hero__img,
+body#page-course-edit .baitalgahwa-course-hero__img,
+body#page-user-index .baitalgahwa-course-hero__img {
+    min-height: clamp(28rem, 43vw, 55rem) !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__media,
+body#page-course-edit .baitalgahwa-course-hero__media,
+body#page-user-index .baitalgahwa-course-hero__media {
+    border-radius: 1.4rem !important;
+    box-shadow: none !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__img,
+body#page-course-edit .baitalgahwa-course-hero__img,
+body#page-user-index .baitalgahwa-course-hero__img {
+    background-size: cover !important;
+    background-position: center !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__overlay,
+body#page-course-edit .baitalgahwa-course-hero__overlay,
+body#page-user-index .baitalgahwa-course-hero__overlay {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 28%, rgba(0, 0, 0, 0.14) 58%, rgba(117, 74, 36, 0.86) 100%) !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__caption,
+body#page-course-edit .baitalgahwa-course-hero__caption,
+body#page-user-index .baitalgahwa-course-hero__caption {
+    padding: clamp(1.5rem, 2.8vw, 3rem) !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__caption-title,
+body#page-course-edit .baitalgahwa-course-hero__caption-title,
+body#page-user-index .baitalgahwa-course-hero__caption-title {
+    margin-bottom: 0.9rem !important;
+    font-size: clamp(2rem, 2.5vw, 3.05rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.12 !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__hostpic .userpicture,
+body#page-course-edit .baitalgahwa-course-hero__hostpic .userpicture,
+body#page-user-index .baitalgahwa-course-hero__hostpic .userpicture,
+body[id^="page-course-view-"] .baitalgahwa-course-hero__hostpic img,
+body#page-course-edit .baitalgahwa-course-hero__hostpic img,
+body#page-user-index .baitalgahwa-course-hero__hostpic img {
+    width: 3.25rem !important;
+    height: 3.25rem !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__meta,
+body#page-course-edit .baitalgahwa-course-hero__meta,
+body#page-user-index .baitalgahwa-course-hero__meta {
+    gap: 1rem !important;
+    font-size: 1rem !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-stats,
+body#page-course-edit .baitalgahwa-course-stats,
+body#page-user-index .baitalgahwa-course-stats {
+    margin-top: 0 !important;
+    margin-bottom: 4.25rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 1.45rem !important;
+    background: #fff !important;
+    box-shadow: 0 0.35rem 0.95rem rgba(0, 0, 0, 0.14) !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-stats__card,
+body#page-course-edit .baitalgahwa-course-stats__card,
+body#page-user-index .baitalgahwa-course-stats__card {
+    min-height: clamp(8rem, 10vw, 12.25rem) !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-stats__icon,
+body#page-course-edit .baitalgahwa-course-stats__icon,
+body#page-user-index .baitalgahwa-course-stats__icon,
+body[id^="page-course-view-"] .baitalgahwa-course-stats__num,
+body#page-course-edit .baitalgahwa-course-stats__num,
+body#page-user-index .baitalgahwa-course-stats__num {
+    color: #754a24 !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-stats__num,
+body#page-course-edit .baitalgahwa-course-stats__num,
+body#page-user-index .baitalgahwa-course-stats__num {
+    font-size: clamp(2.5rem, 3.25vw, 4rem) !important;
+    line-height: 1 !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-stats__label,
+body#page-course-edit .baitalgahwa-course-stats__label,
+body#page-user-index .baitalgahwa-course-stats__label {
+    color: #222 !important;
+    font-size: clamp(1rem, 1.2vw, 1.38rem) !important;
+}
+body[id^="page-course-view-"] .secondary-navigation,
+body#page-course-edit .secondary-navigation,
+body#page-user-index .secondary-navigation {
+    margin: 0 0 3.3rem !important;
+    border-bottom: 2px solid #222 !important;
+}
+body[id^="page-course-view-"] .secondary-navigation .nav-tabs,
+body#page-course-edit .secondary-navigation .nav-tabs,
+body#page-user-index .secondary-navigation .nav-tabs,
+body[id^="page-course-view-"] .secondary-navigation .moremenu.navigation,
+body#page-course-edit .secondary-navigation .moremenu.navigation,
+body#page-user-index .secondary-navigation .moremenu.navigation {
+    gap: clamp(2rem, 5vw, 6rem) !important;
+    min-height: 3rem !important;
+    border-bottom: 0 !important;
+}
+body[id^="page-course-view-"] .secondary-navigation .nav-link,
+body#page-course-edit .secondary-navigation .nav-link,
+body#page-user-index .secondary-navigation .nav-link {
+    padding: 0 0 1.05rem !important;
+    border: 0 !important;
+    color: #2f2f2f !important;
+    background: transparent !important;
+    font-size: clamp(1rem, 1.15vw, 1.3rem) !important;
+    font-weight: 800 !important;
+    box-shadow: none !important;
+}
+body[id^="page-course-view-"] .secondary-navigation .nav-link.active,
+body#page-course-edit .secondary-navigation .nav-link.active,
+body#page-user-index .secondary-navigation .nav-link.active,
+body[id^="page-course-view-"] .secondary-navigation .active > .nav-link,
+body#page-course-edit .secondary-navigation .active > .nav-link,
+body#page-user-index .secondary-navigation .active > .nav-link,
+body[id^="page-course-view-"] .secondary-navigation a[aria-current="true"],
+body#page-course-edit .secondary-navigation a[aria-current="true"],
+body#page-user-index .secondary-navigation a[aria-current="true"] {
+    color: #754a24 !important;
+    box-shadow: inset 0 -0.35rem 0 #754a24 !important;
+}
+body[id^="page-course-view-"] .course-content,
+body[id^="page-course-view-"] #region-main > div[role="main"],
+body#page-course-edit #region-main > div[role="main"],
+body#page-user-index #region-main > div[role="main"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+body[id^="page-course-view-"] .course-content > ul > li:first-child,
+body[id^="page-course-view-"] .course-content ul.topics > li:first-child,
+body[id^="page-course-view-"] .course-content ul.sections > li:first-child,
+body[id^="page-course-view-"] .course-section:first-child,
+body#page-course-edit #region-main form.mform,
+body#page-course-edit #region-main .mform,
+body#page-user-index #region-main .userlist,
+body#page-user-index #region-main [data-region="participantslist"],
+body#page-user-index #region-main .participantsform {
+    margin: 0 0 4rem !important;
+    padding: clamp(1.75rem, 2.6vw, 3rem) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    border-radius: 1rem !important;
+    background: #fff !important;
+    box-shadow: none !important;
+}
+body[id^="page-course-view-"] .course-content h2,
+body[id^="page-course-view-"] .course-content h3,
+body[id^="page-course-view-"] .sectionname,
+body[id^="page-course-view-"] .sectionname a,
+body#page-course-edit #region-main form.mform > h2:first-child,
+body#page-user-index #region-main > h2:first-child {
+    color: #754a24 !important;
+    font-weight: 800 !important;
+    letter-spacing: 0 !important;
+    text-decoration: none !important;
+}
+body[id^="page-course-view-"] .course-content .summary,
+body[id^="page-course-view-"] .course-content .description,
+body[id^="page-course-view-"] .course-content p {
+    color: #6f6f6f !important;
+    font-size: clamp(1rem, 1.05vw, 1.24rem) !important;
+    line-height: 1.9 !important;
+}
+body[id^="page-course-view-"] .course-content > ul::after,
+body[id^="page-course-view-"] .course-content ul.topics::after,
+body[id^="page-course-view-"] .course-content ul.sections::after {
+    color: #754a24 !important;
+    font-size: clamp(1.4rem, 1.65vw, 2rem) !important;
+    font-weight: 800 !important;
+}
+body#page-course-edit #region-main form.mform fieldset,
+body#page-course-edit #region-main .mform fieldset,
+body#page-user-index #region-main .userlist,
+body#page-user-index #region-main [data-region="participantslist"] {
+    border-color: #754a24 !important;
+    border-radius: 1.35rem !important;
+}
+body#page-course-edit #region-main form.mform input.form-control,
+body#page-course-edit #region-main form.mform .form-control,
+body#page-course-edit #region-main form.mform select,
+body#page-course-edit #region-main form.mform .custom-select {
+    min-height: 3.65rem !important;
+    max-width: 35rem !important;
+    border-radius: 999px !important;
+    border-color: #e3d8d0 !important;
+    font-size: 1.05rem !important;
+}
+body#page-user-index #region-main table,
+body#page-user-index #region-main .table {
+    min-width: 68rem !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+body#page-user-index #region-main thead th {
+    background: #f6f6f6 !important;
+    color: #111827 !important;
+    font-weight: 800 !important;
+}
+body#page-user-index #region-main tbody td {
+    color: #111827 !important;
+}
+body#page-user-index #region-main .btn-primary,
+body#page-course-edit #region-main .btn-primary,
+body#page-user-index #region-main input.btn-primary,
+body#page-course-edit #region-main input.btn-primary {
+    border-color: #754a24 !important;
+    background: #754a24 !important;
+    color: #fff !important;
+    border-radius: 0.45rem !important;
+    font-weight: 700 !important;
+}
+@media (max-width: 991.98px) {
+body[id^="page-course-view-"] .baitalgahwa-course-hero,
+body#page-course-edit .baitalgahwa-course-hero,
+body#page-user-index .baitalgahwa-course-hero {
+    margin-top: 1.35rem !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__toolbar,
+body#page-course-edit .baitalgahwa-course-hero__toolbar,
+body#page-user-index .baitalgahwa-course-hero__toolbar {
+    align-items: stretch !important;
+    flex-direction: column !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-hero__media,
+body#page-course-edit .baitalgahwa-course-hero__media,
+body#page-user-index .baitalgahwa-course-hero__media,
+body[id^="page-course-view-"] .baitalgahwa-course-hero__img,
+body#page-course-edit .baitalgahwa-course-hero__img,
+body#page-user-index .baitalgahwa-course-hero__img {
+    min-height: 18rem !important;
+}
+body[id^="page-course-view-"] .baitalgahwa-course-stats__card,
+body#page-course-edit .baitalgahwa-course-stats__card,
+body#page-user-index .baitalgahwa-course-stats__card {
+    justify-content: flex-start !important;
+}
+}
+@media (max-width: 767.98px) {
+body[id^="page-course-view-"] .baitalgahwa-course-hero,
+body#page-course-edit .baitalgahwa-course-hero,
+body#page-user-index .baitalgahwa-course-hero,
+body[id^="page-course-view-"] .baitalgahwa-course-stats,
+body#page-course-edit .baitalgahwa-course-stats,
+body#page-user-index .baitalgahwa-course-stats,
+body[id^="page-course-view-"] .secondary-navigation,
+body#page-course-edit .secondary-navigation,
+body#page-user-index .secondary-navigation,
+body[id^="page-course-view-"] #page-content,
+body#page-course-edit #page-content,
+body#page-user-index #page-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+body[id^="page-course-view-"] .secondary-navigation,
+body#page-course-edit .secondary-navigation,
+body#page-user-index .secondary-navigation {
+    overflow-x: auto !important;
+}
+}
+</style>
+<style id="baitalgahwa-course-secondary-admin-critical">
+/* Grades / Activities / reports keep Moodle destinations, with the same Bait Al Gahwa course shell. */
+body.baitalgahwa-course-secondary-admin {
+    background: #fff !important;
+}
+body.baitalgahwa-course-secondary-admin #page.drawers,
+body.baitalgahwa-course-secondary-admin #topofscroll.main-inner,
+body.baitalgahwa-course-secondary-admin #page.drawers .main-inner,
+body.baitalgahwa-course-secondary-admin .header-maxwidth,
+body.baitalgahwa-course-secondary-admin #region-main-box,
+body.baitalgahwa-course-secondary-admin #region-main {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero,
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats,
+body.baitalgahwa-course-secondary-admin .secondary-navigation,
+body.baitalgahwa-course-secondary-admin #page-content {
+    max-width: 100% !important;
+    padding-left: clamp(1.25rem, 5vw, 4.5rem) !important;
+    padding-right: clamp(1.25rem, 5vw, 4.5rem) !important;
+}
+body.baitalgahwa-course-secondary-admin #page-header,
+body.baitalgahwa-course-secondary-admin .tertiary-navigation {
+    display: none !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero {
+    margin-top: 2.85rem !important;
+    margin-bottom: 2.8rem !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__toolbar {
+    align-items: center !important;
+    gap: 1.5rem !important;
+    margin-bottom: 1.95rem !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__title {
+    color: #050505 !important;
+    font-size: clamp(2rem, 2.6vw, 3.05rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.12 !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__cta {
+    min-width: clamp(11rem, 16vw, 17rem) !important;
+    padding: 0.9rem 1.35rem !important;
+    border: 0 !important;
+    border-radius: 0.45rem !important;
+    background: #754a24 !important;
+    color: #fff !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__media,
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__img {
+    min-height: clamp(28rem, 43vw, 55rem) !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__media {
+    border-radius: 1.4rem !important;
+    box-shadow: none !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__overlay {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 28%, rgba(0, 0, 0, 0.14) 58%, rgba(117, 74, 36, 0.86) 100%) !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__caption {
+    padding: clamp(1.5rem, 2.8vw, 3rem) !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__caption-title {
+    margin-bottom: 0.9rem !important;
+    font-size: clamp(2rem, 2.5vw, 3.05rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.12 !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats {
+    margin-top: 0 !important;
+    margin-bottom: 4.25rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 1.45rem !important;
+    background: #fff !important;
+    box-shadow: 0 0.35rem 0.95rem rgba(0, 0, 0, 0.14) !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats__card {
+    min-height: clamp(8rem, 10vw, 12.25rem) !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats__icon,
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats__num {
+    color: #754a24 !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats__num {
+    font-size: clamp(2.5rem, 3.25vw, 4rem) !important;
+    line-height: 1 !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats__label {
+    color: #222 !important;
+    font-size: clamp(1rem, 1.2vw, 1.38rem) !important;
+}
+body.baitalgahwa-course-secondary-admin .secondary-navigation {
+    margin: 0 0 3.3rem !important;
+    border-bottom: 2px solid #222 !important;
+}
+body.baitalgahwa-course-secondary-admin .secondary-navigation .nav-tabs,
+body.baitalgahwa-course-secondary-admin .secondary-navigation .moremenu.navigation {
+    gap: clamp(2rem, 5vw, 6rem) !important;
+    min-height: 3rem !important;
+    border-bottom: 0 !important;
+}
+body.baitalgahwa-course-secondary-admin .secondary-navigation .nav-link {
+    padding: 0 0 1.05rem !important;
+    border: 0 !important;
+    color: #2f2f2f !important;
+    background: transparent !important;
+    font-size: clamp(1rem, 1.15vw, 1.3rem) !important;
+    font-weight: 800 !important;
+    box-shadow: none !important;
+}
+body.baitalgahwa-course-secondary-admin .secondary-navigation .nav-link.active,
+body.baitalgahwa-course-secondary-admin .secondary-navigation .active > .nav-link,
+body.baitalgahwa-course-secondary-admin .secondary-navigation a[aria-current="true"] {
+    color: #754a24 !important;
+    box-shadow: inset 0 -0.35rem 0 #754a24 !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main > div[role="main"],
+body.baitalgahwa-course-secondary-admin #region-main > .box,
+body.baitalgahwa-course-secondary-admin #region-main form,
+body.baitalgahwa-course-secondary-admin #region-main .gradeparent,
+body.baitalgahwa-course-secondary-admin #region-main .gradereport-grader-table,
+body.baitalgahwa-course-secondary-admin #region-main .course-content {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main > div[role="main"] > .box,
+body.baitalgahwa-course-secondary-admin #region-main .generaltable,
+body.baitalgahwa-course-secondary-admin #region-main .gradereport-grader-table,
+body.baitalgahwa-course-secondary-admin #region-main .course-content {
+    margin-bottom: 4rem !important;
+    padding: clamp(1.25rem, 2.2vw, 2rem) !important;
+    border: 1px solid rgba(117, 74, 36, 0.28) !important;
+    border-radius: 1rem !important;
+    background: #fff !important;
+    box-shadow: none !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main h2,
+body.baitalgahwa-course-secondary-admin #region-main h3 {
+    color: #754a24 !important;
+    font-weight: 800 !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main table,
+body.baitalgahwa-course-secondary-admin #region-main .table {
+    background: #fff !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main thead th {
+    background: #f6f6f6 !important;
+    color: #111827 !important;
+    font-weight: 800 !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main tbody td {
+    color: #111827 !important;
+}
+body.baitalgahwa-course-secondary-admin #region-main .btn-primary,
+body.baitalgahwa-course-secondary-admin #region-main input.btn-primary,
+body.baitalgahwa-course-secondary-admin #region-main button.btn-primary {
+    border-color: #754a24 !important;
+    background: #754a24 !important;
+    color: #fff !important;
+    border-radius: 0.45rem !important;
+    font-weight: 700 !important;
+}
+@media (max-width: 991.98px) {
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero {
+    margin-top: 1.35rem !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__toolbar {
+    align-items: stretch !important;
+    flex-direction: column !important;
+}
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__media,
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero__img {
+    min-height: 18rem !important;
+}
+}
+@media (max-width: 767.98px) {
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-hero,
+body.baitalgahwa-course-secondary-admin .baitalgahwa-course-stats,
+body.baitalgahwa-course-secondary-admin .secondary-navigation,
+body.baitalgahwa-course-secondary-admin #page-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+body.baitalgahwa-course-secondary-admin .secondary-navigation {
+    overflow-x: auto !important;
+}
+}
+</style>
 {{#course_strip_enrol}}
 <script>
 (function(){

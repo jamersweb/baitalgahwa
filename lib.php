@@ -1313,10 +1313,36 @@ function theme_baitalgahwa_is_course_enrol_hub_page(string $path): bool {
 }
 
 /**
+ * Course admin / secondary-nav pages that should keep the branded course shell.
+ *
+ * @param string $path Current Moodle URL path.
+ * @return bool
+ */
+function theme_baitalgahwa_is_branded_course_secondary_page(string $path): bool {
+    $scripts = [
+        'course/resources.php',
+        'course/recent.php',
+        'grade/report/index.php',
+        'grade/report/grader/index.php',
+        'grade/report/user/index.php',
+        'grade/edit/tree/index.php',
+        'grade/edit/settings/index.php',
+        'report/outline/index.php',
+        'report/log/index.php',
+    ];
+    foreach ($scripts as $script) {
+        if (theme_baitalgahwa_url_path_ends_with_script($path, $script)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
  * Context for the Bait course strip (hero + stats) on course home and course settings.
  *
  * Shown on /course/view.php (section 0), /course/edit.php, /user/index.php (participants),
- * and course enrol pages under /enrol/* (e.g. enrolment options).
+ * course secondary admin pages (grades, activities, reports), and course enrol pages under /enrol/*.
  *
  * @param bool $forceenrolhub Skip URL routing and treat this request as the course enrol hub (last resort for RemUI / path quirks).
  * @return array
@@ -1331,6 +1357,7 @@ function theme_baitalgahwa_get_course_dashboard_context(bool $forceenrolhub = fa
     $path = $PAGE->url->get_path();
     $isedit = false;
     $isparticipants = false;
+    $issecondaryadmin = false;
     $isenrol = false;
 
     if ($forceenrolhub) {
@@ -1367,6 +1394,19 @@ function theme_baitalgahwa_get_course_dashboard_context(bool $forceenrolhub = fa
     } else if (theme_baitalgahwa_is_course_enrol_hub_page($path)) {
         // Course enrolment hub (e.g. /enrol/index.php?id=…) — same branded shell as course home.
         $isenrol = true;
+    } else if (theme_baitalgahwa_is_branded_course_secondary_page($path)) {
+        $cid = (int) ($PAGE->url->get_param('id') ?? $PAGE->url->get_param('courseid') ?? 0);
+        if ($cid !== 0 && $cid !== (int) $course->id) {
+            return ['course_dashboard' => false];
+        }
+        $canviewcoursepage = is_enrolled($context, $USER, '', true)
+            || has_capability('moodle/course:update', $context)
+            || has_capability('moodle/grade:viewall', $context)
+            || has_capability('gradereport/grader:view', $context);
+        if (!$canviewcoursepage) {
+            return ['course_dashboard' => false];
+        }
+        $issecondaryadmin = true;
     } else {
         return ['course_dashboard' => false];
     }
@@ -1467,6 +1507,7 @@ function theme_baitalgahwa_get_course_dashboard_context(bool $forceenrolhub = fa
         'course_ctalabel' => get_string('course_enter', 'theme_baitalgahwa'),
         'course_strip_settings_layout' => false,
         'course_strip_participants' => false,
+        'course_strip_secondary_admin' => $issecondaryadmin,
         'course_strip_enrol' => $isenrol,
     ];
     if ($isedit) {
@@ -1549,6 +1590,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         }
         if (!empty($coursedashboardctx['course_strip_participants'])) {
             $extraclasses[] = 'baitalgahwa-course-participants';
+        }
+        if (!empty($coursedashboardctx['course_strip_secondary_admin'])) {
+            $extraclasses[] = 'baitalgahwa-course-secondary-admin';
         }
         if (!empty($coursedashboardctx['course_strip_enrol'])) {
             $extraclasses[] = 'baitalgahwa-course-enrol';
