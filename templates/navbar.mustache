@@ -885,6 +885,67 @@ body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary {
         font-size: .65rem;
     }
 }
+body.bag-about-body .baitalgahwa-navbar {
+    top: 0;
+    width: min(calc(100% - 2rem), 1190px);
+    min-height: 68px;
+    border-radius: 0 0 4px 4px;
+    padding-inline: 42px;
+    box-shadow: none;
+}
+body.bag-about-body .baitalgahwa-navbar__inner {
+    min-height: 68px;
+    gap: 40px;
+}
+body.bag-about-body .baitalgahwa-navbar .navbar-brand {
+    margin-right: 70px !important;
+}
+body.bag-about-body .baitalgahwa-custom-logo,
+body.bag-about-body .baitalgahwa-navbar .logo {
+    max-height: 56px;
+    max-width: 140px;
+}
+body.bag-about-body .baitalgahwa-navbar__logo-subtitle {
+    display: none;
+}
+body.bag-about-body .baitalgahwa-navbar__custom-links {
+    gap: 42px;
+}
+body.bag-about-body .baitalgahwa-navbar__link {
+    padding-block: 0;
+    color: #1e1e1e;
+    font-size: 15px;
+    font-weight: 700;
+}
+body.bag-about-body .baitalgahwa-navbar__link--active::after,
+body.bag-about-body .baitalgahwa-navbar__link:hover::after,
+body.bag-about-body .baitalgahwa-navbar__link:focus-visible::after {
+    left: 50%;
+    width: 24px;
+    bottom: -20px;
+    height: 1px;
+    background: #8a5a2b;
+}
+body.bag-about-body .baitalgahwa-navbar__auth {
+    display: none !important;
+}
+@media (max-width: 991.98px) {
+    body.bag-about-body .baitalgahwa-navbar {
+        width: calc(100% - .7rem);
+        min-height: 64px;
+        padding-inline: .75rem;
+    }
+    body.bag-about-body .baitalgahwa-navbar__inner {
+        min-height: 64px;
+        gap: .75rem;
+    }
+    body.bag-about-body .baitalgahwa-navbar__custom-links {
+        gap: .95rem;
+    }
+    body.bag-about-body .baitalgahwa-navbar__link {
+        font-size: .68rem;
+    }
+}
 </style>
 <header class="baitalgahwa-header">
 <nav class="navbar fixed-top navbar-expand baitalgahwa-navbar" aria-label="{{#str}}sitemenubar, admin{{/str}}">
