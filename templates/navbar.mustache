@@ -504,37 +504,6 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
     color: #8a5a2b;
     background: #f7f1eb;
 }
-.baitalgahwa-navbar__course-edit {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: .48rem;
-    min-height: 2.5rem;
-    padding: 0 .95rem;
-    border: 1px solid #754a24;
-    border-radius: .38rem;
-    background: #754a24;
-    color: #fff;
-    font-size: .82rem;
-    font-weight: 800;
-    line-height: 1;
-    text-decoration: none;
-    white-space: nowrap;
-    box-shadow: 0 .28rem .75rem rgba(117, 74, 36, .18);
-    transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease;
-}
-.baitalgahwa-navbar__course-edit:hover,
-.baitalgahwa-navbar__course-edit:focus-visible {
-    color: #fff;
-    background: #5f3616;
-    border-color: #5f3616;
-    text-decoration: none;
-    box-shadow: 0 .42rem 1rem rgba(117, 74, 36, .24);
-    transform: translateY(-1px);
-}
-.baitalgahwa-navbar__course-edit .fa {
-    font-size: .9rem;
-}
 .baitalgahwa-navbar__endcap {
     display: inline-flex;
     align-items: center;
@@ -713,11 +682,6 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
         min-width: 11rem;
         max-width: 100%;
         flex: 1 1 12rem;
-    }
-    .baitalgahwa-navbar__course-edit {
-        min-height: 2.25rem;
-        padding-inline: .75rem;
-        font-size: .72rem;
     }
     .baitalgahwa-navbar__endcap {
         width: 100%;
@@ -1009,9 +973,8 @@ body.bag-about-body .baitalgahwa-navbar__auth {
         </a>
         <div class="baitalgahwa-navbar__custom-links d-none d-lg-flex" aria-label="Primary">
             <a class="baitalgahwa-navbar__link {{#nav_home_active}}baitalgahwa-navbar__link--active{{/nav_home_active}}" href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
-            <a class="baitalgahwa-navbar__link {{#nav_about_active}}baitalgahwa-navbar__link--active{{/nav_about_active}}" href="{{{ config.abouturl }}}">{{#str}}aboutus, theme_baitalgahwa{{/str}}</a>
-            <a class="baitalgahwa-navbar__link {{#nav_training_active}}baitalgahwa-navbar__link--active{{/nav_training_active}}" href="{{{ config.trainingurl }}}">{{#str}}trainingprogram, theme_baitalgahwa{{/str}}</a>
-            <a class="baitalgahwa-navbar__link {{#nav_contact_active}}baitalgahwa-navbar__link--active{{/nav_contact_active}}" href="{{{ config.contacturl }}}">{{#str}}contactus, theme_baitalgahwa{{/str}}</a>
+            <a class="baitalgahwa-navbar__link {{#nav_mycourses_active}}baitalgahwa-navbar__link--active{{/nav_mycourses_active}}" href="{{{ config.mycoursesurl }}}">My courses</a>
+            <a class="baitalgahwa-navbar__link {{#nav_siteadmin_active}}baitalgahwa-navbar__link--active{{/nav_siteadmin_active}}" href="{{{ config.siteadminurl }}}">Site administration</a>
         </div>
         {{#showauthbuttons}}
         <div class="baitalgahwa-navbar__auth" aria-label="Account actions">
@@ -1036,12 +999,6 @@ body.bag-about-body .baitalgahwa-navbar__auth {
                 <i class="fa fa-search" aria-hidden="true"></i>
             </button>
         </form>
-        {{#caneditcoursesnav}}
-        <a class="baitalgahwa-navbar__course-edit d-none d-md-inline-flex" href="{{{ config.courseediturl }}}" aria-label="Edit courses">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <span>Edit Courses</span>
-        </a>
-        {{/caneditcoursesnav}}
         <div id="usernavigation" class="navbar-nav h-100">
             {{#langmenu}}
             {{> theme_boost/language_menu }}

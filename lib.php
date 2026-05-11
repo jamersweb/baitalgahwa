@@ -1643,19 +1643,6 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     ];
     $context = array_merge($context, theme_baitalgahwa_get_footer_context());
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
-    $courseediturl = '';
-    $caneditcoursesnav = false;
-    $coursecat = \core_course_category::user_top();
-    if ($coursecat) {
-        if ($cat = \core_course_category::get_nearest_editable_subcategory($coursecat, ['manage'])) {
-            $caneditcoursesnav = true;
-            $courseediturl = theme_baitalgahwa_get_manage_course_url((int) $cat->id);
-        }
-    }
-    if (!$caneditcoursesnav && is_siteadmin($USER)) {
-        $caneditcoursesnav = true;
-        $courseediturl = (new \moodle_url('/course/management.php'))->out(false);
-    }
     $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
     $trainingurl = new \moodle_url('/theme/baitalgahwa/training.php');
     $contacturl = new \moodle_url('/theme/baitalgahwa/contact.php');
@@ -1664,18 +1651,24 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $aboutpath = $abouturl->get_path(false);
     $trainingpath = $trainingurl->get_path(false);
     $contactpath = $contacturl->get_path(false);
+    $dashboardpath = (new \moodle_url('/my/'))->get_path(false);
+    $mycoursespath = (new \moodle_url('/my/courses.php'))->get_path(false);
+    $siteadminpath = (new \moodle_url('/admin/search.php'))->get_path(false);
     $context['nav_about_active'] = ($currentpath === $aboutpath);
     $context['nav_training_active'] = ($currentpath === $trainingpath || $currentpath === $programmepath);
     $context['nav_contact_active'] = ($currentpath === $contactpath);
+    $context['nav_mycourses_active'] = ($currentpath === $mycoursespath);
+    $context['nav_siteadmin_active'] = (strpos($currentpath, $siteadminpath) === 0 || strpos($currentpath, '/admin/') === 0);
     $context['nav_home_active'] = !$context['nav_about_active'] && !$context['nav_training_active']
-        && !$context['nav_contact_active'];
+        && !$context['nav_contact_active'] && !$context['nav_mycourses_active'] && !$context['nav_siteadmin_active']
+        && $currentpath !== $dashboardpath;
     $context['config'] = [
         'wwwroot' => $CFG->wwwroot,
         'homeurl' => (new \moodle_url('/'))->out(false),
         'dashboardurl' => (new \moodle_url('/my/'))->out(false),
         'mycoursesurl' => (new \moodle_url('/my/courses.php'))->out(false),
+        'siteadminurl' => (new \moodle_url('/admin/search.php'))->out(false),
         'searchurl' => (new \moodle_url('/course/search.php'))->out(false),
-        'courseediturl' => $courseediturl,
         'notificationsurl' => (new \moodle_url('/message/output/popup/notifications.php'))->out(false),
         'messagesurl' => (new \moodle_url('/message/index.php'))->out(false),
         'abouturl' => $abouturl->out(false),
@@ -1684,7 +1677,6 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'loginurl' => (new \moodle_url('/login/index.php'))->out(false),
         'signupurl' => (new \moodle_url('/login/signup.php'))->out(false),
     ];
-    $context['caneditcoursesnav'] = $caneditcoursesnav && $courseediturl !== '';
     $label = get_string('enrol_intro_heading', 'theme_baitalgahwa');
     $jsonlabel = json_encode($label, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG);
     $context['enrol_intro_heading_json'] = ($jsonlabel !== false) ? $jsonlabel : '"Introduction"';
