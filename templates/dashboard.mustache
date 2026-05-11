@@ -25,21 +25,22 @@ body#page-my-index #topofscroll.main-inner {
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: 1.5rem 1.25rem 3.5rem;
+    padding: 4.25rem 1.25rem 4.5rem;
     color: #241b15;
 }
 .baitalgahwa-dashboard-shell {
     display: flex;
     flex-direction: column;
-    gap: 1.4rem;
-    width: min(100%, 1320px);
+    gap: 1.65rem;
+    width: min(calc(100% - clamp(2rem, 10.5vw, 13rem)), 1710px);
     margin: 0 auto;
 }
 .baitalgahwa-dashboard-title {
-    margin: 0;
-    color: #201813;
-    font-size: 1.05rem;
-    font-weight: 700;
+    margin: 0 0 .55rem;
+    color: #744b27;
+    font-size: clamp(1.75rem, 2.15vw, 2.25rem);
+    font-weight: 800;
+    line-height: 1.15;
 }
 .baitalgahwa-dashboard-panel,
 .baitalgahwa-dashboard-stats,
@@ -49,43 +50,45 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-todo,
 .baitalgahwa-dashboard-newsletter {
     background: #fff;
-    border: 1px solid #ebe3da;
-    border-radius: 1.2rem;
-    box-shadow: 0 .85rem 2rem rgba(48, 27, 12, .05);
+    border: 1px solid #e8ded4;
+    border-radius: 1.45rem;
+    box-shadow: 0 .55rem 1.35rem rgba(48, 27, 12, .08);
 }
 .baitalgahwa-dashboard-panel {
-    padding: 1.75rem;
+    padding: 3rem 1.65rem 3.5rem;
 }
 .baitalgahwa-dashboard-stats {
     overflow: hidden;
+    padding: 2.05rem 2.4rem;
 }
 .baitalgahwa-dashboard-stat {
     display: flex;
     align-items: center;
-    gap: .95rem;
-    padding: 1rem 1.15rem;
+    gap: 1.55rem;
+    padding: 1rem .75rem;
     min-height: 100%;
 }
 .baitalgahwa-dashboard-stat__icon {
-    width: 2rem;
-    height: 2rem;
+    width: 3.7rem;
+    height: 3.7rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: .6rem;
-    color: #8a5a2b;
-    background: rgba(138, 90, 43, .09);
+    color: #744b27;
+    background: transparent;
+    font-size: 2.9rem;
 }
 .baitalgahwa-dashboard-stat__value {
-    color: #8a5a2b;
-    font-size: 1.65rem;
+    color: #744b27;
+    font-size: clamp(2.2rem, 2.8vw, 3.05rem);
     line-height: 1;
     font-weight: 800;
 }
 .baitalgahwa-dashboard-stat__label {
     margin-top: .25rem;
-    color: #7c7268;
-    font-size: .82rem;
+    color: #302b27;
+    font-size: 1rem;
+    line-height: 1.25;
 }
 .baitalgahwa-dashboard-section-head {
     display: flex;
@@ -97,15 +100,14 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-section-title {
     margin: 0;
     color: #201813;
-    font-size: 1.35rem;
+    font-size: clamp(2rem, 3vw, 2.95rem);
     font-weight: 800;
-    letter-spacing: -.02em;
 }
 .baitalgahwa-dashboard-section-copy {
-    margin: .35rem 0 0;
+    margin: 1.45rem 0 0;
     color: #7c7268;
-    font-size: .88rem;
-    line-height: 1.65;
+    font-size: 1.04rem;
+    line-height: 1.55;
 }
 .baitalgahwa-dashboard-programmes {
     display: grid;
@@ -129,15 +131,15 @@ body#page-my-index #topofscroll.main-inner {
     transition: transform .18s ease, box-shadow .18s ease;
 }
 .baitalgahwa-dashboard-panel--programmes {
-    margin-top: .25rem;
+    margin-top: 0;
 }
 .baitalgahwa-dashboard-panel--programmes .baitalgahwa-dashboard-section-head {
     justify-content: center;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
 }
 .baitalgahwa-dashboard-panel--programmes .baitalgahwa-dashboard-section-copy {
-    max-width: 46rem;
+    max-width: 88rem;
     margin: .65rem auto 0;
     font-size: .92rem;
 }
@@ -148,11 +150,11 @@ body#page-my-index #topofscroll.main-inner {
 }
 .baitalgahwa-dashboard-programme__media {
     position: relative;
-    padding: .75rem .75rem 0;
+    padding: 0;
 }
 .baitalgahwa-dashboard-programme__image {
-    height: 7.25rem;
-    border-radius: .85rem;
+    height: clamp(11rem, 12vw, 14.25rem);
+    border-radius: 1.45rem 1.45rem 0 0;
     background-size: cover;
     background-position: center;
 }
@@ -166,24 +168,22 @@ body#page-my-index #topofscroll.main-inner {
 }
 .baitalgahwa-dashboard-programme__badge {
     position: absolute;
-    top: .75rem;
-    left: .75rem;
+    top: 1.25rem;
+    left: 1.25rem;
     z-index: 1;
-    padding: .26rem .65rem;
+    padding: .45rem 1.35rem;
     border-radius: 999px;
     background: rgba(255,255,255,.95);
     color: #8a5a2b;
-    font-size: .68rem;
+    font-size: .88rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .04em;
 }
 .baitalgahwa-dashboard-programme__body {
     display: flex;
     flex-direction: column;
     gap: .7rem;
     flex: 1 1 auto;
-    padding: 1rem 1rem 1.1rem;
+    padding: 1.35rem 1.35rem 1.45rem;
 }
 .baitalgahwa-dashboard-programme__dates {
     display: flex;
@@ -195,23 +195,23 @@ body#page-my-index #topofscroll.main-inner {
     align-items: center;
     gap: .35rem;
     border-radius: 999px;
-    padding: .3rem .6rem;
-    background: #f6f1eb;
-    color: #6a5c4b;
-    font-size: .68rem;
+    padding: .45rem .85rem;
+    background: #fff7f1;
+    color: #744b27;
+    font-size: .76rem;
     font-weight: 700;
 }
 .baitalgahwa-dashboard-programme__title {
     margin: 0;
     color: #201813;
-    font-size: .92rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: 800;
     line-height: 1.35;
 }
 .baitalgahwa-dashboard-programme__copy {
     margin: 0;
     color: #7c7268;
-    font-size: .78rem;
+    font-size: .86rem;
     line-height: 1.55;
     min-height: 3.1rem;
 }
@@ -243,7 +243,7 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-members-panel,
 .baitalgahwa-dashboard-todo,
 .baitalgahwa-dashboard-newsletter {
-    padding: 1.35rem 1.45rem;
+    padding: 3rem 3.35rem;
 }
 .baitalgahwa-dashboard-members-panel__footer {
     margin-top: 1.35rem;
@@ -321,7 +321,7 @@ body#page-my-index #topofscroll.main-inner {
     background: linear-gradient(90deg, #8a5a2b, #b98651);
 }
 .baitalgahwa-dashboard-widget {
-    padding: 1.25rem 1.3rem;
+    padding: 2rem 1.9rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -331,7 +331,7 @@ body#page-my-index #topofscroll.main-inner {
 .baitalgahwa-dashboard-widget__title {
     margin: 0;
     color: #201813;
-    font-size: 1rem;
+    font-size: clamp(1.85rem, 2.35vw, 2.65rem);
     font-weight: 800;
 }
 .baitalgahwa-dashboard-widget__sub {
@@ -519,11 +519,11 @@ body#page-my-index #topofscroll.main-inner {
     color: #8a5a2b;
 }
 .baitalgahwa-dashboard-donut {
-    width: 11rem;
-    height: 11rem;
-    min-width: 11rem;
-    min-height: 11rem;
-    margin: .35rem auto;
+    width: clamp(13rem, 16vw, 19rem);
+    height: clamp(13rem, 16vw, 19rem);
+    min-width: clamp(13rem, 16vw, 19rem);
+    min-height: clamp(13rem, 16vw, 19rem);
+    margin: 1.2rem auto 1.4rem;
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -585,7 +585,7 @@ body#page-my-index #topofscroll.main-inner {
     padding: .45rem .2rem;
     border: 0;
     color: #61574f;
-    font-size: .72rem;
+    font-size: 1.05rem;
     font-weight: 700;
 }
 .baitalgahwa-dashboard-calendar td {
@@ -593,8 +593,8 @@ body#page-my-index #topofscroll.main-inner {
     border: 0;
 }
 .baitalgahwa-dashboard-calendar__day {
-    min-width: 1.95rem;
-    line-height: 1.95rem;
+    min-width: 2.45rem;
+    line-height: 2.45rem;
     display: inline-block;
     border-radius: 999px;
     color: #4f453d;
@@ -613,7 +613,7 @@ body#page-my-index #topofscroll.main-inner {
     align-items: end;
     justify-content: space-between;
     gap: .6rem;
-    height: 11.2rem;
+    height: clamp(14rem, 17vw, 18rem);
     padding: 1rem .65rem .35rem;
     border: 1px solid #eee2d8;
     border-radius: 1rem;
@@ -630,7 +630,7 @@ body#page-my-index #topofscroll.main-inner {
 }
 .baitalgahwa-dashboard-bars__track {
     width: 100%;
-    height: 8.9rem;
+    height: 11.6rem;
     display: flex;
     align-items: end;
     justify-content: center;
