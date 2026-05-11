@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2026043032;
+$plugin->version   = 2026043033;
 $plugin->requires  = 2024100700; // Moodle 4.5.
 $plugin->component = 'theme_baitalgahwa';
 $plugin->maturity  = MATURITY_STABLE;

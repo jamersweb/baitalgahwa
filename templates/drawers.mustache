@@ -930,6 +930,160 @@ body#page-user-index .secondary-navigation {
 }
 }
 </style>
+<style id="baitalgahwa-site-admin-search-critical">
+/* Branded Site administration landing, matching the course admin form surface. */
+body#page-admin-search {
+    --bag-admin-brown: #754a24;
+    --bag-admin-brown-dark: #5f3616;
+    --bag-admin-ink: #17120e;
+    --bag-admin-muted: #6f6862;
+    --bag-admin-line: rgba(117, 74, 36, .22);
+    background: #fff !important;
+}
+body#page-admin-search #page.drawers,
+body#page-admin-search #topofscroll.main-inner,
+body#page-admin-search #page.drawers .main-inner,
+body#page-admin-search .header-maxwidth,
+body#page-admin-search #region-main-box,
+body#page-admin-search #region-main {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+body#page-admin-search #page-header,
+body#page-admin-search .tertiary-navigation {
+    display: none !important;
+}
+body#page-admin-search #region-main {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+body#page-admin-search #page-content {
+    width: min(calc(100% - clamp(3rem, 10vw, 12rem)), 1560px) !important;
+    max-width: 1560px !important;
+    margin: 2.75rem auto 4.5rem !important;
+    padding: 0 !important;
+}
+body#page-admin-search #region-main > div[role="main"] {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+body#page-admin-search #region-main h2,
+body#page-admin-search #region-main h3,
+body#page-admin-search #region-main .h2,
+body#page-admin-search #region-main .h3 {
+    color: var(--bag-admin-ink) !important;
+    font-weight: 800 !important;
+}
+body#page-admin-search #region-main h2:first-child {
+    margin: 0 0 1.8rem !important;
+    color: var(--bag-admin-ink) !important;
+    font-size: clamp(1.7rem, 2.2vw, 2.45rem) !important;
+    line-height: 1.12 !important;
+}
+body#page-admin-search #adminsettings .nav-tabs,
+body#page-admin-search #region-main .nav-tabs,
+body#page-admin-search #region-main .moremenu.navigation {
+    gap: clamp(1.6rem, 3.8vw, 4.5rem) !important;
+    margin-bottom: 2rem !important;
+    border-bottom: 2px solid #26211d !important;
+}
+body#page-admin-search #adminsettings .nav-link,
+body#page-admin-search #region-main .nav-tabs .nav-link,
+body#page-admin-search #region-main .moremenu.navigation .nav-link {
+    padding: 0 0 1.05rem !important;
+    border: 0 !important;
+    color: #2f2f2f !important;
+    background: transparent !important;
+    font-weight: 800 !important;
+    box-shadow: none !important;
+}
+body#page-admin-search #adminsettings .nav-link.active,
+body#page-admin-search #region-main .nav-tabs .nav-link.active,
+body#page-admin-search #region-main .active > .nav-link,
+body#page-admin-search #region-main a[aria-current="true"] {
+    color: var(--bag-admin-brown) !important;
+    box-shadow: inset 0 -.34rem 0 var(--bag-admin-brown) !important;
+}
+body#page-admin-search #adminsettings,
+body#page-admin-search .adminsettings,
+body#page-admin-search .settingsform,
+body#page-admin-search #region-main > div[role="main"] > .box {
+    border: 1px solid var(--bag-admin-line) !important;
+    border-radius: 1.1rem !important;
+    background: linear-gradient(180deg, #fff 0%, #fffdfb 100%) !important;
+    box-shadow: 0 .55rem 1.25rem rgba(20, 12, 7, .035) !important;
+    padding: clamp(1.25rem, 2vw, 2rem) !important;
+}
+body#page-admin-search #region-main .form-inline,
+body#page-admin-search #region-main form[action*="search.php"] {
+    margin-bottom: 1.5rem !important;
+}
+body#page-admin-search #region-main input[type="search"],
+body#page-admin-search #region-main input.form-control {
+    border-color: #e4d8cf !important;
+    border-radius: .7rem !important;
+    color: #3b332d !important;
+    box-shadow: none !important;
+}
+body#page-admin-search #region-main input[type="search"]:focus,
+body#page-admin-search #region-main input.form-control:focus {
+    border-color: var(--bag-admin-brown) !important;
+    box-shadow: 0 0 0 .18rem rgba(117, 74, 36, .12) !important;
+}
+body#page-admin-search #region-main .btn-primary,
+body#page-admin-search #region-main button.btn-primary,
+body#page-admin-search #region-main input.btn-primary {
+    border-color: var(--bag-admin-brown) !important;
+    background: var(--bag-admin-brown) !important;
+    color: #fff !important;
+    border-radius: .55rem !important;
+    font-weight: 700 !important;
+}
+body#page-admin-search #region-main .adminsettings .form-item,
+body#page-admin-search #region-main .adminsettings .form-setting,
+body#page-admin-search #region-main .adminsettings .settingsform,
+body#page-admin-search #region-main .adminsettings .settingsform > div,
+body#page-admin-search #region-main .adminsettings .row,
+body#page-admin-search #region-main .settingsform .row {
+    border-color: rgba(117, 74, 36, .16) !important;
+}
+body#page-admin-search #region-main .adminsettings h3,
+body#page-admin-search #region-main .settingsform h3,
+body#page-admin-search #region-main .box h3 {
+    color: var(--bag-admin-brown) !important;
+    font-size: clamp(1.15rem, 1.35vw, 1.45rem) !important;
+    font-weight: 800 !important;
+}
+body#page-admin-search #region-main .adminsettings a,
+body#page-admin-search #region-main .settingsform a,
+body#page-admin-search #region-main .box a {
+    color: #126bbd !important;
+    font-weight: 500 !important;
+}
+body#page-admin-search #region-main .adminsettings a:hover,
+body#page-admin-search #region-main .settingsform a:hover,
+body#page-admin-search #region-main .box a:hover {
+    color: var(--bag-admin-brown-dark) !important;
+}
+body#page-admin-search #region-main .list-unstyled,
+body#page-admin-search #region-main ul {
+    line-height: 1.6 !important;
+}
+@media (max-width: 767.98px) {
+    body#page-admin-search #page-content {
+        width: min(calc(100% - 1.5rem), 1560px) !important;
+        margin-top: 1.5rem !important;
+    }
+    body#page-admin-search #adminsettings,
+    body#page-admin-search .adminsettings,
+    body#page-admin-search .settingsform,
+    body#page-admin-search #region-main > div[role="main"] > .box {
+        padding: 1rem !important;
+    }
+}
+</style>
 <style id="baitalgahwa-course-secondary-admin-critical">
 /* Grades / Activities / reports keep Moodle destinations, with the same Bait Al Gahwa course shell. */
 body.baitalgahwa-course-secondary-admin {
