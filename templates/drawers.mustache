@@ -1130,6 +1130,210 @@ body.baitalgahwa-course-secondary-admin .secondary-navigation {
 }
 }
 </style>
+<style id="baitalgahwa-course-admin-polish-critical">
+/* Final polish for Figma-matched course admin pages. Keeps Moodle content and links intact. */
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) {
+    --bag-admin-brown: #754a24;
+    --bag-admin-brown-dark: #5f3616;
+    --bag-admin-ink: #17120e;
+    --bag-admin-muted: #6f6862;
+    --bag-admin-line: rgba(117, 74, 36, .24);
+    --bag-admin-soft: #fbfaf8;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #topofscroll.main-inner {
+    padding-top: clamp(1.25rem, 2vw, 2.15rem) !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .baitalgahwa-course-hero__cta {
+    letter-spacing: 0 !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .baitalgahwa-course-hero__cta:hover,
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .baitalgahwa-course-hero__cta:focus-visible {
+    background: var(--bag-admin-brown-dark) !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .baitalgahwa-course-stats {
+    overflow: hidden !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .baitalgahwa-course-stats__card {
+    transition: background-color .16s ease, transform .16s ease !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .baitalgahwa-course-stats__card:hover {
+    background: rgba(117, 74, 36, .035) !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .secondary-navigation {
+    position: relative !important;
+    padding-top: .2rem !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .secondary-navigation .nav-link:hover,
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .secondary-navigation .nav-link:focus-visible {
+    color: var(--bag-admin-brown) !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #region-main .btn,
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #region-main a.btn,
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #region-main input.btn,
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #region-main button.btn {
+    min-height: 2.45rem;
+    border-radius: .42rem !important;
+    font-weight: 700 !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #region-main .btn-secondary,
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #region-main a.btn-secondary {
+    border-color: rgba(117, 74, 36, .22) !important;
+    background: #fff !important;
+    color: var(--bag-admin-brown) !important;
+}
+body[id^="page-course-view-"] .course-content > ul > li:first-child,
+body[id^="page-course-view-"] .course-content ul.topics > li:first-child,
+body[id^="page-course-view-"] .course-content ul.sections > li:first-child,
+body[id^="page-course-view-"] .course-section:first-child,
+body#page-course-edit #region-main form.mform,
+body#page-course-edit #region-main .mform,
+body#page-user-index #region-main .userlist,
+body#page-user-index #region-main [data-region="participantslist"],
+body#page-user-index #region-main .participantsform,
+body.baitalgahwa-course-secondary-admin #region-main > div[role="main"] > .box,
+body.baitalgahwa-course-secondary-admin #region-main .generaltable,
+body.baitalgahwa-course-secondary-admin #region-main .gradereport-grader-table,
+body.baitalgahwa-course-secondary-admin #region-main .course-content {
+    border-color: rgba(117, 74, 36, .18) !important;
+    box-shadow: 0 1.15rem 2.4rem rgba(20, 12, 7, .055) !important;
+}
+body[id^="page-course-view-"] .course-content > ul > li:first-child,
+body[id^="page-course-view-"] .course-content ul.topics > li:first-child,
+body[id^="page-course-view-"] .course-section:first-child {
+    position: relative !important;
+}
+body[id^="page-course-view-"] .course-content > ul > li:first-child .course-section-header,
+body[id^="page-course-view-"] .course-content ul.topics > li:first-child .course-section-header,
+body[id^="page-course-view-"] .course-section:first-child .course-section-header {
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid rgba(117, 74, 36, .12) !important;
+}
+body[id^="page-course-view-"] .course-content .activity.modtype_forum,
+body[id^="page-course-view-"] .course-content .activity-item.modtype_forum {
+    border-color: var(--bag-admin-brown) !important;
+    background: linear-gradient(180deg, #fff 0%, #fffcf9 100%) !important;
+}
+body[id^="page-course-view-"] .course-content .activity.modtype_forum .activityinstance,
+body[id^="page-course-view-"] .course-content .activity-item.modtype_forum .activityinstance {
+    display: flex !important;
+    align-items: center !important;
+    gap: .9rem !important;
+    min-height: 4.35rem !important;
+}
+body[id^="page-course-view-"] .course-content > ul.topics,
+body[id^="page-course-view-"] .course-content > ul.sections {
+    gap: clamp(1rem, 1.5vw, 1.45rem) !important;
+}
+body[id^="page-course-view-"] .course-content > ul.topics > li.section:not(:first-child),
+body[id^="page-course-view-"] .course-content > ul.sections > li.section:not(:first-child),
+body[id^="page-course-view-"] .course-content .section .activity:not(.modtype_forum) {
+    border-color: rgba(117, 74, 36, .12) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 .7rem 1.5rem rgba(20, 12, 7, .06) !important;
+}
+body#page-course-edit #region-main form.mform > h2:first-child,
+body#page-course-edit #region-main .mform > h2:first-child,
+body#page-user-index #region-main > h2:first-child,
+body.baitalgahwa-course-secondary-admin #region-main h2:first-child {
+    margin-bottom: 1.45rem !important;
+    color: var(--bag-admin-brown) !important;
+    font-size: clamp(1.45rem, 1.65vw, 2rem) !important;
+}
+body#page-course-edit #region-main form.mform fieldset,
+body#page-course-edit #region-main .mform fieldset {
+    margin-bottom: 1.15rem !important;
+    background: linear-gradient(180deg, #fff 0%, #fffdfb 100%) !important;
+    box-shadow: 0 .55rem 1.25rem rgba(20, 12, 7, .035) !important;
+}
+body#page-course-edit #region-main form.mform fieldset > legend,
+body#page-course-edit #region-main .mform fieldset > legend,
+body#page-course-edit #region-main form.mform .fheader,
+body#page-course-edit #region-main .mform .fheader {
+    border-bottom-color: rgba(23, 18, 14, .34) !important;
+    color: var(--bag-admin-ink) !important;
+    font-size: clamp(1.1rem, 1.2vw, 1.35rem) !important;
+}
+body#page-course-edit #region-main form.mform .fitem,
+body#page-course-edit #region-main form.mform .form-group.row {
+    min-height: 3.5rem !important;
+    margin-bottom: 1rem !important;
+}
+body#page-course-edit #region-main form.mform .col-form-label,
+body#page-course-edit #region-main form.mform .fitemtitle {
+    color: #332d28 !important;
+    font-size: 1rem !important;
+}
+body#page-course-edit #region-main form.mform input.form-control,
+body#page-course-edit #region-main form.mform .form-control,
+body#page-course-edit #region-main form.mform select,
+body#page-course-edit #region-main form.mform .custom-select {
+    border-color: #e4d8cf !important;
+    color: #3b332d !important;
+}
+body#page-course-edit #region-main form.mform input.form-control:focus,
+body#page-course-edit #region-main form.mform .form-control:focus,
+body#page-course-edit #region-main form.mform select:focus,
+body#page-course-edit #region-main form.mform .custom-select:focus {
+    border-color: var(--bag-admin-brown) !important;
+    box-shadow: 0 0 0 .18rem rgba(117, 74, 36, .12) !important;
+}
+body#page-user-index #region-main .userlist,
+body#page-user-index #region-main [data-region="participantslist"],
+body.baitalgahwa-course-secondary-admin #region-main .gradereport-grader-table,
+body.baitalgahwa-course-secondary-admin #region-main .generaltable {
+    overflow-x: auto !important;
+}
+body#page-user-index #region-main table,
+body#page-user-index #region-main .table,
+body.baitalgahwa-course-secondary-admin #region-main table,
+body.baitalgahwa-course-secondary-admin #region-main .table {
+    border-radius: .72rem !important;
+    overflow: hidden !important;
+}
+body#page-user-index #region-main thead th,
+body.baitalgahwa-course-secondary-admin #region-main thead th {
+    border-bottom: 1px solid rgba(17, 24, 39, .12) !important;
+}
+body#page-user-index #region-main tbody tr,
+body.baitalgahwa-course-secondary-admin #region-main tbody tr {
+    transition: background-color .14s ease !important;
+}
+body#page-user-index #region-main tbody tr:hover,
+body.baitalgahwa-course-secondary-admin #region-main tbody tr:hover {
+    background: rgba(117, 74, 36, .045) !important;
+}
+body#page-user-index #region-main input[type="checkbox"],
+body.baitalgahwa-course-secondary-admin #region-main input[type="checkbox"] {
+    width: 1.05rem !important;
+    height: 1.05rem !important;
+    accent-color: var(--bag-admin-brown);
+}
+body#page-user-index #region-main .pagination .page-link,
+body.baitalgahwa-course-secondary-admin #region-main .pagination .page-link {
+    border-radius: .45rem !important;
+    color: var(--bag-admin-brown) !important;
+}
+body#page-user-index #region-main .pagination .active .page-link,
+body.baitalgahwa-course-secondary-admin #region-main .pagination .active .page-link {
+    border-color: var(--bag-admin-brown) !important;
+    background: var(--bag-admin-brown) !important;
+    color: #fff !important;
+}
+@media (max-width: 767.98px) {
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) #topofscroll.main-inner {
+    padding-top: .75rem !important;
+}
+body.baitalgahwa-course-dashboard:not(.baitalgahwa-course-enrol) .baitalgahwa-course-stats {
+    margin-bottom: 2.35rem !important;
+}
+body#page-course-edit #region-main form.mform .form-group.row,
+body#page-course-edit #region-main form.mform .fitem {
+    align-items: flex-start !important;
+}
+}
+</style>
 {{#course_strip_enrol}}
 <script>
 (function(){

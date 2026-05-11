@@ -1643,6 +1643,19 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     ];
     $context = array_merge($context, theme_baitalgahwa_get_footer_context());
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
+    $courseediturl = '';
+    $caneditcoursesnav = false;
+    $coursecat = \core_course_category::user_top();
+    if ($coursecat) {
+        if ($cat = \core_course_category::get_nearest_editable_subcategory($coursecat, ['manage'])) {
+            $caneditcoursesnav = true;
+            $courseediturl = theme_baitalgahwa_get_manage_course_url((int) $cat->id);
+        }
+    }
+    if (!$caneditcoursesnav && is_siteadmin($USER)) {
+        $caneditcoursesnav = true;
+        $courseediturl = (new \moodle_url('/course/management.php'))->out(false);
+    }
     $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
     $trainingurl = new \moodle_url('/theme/baitalgahwa/training.php');
     $contacturl = new \moodle_url('/theme/baitalgahwa/contact.php');
@@ -1662,6 +1675,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'dashboardurl' => (new \moodle_url('/my/'))->out(false),
         'mycoursesurl' => (new \moodle_url('/my/courses.php'))->out(false),
         'searchurl' => (new \moodle_url('/course/search.php'))->out(false),
+        'courseediturl' => $courseediturl,
         'notificationsurl' => (new \moodle_url('/message/output/popup/notifications.php'))->out(false),
         'messagesurl' => (new \moodle_url('/message/index.php'))->out(false),
         'abouturl' => $abouturl->out(false),
@@ -1670,6 +1684,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'loginurl' => (new \moodle_url('/login/index.php'))->out(false),
         'signupurl' => (new \moodle_url('/login/signup.php'))->out(false),
     ];
+    $context['caneditcoursesnav'] = $caneditcoursesnav && $courseediturl !== '';
     $label = get_string('enrol_intro_heading', 'theme_baitalgahwa');
     $jsonlabel = json_encode($label, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG);
     $context['enrol_intro_heading_json'] = ($jsonlabel !== false) ? $jsonlabel : '"Introduction"';
