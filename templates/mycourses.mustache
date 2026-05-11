@@ -27,7 +27,7 @@ body.pagelayout-mycourses #topofscroll.main-inner {
     width: 100% !important;
     max-width: none !important;
     margin: 0;
-    padding: 5rem 0 4.5rem;
+    padding: 2rem 0 3.25rem;
     color: #241b15;
     box-sizing: border-box;
 }
@@ -35,8 +35,8 @@ body.pagelayout-mycourses #topofscroll.main-inner {
     display: flex;
     flex-direction: column;
     gap: 0;
-    width: min(calc(100% - clamp(2rem, 10.5vw, 13rem)), 1710px) !important;
-    max-width: 1710px !important;
+    width: min(calc(100% - 3rem), 1560px) !important;
+    max-width: 1560px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     box-sizing: border-box;
@@ -104,11 +104,15 @@ body.pagelayout-mycourses #topofscroll.main-inner {
 .baitalgahwa-mycourses-tabs {
     display: flex;
     align-items: stretch;
-    flex-wrap: nowrap;
-    gap: clamp(2rem, 5.8vw, 7rem);
+    flex-wrap: wrap;
+    gap: clamp(2rem, 5.2vw, 6rem);
     border-bottom: 2px solid #352d27;
     margin-bottom: 2.2rem;
-    overflow-x: auto;
+    overflow: visible;
+    scrollbar-width: none;
+}
+.baitalgahwa-mycourses-tabs::-webkit-scrollbar {
+    display: none;
 }
 .baitalgahwa-mycourses-tabs [role="tab"] {
     appearance: none;
@@ -361,7 +365,7 @@ body.pagelayout-mycourses #topofscroll.main-inner {
         padding: 2.25rem 0 3rem !important;
     }
     .baitalgahwa-mycourses-shell {
-        width: min(calc(100% - 2rem), 1710px) !important;
+        width: min(calc(100% - 1.5rem), 1560px) !important;
     }
     .baitalgahwa-mycourses-tabs {
         gap: 2rem;

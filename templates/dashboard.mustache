@@ -25,14 +25,14 @@ body#page-my-index #topofscroll.main-inner {
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: 4.25rem 1.25rem 4.5rem;
+    padding: 1.55rem 0 3.25rem;
     color: #241b15;
 }
 .baitalgahwa-dashboard-shell {
     display: flex;
     flex-direction: column;
     gap: 1.65rem;
-    width: min(calc(100% - clamp(2rem, 10.5vw, 13rem)), 1710px);
+    width: min(calc(100% - 3rem), 1560px);
     margin: 0 auto;
 }
 .baitalgahwa-dashboard-title {
@@ -125,10 +125,12 @@ body#page-my-index #topofscroll.main-inner {
     }
 }
 .baitalgahwa-dashboard-programme {
+    position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     transition: transform .18s ease, box-shadow .18s ease;
+    cursor: pointer;
 }
 .baitalgahwa-dashboard-panel--programmes {
     margin-top: 0;
@@ -374,6 +376,7 @@ body#page-my-index #topofscroll.main-inner {
     margin: 0;
     flex: 0 1 auto;
     min-width: 0;
+    font-size: clamp(1.45rem, 1.7vw, 2rem);
 }
 .baitalgahwa-dashboard-widget__calendar-title-row .baitalgahwa-dashboard-widget__button {
     flex: 0 0 auto;
@@ -385,7 +388,7 @@ body#page-my-index #topofscroll.main-inner {
 }
 .baitalgahwa-dashboard-widget__calendar-filters {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: .45rem;
     width: 100%;
     align-items: center;
@@ -582,19 +585,19 @@ body#page-my-index #topofscroll.main-inner {
     width: 100%;
 }
 .baitalgahwa-dashboard-calendar th {
-    padding: .45rem .2rem;
+    padding: .4rem .12rem;
     border: 0;
     color: #61574f;
-    font-size: 1.05rem;
+    font-size: .9rem;
     font-weight: 700;
 }
 .baitalgahwa-dashboard-calendar td {
-    padding: .26rem .2rem;
+    padding: .18rem .08rem;
     border: 0;
 }
 .baitalgahwa-dashboard-calendar__day {
-    min-width: 2.45rem;
-    line-height: 2.45rem;
+    min-width: 2rem;
+    line-height: 2rem;
     display: inline-block;
     border-radius: 999px;
     color: #4f453d;
@@ -882,6 +885,9 @@ body#page-my-index #topofscroll.main-inner {
     .baitalgahwa-dashboard {
         padding-inline: .9rem;
     }
+    .baitalgahwa-dashboard-shell {
+        width: min(calc(100% - 1.5rem), 1560px);
+    }
     .baitalgahwa-dashboard-section-head,
     .baitalgahwa-dashboard-todo__head {
         align-items: start;
@@ -1043,7 +1049,7 @@ body#page-my-index #topofscroll.main-inner {
                         {{#has_dashboard_programmes}}
                         <div class="baitalgahwa-dashboard-programmes" role="list">
                             {{#dashboard_programmes}}
-                            <article class="baitalgahwa-dashboard-programme h-100" role="listitem">
+                            <article class="baitalgahwa-dashboard-programme h-100" role="listitem" tabindex="0" data-bag-dashboard-course-url="{{{ url }}}">
                                 <div class="baitalgahwa-dashboard-programme__media">
                                     {{#imageurl}}
                                     <div class="baitalgahwa-dashboard-programme__image{{#programme_focus_gahwa}} baitalgahwa-dashboard-programme__image--gahwa{{/programme_focus_gahwa}}" style="background-image:url('{{{ imageurl }}}');"></div>
@@ -1469,6 +1475,26 @@ require(['theme_boost/loader', 'theme_boost/drawer', 'theme_baitalgahwa/theme'],
     initDashboardDonut();
     initDashboardCalendar();
     initDashboardQuiz();
+    document.querySelectorAll('[data-bag-dashboard-course-url]').forEach(function(card) {
+        var open = function() {
+            var url = card.getAttribute('data-bag-dashboard-course-url');
+            if (url) {
+                window.location.href = url;
+            }
+        };
+        card.addEventListener('click', function(event) {
+            if (event.target.closest('a, button, select, input, textarea')) {
+                return;
+            }
+            open();
+        });
+        card.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                open();
+            }
+        });
+    });
     document.querySelectorAll('[data-bag-newsletter-form]').forEach(function(form) {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
