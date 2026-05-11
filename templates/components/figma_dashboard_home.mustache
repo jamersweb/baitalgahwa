@@ -18,6 +18,7 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-home {
     --bag-brown: #7a4a22;
+    --bag-brown-dark: #5f3616;
     --bag-gold: #c99d42;
     --bag-ink: #15110d;
     --bag-muted: #8d7f73;
@@ -31,11 +32,11 @@ body.bag-figma-user-dashboard #page.drawers {
 .bag-figma-home__section {
     width: min(100%, 1280px);
     margin: 0 auto;
-    padding: 0 clamp(.75rem, 2vw, 1.25rem);
+    padding: 0 clamp(1rem, 2.5vw, 1.8rem);
 }
 .bag-figma-hero {
     position: relative;
-    min-height: clamp(17.5rem, 37vw, 26.5rem);
+    min-height: clamp(21rem, 45vw, 33.5rem);
     display: grid;
     place-items: center;
     color: #fff;
@@ -52,28 +53,38 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-hero::before {
     z-index: -2;
-    background: url('{{{ bag_home_hero_url }}}') center 46% / cover no-repeat;
-    transform: scale(1.01);
+    background: url('{{{ bag_home_hero_url }}}') center 47% / cover no-repeat;
+    filter: grayscale(1) contrast(1.08) brightness(.74);
+    transform: scale(1.015);
 }
 .bag-figma-hero::after {
     z-index: -1;
-    background: linear-gradient(180deg, rgba(18, 15, 13, .48), rgba(18, 15, 13, .66));
+    background:
+        linear-gradient(90deg, rgba(18, 15, 13, .46), rgba(18, 15, 13, .12) 48%, rgba(18, 15, 13, .5)),
+        linear-gradient(180deg, rgba(18, 15, 13, .36), rgba(18, 15, 13, .64));
 }
 .bag-figma-hero__title {
-    max-width: 42rem;
-    margin: 2.2rem auto .8rem;
+    max-width: 43rem;
+    margin: 3.3rem auto .85rem;
     color: #fff;
-    font-size: clamp(1.45rem, 3.4vw, 2.45rem);
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
     line-height: 1.05;
     font-weight: 800;
     text-transform: uppercase;
 }
 .bag-figma-hero__copy {
-    max-width: 31rem;
-    margin: 0 auto 1.15rem;
+    max-width: 34rem;
+    margin: 0 auto 1.35rem;
     color: rgba(255,255,255,.88);
     font-size: clamp(.82rem, 1.4vw, 1rem);
     line-height: 1.55;
+}
+.bag-figma-hero__actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    flex-wrap: wrap;
 }
 .bag-figma-btn {
     display: inline-flex;
@@ -89,32 +100,54 @@ body.bag-figma-user-dashboard #page.drawers {
     text-decoration: none;
     border: 1px solid var(--bag-brown);
     box-shadow: 0 .4rem 1rem rgba(90, 52, 20, .18);
+    transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, border-color .16s ease;
+}
+.bag-figma-btn--gold {
+    min-width: 8.8rem;
+    background: var(--bag-gold);
+    border-color: var(--bag-gold);
+    color: #3b2412;
+}
+.bag-figma-btn--outline {
+    min-width: 8.8rem;
+    background: rgba(122,74,34,.16);
+    border-color: rgba(201,157,66,.95);
+    color: #fff;
 }
 .bag-figma-btn:hover,
 .bag-figma-btn:focus-visible {
     color: #fff;
-    background: #613817;
+    background: var(--bag-brown-dark);
     text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 .7rem 1.4rem rgba(44, 24, 9, .22);
+}
+.bag-figma-btn--gold:hover,
+.bag-figma-btn--gold:focus-visible {
+    color: #2d1b0e;
+    background: #d6ad52;
+    border-color: #d6ad52;
 }
 .bag-figma-expertise {
     position: relative;
-    margin-top: -2.2rem;
+    margin-top: 0;
     z-index: 1;
+    padding-top: clamp(3.6rem, 7vw, 6.5rem);
+    padding-bottom: clamp(2.4rem, 4vw, 3.4rem);
 }
 .bag-figma-expertise__panel {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(16rem, .95fr);
-    gap: clamp(2rem, 5vw, 5.3rem);
+    grid-template-columns: minmax(0, .98fr) minmax(18rem, 1.02fr);
+    gap: clamp(2.1rem, 5.8vw, 6rem);
     align-items: center;
-    min-height: 19rem;
-    background: #fff;
-    border: 1px solid rgba(122,74,34,.1);
-    box-shadow: 0 1rem 2.5rem rgba(52, 30, 12, .08);
-    padding: clamp(1.7rem, 4.6vw, 4.8rem);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
 }
 .bag-figma-collage {
     position: relative;
-    min-height: 14.8rem;
+    min-height: clamp(17rem, 30vw, 24rem);
 }
 .bag-figma-collage__img {
     position: absolute;
@@ -122,23 +155,25 @@ body.bag-figma-user-dashboard #page.drawers {
     box-shadow: 0 .9rem 1.8rem rgba(40, 24, 12, .16);
 }
 .bag-figma-collage__img--one {
-    width: 54%;
-    height: 7.4rem;
-    left: 2%;
-    top: 13%;
-    border-radius: 50%;
+    width: 48%;
+    height: 9rem;
+    left: 0;
+    top: 17%;
+    border-radius: .85rem;
 }
 .bag-figma-collage__img--two {
-    width: 42%;
-    height: 7rem;
-    right: 4%;
+    width: 44%;
+    height: 12.2rem;
+    right: 17%;
     top: 0;
+    border-radius: .85rem;
 }
 .bag-figma-collage__img--three {
-    width: 56%;
-    height: 7rem;
-    right: 16%;
+    width: 48%;
+    height: 12.4rem;
+    right: 0;
     bottom: 0;
+    border-radius: .85rem;
 }
 .bag-figma-collage::before,
 .bag-figma-collage::after {
@@ -182,11 +217,24 @@ body.bag-figma-user-dashboard #page.drawers {
 .bag-figma-metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.1rem;
-    margin-top: 1.3rem;
+    gap: clamp(.75rem, 2.4vw, 1.7rem);
+    margin-top: 1.65rem;
 }
 .bag-figma-metric {
     color: var(--bag-brown);
+    text-align: center;
+}
+.bag-figma-metric__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 auto .65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--bag-gold);
+    box-shadow: 0 .45rem 1rem rgba(60, 36, 18, .08);
 }
 .bag-figma-metric strong {
     display: block;
@@ -203,11 +251,12 @@ body.bag-figma-user-dashboard #page.drawers {
     font-weight: 700;
 }
 .bag-figma-programmes {
-    padding-block: clamp(2.5rem, 5vw, 4.8rem);
+    padding-block: clamp(3rem, 6vw, 5.5rem);
     text-align: center;
+    background: #fffaf3;
 }
 .bag-figma-programmes .bag-figma-copy {
-    max-width: 39rem;
+    max-width: 48rem;
     margin-inline: auto;
 }
 .bag-figma-grid {
@@ -218,24 +267,71 @@ body.bag-figma-user-dashboard #page.drawers {
     text-align: left;
 }
 .bag-figma-card {
+    position: relative;
     overflow: hidden;
     background: #fff;
     border: 1px solid #eadfce;
-    border-radius: .35rem;
-    box-shadow: 0 .8rem 1.45rem rgba(49, 31, 16, .08);
+    border-radius: .55rem;
+    box-shadow: 0 .55rem 1.05rem rgba(49, 31, 16, .12);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.bag-figma-card:hover,
+.bag-figma-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 1.8rem rgba(49, 31, 16, .15);
+}
+.bag-figma-card__media {
+    position: relative;
+    overflow: hidden;
 }
 .bag-figma-card__image {
     width: 100%;
-    aspect-ratio: 1.34;
+    aspect-ratio: 1.42;
     object-fit: cover;
     display: block;
 }
+.bag-figma-card__status {
+    position: absolute;
+    top: .85rem;
+    left: .85rem;
+    z-index: 1;
+    min-width: 5.3rem;
+    padding: .27rem .7rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.95);
+    color: var(--bag-brown);
+    font-size: .62rem;
+    font-weight: 800;
+    text-align: center;
+}
+.bag-figma-card__dates {
+    position: absolute;
+    left: .8rem;
+    right: .8rem;
+    bottom: .75rem;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: .45rem;
+}
+.bag-figma-card__date {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    border-radius: 999px;
+    padding: .32rem .48rem;
+    background: rgba(255,255,255,.94);
+    color: #6d5c4c;
+    font-size: .58rem;
+    font-weight: 800;
+    line-height: 1;
+}
 .bag-figma-card__body {
-    padding: 1rem;
+    padding: 1.05rem 1rem .9rem;
 }
 .bag-figma-card__title {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.08rem;
     font-weight: 800;
     line-height: 1.25;
 }
@@ -248,41 +344,68 @@ body.bag-figma-user-dashboard #page.drawers {
 .bag-figma-card__meta {
     display: flex;
     align-items: center;
-    gap: .55rem;
+    justify-content: space-between;
+    gap: .8rem;
+    padding-top: .55rem;
+    border-top: 1px solid #eee4d9;
     color: var(--bag-brown);
-    font-size: .74rem;
+    font-size: .7rem;
     font-weight: 700;
+}
+.bag-figma-card__host {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    gap: .5rem;
+}
+.bag-figma-card__avatar {
+    width: 1.85rem;
+    height: 1.85rem;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #f3e7d9;
+    color: var(--bag-brown);
+}
+.bag-figma-card__pill {
+    flex: 0 0 auto;
+    border-radius: .35rem;
+    padding: .38rem .65rem;
+    background: var(--bag-brown);
+    color: #fff;
+    font-size: .62rem;
+    font-weight: 800;
 }
 .bag-figma-card__action {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
-    min-width: 4.8rem;
-    height: 1.55rem;
-    border-radius: .2rem;
-    background: var(--bag-brown);
-    color: #fff;
-    font-size: .64rem;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: .85rem;
+    padding-top: .8rem;
+    border-top: 1px solid #eee4d9;
+    color: var(--bag-brown);
+    font-size: .68rem;
     font-weight: 700;
     text-decoration: none;
 }
 .bag-figma-card__action:hover,
 .bag-figma-card__action:focus-visible {
-    color: #fff;
-    background: #5f3616;
+    color: var(--bag-brown-dark);
     text-decoration: none;
 }
 .bag-figma-more {
     margin-top: 1.8rem;
 }
 .bag-figma-development {
-    background: #f4f6f0;
-    padding-block: clamp(2.3rem, 5vw, 4.3rem);
+    background: #f1f3ec;
+    padding-block: clamp(3.4rem, 7vw, 6.3rem);
 }
 .bag-figma-development__inner {
     display: grid;
-    grid-template-columns: minmax(0, .95fr) minmax(17rem, 1.05fr);
+    grid-template-columns: minmax(0, .95fr) minmax(19rem, 1.05fr);
     gap: clamp(2rem, 6vw, 5.3rem);
     align-items: center;
 }
@@ -309,12 +432,12 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-development__image {
     width: 100%;
-    max-height: 25rem;
+    max-height: 31rem;
     object-fit: cover;
     display: block;
 }
 .bag-figma-cta {
-    padding-block: 2rem;
+    padding-block: clamp(2.1rem, 4vw, 3.2rem);
 }
 .bag-figma-cta__panel {
     display: flex;
@@ -324,7 +447,7 @@ body.bag-figma-user-dashboard #page.drawers {
     text-align: center;
     background: var(--bag-brown);
     color: #fff;
-    border-radius: .3rem;
+    border-radius: 1rem;
     padding: clamp(1.8rem, 4vw, 3rem) 1rem;
 }
 .bag-figma-cta__title {
@@ -338,6 +461,11 @@ body.bag-figma-user-dashboard #page.drawers {
     background: #fff4e7;
     color: var(--bag-brown);
     border-color: #fff4e7;
+}
+.bag-figma-cta__copy {
+    margin: -.35rem 0 .3rem;
+    color: rgba(255,255,255,.82);
+    font-size: .82rem;
 }
 @media (max-width: 991.98px) {
     .bag-figma-home__section {
@@ -375,6 +503,7 @@ body.bag-figma-user-dashboard #page.drawers {
     }
     .bag-figma-expertise {
         margin-top: 0;
+        padding-top: 2.2rem;
     }
     .bag-figma-expertise__panel {
         padding: 1.15rem;
@@ -403,6 +532,11 @@ body.bag-figma-user-dashboard #page.drawers {
     .bag-figma-metrics {
         grid-template-columns: 1fr;
     }
+    .bag-figma-card__dates {
+        flex-direction: column;
+        align-items: flex-start;
+        right: auto;
+    }
     .bag-figma-metrics {
         gap: .75rem;
     }
@@ -427,8 +561,11 @@ body.bag-figma-user-dashboard #page.drawers {
     <section class="bag-figma-hero" aria-labelledby="bag-figma-hero-title">
         <div class="bag-figma-home__section">
             <h1 class="bag-figma-hero__title" id="bag-figma-hero-title">Empower Your Future With Excellence</h1>
-            <p class="bag-figma-hero__copy">Build confident professional skills through focused training inspired by Emirati hospitality and the art of Gahwa.</p>
-            <a class="bag-figma-btn" href="{{{ config.membersurl }}}">Start Learning</a>
+            <p class="bag-figma-hero__copy">Join Bait Al Gahwa's premium training programs and unlock your potential through world-class education inspired by Emirati heritage.</p>
+            <div class="bag-figma-hero__actions">
+                <a class="bag-figma-btn bag-figma-btn--gold" href="{{{ config.coursetodo }}}">Explore Course</a>
+                <a class="bag-figma-btn bag-figma-btn--outline" href="{{{ config.signupurl }}}">Register</a>
+            </div>
         </div>
     </section>
 
@@ -444,9 +581,9 @@ body.bag-figma-user-dashboard #page.drawers {
                 <h2 class="bag-figma-title" id="bag-figma-expertise-title">Practical Learning For Every Professional Path</h2>
                 <p class="bag-figma-copy">Our programmes blend hands-on training, cultural detail, and guided practice so learners can grow with clarity and confidence.</p>
                 <div class="bag-figma-metrics" role="list">
-                    <span class="bag-figma-metric" role="listitem"><strong>500+</strong><span>Professionals Trained</span></span>
-                    <span class="bag-figma-metric" role="listitem"><strong>20+</strong><span>Expert Mentors</span></span>
-                    <span class="bag-figma-metric" role="listitem"><strong>10+</strong><span>Learning Tracks</span></span>
+                    <span class="bag-figma-metric" role="listitem"><span class="bag-figma-metric__icon"><i class="fa fa-trophy" aria-hidden="true"></i></span><strong>500+</strong><span>Certified Graduates</span></span>
+                    <span class="bag-figma-metric" role="listitem"><span class="bag-figma-metric__icon"><i class="fa fa-book" aria-hidden="true"></i></span><strong>20+</strong><span>Training Programs</span></span>
+                    <span class="bag-figma-metric" role="listitem"><span class="bag-figma-metric__icon"><i class="fa fa-user-o" aria-hidden="true"></i></span><strong>50+</strong><span>Expert Instructors</span></span>
                 </div>
             </div>
         </div>
@@ -454,19 +591,29 @@ body.bag-figma-user-dashboard #page.drawers {
 
     <section class="bag-figma-programmes bag-figma-home__section" aria-labelledby="bag-figma-programmes-title">
         <h2 class="bag-figma-title" id="bag-figma-programmes-title">Our Training Programmes</h2>
-        <p class="bag-figma-copy">Learn through focused sessions covering leadership, service, digital transformation, and specialist Gahwa practice.</p>
+        <p class="bag-figma-copy">Our hands-on programmes explore the history, techniques and rituals of Gahwa. Whether you're passionate about heritage or want to deepen your skills, each session offers a rich, immersive experience guided by seasoned experts.</p>
         {{#has_dashboard_home_programmes}}
         <div class="bag-figma-grid" role="list">
             {{#dashboard_home_programmes}}
             <article class="bag-figma-card" role="listitem">
-                {{#imageurl}}<img class="bag-figma-card__image" src="{{{ imageurl }}}" alt="" loading="lazy">{{/imageurl}}
-                {{^imageurl}}<img class="bag-figma-card__image" src="{{{ bag_home_hero_url }}}" alt="" loading="lazy">{{/imageurl}}
+                <div class="bag-figma-card__media">
+                    <span class="bag-figma-card__status">Available</span>
+                    {{#imageurl}}<img class="bag-figma-card__image" src="{{{ imageurl }}}" alt="" loading="lazy">{{/imageurl}}
+                    {{^imageurl}}<img class="bag-figma-card__image" src="{{{ bag_home_hero_url }}}" alt="" loading="lazy">{{/imageurl}}
+                    <div class="bag-figma-card__dates">
+                        <span class="bag-figma-card__date">It starts on 11/02/2026</span>
+                        <span class="bag-figma-card__date"><i class="fa fa-clock-o" aria-hidden="true"></i>It end on 11/03/2026</span>
+                    </div>
+                </div>
                 <div class="bag-figma-card__body">
                     <h3 class="bag-figma-card__title">{{ fullname }}</h3>
                     {{#summary}}<p class="bag-figma-card__text">{{ summary }}</p>{{/summary}}
                     {{^summary}}<p class="bag-figma-card__text">Guided training designed to build practical skills through immersive learning.</p>{{/summary}}
-                    <div class="bag-figma-card__meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>{{#categoryname}}{{ categoryname }}{{/categoryname}}{{^categoryname}}Bait Al Gahwa{{/categoryname}}</span></div>
-                    <a class="bag-figma-card__action" href="{{{ url }}}">Explore</a>
+                    <div class="bag-figma-card__meta">
+                        <span class="bag-figma-card__host"><span class="bag-figma-card__avatar"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span><span>{{#categoryname}}{{ categoryname }}{{/categoryname}}{{^categoryname}}Gahwa Specialist,<br>Bait Al Gahwa Host{{/categoryname}}</span></span>
+                        <span class="bag-figma-card__pill">Men and women</span>
+                    </div>
+                    <a class="bag-figma-card__action" href="{{{ url }}}"><span><i class="fa fa-long-arrow-left" aria-hidden="true"></i> The details</span><span>Fees are free</span></a>
                 </div>
             </article>
             {{/dashboard_home_programmes}}
@@ -485,11 +632,12 @@ body.bag-figma-user-dashboard #page.drawers {
             <div>
                 <p class="bag-figma-kicker">Professional Development</p>
                 <h2 class="bag-figma-title">Excellence In Professional Development</h2>
-                <p class="bag-figma-copy">Choose structured pathways that help teams improve service quality, leadership behaviour, and customer experience.</p>
+                <p class="bag-figma-copy">Bait Al Gahwa is committed to fostering professional excellence through comprehensive training programs that blend traditional values with modern expertise.</p>
                 <ul class="bag-figma-checks">
-                    <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Industry-aligned sessions with practical learning outcomes.</span></li>
-                    <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Progress tracking for enrolled learners and teams.</span></li>
-                    <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Expert-led guidance rooted in hospitality excellence.</span></li>
+                    <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>World-class curriculum designed by industry experts</span></li>
+                    <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Flexible learning options for busy professionals</span></li>
+                    <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Industry-recognized certifications</span></li>
+                    <li><i class="fa fa-check-circle-o" aria-hidden="true"></i><span>Ongoing support and career guidance</span></li>
                 </ul>
             </div>
             <div class="bag-figma-development__imagewrap">
@@ -501,7 +649,8 @@ body.bag-figma-user-dashboard #page.drawers {
     <section class="bag-figma-cta bag-figma-home__section">
         <div class="bag-figma-cta__panel">
             <h2 class="bag-figma-cta__title">Ready To Begin Your Journey?</h2>
-            <a class="bag-figma-btn" href="{{{ config.coursetodo }}}">Explore Programmes</a>
+            <p class="bag-figma-cta__copy">Join hundreds of professionals who have transformed their careers through our training programs</p>
+            <a class="bag-figma-btn" href="{{{ config.signupurl }}}">Register for a Course</a>
         </div>
     </section>
 </main>
