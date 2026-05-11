@@ -22,7 +22,7 @@ body.bag-figma-user-dashboard #page.drawers {
     --bag-gold: #c99d42;
     --bag-ink: #15110d;
     --bag-muted: #8d7f73;
-    --bag-cream: #fffaf3;
+    --bag-cream: #fdf8f5;
     --bag-line: #eadfce;
     color: var(--bag-ink);
     background: var(--bag-cream);
@@ -32,11 +32,11 @@ body.bag-figma-user-dashboard #page.drawers {
 .bag-figma-home__section {
     width: min(100%, 1280px);
     margin: 0 auto;
-    padding: 0 clamp(1rem, 2.5vw, 1.8rem);
+    padding: 0;
 }
 .bag-figma-hero {
     position: relative;
-    min-height: clamp(21rem, 45vw, 33.5rem);
+    min-height: clamp(31rem, 46.12vw, 41.5rem);
     display: grid;
     place-items: center;
     color: #fff;
@@ -53,8 +53,8 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-hero::before {
     z-index: -2;
-    background: url('{{{ bag_home_hero_url }}}') center 47% / cover no-repeat;
-    filter: grayscale(1) contrast(1.08) brightness(.74);
+    background: url('{{{ bag_home_hero_url }}}') center top / cover no-repeat;
+    filter: grayscale(1) contrast(1.04) brightness(.78);
     transform: scale(1.015);
 }
 .bag-figma-hero::after {
@@ -64,17 +64,17 @@ body.bag-figma-user-dashboard #page.drawers {
         linear-gradient(180deg, rgba(18, 15, 13, .36), rgba(18, 15, 13, .64));
 }
 .bag-figma-hero__title {
-    max-width: 43rem;
-    margin: 3.3rem auto .85rem;
+    max-width: 665px;
+    margin: 5rem auto .65rem;
     color: #fff;
-    font-size: clamp(1.75rem, 3.5vw, 3rem);
-    line-height: 1.05;
+    font-size: clamp(2.15rem, 3.4vw, 49px);
+    line-height: 1.24;
     font-weight: 800;
     text-transform: uppercase;
 }
 .bag-figma-hero__copy {
-    max-width: 34rem;
-    margin: 0 auto 1.35rem;
+    max-width: 595px;
+    margin: 0 auto 3.05rem;
     color: rgba(255,255,255,.88);
     font-size: clamp(.82rem, 1.4vw, 1rem);
     line-height: 1.55;
@@ -88,28 +88,28 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-btn {
     display: inline-flex;
-    min-height: 2.28rem;
+    min-height: 49px;
     align-items: center;
     justify-content: center;
-    border-radius: .2rem;
-    padding: .62rem 1.18rem;
+    border-radius: 10px;
+    padding: .72rem 1.18rem;
     background: var(--bag-brown);
     color: #fff;
     font-weight: 700;
-    font-size: .74rem;
+    font-size: 15px;
     text-decoration: none;
     border: 1px solid var(--bag-brown);
     box-shadow: 0 .4rem 1rem rgba(90, 52, 20, .18);
     transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, border-color .16s ease;
 }
 .bag-figma-btn--gold {
-    min-width: 8.8rem;
+    min-width: 208.952px;
     background: var(--bag-gold);
     border-color: var(--bag-gold);
     color: #3b2412;
 }
 .bag-figma-btn--outline {
-    min-width: 8.8rem;
+    min-width: 208.952px;
     background: rgba(122,74,34,.16);
     border-color: rgba(201,157,66,.95);
     color: #fff;
@@ -132,13 +132,37 @@ body.bag-figma-user-dashboard #page.drawers {
     position: relative;
     margin-top: 0;
     z-index: 1;
-    padding-top: clamp(3.6rem, 7vw, 6.5rem);
-    padding-bottom: clamp(2.4rem, 4vw, 3.4rem);
+    width: 100%;
+    max-width: none;
+    background: #fdf8f5;
+    padding: 126px max(1rem, calc((100% - 1280px) / 2)) 74px;
+    overflow: hidden;
+}
+.bag-figma-expertise::before,
+.bag-figma-expertise::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    background: url('{{{ bag_home_art_bg_url }}}') center / contain no-repeat;
+    opacity: .19;
+}
+.bag-figma-expertise::before {
+    width: 501px;
+    height: 531px;
+    left: -182px;
+    top: -504px;
+    transform: rotate(17.89deg);
+}
+.bag-figma-expertise::after {
+    width: 151px;
+    height: 324px;
+    right: 0;
+    bottom: 0;
 }
 .bag-figma-expertise__panel {
     display: grid;
-    grid-template-columns: minmax(0, .98fr) minmax(18rem, 1.02fr);
-    gap: clamp(2.1rem, 5.8vw, 6rem);
+    grid-template-columns: 589px 559px;
+    gap: 92px;
     align-items: center;
     background: transparent;
     border: 0;
@@ -147,7 +171,7 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-collage {
     position: relative;
-    min-height: clamp(17rem, 30vw, 24rem);
+    min-height: 567px;
 }
 .bag-figma-collage__img {
     position: absolute;
@@ -155,25 +179,25 @@ body.bag-figma-user-dashboard #page.drawers {
     box-shadow: 0 .9rem 1.8rem rgba(40, 24, 12, .16);
 }
 .bag-figma-collage__img--one {
-    width: 48%;
-    height: 9rem;
-    left: 0;
-    top: 17%;
-    border-radius: .85rem;
+    width: 339px;
+    height: 326px;
+    left: 31px;
+    top: 71px;
+    border-radius: 23px;
 }
 .bag-figma-collage__img--two {
-    width: 44%;
-    height: 12.2rem;
-    right: 17%;
+    width: 294px;
+    height: 326px;
+    right: 56px;
     top: 0;
-    border-radius: .85rem;
+    border-radius: 23px;
 }
 .bag-figma-collage__img--three {
-    width: 48%;
-    height: 12.4rem;
-    right: 0;
+    width: 294px;
+    height: 226px;
+    left: 236px;
     bottom: 0;
-    border-radius: .85rem;
+    border-radius: 23px;
 }
 .bag-figma-collage::before,
 .bag-figma-collage::after {
@@ -204,30 +228,30 @@ body.bag-figma-user-dashboard #page.drawers {
 .bag-figma-title {
     margin: 0;
     color: #17120f;
-    font-size: clamp(1.35rem, 3vw, 2.2rem);
-    line-height: 1.08;
+    font-size: clamp(2rem, 3.125vw, 45px);
+    line-height: 1.11;
     font-weight: 800;
 }
 .bag-figma-copy {
-    margin: .8rem 0 0;
+    margin: 2rem 0 0;
     color: var(--bag-muted);
-    font-size: .95rem;
-    line-height: 1.7;
+    font-size: 18px;
+    line-height: 1.2;
 }
 .bag-figma-metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(.75rem, 2.4vw, 1.7rem);
-    margin-top: 1.65rem;
+    gap: 27px;
+    margin-top: 73px;
 }
 .bag-figma-metric {
     color: var(--bag-brown);
     text-align: center;
 }
 .bag-figma-metric__icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: 0 auto .65rem;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 15px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -239,31 +263,33 @@ body.bag-figma-user-dashboard #page.drawers {
 .bag-figma-metric strong {
     display: block;
     color: var(--bag-gold);
-    font-size: 1.7rem;
+    font-size: 35px;
     line-height: 1;
     font-weight: 800;
 }
 .bag-figma-metric span {
     display: block;
-    margin-top: .3rem;
+    margin-top: 14px;
     color: #6d5c4c;
-    font-size: .78rem;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 400;
 }
 .bag-figma-programmes {
-    padding-block: clamp(3rem, 6vw, 5.5rem);
+    width: 100%;
+    max-width: none;
+    padding: 73px max(1rem, calc((100% - 1280px) / 2)) 88px;
     text-align: center;
-    background: #fffaf3;
+    background: #faf8f5;
 }
 .bag-figma-programmes .bag-figma-copy {
-    max-width: 48rem;
+    max-width: 821px;
     margin-inline: auto;
 }
 .bag-figma-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(1rem, 2.1vw, 1.65rem);
-    margin-top: 2.15rem;
+    gap: 27px;
+    margin-top: 133px;
     text-align: left;
 }
 .bag-figma-card {
@@ -271,8 +297,9 @@ body.bag-figma-user-dashboard #page.drawers {
     overflow: hidden;
     background: #fff;
     border: 1px solid #eadfce;
-    border-radius: .55rem;
-    box-shadow: 0 .55rem 1.05rem rgba(49, 31, 16, .12);
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
     transition: transform .18s ease, box-shadow .18s ease;
 }
 .bag-figma-card:hover,
@@ -286,29 +313,29 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-card__image {
     width: 100%;
-    aspect-ratio: 1.42;
+    height: 412px;
     object-fit: cover;
     display: block;
 }
 .bag-figma-card__status {
     position: absolute;
-    top: .85rem;
-    left: .85rem;
+    top: 23px;
+    left: 19px;
     z-index: 1;
-    min-width: 5.3rem;
-    padding: .27rem .7rem;
+    min-width: 131px;
+    padding: 8px 12px;
     border-radius: 999px;
     background: rgba(255,255,255,.95);
     color: var(--bag-brown);
-    font-size: .62rem;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 500;
     text-align: center;
 }
 .bag-figma-card__dates {
     position: absolute;
-    left: .8rem;
-    right: .8rem;
-    bottom: .75rem;
+    left: 19px;
+    right: 15px;
+    bottom: 13px;
     z-index: 1;
     display: flex;
     justify-content: space-between;
@@ -319,37 +346,38 @@ body.bag-figma-user-dashboard #page.drawers {
     align-items: center;
     gap: .35rem;
     border-radius: 999px;
-    padding: .32rem .48rem;
+    padding: .45rem .72rem;
     background: rgba(255,255,255,.94);
     color: #6d5c4c;
-    font-size: .58rem;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 1;
 }
 .bag-figma-card__body {
-    padding: 1.05rem 1rem .9rem;
+    min-height: 293px;
+    padding: 37px 27px 18px;
 }
 .bag-figma-card__title {
     margin: 0;
-    font-size: 1.08rem;
+    font-size: 25px;
     font-weight: 800;
     line-height: 1.25;
 }
 .bag-figma-card__text {
-    margin: .55rem 0 .9rem;
+    margin: 15px 0 19px;
     color: #8a8178;
-    font-size: .78rem;
-    line-height: 1.55;
+    font-size: 12px;
+    line-height: 1.4;
 }
 .bag-figma-card__meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: .8rem;
-    padding-top: .55rem;
-    border-top: 1px solid #eee4d9;
+    padding-top: 0;
+    border-top: 0;
     color: var(--bag-brown);
-    font-size: .7rem;
+    font-size: 12px;
     font-weight: 700;
 }
 .bag-figma-card__host {
@@ -359,8 +387,8 @@ body.bag-figma-user-dashboard #page.drawers {
     gap: .5rem;
 }
 .bag-figma-card__avatar {
-    width: 1.85rem;
-    height: 1.85rem;
+    width: 33px;
+    height: 33px;
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -371,11 +399,16 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-card__pill {
     flex: 0 0 auto;
-    border-radius: .35rem;
-    padding: .38rem .65rem;
+    min-width: 134px;
+    min-height: 37px;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: .5rem .65rem;
     background: var(--bag-brown);
     color: #fff;
-    font-size: .62rem;
+    font-size: 12px;
     font-weight: 800;
 }
 .bag-figma-card__action {
@@ -383,12 +416,12 @@ body.bag-figma-user-dashboard #page.drawers {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-top: .85rem;
-    padding-top: .8rem;
-    border-top: 1px solid #eee4d9;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(107, 68, 35, .35);
     color: var(--bag-brown);
-    font-size: .68rem;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
     text-decoration: none;
 }
 .bag-figma-card__action:hover,
@@ -397,26 +430,26 @@ body.bag-figma-user-dashboard #page.drawers {
     text-decoration: none;
 }
 .bag-figma-more {
-    margin-top: 1.8rem;
+    margin-top: 74px;
 }
 .bag-figma-development {
     background: #f1f3ec;
-    padding-block: clamp(3.4rem, 7vw, 6.3rem);
+    padding: 133px max(1rem, calc((100% - 1280px) / 2)) 77px;
 }
 .bag-figma-development__inner {
     display: grid;
-    grid-template-columns: minmax(0, .95fr) minmax(19rem, 1.05fr);
-    gap: clamp(2rem, 6vw, 5.3rem);
+    grid-template-columns: 585px 621px;
+    gap: 74px;
     align-items: center;
 }
 .bag-figma-checks {
     display: grid;
-    gap: .7rem;
-    margin: 1.2rem 0 0;
+    gap: 35px;
+    margin: 75px 0 0;
     padding: 0;
     list-style: none;
     color: #75685d;
-    font-size: .9rem;
+    font-size: 20px;
 }
 .bag-figma-checks li {
     display: flex;
@@ -432,28 +465,30 @@ body.bag-figma-user-dashboard #page.drawers {
 }
 .bag-figma-development__image {
     width: 100%;
-    max-height: 31rem;
+    height: 612px;
     object-fit: cover;
     display: block;
 }
 .bag-figma-cta {
-    padding-block: clamp(2.1rem, 4vw, 3.2rem);
+    background: #fff;
+    padding: 51px max(1rem, calc((100% - 1280px) / 2));
 }
 .bag-figma-cta__panel {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .85rem;
+    min-height: 292px;
+    gap: 18px;
     text-align: center;
     background: var(--bag-brown);
     color: #fff;
-    border-radius: 1rem;
-    padding: clamp(1.8rem, 4vw, 3rem) 1rem;
+    border-radius: 30px;
+    padding: 68px 1rem 44px;
 }
 .bag-figma-cta__title {
     margin: 0;
     color: #fff;
-    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-size: clamp(2rem, 3.4vw, 49px);
     font-weight: 800;
     text-transform: uppercase;
 }
@@ -463,9 +498,9 @@ body.bag-figma-user-dashboard #page.drawers {
     border-color: #fff4e7;
 }
 .bag-figma-cta__copy {
-    margin: -.35rem 0 .3rem;
+    margin: -7px 0 20px;
     color: rgba(255,255,255,.82);
-    font-size: .82rem;
+    font-size: 15px;
 }
 @media (max-width: 991.98px) {
     .bag-figma-home__section {
@@ -573,7 +608,7 @@ body.bag-figma-user-dashboard #page.drawers {
         <div class="bag-figma-expertise__panel">
             <div class="bag-figma-collage" aria-hidden="true">
                 <img class="bag-figma-collage__img bag-figma-collage__img--one" src="{{{ bag_home_coffee_url }}}" alt="" loading="lazy">
-                <img class="bag-figma-collage__img bag-figma-collage__img--two" src="{{{ bag_home_hero_url }}}" alt="" loading="lazy">
+                <img class="bag-figma-collage__img bag-figma-collage__img--two" src="{{{ bag_home_collage_secondary_url }}}" alt="" loading="lazy">
                 <img class="bag-figma-collage__img bag-figma-collage__img--three" src="{{{ bag_home_activity_url }}}" alt="" loading="lazy">
             </div>
             <div>

@@ -309,6 +309,69 @@ body.bag-contact-body .baitalgahwa-navbar {
     box-shadow: 0 .35rem 1rem rgba(26, 15, 8, .16);
     pointer-events: auto;
 }
+body.bag-figma-user-dashboard .baitalgahwa-navbar {
+    top: 0;
+    width: min(calc(100% - 2rem), 1156px);
+    min-height: 91px;
+    border-radius: 0 0 20px 20px;
+    padding-inline: 41px;
+    box-shadow: none;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__inner {
+    min-height: 91px;
+    gap: 42px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar .navbar-brand {
+    margin-right: 48px !important;
+}
+body.bag-figma-user-dashboard .baitalgahwa-custom-logo,
+body.bag-figma-user-dashboard .baitalgahwa-navbar .logo {
+    max-height: 52px;
+    max-width: 122px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__logo-subtitle {
+    display: none;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__custom-links {
+    gap: 42px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link {
+    padding-block: 0;
+    color: #1e1e1e;
+    font-size: 15px;
+    font-weight: 400;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link--active {
+    font-weight: 700;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link--active::after,
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link:hover::after,
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link:focus-visible::after {
+    display: none;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth {
+    gap: 10px;
+    margin-inline-start: 12px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-link,
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary {
+    width: 98px;
+    min-height: 37px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-link {
+    color: #fff;
+    border-color: #6b4423;
+    background: #6b4423;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary {
+    color: #6b4423;
+    border-color: #6b4423;
+    background: #fff;
+}
 body.bag-figma-user-dashboard .baitalgahwa-navbar__inner,
 body.bag-about-body .baitalgahwa-navbar__inner,
 body.bag-training-body .baitalgahwa-navbar__inner,
@@ -732,6 +795,94 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
         min-height: 1.45rem;
         padding: .32rem .42rem;
         font-size: .52rem;
+    }
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar {
+    top: 0;
+    width: min(calc(100% - 2rem), 1156px);
+    min-height: 91px;
+    border-radius: 0 0 20px 20px;
+    padding-inline: 41px;
+    box-shadow: none;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__inner {
+    min-height: 91px;
+    gap: 42px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar .navbar-brand {
+    margin-right: 48px !important;
+}
+body.bag-figma-user-dashboard .baitalgahwa-custom-logo,
+body.bag-figma-user-dashboard .baitalgahwa-navbar .logo {
+    max-height: 52px;
+    max-width: 122px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__logo-subtitle {
+    display: none;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__custom-links {
+    gap: 42px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link {
+    padding-block: 0;
+    color: #1e1e1e;
+    font-size: 15px;
+    font-weight: 400;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link--active {
+    font-weight: 700;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link--active::after,
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link:hover::after,
+body.bag-figma-user-dashboard .baitalgahwa-navbar__link:focus-visible::after {
+    display: none;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth {
+    gap: 10px;
+    margin-inline-start: 12px;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-link,
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary {
+    width: 98px;
+    min-height: 37px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-link {
+    color: #fff;
+    border-color: #6b4423;
+    background: #6b4423;
+}
+body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary {
+    color: #6b4423;
+    border-color: #6b4423;
+    background: #fff;
+}
+@media (max-width: 991.98px) {
+    body.bag-figma-user-dashboard .baitalgahwa-navbar {
+        width: calc(100% - .7rem);
+        min-height: 64px;
+        padding-inline: .75rem;
+        border-radius: 0 0 12px 12px;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__inner {
+        min-height: 64px;
+        gap: .75rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__custom-links {
+        gap: .95rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__link {
+        font-size: .68rem;
+    }
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-link,
+    body.bag-figma-user-dashboard .baitalgahwa-navbar__auth-primary {
+        width: auto;
+        min-height: 32px;
+        padding: .38rem .58rem;
+        font-size: .65rem;
     }
 }
 </style>
