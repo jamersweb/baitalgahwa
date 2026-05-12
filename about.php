@@ -34,7 +34,7 @@ $PAGE->set_heading(format_string($SITE->fullname));
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
 $context['about_hero_url'] = theme_baitalgahwa_get_theme_image_url('figma-home-hero');
 $context['about_coffee_url'] = theme_baitalgahwa_get_theme_image_url('figma-home-collage-1');
-$context['about_collage_secondary_url'] = theme_baitalgahwa_get_theme_image_url('figma-home-collage-2');
+$context['about_collage_secondary_url'] = theme_baitalgahwa_get_theme_image_url('house-of-artisans');
 $context['about_activity_url'] = theme_baitalgahwa_get_theme_image_url('figma-home-collage-3');
 $context['about_member_url'] = theme_baitalgahwa_get_theme_image_url('figma-home-development');
 
