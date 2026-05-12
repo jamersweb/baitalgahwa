@@ -1641,8 +1641,6 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'headercontent' => $headercontent,
         'addblockbutton' => $addblockbutton,
     ];
-    $context['editswitch'] = method_exists($OUTPUT, 'edit_switch') ? $OUTPUT->edit_switch() : '';
-    $context['haseditswitch'] = trim((string) $context['editswitch']) !== '';
     $context = array_merge($context, theme_baitalgahwa_get_footer_context());
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
     $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
@@ -1656,6 +1654,9 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $dashboardpath = (new \moodle_url('/my/'))->get_path(false);
     $mycoursespath = (new \moodle_url('/my/courses.php'))->get_path(false);
     $siteadminpath = (new \moodle_url('/admin/search.php'))->get_path(false);
+    $showeditswitch = is_siteadmin($USER);
+    $context['editswitch'] = ($showeditswitch && method_exists($OUTPUT, 'edit_switch')) ? $OUTPUT->edit_switch() : '';
+    $context['haseditswitch'] = trim((string) $context['editswitch']) !== '';
     $context['nav_about_active'] = ($currentpath === $aboutpath);
     $context['nav_training_active'] = ($currentpath === $trainingpath || $currentpath === $programmepath);
     $context['nav_contact_active'] = ($currentpath === $contactpath);
