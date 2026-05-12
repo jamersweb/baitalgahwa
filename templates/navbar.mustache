@@ -1116,6 +1116,159 @@ body.bag-contact-body .baitalgahwa-navbar__auth {
         font-size: .68rem;
     }
 }
+body.bag-about-body .baitalgahwa-navbar,
+body.bag-training-body .baitalgahwa-navbar,
+body.bag-programme-body .baitalgahwa-navbar,
+body.bag-contact-body .baitalgahwa-navbar {
+    top: 0;
+    width: min(calc(100% - 2rem), 1190px);
+    min-height: 68px;
+    border-radius: 0 0 6px 6px;
+    padding-inline: 42px;
+    background: rgba(255,255,255,.99) !important;
+    box-shadow: none;
+    overflow: hidden;
+}
+body.bag-about-body .baitalgahwa-navbar::before,
+body.bag-training-body .baitalgahwa-navbar::before,
+body.bag-programme-body .baitalgahwa-navbar::before,
+body.bag-contact-body .baitalgahwa-navbar::before {
+    display: none !important;
+}
+body.bag-about-body .baitalgahwa-navbar__inner,
+body.bag-training-body .baitalgahwa-navbar__inner,
+body.bag-programme-body .baitalgahwa-navbar__inner,
+body.bag-contact-body .baitalgahwa-navbar__inner {
+    min-height: 68px;
+    gap: 38px;
+    position: relative;
+    z-index: 1;
+}
+body.bag-about-body .baitalgahwa-navbar .navbar-brand,
+body.bag-training-body .baitalgahwa-navbar .navbar-brand,
+body.bag-programme-body .baitalgahwa-navbar .navbar-brand,
+body.bag-contact-body .baitalgahwa-navbar .navbar-brand {
+    margin-right: 54px !important;
+}
+body.bag-about-body .baitalgahwa-custom-logo,
+body.bag-about-body .baitalgahwa-navbar .logo,
+body.bag-training-body .baitalgahwa-custom-logo,
+body.bag-training-body .baitalgahwa-navbar .logo,
+body.bag-programme-body .baitalgahwa-custom-logo,
+body.bag-programme-body .baitalgahwa-navbar .logo,
+body.bag-contact-body .baitalgahwa-custom-logo,
+body.bag-contact-body .baitalgahwa-navbar .logo {
+    max-height: 48px;
+    max-width: 128px;
+}
+body.bag-about-body .baitalgahwa-navbar__logo-subtitle,
+body.bag-training-body .baitalgahwa-navbar__logo-subtitle,
+body.bag-programme-body .baitalgahwa-navbar__logo-subtitle,
+body.bag-contact-body .baitalgahwa-navbar__logo-subtitle {
+    display: none;
+}
+body.bag-about-body .baitalgahwa-navbar__custom-links,
+body.bag-training-body .baitalgahwa-navbar__custom-links,
+body.bag-programme-body .baitalgahwa-navbar__custom-links,
+body.bag-contact-body .baitalgahwa-navbar__custom-links {
+    display: inline-flex !important;
+    gap: 38px;
+    margin-inline: 0;
+}
+body.bag-about-body .baitalgahwa-navbar__link,
+body.bag-training-body .baitalgahwa-navbar__link,
+body.bag-programme-body .baitalgahwa-navbar__link,
+body.bag-contact-body .baitalgahwa-navbar__link {
+    padding-block: 0;
+    color: #1e1e1e;
+    font-size: 13px;
+    font-weight: 700;
+}
+body.bag-about-body .baitalgahwa-navbar__link--active::after,
+body.bag-about-body .baitalgahwa-navbar__link:hover::after,
+body.bag-about-body .baitalgahwa-navbar__link:focus-visible::after,
+body.bag-training-body .baitalgahwa-navbar__link--active::after,
+body.bag-training-body .baitalgahwa-navbar__link:hover::after,
+body.bag-training-body .baitalgahwa-navbar__link:focus-visible::after,
+body.bag-programme-body .baitalgahwa-navbar__link--active::after,
+body.bag-programme-body .baitalgahwa-navbar__link:hover::after,
+body.bag-programme-body .baitalgahwa-navbar__link:focus-visible::after,
+body.bag-contact-body .baitalgahwa-navbar__link--active::after,
+body.bag-contact-body .baitalgahwa-navbar__link:hover::after,
+body.bag-contact-body .baitalgahwa-navbar__link:focus-visible::after {
+    left: 50%;
+    width: 18px;
+    bottom: -19px;
+    height: 1px;
+    background: #8a5a2b;
+}
+body.bag-about-body .baitalgahwa-navbar__auth,
+body.bag-training-body .baitalgahwa-navbar__auth,
+body.bag-programme-body .baitalgahwa-navbar__auth,
+body.bag-contact-body .baitalgahwa-navbar__auth {
+    display: inline-flex !important;
+    gap: 8px;
+    margin-inline-start: 20px;
+}
+body.bag-about-body .baitalgahwa-navbar__auth-link,
+body.bag-training-body .baitalgahwa-navbar__auth-link,
+body.bag-programme-body .baitalgahwa-navbar__auth-link,
+body.bag-contact-body .baitalgahwa-navbar__auth-link,
+body.bag-about-body .baitalgahwa-navbar__auth-primary,
+body.bag-training-body .baitalgahwa-navbar__auth-primary,
+body.bag-programme-body .baitalgahwa-navbar__auth-primary,
+body.bag-contact-body .baitalgahwa-navbar__auth-primary {
+    min-height: 26px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+}
+body.bag-about-body .baitalgahwa-navbar__auth-link,
+body.bag-training-body .baitalgahwa-navbar__auth-link,
+body.bag-programme-body .baitalgahwa-navbar__auth-link,
+body.bag-contact-body .baitalgahwa-navbar__auth-link {
+    color: #fff;
+    border-color: #76461f;
+    background: #76461f;
+}
+body.bag-about-body .baitalgahwa-navbar__auth-primary,
+body.bag-training-body .baitalgahwa-navbar__auth-primary,
+body.bag-programme-body .baitalgahwa-navbar__auth-primary,
+body.bag-contact-body .baitalgahwa-navbar__auth-primary {
+    color: #76461f;
+    border-color: #76461f;
+    background: #fff;
+}
+@media (max-width: 991.98px) {
+    body.bag-about-body .baitalgahwa-navbar,
+    body.bag-training-body .baitalgahwa-navbar,
+    body.bag-programme-body .baitalgahwa-navbar,
+    body.bag-contact-body .baitalgahwa-navbar {
+        width: calc(100% - .7rem);
+        min-height: 60px;
+        padding-inline: .75rem;
+    }
+    body.bag-about-body .baitalgahwa-navbar__inner,
+    body.bag-training-body .baitalgahwa-navbar__inner,
+    body.bag-programme-body .baitalgahwa-navbar__inner,
+    body.bag-contact-body .baitalgahwa-navbar__inner {
+        min-height: 60px;
+        gap: .72rem;
+    }
+    body.bag-about-body .baitalgahwa-navbar__custom-links,
+    body.bag-training-body .baitalgahwa-navbar__custom-links,
+    body.bag-programme-body .baitalgahwa-navbar__custom-links,
+    body.bag-contact-body .baitalgahwa-navbar__custom-links {
+        gap: .9rem;
+    }
+    body.bag-about-body .baitalgahwa-navbar__auth,
+    body.bag-training-body .baitalgahwa-navbar__auth,
+    body.bag-programme-body .baitalgahwa-navbar__auth,
+    body.bag-contact-body .baitalgahwa-navbar__auth {
+        margin-inline-start: .2rem;
+    }
+}
 </style>
 <header class="baitalgahwa-header">
 <nav class="navbar fixed-top navbar-expand baitalgahwa-navbar" aria-label="{{#str}}sitemenubar, admin{{/str}}">

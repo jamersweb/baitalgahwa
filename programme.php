@@ -39,13 +39,7 @@ $PAGE->set_heading(format_string($SITE->fullname));
 
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
 $templatecourse = theme_baitalgahwa_format_course_for_template($course);
-$programmeimages = [
-    theme_baitalgahwa_get_theme_image_url('gahwa-beans-pan'),
-    theme_baitalgahwa_get_theme_image_url('gahwa-screen'),
-    theme_baitalgahwa_get_theme_image_url('gahwa-presenter'),
-    theme_baitalgahwa_get_theme_image_url('gahwa-beans-bag'),
-];
-$templatecourse['imageurl'] = $programmeimages[((int) $course->id) % count($programmeimages)];
+$templatecourse['imageurl'] = theme_baitalgahwa_get_theme_image_url('gahwa-beans-pan');
 $start = !empty($course->startdate) ? (int) $course->startdate : 0;
 $end = !empty($course->enddate) ? (int) $course->enddate : 0;
 $days = 8;
