@@ -1567,7 +1567,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     if (strpos($scriptname, '/theme/baitalgahwa/contact.php') !== false) {
         $extraclasses[] = 'bag-contact-body';
     }
-    if ($PAGE->pagelayout === 'mydashboard' && !is_siteadmin($USER)) {
+    if (($PAGE->pagelayout === 'mydashboard' || $PAGE->pagelayout === 'mycourses') && !is_siteadmin($USER)) {
         $extraclasses[] = 'bag-figma-user-dashboard';
     }
     if ($courseindexopen) {
@@ -1633,7 +1633,7 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'usermenu' => $primarymenu['user'],
         'langmenu' => $primarymenu['lang'],
         'showauthbuttons' => !isloggedin() || isguestuser()
-            || ($PAGE->pagelayout === 'mydashboard' && !is_siteadmin($USER)),
+            || (($PAGE->pagelayout === 'mydashboard' || $PAGE->pagelayout === 'mycourses') && !is_siteadmin($USER)),
         'forceblockdraweropen' => $forceblockdraweropen,
         'regionmainsettingsmenu' => $regionmainsettingsmenu,
         'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
@@ -1665,6 +1665,13 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
     $context['nav_home_active'] = !$context['nav_about_active'] && !$context['nav_training_active']
         && !$context['nav_contact_active'] && !$context['nav_mycourses_active'] && !$context['nav_siteadmin_active']
         && $currentpath !== $dashboardpath;
+    $context['showmarketingnav'] = !is_siteadmin($USER) && (
+        $PAGE->pagelayout === 'mydashboard'
+        || $PAGE->pagelayout === 'mycourses'
+        || $context['nav_about_active']
+        || $context['nav_training_active']
+        || $context['nav_contact_active']
+    );
     $context['config'] = [
         'wwwroot' => $CFG->wwwroot,
         'homeurl' => (new \moodle_url('/'))->out(false),

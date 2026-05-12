@@ -1032,11 +1032,21 @@ body.bag-about-body .baitalgahwa-navbar__auth {
             {{/themelogourl}}
             </span>
         </a>
+        {{#showmarketingnav}}
+        <div class="baitalgahwa-navbar__custom-links d-none d-lg-flex" aria-label="Primary">
+            <a class="baitalgahwa-navbar__link {{#nav_home_active}}baitalgahwa-navbar__link--active{{/nav_home_active}}" href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
+            <a class="baitalgahwa-navbar__link {{#nav_about_active}}baitalgahwa-navbar__link--active{{/nav_about_active}}" href="{{{ config.abouturl }}}">About Us</a>
+            <a class="baitalgahwa-navbar__link {{#nav_training_active}}baitalgahwa-navbar__link--active{{/nav_training_active}}" href="{{{ config.trainingurl }}}">Training Program</a>
+            <a class="baitalgahwa-navbar__link {{#nav_contact_active}}baitalgahwa-navbar__link--active{{/nav_contact_active}}" href="{{{ config.contacturl }}}">Contact Us</a>
+        </div>
+        {{/showmarketingnav}}
+        {{^showmarketingnav}}
         <div class="baitalgahwa-navbar__custom-links d-none d-lg-flex" aria-label="Primary">
             <a class="baitalgahwa-navbar__link {{#nav_home_active}}baitalgahwa-navbar__link--active{{/nav_home_active}}" href="{{{ config.homeurl }}}">{{#str}}home, core{{/str}}</a>
             <a class="baitalgahwa-navbar__link {{#nav_mycourses_active}}baitalgahwa-navbar__link--active{{/nav_mycourses_active}}" href="{{{ config.mycoursesurl }}}">My courses</a>
             <a class="baitalgahwa-navbar__link {{#nav_siteadmin_active}}baitalgahwa-navbar__link--active{{/nav_siteadmin_active}}" href="{{{ config.siteadminurl }}}">Site administration</a>
         </div>
+        {{/showmarketingnav}}
         {{#showauthbuttons}}
         <div class="baitalgahwa-navbar__auth" aria-label="Account actions">
             <a class="baitalgahwa-navbar__auth-link" href="{{{ config.loginurl }}}">Login</a>
