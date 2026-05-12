@@ -28,6 +28,10 @@ global $USER, $CFG, $OUTPUT;
 
 $userid = (int) $USER->id;
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
+if (is_siteadmin($USER)) {
+    echo $OUTPUT->render_from_template('theme_boost/drawers', $context);
+    return;
+}
 $context = array_merge($context, theme_baitalgahwa_get_learning_page_context($userid));
 $context['config']['calurl'] = (new \moodle_url('/calendar/view.php'))->out(false);
 $context['config']['membersurl'] = (new \moodle_url('/my/courses.php'))->out(false);

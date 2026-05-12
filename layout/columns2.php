@@ -24,5 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+global $USER;
+
 $context = theme_baitalgahwa_bootstrap_drawer_template_context();
+if (is_siteadmin($USER)) {
+    echo $OUTPUT->render_from_template('theme_boost/drawers', $context);
+    return;
+}
 echo $OUTPUT->render_from_template('theme_baitalgahwa/drawers', $context);
