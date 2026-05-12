@@ -512,6 +512,58 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
     margin-inline-start: auto;
     min-width: 0;
 }
+.baitalgahwa-navbar__edit-switch {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    min-height: 2.35rem;
+}
+.baitalgahwa-navbar__edit-switch:empty {
+    display: none;
+}
+.baitalgahwa-navbar__edit-switch .form-check,
+.baitalgahwa-navbar__edit-switch .custom-control,
+.baitalgahwa-navbar__edit-switch form,
+.baitalgahwa-navbar__edit-switch .singlebutton {
+    margin: 0 !important;
+}
+.baitalgahwa-navbar__edit-switch .form-check-label,
+.baitalgahwa-navbar__edit-switch .custom-control-label,
+.baitalgahwa-navbar__edit-switch label {
+    color: #754a24 !important;
+    font-size: .84rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.baitalgahwa-navbar__edit-switch .form-switch,
+.baitalgahwa-navbar__edit-switch .custom-switch {
+    min-height: 1.7rem;
+    display: inline-flex;
+    align-items: center;
+}
+.baitalgahwa-navbar__edit-switch input[type="checkbox"] {
+    accent-color: #754a24;
+}
+.baitalgahwa-navbar__edit-switch .custom-control-input:checked ~ .custom-control-label::before,
+.baitalgahwa-navbar__edit-switch .form-check-input:checked {
+    border-color: #754a24 !important;
+    background-color: #754a24 !important;
+}
+.baitalgahwa-navbar__edit-switch .custom-control-label::before,
+.baitalgahwa-navbar__edit-switch .form-check-input {
+    border-color: #d8c4b2 !important;
+    box-shadow: none !important;
+}
+.baitalgahwa-navbar__edit-switch .btn {
+    min-height: 2.25rem;
+    padding: .45rem .85rem;
+    border: 1px solid #754a24 !important;
+    border-radius: .55rem;
+    background: #754a24 !important;
+    color: #fff !important;
+    font-size: .78rem;
+    font-weight: 800;
+}
 .baitalgahwa-navbar #usernavigation {
     gap: .75rem;
     align-items: center;
@@ -683,6 +735,9 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
         max-width: 100%;
         flex: 1 1 12rem;
     }
+    .baitalgahwa-navbar__edit-switch {
+        order: -1;
+    }
     .baitalgahwa-navbar__endcap {
         width: 100%;
         justify-content: flex-end;
@@ -795,6 +850,12 @@ body.bag-contact-body .baitalgahwa-navbar__auth-link {
         min-height: 1.45rem;
         padding: .32rem .42rem;
         font-size: .52rem;
+    }
+}
+@media (max-width: 767.98px) {
+    .baitalgahwa-navbar__edit-switch {
+        width: 100%;
+        justify-content: flex-end;
     }
 }
 body.bag-figma-user-dashboard .baitalgahwa-navbar {
@@ -993,6 +1054,11 @@ body.bag-about-body .baitalgahwa-navbar__auth {
         </ul>
         {{/output.page_heading_menu}}
         <div class="baitalgahwa-navbar__endcap">
+        {{#haseditswitch}}
+            <div class="baitalgahwa-navbar__edit-switch">
+                {{{ editswitch }}}
+            </div>
+        {{/haseditswitch}}
         <form class="baitalgahwa-navbar__search d-none d-md-inline-flex" action="{{{ config.searchurl }}}" method="get" role="search" aria-label="Search">
             <input class="baitalgahwa-navbar__search-input" type="search" name="search" placeholder="Search">
             <button class="baitalgahwa-navbar__search-btn" type="submit" aria-label="Search">

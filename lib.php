@@ -1641,6 +1641,8 @@ function theme_baitalgahwa_bootstrap_drawer_template_context() {
         'headercontent' => $headercontent,
         'addblockbutton' => $addblockbutton,
     ];
+    $context['editswitch'] = method_exists($OUTPUT, 'edit_switch') ? $OUTPUT->edit_switch() : '';
+    $context['haseditswitch'] = trim((string) $context['editswitch']) !== '';
     $context = array_merge($context, theme_baitalgahwa_get_footer_context());
     $context = array_merge($context, theme_baitalgahwa_get_branding_context());
     $abouturl = new \moodle_url('/theme/baitalgahwa/about.php');
