@@ -42,8 +42,12 @@ body.bag-training-body #page.drawers {
     position: relative;
     width: 100vw;
     max-width: 100vw;
-    min-height: clamp(12.8rem, 26vw, 19rem);
+    min-height: clamp(19rem, 31vw, 27rem);
     margin-inline: calc(50% - 50vw);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: #fff;
     isolation: isolate;
     overflow: hidden;
 }
@@ -55,12 +59,31 @@ body.bag-training-body #page.drawers {
 }
 .bag-training-hero::before {
     z-index: -2;
-    background: url('{{{ training_hero_url }}}') center top / 100% auto no-repeat;
+    background: url('{{{ training_hero_url }}}') center 44% / cover no-repeat;
     transform: scale(1.01);
 }
 .bag-training-hero::after {
     z-index: -1;
-    background: linear-gradient(180deg, rgba(18, 15, 13, .38), rgba(18, 15, 13, .64));
+    background: linear-gradient(180deg, rgba(18, 15, 13, .32), rgba(18, 15, 13, .7));
+}
+.bag-training-hero__content {
+    width: min(100% - 2rem, 42rem);
+    padding-top: 3.4rem;
+}
+.bag-training-hero__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2rem, 4.2vw, 3.45rem);
+    line-height: 1.02;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.bag-training-hero__copy {
+    max-width: 33rem;
+    margin: .85rem auto 0;
+    color: rgba(255,255,255,.9);
+    font-size: .95rem;
+    line-height: 1.65;
 }
 .bag-training-catalogue {
     padding-block: clamp(2.1rem, 4.5vw, 4rem);
@@ -256,7 +279,12 @@ body.bag-training-body #page.drawers {
     <div id="page" data-region="mainpage" class="drawers drag-container">
         <div id="topofscroll" class="main-inner">
             <main class="bag-training-page" id="bag-training-main">
-                <section class="bag-training-hero" aria-label="Training programmes"></section>
+                <section class="bag-training-hero" aria-labelledby="bag-training-hero-title">
+                    <div class="bag-training-hero__content">
+                        <h1 class="bag-training-hero__title" id="bag-training-hero-title">Training Program</h1>
+                        <p class="bag-training-hero__copy">Explore guided Gahwa programmes built for confident service, cultural knowledge, and hands-on practice.</p>
+                    </div>
+                </section>
 
                 <section class="bag-training-catalogue bag-training-section" aria-labelledby="bag-training-title">
                     <div class="bag-training-head">

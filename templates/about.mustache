@@ -323,7 +323,13 @@ body.bag-about-body #page.drawers {
     <div id="page" data-region="mainpage" class="drawers drag-container">
         <div id="topofscroll" class="main-inner">
             <main class="bag-about-page" id="bag-about-main">
-                <section class="bag-about-hero" aria-label="About Bait Al Gahwa"></section>
+                <section class="bag-about-hero" aria-labelledby="bag-about-hero-title">
+                    <div>
+                        <h1 class="bag-about-hero__title" id="bag-about-hero-title">About Us</h1>
+                        <p class="bag-about-hero__copy">A cultural training experience shaped around heritage, hospitality, and professional excellence.</p>
+                        <a class="bag-about-btn" href="{{{ config.trainingurl }}}">Explore Programmes</a>
+                    </div>
+                </section>
 
                 <section class="bag-about-expertise bag-about-section" aria-labelledby="bag-about-expertise-title">
                     <div class="bag-about-panel">

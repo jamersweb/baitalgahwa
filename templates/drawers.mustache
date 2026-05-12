@@ -406,7 +406,94 @@ body#page-enrol-index #region-main .singlebutton .btn {
     border-radius: 0.5rem !important;
 }
 body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell {
-    display: none !important;
+    display: block !important;
+    margin: 1.45rem auto 2.2rem !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__card {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 0.38rem minmax(0, 1fr) !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(93, 62, 33, 0.14) !important;
+    border-radius: 0.85rem !important;
+    background: #fff !important;
+    box-shadow: 0 0.9rem 2.3rem rgba(45, 25, 12, 0.08) !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__card::after {
+    content: "" !important;
+    position: absolute !important;
+    right: -6rem !important;
+    bottom: -7rem !important;
+    width: 20rem !important;
+    height: 20rem !important;
+    background: url('{{{ footerflowerurl }}}') center / contain no-repeat !important;
+    opacity: 0.11 !important;
+    pointer-events: none !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__rail {
+    width: auto !important;
+    background: #6b4423 !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__inner {
+    position: relative !important;
+    z-index: 1 !important;
+    padding: clamp(1.25rem, 3vw, 2rem) !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__eyebrow {
+    margin: 0 0 0.35rem !important;
+    color: #8a5a2b !important;
+    font-size: 0.68rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__title {
+    margin: 0 !important;
+    color: #1f1712 !important;
+    font-size: clamp(1.25rem, 2vw, 1.72rem) !important;
+    line-height: 1.12 !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__sub {
+    max-width: 46rem !important;
+    margin: 0.55rem 0 0 !important;
+    color: #6d625b !important;
+    font-size: 0.92rem !important;
+    line-height: 1.62 !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__hint {
+    max-width: 46rem !important;
+    border-color: rgba(201, 162, 39, 0.28) !important;
+    border-radius: 0.45rem !important;
+    background: #fff8ea !important;
+    color: #5b4c3e !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-field-label {
+    margin-bottom: 0.35rem !important;
+    color: #5b4c3e !important;
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-input {
+    min-height: 2.78rem !important;
+    border: 1px solid #eee3d7 !important;
+    border-radius: 0.35rem !important;
+    background: #fff !important;
+    color: #241a13 !important;
+    box-shadow: none !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-input:focus {
+    border-color: #c9a227 !important;
+    box-shadow: 0 0 0 0.16rem rgba(201, 162, 39, 0.16) !important;
+}
+body#page-enrol-index #region-main .baitalgahwa-enrol-application-shell__submit {
+    min-height: 2.45rem !important;
+    border-radius: 0.28rem !important;
+    border-color: #6b4423 !important;
+    background: #6b4423 !important;
+    color: #fff !important;
+    padding-inline: 1.55rem !important;
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
 }
 @media (max-width: 767.98px) {
 body#page-enrol-index #topofscroll.main-inner,
