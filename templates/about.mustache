@@ -34,7 +34,7 @@ body.bag-about-body #page.drawers {
     overflow: hidden;
 }
 .bag-about-section {
-    width: min(100%, 1280px);
+    width: min(calc(100% - 2rem), 1190px);
     margin: 0 auto;
     padding-inline: 0;
 }
@@ -113,8 +113,8 @@ body.bag-about-body #page.drawers {
 }
 .bag-about-panel {
     display: grid;
-    grid-template-columns: 589px 559px;
-    gap: 92px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .95fr);
+    gap: 58px;
     align-items: center;
     background: #fff;
     border: 0;
@@ -212,8 +212,8 @@ body.bag-about-body #page.drawers {
 }
 .bag-about-development__inner {
     display: grid;
-    grid-template-columns: 585px 621px;
-    gap: 74px;
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1fr);
+    gap: 58px;
     align-items: center;
 }
 .bag-about-checks {
@@ -280,6 +280,7 @@ body.bag-about-body #page.drawers {
         grid-template-columns: 1fr;
     }
     .bag-about-section {
+        width: min(calc(100% - 1.25rem), 1190px);
         padding-inline: .9rem;
     }
     .bag-about-panel {
